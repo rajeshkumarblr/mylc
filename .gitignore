@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+
+# Ignore binary files named solution* except .cpp files
+solution*
+solution-*
+!solution*.cpp

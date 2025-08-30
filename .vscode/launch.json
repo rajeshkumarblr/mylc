@@ -4,7 +4,7 @@
         "name": "(gdb) Launch",
         "type": "cppdbg",
         "request": "launch",
-        "program": "/home/rajesh/lc/sliding_window/3.longest-substring-without-repeating-characters/solution-vector",
+        "program": "/root/mylc/sliding_window/3.longest-substring-without-repeating-characters/solution-set",
         "args": [],
         "stopAtEntry": false,
         "cwd": "${fileDirname}",

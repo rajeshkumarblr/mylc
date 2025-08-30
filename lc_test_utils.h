@@ -77,10 +77,8 @@ bool print_test_result(const Input& input, const Result& result, const Result& e
               << " | Expected: " << std::setw(expected_width) << expected
               << " | Got: " << std::setw(got_width) << result
               << " | ";
-    if (result == expected) {
-        std::cout << "PASS" << std::endl;
-    } else {
-        std::cout << "FAIL" << std::endl;
-    }
-    return result;
+    
+    bool res = (result == expected);
+    std::cout << (res ? "PASS" : "FAIL" ) << std::endl; 
+    return res;
 }
