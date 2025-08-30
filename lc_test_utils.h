@@ -79,6 +79,6 @@ bool print_test_result(const Input& input, const Result& result, const Result& e
               << " | ";
     
     bool res = (result == expected);
-    std::cout << (res ? "PASS" : "FAIL" ) << endl; 
+    std::cout << (res ? "PASS" : "FAIL" ) << std::endl; 
     return res;
 }
