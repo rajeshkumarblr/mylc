@@ -56,10 +56,10 @@
  #include <string>
  #include <iostream>
  #include <vector>
- #include <set>
+ #include <unordered_map>
  #include <algorithm>
  #include <unordered_map>
- #include "../../lc_test_utils.h"
+ #include "lc_test_utils.h"
  using namespace std;
 
 // @lc code=start
@@ -67,16 +67,15 @@ class Solution {
 public:
 
     int lengthOfLongestSubstring(string s) {
-        set<char> charSet;
-        int res = 0, left = 0;
-        for (int right = 0; right < (int)s.length(); ++right) {
-            char next = s[right];
-            while (charSet.count(next)) {
-                charSet.erase(s[left]);
-                left++;
+        vector<int> charIndex(256,-1);
+        int res = 0, l = 0, r = 0;
+        for (unsigned char c: s) {
+            if ((charIndex[c] >= l)) {
+                l = charIndex[c] + 1;
             }
-            charSet.insert(next);
-            res = max(res, right - left + 1);
+            charIndex[c] = r;
+            res = max(res, r - l + 1);
+            r++;
         }
         return res;
     }
@@ -96,7 +95,8 @@ int main() {
     bool all_passed = true;
     for (const auto& [input, expected] : tests) {
         int result = sol.lengthOfLongestSubstring(input);
-        all_passed &= print_test_result(input, result, expected);
+        print_test_result(input, result, expected);
+        if (result != expected) all_passed = false;
     }
-    cout << "\nFinal Result: " << (all_passed ? "PASS" :  "FAIL") << endl;
+    return all_passed ? 0 : 1;
 }

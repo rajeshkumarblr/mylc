@@ -1,6 +1,4 @@
-# Makefile for array directory
-
-SUBDIRS := $(wildcard */)
+SUBDIRS := $(wildcard */cpp)
 
 .PHONY: all clean $(SUBDIRS)
 

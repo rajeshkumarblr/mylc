@@ -20,7 +20,7 @@ public:
 };
 // @lc code=end
 
-#include "../../lc_test_utils.h"
+#include "lc_test_utils.h"
 
 int main() {
     Solution sol;

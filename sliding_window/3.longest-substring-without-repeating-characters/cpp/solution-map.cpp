@@ -59,7 +59,7 @@
  #include <unordered_map>
  #include <algorithm>
  #include <unordered_map>
- #include "../../lc_test_utils.h"
+ #include "lc_test_utils.h"
  using namespace std;
 
 // @lc code=start
@@ -67,15 +67,15 @@ class Solution {
 public:
 
     int lengthOfLongestSubstring(string s) {
-        vector<int> charIndex(256,-1);
-        int res = 0, l = 0, r = 0;
-        for (unsigned char c: s) {
-            if ((charIndex[c] >= l)) {
-                l = charIndex[c] + 1;
+        unordered_map<char, int> charMap;
+        int res = 0, l = 0;
+        for (int r = 0; r < (int)s.length(); ++r) {
+            char next = s[r];
+            if ( charMap.find(next) != charMap.end() && charMap[next] >= l) {
+                l = charMap[next] + 1;
             }
-            charIndex[c] = r;
+            charMap[next] = r;
             res = max(res, r - l + 1);
-            r++;
         }
         return res;
     }
@@ -85,18 +85,17 @@ public:
 int main() {
     Solution sol;
     vector<pair<string, int>> tests = {
-        {"abcabcbb", 3},
-        {"bbbbb", 1},
-        {"pwwkew", 3},
-        {"", 0},
-        {"au", 2},
-        {"dvdf", 3}
+        {"abcabcbb", 3},    // Example 1
+        {"bbbbb", 1},       // Example 2
+        {"pwwkew", 3},      // Example 3
+        {"", 0},            // Edge case: empty string
+        {"au", 2},          // Custom
+        {"dvdf", 3}         // Custom
     };
     bool all_passed = true;
     for (const auto& [input, expected] : tests) {
         int result = sol.lengthOfLongestSubstring(input);
-        print_test_result(input, result, expected);
-        if (result != expected) all_passed = false;
+        all_passed &= print_test_result(input, result, expected);
     }
     return all_passed ? 0 : 1;
 }

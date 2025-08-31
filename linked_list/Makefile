@@ -1,14 +1,13 @@
-# Makefile for linked_list directory
+SUBDIRS := $(wildcard */cpp)
 
-SRC = $(wildcard *.cpp)
-EXES = $(SRC:.cpp=)
-CXX = g++
-CXXFLAGS = -Wall -O2
+.PHONY: all clean $(SUBDIRS)
 
-all: $(EXES)
+all: $(SUBDIRS)
 
-%: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
+$(SUBDIRS):
+	$(MAKE) -C $@
 
 clean:
-	rm -f $(EXES) *.o
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir clean; \
+	done

@@ -53,7 +53,7 @@
 #include <string>
 #include <vector>
 #include <map>
-#include "../../lc_test_utils.h"
+#include "lc_test_utils.h"
 using namespace std;
 
 // @lc code=start
