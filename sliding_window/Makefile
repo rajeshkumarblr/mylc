@@ -1,14 +1,15 @@
-# Makefile for sliding_window directory
+# Makefile for array directory
 
-SRC = $(wildcard *.cpp)
-EXES = $(SRC:.cpp=)
-CXX = g++
-CXXFLAGS = -Wall -g
+SUBDIRS := $(wildcard */)
 
-all: $(EXES)
+.PHONY: all clean $(SUBDIRS)
 
-%: %.cpp
-	$(CXX) $(CXXFLAGS) $< -o $@
+all: $(SUBDIRS)
+
+$(SUBDIRS):
+	$(MAKE) -C $@
 
 clean:
-	rm -f $(EXES) *.o
+	for dir in $(SUBDIRS); do \
+		$(MAKE) -C $$dir clean; \
+	done

@@ -62,7 +62,7 @@ public:
             if (s.size() < p.size()) return result;
 
             map<char, int> pCount, sCount;
-            for (int i=0; i<p.size(); i++) {
+            for (int i=0; i<(int)p.size(); i++) {
                 pCount[p[i]]++;
                 sCount[s[i]]++;
             }
@@ -71,7 +71,7 @@ public:
             }
 
             int left = 0;
-            for (int right = p.size(); right < s.size(); ++right) {
+            for (int right = p.size(); right < (int)s.size(); ++right) {
 
                 //take the next char in right into the window.
                 sCount[s[right]]++;

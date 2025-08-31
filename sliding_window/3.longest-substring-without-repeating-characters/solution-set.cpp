@@ -69,7 +69,7 @@ public:
     int lengthOfLongestSubstring(string s) {
         set<char> charSet;
         int res = 0, left = 0;
-        for (int right = 0; right < s.length(); ++right) {
+        for (int right = 0; right < (int)s.length(); ++right) {
             char next = s[right];
             while (charSet.count(next)) {
                 charSet.erase(s[left]);

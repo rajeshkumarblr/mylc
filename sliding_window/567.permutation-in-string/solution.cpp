@@ -62,7 +62,7 @@ public:
 
         int left = 0;
         int windowLen = s1.length();
-        for (auto right = 0; right <s2.length(); right++) {
+        for (auto right = 0; right <(int)s2.length(); right++) {
 
             auto nextChar = s2[right];
             s2Map[nextChar]++;

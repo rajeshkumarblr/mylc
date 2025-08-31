@@ -69,7 +69,7 @@ public:
     int lengthOfLongestSubstring(string s) {
         unordered_map<char, int> charMap;
         int res = 0, l = 0;
-        for (int r = 0; r < s.length(); ++r) {
+        for (int r = 0; r < (int)s.length(); ++r) {
             char next = s[r];
             if ( charMap.find(next) != charMap.end() && charMap[next] >= l) {
                 l = charMap[next] + 1;

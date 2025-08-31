@@ -1,12 +1,1 @@
-SRC = ../42.trapping-rain-water.cpp
-EXE = 42.trapping-rain-water
-CXX = g++
-CXXFLAGS = -Wall -O2
-
-all: $(EXE)
-
-$(EXE): $(SRC)
-	$(CXX) $(CXXFLAGS) $< -o $@
-
-clean:
-	rm -f $(EXE)
+include ../../common.mk

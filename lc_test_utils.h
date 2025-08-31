@@ -1,9 +1,10 @@
-
 #pragma once
 #include <vector>
 #include <iostream>
 #include <map>
 #include <utility>
+#include <ostream>
+#include <sstream>
 using std::vector;
 using std::cout;
 using std::endl;
@@ -19,6 +20,19 @@ void print_vector(const vector<T>& v) {
         if (i + 1 < v.size()) cout << ", ";
     }
     cout << "]";
+}
+
+
+// Overload operator<< for vector<T>
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::vector<T>& v) {
+    os << "[";
+    for (size_t i = 0; i < v.size(); ++i) {
+        os << v[i];
+        if (i + 1 < v.size()) os << ",";
+    }
+    os << "]";
+    return os;
 }
 
 // For Two Sum, where order of indices may not matter
@@ -69,15 +83,20 @@ bool run_bool_tests(const std::vector<std::pair<int, bool>>& tests, Func func) {
 #include <iomanip>
 template<typename Input, typename Result>
 bool print_test_result(const Input& input, const Result& result, const Result& expected) {
-    constexpr int input_width = 20;
+    constexpr int input_width = 25;
     constexpr int expected_width = 10;
     constexpr int got_width = 10;
+
+    std::ostringstream oss;
+    oss << input;
+    std::string input_str = oss.str();
+
     std::cout << std::left
-              << "Input: " << std::setw(input_width) << input
+              << "Input: " << std::setw(input_width) << input_str
               << " | Expected: " << std::setw(expected_width) << expected
               << " | Got: " << std::setw(got_width) << result
               << " | ";
-    
+
     bool res = (result == expected);
     std::cout << (res ? "PASS" : "FAIL" ) << std::endl; 
     return res;

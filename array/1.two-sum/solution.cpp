@@ -19,7 +19,7 @@ public:
     vector<int> twoSum(vector<int> &nums, int target)
     {
         unordered_map<int, int> mymap;
-        for (int i = 0; i < nums.size(); i++)
+        for (int i = 0; i < (int)nums.size(); i++)
         {
             int num = nums[i];
             if (mymap.find(num) != mymap.end())
