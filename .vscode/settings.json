@@ -65,5 +65,11 @@
         "__nullptr": "cpp",
         "ios": "cpp",
         "__tree": "cpp"
+    },
+    "files.exclude": {
+        "**/solution": true,
+        "**/solution-*": true,
+        "**/*.o": true,
+        "**/*.out": true
     }
 }
