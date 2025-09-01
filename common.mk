@@ -6,15 +6,21 @@ CXX = g++
 CXXFLAGS = -Wall -g -I$(REPO_ROOT)
 SRC = $(wildcard *.cpp)
 EXE = $(basename $(SRC))
+BUILD_DIR = $(TOP_DIR)/build
+BIN = $(addprefix $(BUILD_DIR)/,$(EXE))
 
-all: $(EXE) link-latest
+all: $(BUILD_DIR) $(BIN) link-latest
 
-%: %.cpp $(REPO_ROOT)/lc_test_utils.h
+$(BUILD_DIR):
+	mkdir -p $(BUILD_DIR)
+
+
+$(BUILD_DIR)/%: %.cpp $(REPO_ROOT)/lc_test_utils.h | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
-link-latest: $(EXE)
-	@echo "Linking $(REPO_ROOT)/solution -> $(abspath $(firstword $(EXE)))"
-	@ln -sf $(abspath $(firstword $(EXE))) $(REPO_ROOT)/solution
+link-latest: $(BIN)
+	@echo "Linking $(REPO_ROOT)/solution -> $(lastword $(BIN))"
+	@ln -sf $(lastword $(BIN)) $(REPO_ROOT)/solution
 
 clean:
-	rm -f $(EXE)
+	rm -f $(BIN)

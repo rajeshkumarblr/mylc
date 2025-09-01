@@ -62,6 +62,34 @@ class Solution
 public:
     int characterReplacement(string s, int k)
     {
+        return characterReplacement_vector(s,k);
+        //return characterReplacement_map(s,k);
+    }
+
+    int characterReplacement_vector(string s, int k)
+    {
+        vector<int> cnt(26, 0);
+        int l = 0, best = 0, maxCount = 0;
+
+        for (int r = 0; r < (int)s.size(); ++r)
+        {
+            int idx = s[r] - 'A';
+            maxCount = max(maxCount, ++cnt[idx]);
+
+            // enforce: window size - most frequent char count <= k
+            while ((r - l + 1) - maxCount > k)
+            {
+                cnt[s[l] - 'A']--;
+                l++;
+            }
+
+            best = max(best, r - l + 1);
+        }
+        return best;
+    }
+
+    int characterReplacement_map(string s, int k)
+    {
         map<char, int> charFreq;
         int l = 0, r = 0, best = 0, maxCount = 0;
 
