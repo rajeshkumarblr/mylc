@@ -6,6 +6,9 @@ import re
 from collections import defaultdict
 
 RE_PROBLEM_FILE = re.compile(r"^lc(\d+)\.cpp$")
+RE_URL_SLUG = re.compile(r"https?://leetcode\.com/problems/([a-z0-9\-]+)/", re.I)
+RE_LC_ID = re.compile(r"@lc\s+app=leetcode\s+id=(\d+)\s+lang=cpp", re.I)
+RE_TITLE_BRACKET = re.compile(r"^\s*\[\s*(\d+)\s*\]\s*([^\n\r]+)", re.I)
 
 HEADER_STATIC = """# LeetCode Solutions
 
@@ -74,6 +77,30 @@ def load_tags_json(repo_root: str):
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
+def read_text_safe(path: str) -> str:
+    try:
+        with open(path, "r", encoding="utf-8", errors="ignore") as f:
+            return f.read()
+    except Exception:
+        return ""
+
+def extract_meta_from_cpp(filepath: str):
+    text = read_text_safe(filepath)
+    meta = {}
+    m = RE_URL_SLUG.search(text)
+    if m:
+        meta["slug"] = m.group(1).strip().lower()
+    m = RE_TITLE_BRACKET.search(text)
+    if m:
+        meta["id"] = m.group(1).strip()
+        meta["title"] = m.group(2).strip()
+    m = RE_LC_ID.search(text)
+    if m:
+        meta["id"] = m.group(1).strip()
+    if "title" not in meta and "slug" in meta:
+        meta["title"] = meta["slug"].replace("-", " ").title()
+    return meta
+
 def scan_repo(repo_root: str):
     by_cat = defaultdict(list)
     for category in sorted(os.listdir(repo_root)):
@@ -87,28 +114,29 @@ def scan_repo(repo_root: str):
             if not m:
                 continue
             pid = m.group(1)
-            by_cat[category].append((pid, entry))
+            filepath = os.path.join(cat_path, entry)
+            file_meta = extract_meta_from_cpp(filepath)
+            by_cat[category].append((pid, entry, file_meta))
     return by_cat
 
 def enrich(by_cat, tags_map):
     enriched = {}
-    # Map id -> (meta, slug) from tags.json keys like "3.longest-substring-without-repeating-characters"
     id_to_meta = {}
     for key, meta in tags_map.items():
         if '.' in key:
             pid, slug = key.split('.', 1)
             id_to_meta.setdefault(pid, []).append((meta, slug))
-
     for cat, items in by_cat.items():
         rows = []
-        for pid, filename in items:
+        for pid, filename, file_meta in items:
             meta, slug = None, None
             if pid in id_to_meta:
                 meta, slug = id_to_meta[pid][0]
-            title = meta.get("title") if meta and "title" in meta else filename
+            title = (meta.get("title") if meta and "title" in meta else None) or file_meta.get("title") or filename
             difficulty = meta.get("difficulty") if meta and "difficulty" in meta else "Unknown"
             tags = meta.get("tags") if meta and "tags" in meta else []
-            leetcode_url = f"https://leetcode.com/problems/{slug}/" if slug else ""
+            final_slug = slug or file_meta.get("slug")
+            leetcode_url = f"https://leetcode.com/problems/{final_slug}/" if final_slug else ""
             rows.append({
                 "id": int(pid),
                 "id_str": pid,
@@ -147,7 +175,6 @@ def main():
     parser.add_argument("--repo-root", default=".", help="Repo root (default: current dir)")
     parser.add_argument("--output", default="README.md", help="Output README path")
     args = parser.parse_args()
-
     readme = build_readme(args.repo_root)
     out_path = os.path.join(args.repo_root, args.output)
     with open(out_path, "w", encoding="utf-8") as f:

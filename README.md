@@ -28,13 +28,13 @@ Each problem has a single C++ file (e.g., `lc3.cpp`) containing all solution var
 ### sliding_window
 
 - [3] [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) — *Medium* — tags: sliding-window, string, hash-table — file: `sliding_window/lc3.cpp`
-- [424] lc424.cpp — *Unknown* — file: `sliding_window/lc424.cpp`
+- [424] [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) — *Unknown* — file: `sliding_window/lc424.cpp`
 - [438] [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/) — *Medium* — tags: sliding-window, string, hash-table — file: `sliding_window/lc438.cpp`
 - [567] [Permutation in String](https://leetcode.com/problems/permutation-in-string/) — *Medium* — tags: sliding-window, string, hash-table — file: `sliding_window/lc567.cpp`
 
 ### two_pointers
 
-- [42] lc42.cpp — *Unknown* — file: `two_pointers/lc42.cpp`
+- [42] [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) — *Unknown* — file: `two_pointers/lc42.cpp`
 
 
 ## Features
