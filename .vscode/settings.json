@@ -67,8 +67,8 @@
         "__tree": "cpp"
     },
     "files.exclude": {
-        "**/solution": true,
-        "**/solution-*": true,
+        "**/solution-*.cpp": false,
+        "**/solution.cpp": false,
         "**/*.o": true,
         "**/*.out": true
     }
