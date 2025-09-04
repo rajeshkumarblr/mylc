@@ -14,20 +14,26 @@
 // @lc code=start
 class Solution {
 public:
-    int maxArea(vector<int>& height) {
-        int l=0;
-        int r = height.size()-1;
-        int maxContainerArea = 0;
-        while (l<r) {
-            int a = (r-l) * min(height[l],height[r]);
-            maxContainerArea = max(maxContainerArea, a);
+    int maxArea(const vector<int>& height) {
+        int n = static_cast<int>(height.size());
+        if (n < 2) return 0;
+        
+        int l = 0, r = n - 1, maxarea = 0;
+        while (l < r) {
+            // calculate the area between the current left and right bars.
+            int a = (r - l) * min(height[l], height[r]);
+
+            // update the maxarea, if this is the biggest we have seen so far.
+            maxarea = max(maxarea, a);
+
+            // update the current l or r based on which one is higher.
             if (height[l] < height[r]) { 
                 l++;
              } else { 
                 r--;
              }
         }
-        return maxContainerArea;
+        return maxarea;
     }
 };
 // @lc code=end
@@ -51,7 +57,7 @@ int main() {
     };
     bool all_passed = true;
     for (const auto& [input, expected] : tests) {
-        int result = sol.maxArea(const_cast<std::vector<int>&>(input));
+        int result = sol.maxArea(input);
         all_passed &= print_test_result(input, result, expected);
     }
     std::cout << "\nFinal Result: " << (all_passed ? "PASS" : "FAIL") << std::endl;
