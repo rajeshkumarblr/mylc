@@ -44,3 +44,5 @@
 solution*
 solution-*
 !solution*.cpp
+
+src/build/*
