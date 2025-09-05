@@ -12,6 +12,12 @@ using std::endl;
 using std::map;
 using std::pair;
 
+// lc_test_utils.h  (add near the top)
+inline bool lc_silent() {
+    static bool s = (std::getenv("LC_SILENT") != nullptr);
+    return s;
+}
+
 // For vector output
 template<typename T>
 void print_vector(const vector<T>& v) {
@@ -83,22 +89,23 @@ bool run_bool_tests(const std::vector<std::pair<int, bool>>& tests, Func func) {
 // Print test result for any comparable type, with aligned columns
 template<typename Input, typename Result>
 bool print_test_result(const Input& input, const Result& result, const Result& expected) {
-    constexpr int input_width = 20;
-    constexpr int expected_width = 15;
-    constexpr int got_width = 15;
-
-    std::ostringstream oss_input, oss_expected, oss_result;
-    oss_input << input;
-    oss_expected << expected;
-    oss_result << result;
-
-    std::cout << std::left
-              << "Input: " << std::setw(input_width) << oss_input.str()
-              << " | Expected: " << std::setw(expected_width) << oss_expected.str()
-              << " | Got: " << std::setw(got_width) << oss_result.str()
-              << " | ";
-
     bool res = (result == expected);
-    std::cout << (res ? "PASS" : "FAIL") << std::endl;
+    if (!lc_silent()) {
+        constexpr int input_width = 20;
+        constexpr int expected_width = 15;
+        constexpr int got_width = 15;
+
+        std::ostringstream oss_input, oss_expected, oss_result;
+        oss_input << input;
+        oss_expected << expected;
+        oss_result << result;
+
+        std::cout << std::left
+                << "Input: " << std::setw(input_width) << oss_input.str()
+                << " | Expected: " << std::setw(expected_width) << oss_expected.str()
+                << " | Got: " << std::setw(got_width) << oss_result.str()
+                << " | ";
+        std::cout << (res ? "PASS" : "FAIL") << std::endl;
+    }
     return res;
 }

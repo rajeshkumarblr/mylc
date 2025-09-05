@@ -5,7 +5,7 @@ SUBDIRS := array linked_list sliding_window two_pointers
 REPO_ROOT := $(abspath $(CURDIR)/../..)
 CPP_BUILD := $(REPO_ROOT)/build/cpp
 
-.PHONY: all clean $(SUBDIRS) run build
+.PHONY: all clean $(SUBDIRS) run build prof
 
 all: $(SUBDIRS)
 $(SUBDIRS): ; $(MAKE) -C $@
@@ -29,7 +29,21 @@ run:
 	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
 	fi; \
 	$(MAKE) -C "$$DIR" run $$NUM
-	
+
+prof:
+	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
+	  echo "Usage: make prof <problem_number> [TOOL=perf|callgrind|massif]"; exit 1; \
+	fi; \
+	NUM="$(word 2,$(MAKECMDGOALS))"; \
+	DIR=""; \
+	for d in $(SUBDIRS); do \
+	  if [ -f "$$d/lc$$NUM.cpp" ]; then DIR="$$d"; break; fi; \
+	done; \
+	if [ -z "$$DIR" ]; then \
+	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
+	fi; \
+	$(MAKE) -C "$$DIR" prof $$NUM TOOL=$(TOOL)
+
 # ---- Debug run by number (e.g., make dbg 42) ----
 dbg:
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \

@@ -98,9 +98,11 @@ int main() {
         {{}, 0}
     };
     bool all_passed = true;
-    for (const auto& [input, expected] : tests) {
-        int result = sol.trap(const_cast<vector<int>&>(input));
-        all_passed &= print_test_result(input, result, expected);
+    for (int i=0; i<100000; i++) {
+        for (const auto& [input, expected] : tests) {
+            int result = sol.trap(const_cast<vector<int>&>(input));
+            all_passed &= print_test_result(input, result, expected);
+        }
     }
     std::cout << "\nFinal Result: " << (all_passed ? "PASS" : "FAIL") << std::endl;
     return all_passed ? 0 : 1;
