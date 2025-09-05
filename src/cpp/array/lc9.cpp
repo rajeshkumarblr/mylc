@@ -20,8 +20,9 @@ public:
 };
 // @lc code=end
 
+#include <vector>
 #include "lc_test_utils.h"
-
+using namespace std;
 int main() {
     Solution sol;
     vector<pair<int, bool>> tests = {

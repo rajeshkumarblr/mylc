@@ -23,7 +23,7 @@ public:
         for (char c : s1) count1[c - 'a']++;
         for (int i = 0; i < (int)s1.size(); ++i) count2[s2[i] - 'a']++;
         if (count1 == count2) return true;
-        for (int i = s1.size(); i < (int)s2.size(); ++i) {
+        for (int i = (int)s1.size(); i < (int)s2.size(); ++i) {
             count2[s2[i] - 'a']++;
             count2[s2[i - s1.size()] - 'a']--;
             if (count1 == count2) return true;
@@ -38,7 +38,7 @@ public:
         }
 
         int left = 0;
-        int windowLen = s1.length();
+        int windowLen = (int)s1.length();
         for (auto right = 0; right <(int)s2.length(); right++) {
 
             auto nextChar = s2[right];

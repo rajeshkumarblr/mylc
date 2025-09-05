@@ -4,7 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${workspaceFolder}/src"
+                "${workspaceFolder}/src/common/cpp"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang-17",

@@ -1,4 +1,4 @@
-# Top-level Makefile for lc workspace
+# Top-level Makefile for C++ workspace
 
 SUBDIRS = array linked_list sliding_window two_pointers
 

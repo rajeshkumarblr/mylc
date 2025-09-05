@@ -31,7 +31,7 @@ public:
             }
 
             int left = 0;
-            for (int right = p.size(); right < (int)s.size(); ++right) {
+            for (int right = (int)p.size(); right < (int)s.size(); ++right) {
 
                 //take the next char in right into the window.
                 sCount[s[right]]++;
