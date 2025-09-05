@@ -8,7 +8,7 @@
 
 TOP_DIR   := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 REPO_ROOT := $(abspath $(TOP_DIR)/../..)
-BUILD_DIR := $(REPO_ROOT)/build
+BUILD_DIR := $(REPO_ROOT)/build/cpp
 
 CXX      ?= g++
 CXXFLAGS ?= -std=c++17 -Wall -Wextra -Wshadow -Wconversion -g \
@@ -20,7 +20,7 @@ SRC       := $(wildcard *.cpp)
 # Executable names: strip dir + .cpp
 NAMES     := $(notdir $(basename $(SRC)))
 
-# Binaries go under REPO_ROOT/build/<name>
+# Binaries go under REPO_ROOT/build/cpp/<name>
 BINS      := $(addprefix $(BUILD_DIR)/,$(NAMES))
 
 .PHONY: all clean link-latest
@@ -34,6 +34,15 @@ $(BUILD_DIR):
 $(BUILD_DIR)/%: %.cpp $(REPO_ROOT)/src/common/cpp/lc_test_utils.h | $(BUILD_DIR)
 	$(CXX) $(CXXFLAGS) $< -o $@
 
+# Specific target: build only the requested binary from current dir and link it
+%: $(BUILD_DIR)/%
+	@if [ -f "$(BUILD_DIR)/$*" ]; then \
+	  ln -sf "$(BUILD_DIR)/$*" "$(REPO_ROOT)/solution"; \
+	fi
+
+$(BUILD_DIR)/%: %.cpp $(REPO_ROOT)/src/common/cpp/lc_test_utils.h | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS) $< -o $@
+
 # Optional convenience: symlink the most-recent target to REPO_ROOT/solution
 link-latest: $(BINS)
 	@if [ -n "$(lastword $(BINS))" ]; then \
@@ -43,4 +52,3 @@ link-latest: $(BINS)
 clean:
 	@rm -f $(BINS)
 
-$(info SRC=$(SRC))

@@ -23,11 +23,11 @@ public:
     }
 
     int trap_twopointer(vector<int>& height) {
-        int len = height.size();
+        int len = (int)height.size();
         if (len <=2) return 0;
 
         int l = 0;
-        int r = height.size() - 1;
+        int r = (int)height.size() - 1;
         int res = 0;
         int leftMax = height[l];
         int rightMax = height[r];
@@ -47,7 +47,7 @@ public:
     }
 
     int trap_minmax(vector<int>& height) {
-        int len = height.size();
+        int len = (int)height.size();
         /* At least 3 elements must be there to trap rain water.*/
         if (len <=2) return 0;
 

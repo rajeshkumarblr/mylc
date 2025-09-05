@@ -5,6 +5,7 @@
 #include <utility>
 #include <ostream>
 #include <sstream>
+#include <iomanip>
 using std::vector;
 using std::cout;
 using std::endl;
@@ -80,24 +81,24 @@ bool run_bool_tests(const std::vector<std::pair<int, bool>>& tests, Func func) {
 }
 
 // Print test result for any comparable type, with aligned columns
-#include <iomanip>
 template<typename Input, typename Result>
 bool print_test_result(const Input& input, const Result& result, const Result& expected) {
-    constexpr int input_width = 25;
-    constexpr int expected_width = 10;
-    constexpr int got_width = 10;
+    constexpr int input_width = 20;
+    constexpr int expected_width = 15;
+    constexpr int got_width = 15;
 
-    std::ostringstream oss;
-    oss << input;
-    std::string input_str = oss.str();
+    std::ostringstream oss_input, oss_expected, oss_result;
+    oss_input << input;
+    oss_expected << expected;
+    oss_result << result;
 
     std::cout << std::left
-              << "Input: " << std::setw(input_width) << input_str
-              << " | Expected: " << std::setw(expected_width) << expected
-              << " | Got: " << std::setw(got_width) << result
+              << "Input: " << std::setw(input_width) << oss_input.str()
+              << " | Expected: " << std::setw(expected_width) << oss_expected.str()
+              << " | Got: " << std::setw(got_width) << oss_result.str()
               << " | ";
 
     bool res = (result == expected);
-    std::cout << (res ? "PASS" : "FAIL" ) << std::endl; 
+    std::cout << (res ? "PASS" : "FAIL") << std::endl;
     return res;
 }
