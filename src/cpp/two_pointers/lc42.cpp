@@ -26,14 +26,24 @@ public:
         int len = (int)height.size();
         if (len <=2) return 0;
 
-        int l = 0;
-        int r = (int)height.size() - 1;
-        int res = 0;
+        int l = 0, r = len - 1, res = 0;
+
+        //initialize the leftMax to the leftmost array item.
         int leftMax = height[l];
+
+        //initialize the rightMax to the rightMost array item.
         int rightMax = height[r];
+
+        // Loop until left and right cross over.
         while (l < r) {
-            if (leftMax <= rightMax)
-            {
+
+            // If the current max left we have seen  is lesser
+            // than the current max right, then increment left.
+            // we get the water in current position by subtracting
+            // the height of current item from leftmax, because leftMax
+            // is lesser than the right side's max, we only need that
+            // to calculate. the same logic applies for the right side as well.
+            if (leftMax <= rightMax) {
                 l++;
                 leftMax = max(leftMax, height[l]);
                 res += leftMax - height[l];
