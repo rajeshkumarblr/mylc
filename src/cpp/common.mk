@@ -1,63 +1,73 @@
-# common.mk  (included from src/cpp/<category>/Makefile via ../../common.mk)
-# Layout:
-#   REPO_ROOT/
-#     build/
-#     src/
-#       common/cpp/lc_test_utils.h
-#       cpp/<category>/*.cpp
+# src/cpp/common.mk — included by src/cpp/<category>/Makefile via ../../common.mk
+SHELL := /bin/bash
+.ONESHELL:
+.DELETE_ON_ERROR:
 
-TOP_DIR   := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
-REPO_ROOT := $(abspath $(TOP_DIR)/../..)
+# From src/cpp/<category> → repo root
+REPO_ROOT := $(abspath $(CURDIR)/../../..)
 BUILD_DIR := $(REPO_ROOT)/build/cpp
 
 CXX      ?= g++
-CXXFLAGS ?= -std=c++17 -Wall -Wextra -Wshadow -Wconversion -g \
-            -I$(REPO_ROOT)/src/common/cpp -I$(REPO_ROOT)
+# Release: -O2 (keep -g if you like symbols in release)
+CXXFLAGS_REL := -std=c++17 -O2 -g -Wall -Wextra -Wshadow -Wconversion \
+                -I$(REPO_ROOT)/src/common/cpp -I$(REPO_ROOT)
+# Debug: no -O2 so you can see everything while debugging
+CXXFLAGS_DBG := -std=c++17 -O0 -g -fno-omit-frame-pointer \
+                -Wall -Wextra -Wshadow -Wconversion \
+                -I$(REPO_ROOT)/src/common/cpp -I$(REPO_ROOT)
 
-# Sources in the current problem/category dir
-SRC       := $(wildcard *.cpp)
+SRC    := $(wildcard *.cpp)
+NAMES  := $(patsubst %.cpp,%,$(notdir $(SRC)))
 
-# Executable names: strip dir + .cpp
-NAMES     := $(notdir $(basename $(SRC)))
+# Per-problem outputs
+BINS_REL := $(addprefix $(BUILD_DIR)/,$(NAMES))
+BINS_DBG := $(addsuffix .dbg,$(BINS_REL))
+BINS     := $(BINS_REL) $(BINS_DBG)
 
-# Binaries go under REPO_ROOT/build/cpp/<name>
-BINS      := $(addprefix $(BUILD_DIR)/,$(NAMES))
+.PHONY: all clean run dbg
 
-.PHONY: all clean link-latest run
-
-all: $(BUILD_DIR) $(BINS) link-latest
+all: $(BUILD_DIR) $(BINS)
 
 $(BUILD_DIR):
 	@mkdir -p $@
 
-# Build rule: compile each current-dir source into REPO_ROOT/build/<name>
-$(BUILD_DIR)/%: %.cpp $(REPO_ROOT)/src/common/cpp/lc_test_utils.h | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $< -o $@
+# Build release binary: build/cpp/<name>
+$(BUILD_DIR)/%: %.cpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS_REL) $< -o $@
 
-# Specific target: build only the requested binary from current dir and link it
-%: $(BUILD_DIR)/%
-	@if [ -f "$(BUILD_DIR)/$*" ]; then \
-	  ln -sf "$(BUILD_DIR)/$*" "$(REPO_ROOT)/solution"; \
-	fi
+# Build debug binary: build/cpp/<name>.dbg
+$(BUILD_DIR)/%.dbg: %.cpp | $(BUILD_DIR)
+	$(CXX) $(CXXFLAGS_DBG) $< -o $@
 
-# Optional convenience: symlink the most-recent target to REPO_ROOT/solution
-link-latest: $(BINS)
-	@if [ -n "$(lastword $(BINS))" ]; then \
-	  ln -sf $(lastword $(BINS)) $(REPO_ROOT)/solution; \
-	fi
+# Convenience target: `make lc42` builds BOTH (release + dbg) and
+# updates repo-root `solution` symlink to the dbg binary.
+%: %.cpp | $(BUILD_DIR)
+	@$(MAKE) $(BUILD_DIR)/$@       # release
+	@$(MAKE) $(BUILD_DIR)/$@.dbg   # debug
+	@ln -sf "$(BUILD_DIR)/$@.dbg" "$(REPO_ROOT)/solution"
+	@echo "Linked $(REPO_ROOT)/solution -> $(BUILD_DIR)/$@.dbg"
 
-# Usage: make run 42
+# `make run 42` -> builds both then runs RELEASE (build/cpp/lc42)
 run:
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
 	  echo "Usage: make run <problem_number>"; exit 1; \
 	fi; \
-	PROB=lc$(word 2,$(MAKECMDGOALS)); \
-	$(MAKE) $$PROB && $(BUILD_DIR)/$$PROB
+	NUM="$(word 2,$(MAKECMDGOALS))"; \
+	$(MAKE) lc$$NUM; \
+	"$(BUILD_DIR)/lc$$NUM"
 
-# Prevent make from treating "42" as a file target
-%::
-	@:
-	
+# `make dbg 42` -> builds both then runs DEBUG (build/cpp/lc42.dbg)
+dbg:
+	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
+	  echo "Usage: make dbg <problem_number>"; exit 1; \
+	fi; \
+	NUM="$(word 2,$(MAKECMDGOALS))"; \
+	$(MAKE) lc$$NUM; \
+	"$(BUILD_DIR)/lc$$NUM.dbg"
+
 clean:
 	@rm -f $(BINS)
 
+# swallow numeric arg (e.g., "make run 42")
+%::
+	@:

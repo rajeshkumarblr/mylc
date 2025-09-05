@@ -29,6 +29,21 @@ run:
 	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
 	fi; \
 	$(MAKE) -C "$$DIR" run $$NUM
+	
+# ---- Debug run by number (e.g., make dbg 42) ----
+dbg:
+	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
+	  echo "Usage: make dbg <problem_number>"; exit 1; \
+	fi; \
+	NUM="$(word 2,$(MAKECMDGOALS))"; \
+	DIR=""; \
+	for d in $(SUBDIRS); do \
+	  if [ -f "$$d/lc$$NUM.cpp" ]; then DIR="$$d"; break; fi; \
+	done; \
+	if [ -z "$$DIR" ]; then \
+	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
+	fi; \
+	$(MAKE) -C "$$DIR" dbg $$NUM
 
 build:
 	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
