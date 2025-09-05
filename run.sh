@@ -9,7 +9,7 @@ if [ $# -lt 1 ]; then
 fi
 
 PROBLEM="$1"
-LANG_ARG="${2:-$LANG}"
+LANG_ARG="${2:-$LC_LANG}"
 
 if [ "$LANG_ARG" = "cpp" ]; then
     BIN="$CPP_BIN_DIR/lc${PROBLEM}"
@@ -36,6 +36,13 @@ elif [ "$LANG_ARG" = "go" ]; then
         echo "Building $SRC_FILE..."
         go build -o "$BIN" "$SRC_FILE" || exit 3
     fi
+elif [ "$LANG_ARG" = "python" ]; then
+    SRC_FILE=$(find "$REPO_ROOT/src/python" -name "lc${PROBLEM}.py" | head -n 1)
+    if [ -z "$SRC_FILE" ]; then
+        echo "Source file not found for problem $PROBLEM in Python"
+        exit 2
+    fi
+    BIN="$SRC_FILE"
 else
     echo "Unsupported language: $LANG_ARG"
     exit 4
@@ -47,4 +54,8 @@ if [ ! -x "$BIN" ]; then
 fi
 
 echo "Running $LANG_ARG solution for problem $PROBLEM:"
-"$BIN"
+if [ "$LANG_ARG" = "python" ]; then
+    python3 "$BIN"
+else
+    "$BIN"
+fi

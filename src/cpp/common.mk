@@ -23,7 +23,7 @@ NAMES     := $(notdir $(basename $(SRC)))
 # Binaries go under REPO_ROOT/build/cpp/<name>
 BINS      := $(addprefix $(BUILD_DIR)/,$(NAMES))
 
-.PHONY: all clean link-latest
+.PHONY: all clean link-latest run
 
 all: $(BUILD_DIR) $(BINS) link-latest
 
@@ -40,15 +40,24 @@ $(BUILD_DIR)/%: %.cpp $(REPO_ROOT)/src/common/cpp/lc_test_utils.h | $(BUILD_DIR)
 	  ln -sf "$(BUILD_DIR)/$*" "$(REPO_ROOT)/solution"; \
 	fi
 
-$(BUILD_DIR)/%: %.cpp $(REPO_ROOT)/src/common/cpp/lc_test_utils.h | $(BUILD_DIR)
-	$(CXX) $(CXXFLAGS) $< -o $@
-
 # Optional convenience: symlink the most-recent target to REPO_ROOT/solution
 link-latest: $(BINS)
 	@if [ -n "$(lastword $(BINS))" ]; then \
 	  ln -sf $(lastword $(BINS)) $(REPO_ROOT)/solution; \
 	fi
 
+# Usage: make run 42
+run:
+	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
+	  echo "Usage: make run <problem_number>"; exit 1; \
+	fi; \
+	PROB=lc$(word 2,$(MAKECMDGOALS)); \
+	$(MAKE) $$PROB && $(BUILD_DIR)/$$PROB
+
+# Prevent make from treating "42" as a file target
+%::
+	@:
+	
 clean:
 	@rm -f $(BINS)
 
