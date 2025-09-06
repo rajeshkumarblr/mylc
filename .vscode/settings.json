@@ -64,7 +64,8 @@
         "format": "cpp",
         "__nullptr": "cpp",
         "ios": "cpp",
-        "__tree": "cpp"
+        "__tree": "cpp",
+        "cinttypes": "cpp"
     },
     "files.exclude": {
         "**/solution-*.cpp": false,

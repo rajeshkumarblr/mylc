@@ -1,24 +1,32 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Set repo root
+# Resolve repo root (bash)
 export REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Default language
+# Defaults
 export LC_LANG=cpp
+export BUILD_DIR="$REPO_ROOT/build"
+export CPP_BIN_DIR="$BUILD_DIR/cpp"
+export GO_BIN_DIR="$BUILD_DIR/go"
+export PY_BIN_DIR="$BUILD_DIR/python"
 
-# Paths for binaries
-export CPP_BIN_DIR="$REPO_ROOT/build/cpp"
-export GO_BIN_DIR="$REPO_ROOT/build/go"
-export PY_BIN_DIR="$REPO_ROOT/build/python"
+# Helper: prepend dir to PATH if it exists and isn't already in PATH
+path_prepend() {
+  [ -d "$1" ] || return 0
+  case ":$PATH:" in
+    *":$1:"*) : ;;
+    *) export PATH="$1:$PATH" ;;
+  esac
+}
 
-# Add repo root to PATH for easy access to scripts like run.sh
-export PATH="$REPO_ROOT:$PATH"
+# Put our bins on PATH so `lc94` etc. just work
+path_prepend "$CPP_BIN_DIR"
+path_prepend "$GO_BIN_DIR"
+path_prepend "$PY_BIN_DIR"
 
-# Solution symlink
-export SOLUTION="$REPO_ROOT/solution"
+# Also add repo root so scripts in top-level are callable
+path_prepend "$REPO_ROOT"
 
 # ---- Perf setup ----
-# Use fixed perf binary shipped with linux-tools
 export PERF_BIN="/usr/lib/linux-tools-6.8.0-79/perf"
-# Prepend its directory to PATH so 'perf' just works
-export PATH="$(dirname "$PERF_BIN"):$PATH"
+path_prepend "$(dirname "$PERF_BIN")"

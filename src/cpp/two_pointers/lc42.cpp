@@ -19,7 +19,7 @@ class Solution {
 public:
     int trap(vector<int>& height) {
         return trap_twopointer(height);
-        //return trap_minmax()
+        //return trap_minmax(height);
     }
 
     int trap_twopointer(vector<int>& height) {
@@ -43,7 +43,7 @@ public:
             // the height of current item from leftmax, because leftMax
             // is lesser than the right side's max, we only need that
             // to calculate. the same logic applies for the right side as well.
-            if (leftMax <= rightMax) {
+            if (leftMax < rightMax) {
                 l++;
                 leftMax = max(leftMax, height[l]);
                 res += leftMax - height[l];
