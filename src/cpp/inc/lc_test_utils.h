@@ -21,6 +21,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+#include <optional>
 
 // --------------------------
 // Env + small conveniences
@@ -344,3 +345,4 @@ inline bool run_ll_cases(
     }
     return all;
 }
+

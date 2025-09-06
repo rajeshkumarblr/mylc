@@ -1,93 +1,67 @@
-# src/cpp/Makefile — top-level for C++
-SUBDIRS := array linked_list sliding_window two_pointers
+SHELL := /bin/bash
+.ONESHELL:
+.DELETE_ON_ERROR:
 
-# From src/cpp → repo root
+# repo root from src/cpp/
 REPO_ROOT := $(abspath $(CURDIR)/../..)
-CPP_BUILD := $(REPO_ROOT)/build/cpp
+BUILD_DIR := $(REPO_ROOT)/build/cpp
+REPORT_DIR := $(REPO_ROOT)/build/reports/cpp
+REPORT := $(REPORT_DIR)/summary.txt
 
-.PHONY: all clean $(SUBDIRS) run build prof
+# C++ problem categories (folders under src/cpp/)
+SUBDIRS := array linked_list sliding_window tree two_pointers
 
-all: $(SUBDIRS)
-$(SUBDIRS): ; $(MAKE) -C $@
+.PHONY: all build run-all run-all-dbg list clean
 
-# ---------------- Run / Build by number (e.g., make run 42) ----------------
+# Build everything in all subdirs (release + debug per problem)
+all build:
+	@for d in $(SUBDIRS); do \
+		echo "== Building $$d =="; \
+		$(MAKE) -C $$d all || exit $$?; \
+	done
 
-# Find the category that contains lc<NUM>.cpp
-define FIND_DIR
-$(shell for d in $(SUBDIRS); do \
-  test -f $$d/lc$(1).cpp && echo $$d && break; \
-done)
-endef
+# List all built release binaries
+list:
+	@find "$(BUILD_DIR)" -maxdepth 1 -type f -executable -name 'lc*' ! -name '*.dbg' 2>/dev/null | sort
 
-run:
-	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
-	  echo "Usage: make run <problem_number>"; exit 1; \
-	fi; \
-	NUM="$(word 2,$(MAKECMDGOALS))"; \
-	DIR="$(call FIND_DIR,$(word 2,$(MAKECMDGOALS)))"; \
-	if [ -z "$$DIR" ]; then \
-	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
-	fi; \
-	$(MAKE) -C "$$DIR" run $$NUM
-
-prof:
-	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
-	  echo "Usage: make prof <problem_number> [TOOL=perf|callgrind|massif]"; exit 1; \
-	fi; \
-	NUM="$(word 2,$(MAKECMDGOALS))"; \
-	DIR=""; \
-	for d in $(SUBDIRS); do \
-	  if [ -f "$$d/lc$$NUM.cpp" ]; then DIR="$$d"; break; fi; \
+# Run ALL release binaries with a compact PASS/FAIL summary
+run-all: build
+	@mkdir -p "$(REPORT_DIR)"
+	@echo "== LC run-all report ==" > "$(REPORT)"
+	@pass=0; fail=0; total=0; \
+	for bin in $$(find "$(BUILD_DIR)" -maxdepth 1 -type f -executable -name 'lc*' ! -name '*.dbg' 2>/dev/null | sort); do \
+		name=$$(basename $$bin); total=$$((total+1)); \
+		printf "→ %-14s " "$$name"; \
+		if LC_SILENT=1 "$$bin" >/dev/null; then \
+			echo "PASS"; echo "$$name PASS" >>"$(REPORT)"; pass=$$((pass+1)); \
+		else \
+			echo "FAIL"; echo "$$name FAIL" >>"$(REPORT)"; fail=$$((fail+1)); \
+		fi; \
 	done; \
-	if [ -z "$$DIR" ]; then \
-	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
-	fi; \
-	$(MAKE) -C "$$DIR" prof $$NUM TOOL=$(TOOL)
+	echo "----" | tee -a "$(REPORT)"; \
+	echo "PASS=$$pass FAIL=$$fail TOTAL=$$total" | tee -a "$(REPORT)"; \
+	# Make returns nonzero if any failed:
+	test $$fail -eq 0
 
-# ---- Debug run by number (e.g., make dbg 42) ----
-dbg:
-	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
-	  echo "Usage: make dbg <problem_number>"; exit 1; \
-	fi; \
-	NUM="$(word 2,$(MAKECMDGOALS))"; \
-	DIR=""; \
-	for d in $(SUBDIRS); do \
-	  if [ -f "$$d/lc$$NUM.cpp" ]; then DIR="$$d"; break; fi; \
+# Run ALL debug binaries (handy if you want assertions/ASan etc.)
+run-all-dbg: build
+	@mkdir -p "$(REPORT_DIR)"
+	@echo "== LC run-all-dbg report ==" > "$(REPORT)"
+	@pass=0; fail=0; total=0; \
+	for bin in $$(find "$(BUILD_DIR)" -maxdepth 1 -type f -executable -name 'lc*.dbg' 2>/dev/null | sort); do \
+		name=$$(basename $$bin); total=$$((total+1)); \
+		printf "→ %-14s " "$$name"; \
+		if LC_SILENT=1 "$$bin" >/dev/null; then \
+			echo "PASS"; echo "$$name PASS" >>"$(REPORT)"; pass=$$((pass+1)); \
+		else \
+			echo "FAIL"; echo "$$name FAIL" >>"$(REPORT)"; fail=$$((fail+1)); \
+		fi; \
 	done; \
-	if [ -z "$$DIR" ]; then \
-	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
-	fi; \
-	$(MAKE) -C "$$DIR" dbg $$NUM
-
-build:
-	@if [ -z "$(word 2,$(MAKECMDGOALS))" ]; then \
-	  echo "Usage: make build <problem_number>"; exit 1; \
-	fi; \
-	NUM="$(word 2,$(MAKECMDGOALS))"; \
-	DIR="$(call FIND_DIR,$(word 2,$(MAKECMDGOALS)))"; \
-	if [ -z "$$DIR" ]; then \
-	  echo "Could not find lc$$NUM.cpp in: $(SUBDIRS)"; exit 2; \
-	fi; \
-	$(MAKE) -C "$$DIR" lc$$NUM
-
-# ---------------- Clean ----------------
-# - "make clean"        -> clean all categories + remove all C++ binaries
-# - "make clean 42"     -> remove only build/cpp/lc42 (no subdir cleans)
+	echo "----" | tee -a "$(REPORT)"; \
+	echo "PASS=$$pass FAIL=$$fail TOTAL=$$total" | tee -a "$(REPORT)"; \
+	test $$fail -eq 0
 
 clean:
-	@if [ -n "$(word 2,$(MAKECMDGOALS))" ]; then \
-	  NUM="$(word 2,$(MAKECMDGOALS))"; \
-	  BIN="$(CPP_BUILD)/lc$$NUM"; \
-	  if [ -f "$$BIN" ]; then \
-	    echo "Removing $$BIN"; rm -f "$$BIN"; \
-	  else \
-	    echo "Binary $$BIN not found"; \
-	  fi; \
-	else \
-	  for d in $(SUBDIRS); do $(MAKE) -C $$d clean; done; \
-	  rm -f $(CPP_BUILD)/* 2>/dev/null || true; \
-	fi
-
-# Swallow extra words like "42" so Make doesn't treat them as independent targets
-%::
-	@:
+	@for d in $(SUBDIRS); do \
+		$(MAKE) -C $$d clean || true; \
+	done

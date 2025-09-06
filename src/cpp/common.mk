@@ -11,11 +11,11 @@ CXX      ?= g++
 # Release: -O2 (keep -g if you like symbols in release)
 CXXFLAGS_REL := -std=c++17 -O2 -g -fno-omit-frame-pointer \
                 -Wall -Wextra -Wshadow -Wconversion \
-                -I$(REPO_ROOT)/src/common/cpp -I$(REPO_ROOT)
+                -I$(REPO_ROOT)/src/cpp/inc
 # Debug: no -O2 so you can see everything while debugging
 CXXFLAGS_DBG := -std=c++17 -O0 -g -fno-omit-frame-pointer \
                 -Wall -Wextra -Wshadow -Wconversion \
-                -I$(REPO_ROOT)/src/common/cpp -I$(REPO_ROOT)
+                -I$(REPO_ROOT)/src/cpp/inc
 
 SRC    := $(wildcard *.cpp)
 NAMES  := $(patsubst %.cpp,%,$(notdir $(SRC)))

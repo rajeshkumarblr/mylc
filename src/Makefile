@@ -1,5 +1,4 @@
 # src/cpp/Makefile
-SUBDIRS := array linked_list sliding_window two_pointers
-LANG    := cpp
+SUBDIRS := cpp
 
-include ../mk/dir.mk
+include mk/dir.mk
