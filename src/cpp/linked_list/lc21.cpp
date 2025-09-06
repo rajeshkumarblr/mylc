@@ -11,13 +11,6 @@ using namespace std;
  *
  * [21] Merge Two Sorted Lists
  */
-struct ListNode {
-     int val;
-     ListNode *next;
-     ListNode() : val(0), next(nullptr) {}
-     ListNode(int x) : val(x), next(nullptr) {}
-     ListNode(int x, ListNode *nextNode) : val(x), next(nextNode) {}
-};
 
 // @lc code=start
 class Solution {

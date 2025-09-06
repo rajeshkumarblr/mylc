@@ -31,22 +31,32 @@ public:
         return {};
     }
 };
-
-int main()
-{
-    Solution sol;
-    using input_t = pair<vector<int>, int>;
-    vector<pair<input_t, vector<int>>> test_cases = {
-        { {{2, 7, 11, 15}, 9}, {0, 1} },
-        { {{3, 2, 4}, 6}, {1, 2} },
-        { {{3, 3}, 6}, {0, 1} },
-        { {{1, 2, 3}, 7}, {} }, // No solution
-        { {{1, 5, 1, 5}, 10}, {1, 3} }
-    };
-    auto func = [&](const input_t &in) {
-        auto nums = in.first; // make a copy
-        return sol.twoSum(nums, in.second);
-    };
-    return run_vector_tests(test_cases, func) ? 0 : 1;
-}
 // @lc code=end
+
+static inline std::vector<int> normalize2(std::vector<int> v) {
+    if (v.size() == 2 && v[0] > v[1]) std::swap(v[0], v[1]);
+    return v;
+}
+
+int main() {
+    Solution sol;
+    using input_t = std::pair<std::vector<int>, int>;
+    std::vector<std::pair<input_t, std::vector<int>>> test_cases = {
+        { {{2,7,11,15}, 9}, {0,1} },
+        { {{3,2,4}, 6},     {1,2} },
+        { {{3,3}, 6},       {0,1} },
+        { {{1,2,3}, 7},     {} },
+        { {{1,5,1,5},10},   {1,3} }
+    };
+
+    // normalize all expected pairs once
+    for (auto& tc : test_cases) tc.second = normalize2(tc.second);
+
+    auto func = [&](const input_t& in) {
+        auto nums = in.first; // copy ok
+        auto got  = sol.twoSum(nums, in.second);
+        return normalize2(got);
+    };
+
+    return run_cases<input_t, std::vector<int>>(test_cases, func) ? 0 : 1;
+}

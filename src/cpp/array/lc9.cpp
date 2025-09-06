@@ -25,15 +25,19 @@ public:
 using namespace std;
 int main() {
     Solution sol;
-    vector<pair<int, bool>> tests = {
-        {121, true},
+    using In  = int;
+    using Out = bool;
+
+    vector<pair<In, Out>> tests = {
+        {121,  true},
         {-121, false},
-        {10, false},
-        {0, true},
-        {12321, true},
-        {123, false}
+        {10,   false},
+        {0,    true},
+        {12321,true},
+        {123,  false}
     };
-    bool all_passed = run_bool_tests(tests, [&](int x) { return sol.isPalindrome(x); });
-    return all_passed ? 0 : 1;
+
+    auto func = [&](const In& x) { return sol.isPalindrome(x); };
+    return run_cases<In, Out>(tests, func) ? 0 : 1;
 }
 
