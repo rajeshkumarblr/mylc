@@ -1,62 +1,13 @@
-{
-  "1.two-sum": {
-    "title": "Two Sum",
-    "category": "array",
-    "difficulty": "Easy",
-    "tags": ["array", "hash-table"]
-  },
-  "2.add-two-numbers": {
-    "title": "Add Two Numbers",
-    "category": "linked_list",
-    "difficulty": "Medium",
-    "tags": ["linked-list", "math"]
-  },
-  "3.longest-substring-without-repeating-characters": {
-    "title": "Longest Substring Without Repeating Characters",
-    "category": "sliding_window",
-    "difficulty": "Medium",
-    "tags": ["sliding-window", "string", "hash-table"]
-  },
-  "20.valid-parentheses": {
-    "title": "Valid Parentheses",
-    "category": "stack",
-    "difficulty": "Easy",
-    "tags": ["stack", "string"]
-  },
-  "21.merge-two-sorted-lists": {
-    "title": "Merge Two Sorted Lists",
-    "category": "linked_list",
-    "difficulty": "Easy",
-    "tags": ["linked-list", "recursion"]
-  },
-  "49.group-anagrams": {
-    "title": "Group Anagrams",
-    "category": "hashing",
-    "difficulty": "Medium",
-    "tags": ["hash-table", "string", "sorting"]
-  },
-  "76.minimum-window-substring": {
-    "title": "Minimum Window Substring",
-    "category": "sliding_window",
-    "difficulty": "Hard",
-    "tags": ["sliding-window", "string", "hash-table"]
-  },
-  "141.linked-list-cycle": {
-    "title": "Linked List Cycle",
-    "category": "linked_list",
-    "difficulty": "Easy",
-    "tags": ["linked-list", "two-pointers"]
-  },
-  "438.find-all-anagrams-in-a-string": {
-    "title": "Find All Anagrams in a String",
-    "category": "sliding_window",
-    "difficulty": "Medium",
-    "tags": ["sliding-window", "string", "hash-table"]
-  },
-  "567.permutation-in-string": {
-    "title": "Permutation in String",
-    "category": "sliding_window",
-    "difficulty": "Medium",
-    "tags": ["sliding-window", "string", "hash-table"]
-  }
-}
+[
+  { "id": "lc1",   "tags": ["array", "hash_map"],                         "langs": ["cpp"] },
+  { "id": "lc2",   "tags": ["linked_list"],                               "langs": ["cpp"] },
+  { "id": "lc3",   "tags": ["sliding_window", "string", "hash_map"],      "langs": ["cpp"] },
+  { "id": "lc9",   "tags": ["math"],                                       "langs": ["cpp"] },
+  { "id": "lc11",  "tags": ["two_pointers", "array"],                     "langs": ["cpp"] },
+  { "id": "lc21",  "tags": ["linked_list"],                               "langs": ["cpp"] },
+  { "id": "lc42",  "tags": ["two_pointers", "array", "stack"],            "langs": ["cpp"] },
+  { "id": "lc424", "tags": ["sliding_window", "string"],                  "langs": ["cpp"] },
+  { "id": "lc438", "tags": ["sliding_window", "string"],                  "langs": ["cpp"] },
+  { "id": "lc567", "tags": ["sliding_window", "string"],                  "langs": ["cpp"] },
+  { "id": "lc94",  "tags": ["tree"],                                      "langs": ["cpp"] }
+]
