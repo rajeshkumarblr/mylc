@@ -346,3 +346,37 @@ inline bool run_ll_cases(
     return all;
 }
 
+// Run cases for functions F: (const Vec&) -> Out  OR (Vec&) -> Out
+// If F requires Vec&, we pass a copy so inputs are never mutated.
+template <typename Vec, typename Out, typename F>
+inline bool run_vec_cases(const std::vector<std::pair<Vec, Out>>& cases, F func, int iters = 1) {
+    bool all = true;
+    const uint64_t t0 = lc_nanos();
+
+    for (int rep = 0; rep < iters; ++rep) {
+        for (const auto& [in, expected] : cases) {
+            if constexpr (std::is_invocable_v<F, const Vec&>) {
+                Out got = func(in);
+                all &= print_test_result(in, got, expected);
+            } else if constexpr (std::is_invocable_v<F, Vec&>) {
+                Vec tmp = in;                 // copy for mutating signature
+                Out got = func(tmp);
+                all &= print_test_result(in, got, expected);
+            } else {
+                static_assert(sizeof(F) == 0, "func must accept (const Vec&) or (Vec&)");
+            }
+        }
+    }
+
+    if (!lc_silent()) {
+        const double ms = lc_millis_since(t0);
+        std::cout << "Ran " << (cases.size() * static_cast<size_t>(iters))
+                  << " vectors in " << std::fixed << std::setprecision(3) << ms << " ms\n";
+    }
+    return all;
+}
+
+inline int lc_env_iters(const char* name = "LC_STRESS_ITERS", int def = 1) {
+    if (const char* s = std::getenv(name)) { int v = std::atoi(s); return v > 0 ? v : def; }
+    return def;
+}

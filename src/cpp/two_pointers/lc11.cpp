@@ -38,28 +38,25 @@ public:
 };
 // @lc code=end
 
-// Add test harness similar to lc42.cpp
-#include <iostream>
 #include "lc_test_utils.h"
 
 int main() {
     Solution sol;
-    std::vector<std::pair<std::vector<int>, int>> tests = {
+    vector<pair<vector<int>, int>> tests = {
         {{8,7,2,2},7},
-        {{1,8,6,2,5,4,8,3,7}, 49},   // Example 1
-        {{1,1}, 1},                  // Example 2
-        {{4,3,2,1,4}, 16},           // Custom
-        {{1,2,1}, 2},                // Custom
-        {{1,2,4,3}, 4},              // Custom
-        {{2,3,4,5,18,17,6}, 17},     // Custom
-        {{1,3,2,5,25,24,5}, 24},     // Custom
-        {{}, 0}                      // Edge case: empty
+        {{1,8,6,2,5,4,8,3,7}, 49},
+        {{1,1}, 1},
+        {{4,3,2,1,4}, 16},
+        {{1,2,1}, 2},
+        {{1,2,4,3}, 4},
+        {{2,3,4,5,18,17,6}, 17},
+        {{1,3,2,5,25,24,5}, 24},
+        {{}, 0}
     };
-    bool all_passed = true;
-    for (const auto& [input, expected] : tests) {
-        int result = sol.maxArea(input);
-        all_passed &= print_test_result(input, result, expected);
-    }
-    std::cout << "\nFinal Result: " << (all_passed ? "PASS" : "FAIL") << std::endl;
-    return all_passed ? 0 : 1;
+
+    auto fn = [&](const vector<int>& v) { return sol.maxArea(v); };
+    const int iters = lc_env_iters();
+    const bool ok = run_vec_cases<vector<int>, int>(tests, fn, iters);
+    std::cout << "\nFinal Result: " << (ok ? "PASS" : "FAIL") << std::endl;
+    return ok ? 0 : 1;
 }

@@ -87,6 +87,10 @@ public:
 };
 // @lc code=end
 
+#include <vector>
+#include "lc_test_utils.h"
+using namespace std;
+
 int main() {
     Solution sol;
     vector<pair<vector<int>, int>> tests = {
@@ -97,14 +101,11 @@ int main() {
         {{2,0,2}, 2},
         {{}, 0}
     };
-    bool all_passed = true;
-    for (int i=0; i<100000; i++) {
-        for (const auto& [input, expected] : tests) {
-            int result = sol.trap(const_cast<vector<int>&>(input));
-            all_passed &= print_test_result(input, result, expected);
-        }
-    }
-    std::cout << "\nFinal Result: " << (all_passed ? "PASS" : "FAIL") << std::endl;
-    return all_passed ? 0 : 1;
+
+    auto fn = [&](vector<int>& v) { return sol.trap(v); };
+    const int iters = lc_env_iters(); // default 1; override with LC_STRESS_ITERS
+    const bool ok = run_vec_cases<vector<int>, int>(tests, fn, iters);
+    std::cout << "\nFinal Result: " << (ok ? "PASS" : "FAIL") << std::endl;
+    return ok ? 0 : 1;
 }
 
