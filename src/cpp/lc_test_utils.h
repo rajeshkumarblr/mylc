@@ -27,8 +27,9 @@
 // Env + small conveniences
 // --------------------------
 inline bool lc_silent() {
-    static bool s = (std::getenv("LC_SILENT") != nullptr);
-    return s;
+    const char* s = std::getenv("LC_SILENT");
+    // silent iff LC_SILENT is set and not "0"/empty
+    return s && s[0] != '\0' && s[0] != '0';
 }
 
 #define LC_DUMP(x) do { if (!lc_silent()) std::cout << #x << " = " << (x) << "\n"; } while(0)
@@ -44,6 +45,11 @@ inline double lc_millis_since(uint64_t start_ns) {
 // ------------------------------------
 // ostream helpers (pretty-print stuff)
 // ------------------------------------
+template <typename T>
+inline std::ostream& operator<<(std::ostream& os, const std::optional<T>& o) {
+    if (o) os << *o; else os << "null";
+    return os;
+}
 
 // join range helper
 template <class It>
@@ -120,13 +126,6 @@ inline std::ostream& operator<<(std::ostream& os, const std::unordered_map<K,V,H
 template <class A, class B>
 inline std::ostream& operator<<(std::ostream& os, const std::pair<A,B>& p) {
     os << "(" << p.first << "," << p.second << ")";
-    return os;
-}
-
-// optional AFTER containers (so optional<vector<...>> prints fine)
-template <class T>
-inline std::ostream& operator<<(std::ostream& os, const std::optional<T>& o) {
-    if (o.has_value()) os << *o; else os << "null";
     return os;
 }
 

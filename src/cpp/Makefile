@@ -1,136 +1,204 @@
-# src/cpp/Makefile — flat layout, descriptive filenames
+# === lc/src/cpp/Makefile =====================================================
+# Flat naming: <id>.<desc>.cpp  (e.g., 104.maximum-depth-of-binary-tree.cpp)
+
 SHELL := /bin/bash
 .ONESHELL:
-.DELETE_ON_ERROR:
+.SHELLFLAGS := -eu -o pipefail -c
 
-REPO_ROOT := $(abspath $(CURDIR)/../..)
-SRC_DIR   := $(CURDIR)
-BUILD_DIR := $(REPO_ROOT)/build/cpp
-REPORT_DIR := $(REPO_ROOT)/build/reports/cpp
-REPORT     := $(REPORT_DIR)/summary.txt
-TAGS_JSON  := $(REPO_ROOT)/tags.json
-PROF_DIR   := $(REPO_ROOT)/build/prof/cpp
+ROOT          := $(abspath $(CURDIR)/../..)
+SRC_DIR       := $(CURDIR)
+BUILD_DIR     := $(ROOT)/build/cpp
+SOLUTION_LINK := $(ROOT)/solution
+LAST_PROF_ID  := $(BUILD_DIR)/.last_prof_id
 
-$(shell mkdir -p "$(BUILD_DIR)" "$(REPORT_DIR)" "$(PROF_DIR)" >/dev/null)
-
-# --- compiler & flags ---
 CXX ?= g++
-INC_DIRS := -I$(REPO_ROOT)/src/cpp -I$(REPO_ROOT)
+STD := -std=gnu++17
+WARN := -Wall -Wextra -Wpedantic
+INCLUDES := -I$(SRC_DIR) -I$(ROOT)
 
-CXXFLAGS_REL := -std=c++17 -O2 -g -fno-omit-frame-pointer -MMD -MP \
-                -Wall -Wextra -Wshadow -Wconversion $(INC_DIRS)
+CXXFLAGS_DBG  := $(STD) $(WARN) -g -O0 $(INCLUDES)
+CXXFLAGS_PROF := $(STD) $(WARN) -pg -O2 $(INCLUDES)
+LDFLAGS :=
+LDLIBS  :=
 
-CXXFLAGS_DBG := -std=c++17 -O0 -g -fno-omit-frame-pointer -MMD -MP \
-                -fsanitize=address,undefined -fno-sanitize-recover=all \
-                -Wall -Wextra -Wshadow -Wconversion $(INC_DIRS)
+# Optional: override if you use another submit tool.
+SUBMIT_CMD ?= leetcode submit
 
-# --- discover sources ---
-SOURCES_BN := $(notdir $(wildcard $(SRC_DIR)/*.cpp))  # e.g. 42.trapping-rain-water.cpp
-# Extract numeric id (first token before '.') from each source name
-IDS       := $(foreach f,$(SOURCES_BN),$(firstword $(subst ., ,$(f))))  # e.g. 42
-# Map ids to binaries lc<id>
-BIN_NAMES := $(addprefix lc,$(IDS))
-BINS      := $(addprefix $(BUILD_DIR)/,$(BIN_NAMES))
-BINS_DBG  := $(addsuffix .dbg,$(BINS))
+# --- Discover problems -------------------------------------------------------
+PROBLEM_IDS := $(shell ls -1 $(SRC_DIR)/*.cpp 2>/dev/null | sed -E 's#.*/([0-9]+)\..*#\1#' | sort -n | uniq)
+DEBUG_BINS  := $(addprefix $(BUILD_DIR)/lc,$(addsuffix .dbg,$(PROBLEM_IDS)))
 
-.PHONY: all build dbg clean list run-all run-all-dbg run-tag perf-% perf-tag asan-run
-all: build dbg
-build: $(BINS)
-dbg:   $(BINS_DBG)
-
-# --- per-file rules (generate from (id, file) pairs) ---
-# Find the source file for an id (pattern: "<id>.*.cpp")
-define SRC_FOR_ID
-$(firstword $(wildcard $(SRC_DIR)/$(1).*\.cpp))
+# Resolve the source path for an ID (glob, not regex)
+define SRC_FOR
+$(firstword $(wildcard $(SRC_DIR)/$(1).*cpp))
 endef
 
-define COMPILE_tpl
-$(BUILD_DIR)/lc$(1): $(call SRC_FOR_ID,$(1))
-	$$(CXX) $$(CXXFLAGS_REL) $$< -o $$@
-$(BUILD_DIR)/lc$(1).dbg: $(call SRC_FOR_ID,$(1))
-	$$(CXX) $$(CXXFLAGS_DBG) $$< -o $$@
-endef
+# Parse CLI numbers (ignore meta targets)
+ARGS_NUM := $(filter-out all dbg prof run submit show clean clobber,$(MAKECMDGOALS))
+RUN_ALL  := $(filter all,$(MAKECMDGOALS))
 
-# Emit concrete rules for every id
-$(foreach id,$(IDS),$(eval $(call COMPILE_tpl,$(id))))
+.DEFAULT_GOAL := all
+.PHONY: all run dbg prof submit show clean clobber prof-show
 
-list:
-	@printf '%s\n' $(BIN_NAMES) | sort
+# === Build all ===============================================================
+all: $(DEBUG_BINS)
+	@echo "✔ Built $(words $(DEBUG_BINS)) debug binaries."
 
-# ---------- run-all (release) ----------
-run-all: build
-	@echo "== LC run-all report ==" > "$(REPORT)"
-	@pass=0; fail=0; total=0; \
-	for bin in $(BINS); do \
-		name=$$(basename $$bin); total=$$((total+1)); \
-		printf "→ %-12s " "$$name"; \
-		if LC_SILENT=1 "$$bin" >/dev/null; then \
-			echo "PASS"; echo "$$name PASS" >>"$(REPORT)"; pass=$$((pass+1)); \
-		else \
-			echo "FAIL"; echo "$$name FAIL" >>"$(REPORT)"; fail=$$((fail+1)); \
-		fi; \
-	done; \
-	echo "----" | tee -a "$(REPORT)"; \
-	echo "PASS=$$pass FAIL=$$fail TOTAL=$$total" | tee -a "$(REPORT)"; \
-	test $$fail -eq 0
+# Build a debug bin given an ID: lc<ID>.dbg
+$(BUILD_DIR)/lc%.dbg:
+	@ID="$*"; SRC="$(call SRC_FOR,$*)"; \
+	if [[ -z "$$SRC" ]]; then echo "✗ Source for $$ID not found under $(SRC_DIR)"; exit 2; fi; \
+	mkdir -p "$(BUILD_DIR)"; \
+	echo "→ Compiling $$SRC → $(BUILD_DIR)/lc$${ID}.dbg"; \
+	$(CXX) $(CXXFLAGS_DBG) "$$SRC" -o "$(BUILD_DIR)/lc$${ID}.dbg" $(LDFLAGS) $(LDLIBS)
 
-# ---------- run-all (debug) ----------
-run-all-dbg: dbg
-	@echo "== LC run-all-dbg report ==" > "$(REPORT)"
-	@pass=0; fail=0; total=0; \
-	for bin in $(BINS_DBG); do \
-		name=$$(basename $$bin); total=$$((total+1)); \
-		printf "→ %-16s " "$$name"; \
-		if LC_SILENT=1 "$$bin" >/dev/null; then \
-			echo "PASS"; echo "$$name PASS" >>"$(REPORT)"; pass=$$((pass+1)); \
-		else \
-			echo "FAIL"; echo "$$name FAIL" >>"$(REPORT)"; fail=$$((fail+1)); \
-		fi; \
-	done; \
-	echo "----" | tee -a "$(REPORT)"; \
-	echo "PASS=$$pass FAIL=$$fail TOTAL=$$total" | tee -a "$(REPORT)"; \
-	test $$fail -eq 0
+# === Debug one & link solution ==============================================
+dbg: $(addprefix dbg-,$(ARGS_NUM))
+	@[[ -n "$(ARGS_NUM)" ]] || echo "Usage: make dbg <id>"
 
-# ---------- tag-based runs (uses tags.json with ids like lc42) ----------
-TAG ?= array
-PROBLEMS_FOR_TAG = $(shell python3 $(REPO_ROOT)/scripts/tags.py --file $(TAGS_JSON) --lang cpp --tag $(TAG))
+dbg-%:
+	@ID="$*"; SRC="$(call SRC_FOR,$*)"; \
+	if [[ -z "$$SRC" ]]; then echo "✗ Source for $$ID not found"; exit 2; fi; \
+	mkdir -p "$(BUILD_DIR)"; \
+	echo "→ Compiling $$SRC → $(BUILD_DIR)/lc$${ID}.dbg"; \
+	$(CXX) $(CXXFLAGS_DBG) "$$SRC" -o "$(BUILD_DIR)/lc$${ID}.dbg" $(LDFLAGS) $(LDLIBS); \
+	ln -snf "$(BUILD_DIR)/lc$${ID}.dbg" "$(SOLUTION_LINK)"; \
+	echo "→ Linked $(SOLUTION_LINK) -> $(BUILD_DIR)/lc$${ID}.dbg"
 
-run-tag: build
-	@probs="$(PROBLEMS_FOR_TAG)"; \
-	if [ -z "$$probs" ]; then echo "No problems for tag '$(TAG)'"; exit 0; fi; \
-	pass=0; fail=0; total=0; \
-	for id in $$probs; do \
-		bin="$(BUILD_DIR)/$$id"; \
-		[ -x "$$bin" ] || { echo "skip $$id (no binary)"; continue; } ; \
-		printf "→ %-12s " "$$id"; \
-		if LC_SILENT=1 "$$bin" >/dev/null; then echo PASS; pass=$$((pass+1)); else echo FAIL; fail=$$((fail+1)); fi; \
-		total=$$((total+1)); \
-	done; \
-	echo "----"; echo "PASS=$$pass FAIL=$$fail TOTAL=$$total"; \
-	test $$fail -eq 0
+# === Run =====================================================================
+# make run all  -> build (if needed) and run all debug bins in numeric order
+# make run <id> -> build debug & run that one
+# make run      -> run current solution symlink
+run:
+	@if [[ -n "$(RUN_ALL)" ]]; then \
+	  $(MAKE) --no-print-directory all; \
+	  echo "→ Running all debug binaries:"; \
+	  set -e; for id in $(PROBLEM_IDS); do \
+	    bin="$(BUILD_DIR)/lc$${id}.dbg"; \
+	    echo "===== RUN $$bin ====="; "$$bin"; \
+	  done; \
+	elif [[ -n "$(ARGS_NUM)" ]]; then \
+	  id="$(firstword $(ARGS_NUM))"; \
+	  $(MAKE) --no-print-directory dbg-$$id; \
+	  bin="$(BUILD_DIR)/lc$${id}.dbg"; \
+	  echo "→ Running $$bin"; exec "$$bin"; \
+	else \
+	  if [[ ! -e "$(SOLUTION_LINK)" ]]; then \
+	    echo "✗ No solution binary. Use 'make dbg <id>' first."; exit 2; \
+	  fi; \
+	  if [[ -L "$(SOLUTION_LINK)" && ! -e "$$(readlink $(SOLUTION_LINK))" ]]; then \
+	    echo "✗ $(SOLUTION_LINK) is a broken symlink."; exit 2; \
+	  fi; \
+	  echo "→ Running $(SOLUTION_LINK)"; exec "$(SOLUTION_LINK)"; \
+	fi
 
-# ---------- perf ----------
-PERF_BIN ?= perf
+# Handy: make run-104
+run-%:
+	@$(MAKE) --no-print-directory dbg-$*; \
+	BIN="$(BUILD_DIR)/lc$*.dbg"; \
+	echo "→ Running $$BIN"; exec "$$BIN"
 
-perf-%: build
-	@bin="$(BUILD_DIR)/$*"; \
-	[ -x "$$bin" ] || { echo "No such binary: $$bin"; exit 1; }; \
-	out="$(PROF_DIR)/$*.perf.data"; txt="$(PROF_DIR)/$*.perf.txt"; \
-	echo "Recording: $$bin  ->  $$out"; \
-	LC_SILENT=1 $(PERF_BIN) record -g -o "$$out" -- "$$bin" >/dev/null || exit $$?; \
-	$(PERF_BIN) report -n --stdio -i "$$out" > "$$txt"; \
-	echo "Report: $$txt"
+# === Profiling (gprof) =======================================================
+# make prof <id> [...]  -> build with -pg, run, write lc<ID>.prof.txt
+# make prof show        -> show last profiling report
+prof:
+	@if [[ -n "$(ARGS_NUM)" && "$(firstword $(ARGS_NUM))" != "show" ]]; then \
+	  for id in $(ARGS_NUM); do $(MAKE) --no-print-directory prof-$$id; done; \
+	fi
 
-perf-tag: build
-	@probs="$(PROBLEMS_FOR_TAG)"; \
-	if [ -z "$$probs" ]; then echo "No problems for tag '$(TAG)'"; exit 0; fi; \
-	for id in $$probs; do $(MAKE) -s perf-$$id || exit $$?; done
+prof-%:
+	@ID="$*"; SRC="$(call SRC_FOR,$*)"; \
+	if [[ -z "$$SRC" ]]; then echo "✗ Source for $$ID not found"; exit 2; fi; \
+	mkdir -p "$(BUILD_DIR)"; \
+	echo "→ Compiling (profile) $$SRC → $(BUILD_DIR)/lc$${ID}.prof"; \
+	$(CXX) $(CXXFLAGS_PROF) "$$SRC" -o "$(BUILD_DIR)/lc$${ID}.prof" $(LDFLAGS) $(LDLIBS); \
+	echo "→ Running profiled binary to record gmon.out"; \
+	( cd "$(BUILD_DIR)" && "./lc$${ID}.prof" >/dev/null 2>&1 || true ); \
+	if [[ -f "$(BUILD_DIR)/gmon.out" ]]; then \
+	  mv -f "$(BUILD_DIR)/gmon.out" "$(BUILD_DIR)/lc$${ID}.gmon.out"; \
+	  echo "→ Generating gprof report: $(BUILD_DIR)/lc$${ID}.prof.txt"; \
+	  gprof "$(BUILD_DIR)/lc$${ID}.prof" "$(BUILD_DIR)/lc$${ID}.gmon.out" > "$(BUILD_DIR)/lc$${ID}.prof.txt"; \
+	  echo "$$ID" > "$(LAST_PROF_ID)"; \
+	  echo "✔ Profile written to $(BUILD_DIR)/lc$${ID}.prof.txt"; \
+	else \
+	  echo "⚠ No gmon.out produced (program may have exited too early)."; \
+	fi
 
-# ---------- sanitizers ----------
-asan-run: dbg
-	@ASAN_OPTIONS='detect_leaks=1:halt_on_error=1:strict_string_checks=1:alloc_dealloc_mismatch=1:fast_unwind_on_malloc=0:detect_stack_use_after_return=1' \
-	UBSAN_OPTIONS='print_stacktrace=1:halt_on_error=1' \
-	$(MAKE) -s run-all-dbg
+# Show last profile report
+show prof-show:
+	@if [[ -f "$(LAST_PROF_ID)" ]]; then \
+	  id="$$(cat "$(LAST_PROF_ID)")"; rpt="$(BUILD_DIR)/lc$${id}.prof.txt"; \
+	  if [[ -f "$$rpt" ]]; then echo "===== $$rpt ====="; cat "$$rpt"; exit 0; fi; \
+	fi; \
+	last="$$(ls -1t $(BUILD_DIR)/lc*.prof.txt 2>/dev/null | head -n1)"; \
+	if [[ -n "$$last" ]]; then echo "===== $$last ====="; cat "$$last"; \
+	else echo "✗ No profile report found. Run 'make prof <id>' first."; exit 2; fi
 
+# === Submit (build a clean file with header + code block only) ==============
+submit: $(addprefix submit-,$(ARGS_NUM))
+	@if [[ -z "$(ARGS_NUM)" ]]; then echo "Usage: make submit <id>"; exit 2; fi
+
+submit-%:
+	@ID="$*"
+	SRC="$(call SRC_FOR,$*)"
+	if [[ -z "$$SRC" ]]; then
+	  echo "✗ Source for $$ID not found"; exit 2
+	fi
+
+	mkdir -p "$(BUILD_DIR)"
+	SNIP="$(BUILD_DIR)/lc$${ID}.submit.cpp"
+	FULL="$(BUILD_DIR)/lc$${ID}.submit.full.cpp"
+
+	# 1) Extract only the code between markers (for your records)
+	if ! awk '/@lc code=start/{flag=1;next} /@lc code=end/{flag=0} flag' "$$SRC" > "$$SNIP"; then
+	  echo "✗ Failed to extract code block for $$ID"; exit 2
+	fi
+	if [[ ! -s "$$SNIP" ]]; then
+	  echo "✗ No code between @lc code markers in $$SRC"; exit 2
+	fi
+	echo "→ Extracted solution to $$SNIP"
+
+	# 2) Build a CLEAN submit file with header + markers ONLY (no local includes)
+	HDR_LINE="$$(grep -m1 -E '^//[[:space:]]*@lc[[:space:]]+app=leetcode' "$$SRC" || true)"
+	if [[ -z "$$HDR_LINE" ]]; then
+	  HDR_LINE="// @lc app=leetcode id=$$ID lang=cpp"
+	fi
+
+	{
+	  echo "$$HDR_LINE"
+	  echo "// @lc code=start"
+	  cat "$$SNIP"
+	  echo "// @lc code=end"
+	} > "$$FULL"
+
+	echo "→ Prepared clean submit file: $$FULL"
+
+	# 3) Submit the CLEAN file
+	if ! command -v leetcode >/dev/null 2>&1; then
+	  echo "⚠ 'leetcode' CLI not found. To submit manually run:"
+	  echo "   leetcode submit \"$$FULL\""
+	  exit 0
+	fi
+	echo "→ Submitting with: leetcode submit $$FULL"
+	leetcode submit "$$FULL"
+
+# === Convenience: numeric-only builds debug (e.g., `make 104`) ==============
+%:
+	@case "$@" in \
+	  (*[!0-9]* ) echo "Unknown target '$@'"; exit 2 ;; \
+	  (*) $(MAKE) --no-print-directory dbg-$@ ;; \
+	esac
+
+# === Cleanup =================================================================
 clean:
-	@rm -f $(BINS) $(BINS_DBG) $(BUILD_DIR)/*.d
+	@mkdir -p "$(BUILD_DIR)"
+	@echo "Cleaning $(BUILD_DIR):"
+	@find "$(BUILD_DIR)" -maxdepth 1 -type f \
+	  \( -name 'lc*.dbg' -o -name 'lc*.prof' -o -name 'lc*.gmon.out' -o -name 'lc*.prof.txt' -o -name 'lc*.submit.cpp' \) \
+	  -print -delete 2>/dev/null || true
+
+clobber: clean
+	@rm -rf "$(BUILD_DIR)" 2>/dev/null || true
+	@rm -f "$(SOLUTION_LINK)" 2>/dev/null || true
+	@echo "✔ Cleaned."
+# ============================================================================
