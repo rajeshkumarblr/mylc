@@ -20,11 +20,15 @@ class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> vec;
-        //inOrder(root, vec);
+        inOrder_iterative(root, vec);
+        //inOrder_recursive(root, vec);
+        return vec;
+    }
+
+    void inOrder_iterative(TreeNode* root, vector<int>& vec) {
         stack<TreeNode*> st;
         TreeNode* curr = root;
-        while (curr != nullptr || !st.empty())
-        {
+        while (curr != nullptr || !st.empty()) {
             while (curr != nullptr ) {
                 st.push(curr);
                 curr = curr->left;
@@ -34,16 +38,13 @@ public:
             vec.push_back(curr->val);
             curr = curr->right;            
         }
-        return vec;
     }
 
-    void inOrder(TreeNode* root, vector<int>& vec)
-    {
-        if (root != nullptr)
-        {
-            inOrder(root->left, vec);
+    void inOrder_recursive(TreeNode* root, vector<int>& vec) {
+        if (root != nullptr) {
+            inOrder_recursive(root->left, vec);
             vec.push_back(root->val);
-            inOrder(root->right, vec);
+            inOrder_recursive(root->right, vec);
         }
     }
 };

@@ -1,7 +1,4 @@
-.PHONY: all clean
-
-all:
-	$(MAKE) -C src
-
-clean:
-	$(MAKE) -C src
+.PHONY: run-all build clean
+run-all: ; $(MAKE) -C src/cpp run-all
+build:   ; $(MAKE) -C src/cpp build
+clean:   ; $(MAKE) -C src/cpp clean
