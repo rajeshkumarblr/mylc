@@ -10,8 +10,8 @@ using namespace std;
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        //return maxDepth_recursive(root);
-        return maxDepth_dfs(root);
+        return maxDepth_recursive(root);
+        //return maxDepth_dfs(root);
     }
 
     int maxDepth_dfs(TreeNode* root) {

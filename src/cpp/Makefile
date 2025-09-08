@@ -11,6 +11,9 @@ BUILD_DIR     := $(ROOT)/build/cpp
 SOLUTION_LINK := $(ROOT)/solution
 LAST_PROF_ID  := $(BUILD_DIR)/.last_prof_id
 
+PY ?= python3
+BEAT := $(ROOT)/src/mk/leetcode_beat.py
+
 CXX ?= g++
 STD := -std=gnu++17
 WARN := -Wall -Wextra -Wpedantic
@@ -181,6 +184,17 @@ submit-%:
 	fi
 	echo "→ Submitting with: leetcode submit $$FULL"
 	leetcode submit "$$FULL"
+	# Fetch beat ratio (GraphQL via stdlib Python; no extra deps)
+	if [ -x "$(BEAT)" ]; then
+	  $(PY) "$(BEAT)" --id "$$ID" --src-dir "$(SRC_DIR)" || true
+	else
+	  echo "ℹ To auto-fetch beat ratio, save the script at: $(BEAT)"
+	fi
+
+.PHONY: beat
+beat:
+	@if [ -z "$(ARGS_NUM)" ]; then echo "Usage: make beat <id>"; exit 2; fi
+	$(PY) "$(BEAT)" --id "$(firstword $(ARGS_NUM))" --src-dir "$(SRC_DIR)"	
 
 # === Convenience: numeric-only builds debug (e.g., `make 104`) ==============
 %:
