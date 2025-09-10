@@ -1,4 +1,5 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
             "name": "Go: Run/Debug current file",
@@ -10,7 +11,8 @@
             "console": "integratedTerminal",
             "env": {
                 "LC_STRESS_ITERS": "1"
-            }
+            },
+            "dlvToolPath": "/home/${env:USER}/go/bin/dlv"
         },
         {
             "name": "(gdb) Launch",
