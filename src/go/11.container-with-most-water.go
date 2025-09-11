@@ -26,18 +26,4 @@ func maxArea(height []int) int {
 	return maxarea
 }
 
-// Helper functions
-func max(a, b int) int {
-	if a > b {
-		return a
-	}
-	return b
-}
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
-
 // @lc code=end
