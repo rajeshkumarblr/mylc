@@ -42,20 +42,21 @@ run-all: build-all
 
 .PHONY: run
 run:
-	@if [ "$(firstword $(MAKECMDGOALS))" = "run" ]; then \
-		ARG=$(word 2,$(MAKECMDGOALS)); \
-		if [ -z "$$ARG" ]; then \
-			echo "Usage: make run <problem_no|all>"; exit 1; \
-		fi; \
-		$(MAKE) build-all; \
-		if [ "$$ARG" = "all" ]; then \
-			echo "==> Running all problems via central runner"; \
-			"$(CENTRAL_BIN)"; \
-		else \
-			echo "==> Running problem $$ARG via central runner"; \
-			LC_PROB_NUM=$$ARG "$(CENTRAL_BIN)"; \
-		fi; \
-		exit 0; \
+	@ARG=$(word 2,$(MAKECMDGOALS)); \
+	if [ -z "$$ARG" ]; then \
+		echo "Usage: make run <problem_no|all|category>"; exit 1; \
+	fi; \
+	$(MAKE) build-all; \
+	CATEGORIES="two_pointer sliding_window hash list misc tree"; \
+	if [ "$$ARG" = "all" ]; then \
+		echo "==> Running all problems via central runner"; \
+		"$(CENTRAL_BIN)"; \
+	elif echo "$$CATEGORIES" | grep -wq "$$ARG"; then \
+		echo "==> Running category $$ARG via central runner"; \
+		LC_CATEGORY=$$ARG "$(CENTRAL_BIN)"; \
+	else \
+		echo "==> Running problem $$ARG via central runner"; \
+		LC_PROB_NUM=$$ARG "$(CENTRAL_BIN)"; \
 	fi
 
 .SECONDARY:

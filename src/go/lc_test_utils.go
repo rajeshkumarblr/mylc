@@ -126,6 +126,7 @@ func RunSliceIntToSliceIntTests(fn func([]int, int) []int, tests []map[string]in
 }
 
 // Top-level test runner: parses testcases.json and dispatches to the correct generic runner
+
 var problemDescriptions = map[string]string{
 	"1":   "two sum",
 	"2":   "add two numbers",
@@ -142,6 +143,93 @@ var problemDescriptions = map[string]string{
 	"567": "permutation in string",
 }
 
+type ProblemTest struct {
+	Category string                   `json:"category"`
+	Cases    []map[string]interface{} `json:"cases"`
+}
+
+// Run all tests for problems in a given category
+func RunAllTestsByCategory(funcRegistry map[string]interface{}, category string) bool {
+	file, err := os.Open("testcases.json")
+	if err != nil {
+		fmt.Println("Error opening testcases.json:", err)
+		return false
+	}
+	defer file.Close()
+
+	var allTests map[string]ProblemTest
+	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
+		fmt.Println("Error decoding testcases:", err)
+		return false
+	}
+
+	type summaryRow struct {
+		Num         string
+		Description string
+		Category    string
+		Result      string
+		Cases       []int
+	}
+	var summary []summaryRow
+	allOk := true
+
+	for probNum, probTest := range allTests {
+		if probTest.Category != category {
+			continue
+		}
+		fn, found := funcRegistry[probNum]
+		if !found {
+			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "", "NoFunc", nil})
+			allOk = false
+			continue
+		}
+		tests := probTest.Cases
+		caseResults := make([]string, len(tests))
+		caseIndices := make([]int, 0, len(tests))
+		ok := true
+		switch probNum {
+		case "1":
+			for idx, tc := range tests {
+				inputIface := tc["input"].([]interface{})
+				input := make([]int, len(inputIface))
+				for i, v := range inputIface {
+					input[i] = int(v.(float64))
+				}
+				target := int(tc["target"].(float64))
+				expectedIface := tc["expected"].([]interface{})
+				expected := make([]int, len(expectedIface))
+				for i, v := range expectedIface {
+					expected[i] = int(v.(float64))
+				}
+				got := fn.(func([]int, int) []int)(input, target)
+				if reflect.DeepEqual(got, expected) {
+					caseResults[idx] = "Pass"
+					caseIndices = append(caseIndices, idx+1)
+				} else {
+					caseResults[idx] = "Fail"
+					ok = false
+				}
+			}
+		// ...existing code for other problems...
+		default:
+			// ...existing code for other problems...
+		}
+		result := "PASS"
+		if !ok {
+			result = "FAIL"
+			allOk = false
+		}
+		summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], probTest.Category, result, caseIndices})
+	}
+
+	// Print summary
+	fmt.Printf("%-6s %-30s %-15s %-6s %s\n", "Num", "Description", "Category", "Result", "Cases")
+	for _, row := range summary {
+		fmt.Printf("%-6s %-30s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
+	}
+	return allOk
+}
+
 func RunAllTests(funcRegistry map[string]interface{}) bool {
 	file, err := os.Open("testcases.json")
 	if err != nil {
@@ -150,7 +238,7 @@ func RunAllTests(funcRegistry map[string]interface{}) bool {
 	}
 	defer file.Close()
 
-	var allTests map[string][]map[string]interface{}
+	var allTests map[string]ProblemTest
 	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
 		fmt.Println("Error decoding testcases:", err)
 		return false
@@ -161,22 +249,24 @@ func RunAllTests(funcRegistry map[string]interface{}) bool {
 	type summaryRow struct {
 		Num         string
 		Description string
+		Category    string
 		Result      string
 		Cases       []int
 	}
 	var summary []summaryRow
 	allOk := true
 
-	for probNum, tests := range allTests {
+	for probNum, probTest := range allTests {
 		if probNumFilter != "" && probNum != probNumFilter {
 			continue
 		}
 		fn, found := funcRegistry[probNum]
 		if !found {
-			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "NoFunc", nil})
+			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "", "NoFunc", nil})
 			allOk = false
 			continue
 		}
+		tests := probTest.Cases
 		caseResults := make([]string, len(tests))
 		caseIndices := make([]int, 0, len(tests))
 		ok := true
@@ -417,15 +507,15 @@ func RunAllTests(funcRegistry map[string]interface{}) bool {
 		if desc == "" {
 			desc = "?"
 		}
-		summary = append(summary, summaryRow{probNum, desc, result, caseIndices})
+		summary = append(summary, summaryRow{probNum, desc, probTest.Category, result, caseIndices})
 		if !ok {
 			allOk = false
 		}
 	}
 
-	fmt.Printf("%-4s %-25s %-6s %s\n", "No", "Description", "Result", "Cases")
+	fmt.Printf("%-4s %-25s %-15s %-6s %s\n", "No", "Description", "Category", "Result", "Cases")
 	for _, row := range summary {
-		fmt.Printf("%-4s %-25s %-6s %v\n", row.Num, row.Description, row.Result, row.Cases)
+		fmt.Printf("%-4s %-25s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
 	}
 
 	return allOk
@@ -439,7 +529,7 @@ func RunAllTestsFiltered(funcRegistry map[string]interface{}, probNumFilter stri
 	}
 	defer file.Close()
 
-	var allTests map[string][]map[string]interface{}
+	var allTests map[string]ProblemTest
 	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
 		fmt.Println("Error decoding testcases:", err)
 		return false
@@ -448,22 +538,24 @@ func RunAllTestsFiltered(funcRegistry map[string]interface{}, probNumFilter stri
 	type summaryRow struct {
 		Num         string
 		Description string
+		Category    string
 		Result      string
 		Cases       []int
 	}
 	var summary []summaryRow
 	allOk := true
 
-	for probNum, tests := range allTests {
+	for probNum, probTest := range allTests {
 		if probNum != probNumFilter {
 			continue
 		}
 		fn, found := funcRegistry[probNum]
 		if !found {
-			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "NoFunc", nil})
+			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "", "NoFunc", nil})
 			allOk = false
 			continue
 		}
+		tests := probTest.Cases
 		caseResults := make([]string, len(tests))
 		caseIndices := make([]int, 0, len(tests))
 		ok := true
@@ -704,15 +796,15 @@ func RunAllTestsFiltered(funcRegistry map[string]interface{}, probNumFilter stri
 		if desc == "" {
 			desc = "?"
 		}
-		summary = append(summary, summaryRow{probNum, desc, result, caseIndices})
+		summary = append(summary, summaryRow{probNum, desc, probTest.Category, result, caseIndices})
 		if !ok {
 			allOk = false
 		}
 	}
 
-	fmt.Printf("%-4s %-25s %-6s %s\n", "No", "Description", "Result", "Cases")
+	fmt.Printf("%-4s %-25s %-15s %-6s %s\n", "No", "Description", "Category", "Result", "Cases")
 	for _, row := range summary {
-		fmt.Printf("%-4s %-25s %-6s %v\n", row.Num, row.Description, row.Result, row.Cases)
+		fmt.Printf("%-4s %-25s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
 	}
 
 	return allOk

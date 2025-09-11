@@ -23,6 +23,19 @@ var funcRegistry = map[string]interface{}{
 }
 
 func main() {
+	category := os.Getenv("LC_CATEGORY")
+	if category != "" {
+		ok := RunAllTestsByCategory(funcRegistry, category)
+		if ok {
+			fmt.Println("Final Result: PASS yes")
+			os.Exit(0)
+		} else {
+			fmt.Println("Final Result: FAIL")
+			os.Exit(1)
+		}
+		return
+	}
+
 	probNum := os.Getenv("LC_PROB_NUM")
 	if probNum != "" {
 		ok := RunAllTestsFiltered(funcRegistry, probNum)
