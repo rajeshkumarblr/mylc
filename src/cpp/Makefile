@@ -49,17 +49,23 @@ ifeq ($(ID),all)
 	$(MAKE) $(CENTRAL)
 	REPO_ROOT=$(ROOT) NUM=all $(CENTRAL)
 else ifneq ($(ID),)
-	src=""; obj=""; \
-	for f in $(PROBLEM_SRCS); do \
-	  base=$$(basename $$f); id=$${base%%.*}; \
-	  if [ "$$id" = "$(ID)" ]; then src="$$f"; obj="$(BIN_DIR)/$${base%.cpp}.o"; fi; \
-	done; \
-	if [ -z "$$obj" ]; then echo "No source for problem $(ID) in $(SRC_DIR)"; exit 3; fi; \
-	$(MAKE) $(BIN_DIR)/main.o $(PROBLEM_OBJS); \
-	$(CXX) $(CXXFLAGS) -o $(CENTRAL) $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(LDFLAGS); \
-	REPO_ROOT=$(ROOT) NUM=$(ID) $(CENTRAL)
+	CATEGORIES="two_pointer sliding_window hash list misc tree"; \
+	if echo "$$CATEGORIES" | grep -wq "$(ID)"; then \
+		$(MAKE) $(CENTRAL); \
+		REPO_ROOT=$(ROOT) LC_CATEGORY=$(ID) $(CENTRAL); \
+	else \
+		src=""; obj=""; \
+		for f in $(PROBLEM_SRCS); do \
+		  base=$$(basename $$f); id=$${base%%.*}; \
+		  if [ "$$id" = "$(ID)" ]; then src="$$f"; obj="$(BIN_DIR)/$${base%.cpp}.o"; fi; \
+		done; \
+		if [ -z "$$obj" ]; then echo "No source for problem $(ID) in $(SRC_DIR)"; exit 3; fi; \
+		$(MAKE) $(BIN_DIR)/main.o $(PROBLEM_OBJS); \
+		$(CXX) $(CXXFLAGS) -o $(CENTRAL) $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(LDFLAGS); \
+		REPO_ROOT=$(ROOT) NUM=$(ID) $(CENTRAL); \
+	fi
 else
-	@echo "Usage: make run <id|all>"; exit 1
+	@echo "Usage: make run <id|all|category>"; exit 1
 endif
 
 run-all:
@@ -87,7 +93,10 @@ clean:
 
 help:
 	@echo "Usage:"
-	@echo "  make run 1      # build & run a single problem"
-	@echo "  make run all    # build & run all problems"
-	@echo "  make submit NUM=1   # extract @lc code block -> build/cpp/submit.1.cpp"
+	@echo "  make run 1         # build & run a single problem"
+	@echo "  make run all       # build & run all problems"
+	@echo "  make run list      # build & run all problems in 'list' category"
+	@echo "  make run tree      # build & run all problems in 'tree' category"
+	@echo "  make run <category> # build & run all problems in category"
+	@echo "  make submit NUM=1  # extract @lc code block -> build/cpp/submit.1.cpp"
 	mkdir -p "$(BIN_DIR)"; \

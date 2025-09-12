@@ -23,7 +23,9 @@ int main(int, char**) {
 
     // Get problem number from env or default to 1
     string prob = "1";
+    string category = "";
     if (const char* s = getenv("NUM")) prob = s;
+    if (const char* c = getenv("LC_CATEGORY")) category = c;
 
     // Map of supported problems to their handler functions
     const std::vector<int> solved = {1, 2, 3, 9, 11, 21, 42, 94, 104, 110, 424, 438, 567};
@@ -44,7 +46,7 @@ int main(int, char**) {
         {567, lc_test_567}
     };
 
-    if (prob == "all") {
+    if (prob == "all" || !category.empty()) {
         struct SummaryRow {
             string num, desc, category, result;
             vector<int> cases;
@@ -60,14 +62,15 @@ int main(int, char**) {
             }
             const auto& test = tests.at(key);
             string desc = test.contains("description") ? test.at("description").get<string>() : "";
-            string category = test.contains("category") ? test.at("category").get<string>() : "";
+            string cat = test.contains("category") ? test.at("category").get<string>() : "";
+            if (!category.empty() && cat != category) continue;
             vector<int> case_indices;
             if (test.contains("cases")) {
                 int idx = 1;
                 for (size_t i = 0; i < test.at("cases").size(); ++i) case_indices.push_back(idx++);
             }
             bool ok = handlers[prob_num](test);
-            summary.push_back({key, desc, category, ok ? "Pass" : "Fail", case_indices});
+            summary.push_back({key, desc, cat, ok ? "Pass" : "Fail", case_indices});
             if (!ok) failures++;
         }
         cout << left << setw(5) << "No" << setw(28) << "Description" << setw(16) << "Category" << setw(7) << "Result" << "Cases" << endl;
