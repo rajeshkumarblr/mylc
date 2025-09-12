@@ -22,10 +22,15 @@ CENTRAL := $(BIN_DIR)/lc_all
 PROBLEM_SRCS := $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp))
 PROBLEM_OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(PROBLEM_SRCS))
 
-.PHONY: all run build-all clean submit help
+
+.PHONY: all build run build-all clean submit help
 .NOTPARALLEL:
 
-all: run
+all: build
+
+build: $(CENTRAL)
+
+run: build
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
