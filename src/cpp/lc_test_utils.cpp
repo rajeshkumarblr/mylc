@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <vector>
 #include <queue>
 #include <iostream>
@@ -89,8 +90,11 @@ bool lc_test_1(const json& j) {
         got = norm(got);
         expect = norm(expect);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -116,8 +120,11 @@ bool lc_test_2(const json& j) {
         std::vector<int> got;
         for (ListNode* p = got_head; p; p = p->next) got.push_back(p->val);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         // Free all nodes
         while (got_head) { ListNode* tmp = got_head; got_head = got_head->next; delete tmp; }
         while (l1) { ListNode* tmp = l1; l1 = l1->next; delete tmp; }
@@ -135,8 +142,11 @@ bool lc_test_3(const json& j) {
         int expect = tc.at("expected").get<int>();
         int got = lengthOfLongestSubstring(s);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -154,8 +164,11 @@ bool lc_test_9(const json& j) {
         bool expect = tc.at("expected").get<bool>();
         bool got = isPalindrome(input);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -169,8 +182,11 @@ bool lc_test_11(const json& j) {
         int expect = tc.at("expected").get<int>();
         int got = maxArea(input);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -188,8 +204,11 @@ bool lc_test_21(const json& j) {
         ListNode* got_head = mergeTwoLists(l1, l2);
         std::vector<int> got = list_to_vec(got_head);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         free_list(got_head);
         all &= ok;
     }
@@ -205,8 +224,11 @@ bool lc_test_42(const json& j) {
         int expect = tc.at("expected").get<int>();
         int got = trap(input); // Assuming maxArea is the solution for 42
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -225,8 +247,11 @@ bool lc_test_94(const json& j) {
         TreeNode* root = build_tree_from_level_order(tree); // You must implement this helper if not present
         std::vector<int> got = inorderTraversal(root); // Assuming this is your solution for 94
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         free_tree(root); // You must implement this helper if not present
         all &= ok;
     }
@@ -247,8 +272,11 @@ bool lc_test_104(const json& j) {
         TreeNode* root = build_tree_from_level_order(tree);
         int got = maxDepth(root); // assumes global or Solution::maxDepth
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         free_tree(root);
         all &= ok;
     }
@@ -268,8 +296,11 @@ bool lc_test_110(const json& j) {
         TreeNode* root = build_tree_from_level_order(tree);
         bool got = isBalanced(root);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        } else {
+            ++idx;
+        }
         free_tree(root);
         all &= ok;
     }
@@ -285,8 +316,11 @@ bool lc_test_424(const json& j) {
         int expect = tc.at("expected").get<int>();
         int got = characterReplacement(s, k);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -301,8 +335,11 @@ bool lc_test_438(const json& j) {
         std::vector<int> expect = tc.at("expected").get<std::vector<int>>();
         std::vector<int> got = findAnagrams(s, p);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << got << " expected=" << expect << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
@@ -317,9 +354,32 @@ bool lc_test_567(const json& j) {
         bool expect = tc.at("expected").get<bool>();
         bool got = checkInclusion(s1, s2);
         bool ok = (got == expect);
-        std::cout << "  Case " << (++idx) << ": " << (ok ? "PASS" : "FAIL")
-                  << "  got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        } else {
+            ++idx;
+        }
         all &= ok;
     }
     return all;
+}
+
+std::string get_testcases_json_path() {
+    const char* env = std::getenv("REPO_ROOT");
+    if (env) {
+        return std::string(env) + "/testcases.json";
+    }
+    // fallback paths
+    const char* paths[] = {
+        "../testcases.json",
+        "testcases.json",
+        "src/testcases.json",
+        "src/cpp/testcases.json",
+        "src/go/testcases.json"
+    };
+    for (auto p : paths) {
+        std::ifstream in(p);
+        if (in.good()) return p;
+    }
+    return "testcases.json";
 }

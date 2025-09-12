@@ -150,7 +150,7 @@ type ProblemTest struct {
 
 // Run all tests for problems in a given category
 func RunAllTestsByCategory(funcRegistry map[string]interface{}, category string) bool {
-	file, err := os.Open("testcases.json")
+	file, err := openTestcasesFile()
 	if err != nil {
 		fmt.Println("Error opening testcases.json:", err)
 		return false
@@ -231,7 +231,7 @@ func RunAllTestsByCategory(funcRegistry map[string]interface{}, category string)
 }
 
 func RunAllTests(funcRegistry map[string]interface{}) bool {
-	file, err := os.Open("testcases.json")
+	file, err := openTestcasesFile()
 	if err != nil {
 		fmt.Println("Error opening testcases.json:", err)
 		return false
@@ -522,7 +522,7 @@ func RunAllTests(funcRegistry map[string]interface{}) bool {
 }
 
 func RunAllTestsFiltered(funcRegistry map[string]interface{}, probNumFilter string) bool {
-	file, err := os.Open("testcases.json")
+	file, err := openTestcasesFile()
 	if err != nil {
 		fmt.Println("Error opening testcases.json:", err)
 		return false
@@ -885,4 +885,15 @@ func compareSlices(a, b []int) bool {
 		}
 	}
 	return true
+}
+
+func openTestcasesFile() (*os.File, error) {
+	repoRoot := os.Getenv("REPO_ROOT")
+	if repoRoot != "" {
+		f, err := os.Open(repoRoot + "/testcases.json")
+		if err == nil {
+			return f, nil
+		}
+	}
+	return os.Open("testcases.json")
 }

@@ -35,8 +35,8 @@ build-all: $(BIN_DIR)
 ITERS ?= 1
 .PHONY: run-all
 run-all: build-all
-	@echo "==> Running all problems via central runner"
-	LC_STRESS_ITERS=$(ITERS) "$(CENTRAL_BIN)"
+		@echo "==> Running all problems via central runner"
+		REPO_ROOT=$(realpath ../..) LC_STRESS_ITERS=$(ITERS) "$(CENTRAL_BIN)"
 
 .DEFAULT_GOAL := run
 
@@ -48,16 +48,16 @@ run:
 	fi; \
 	$(MAKE) build-all; \
 	CATEGORIES="two_pointer sliding_window hash list misc tree"; \
-	if [ "$$ARG" = "all" ]; then \
-		echo "==> Running all problems via central runner"; \
-		"$(CENTRAL_BIN)"; \
-	elif echo "$$CATEGORIES" | grep -wq "$$ARG"; then \
-		echo "==> Running category $$ARG via central runner"; \
-		LC_CATEGORY=$$ARG "$(CENTRAL_BIN)"; \
-	else \
-		echo "==> Running problem $$ARG via central runner"; \
-		LC_PROB_NUM=$$ARG "$(CENTRAL_BIN)"; \
-	fi
+	   if [ "$$ARG" = "all" ]; then \
+		   echo "==> Running all problems via central runner"; \
+		   REPO_ROOT=$(realpath ../..) "$(CENTRAL_BIN)"; \
+	   elif echo "$$CATEGORIES" | grep -wq "$$ARG"; then \
+		   echo "==> Running category $$ARG via central runner"; \
+		   REPO_ROOT=$(realpath ../..) LC_CATEGORY=$$ARG "$(CENTRAL_BIN)"; \
+	   else \
+		   echo "==> Running problem $$ARG via central runner"; \
+		   REPO_ROOT=$(realpath ../..) LC_PROB_NUM=$$ARG "$(CENTRAL_BIN)"; \
+	   fi
 
 .SECONDARY:
 

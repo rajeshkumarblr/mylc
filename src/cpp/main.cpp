@@ -4,19 +4,9 @@ using json = nlohmann::json;
 using namespace std;
 
 static optional<json> load_testcases() {
-    const char* paths[] = {
-        "/home/rajesh/lc/testcases.json",
-        "../../testcases.json"
-        "../testcases.json", // REPO_ROOT from src/cpp
-        "testcases.json",    // REPO_ROOT if run from root
-        "src/testcases.json",
-        "src/cpp/testcases.json",
-        "src/go/testcases.json"
-    };
-    for (auto p : paths) {
-        ifstream in(p);
-        if (in.good()) { json j; in >> j; return j; }
-    }
+    string path = get_testcases_json_path();
+    ifstream in(path);
+    if (in.good()) { json j; in >> j; return j; }
     return nullopt;
 }
 
@@ -55,20 +45,45 @@ int main(int, char**) {
     };
 
     if (prob == "all") {
+        struct SummaryRow {
+            string num, desc, category, result;
+            vector<int> cases;
+        };
+        vector<SummaryRow> summary;
         int failures = 0;
         for (int prob_num : solved) {
             string key = to_string(prob_num);
             if (!tests.contains(key)) {
-                cout << "No testcases for problem " << key << ".\n";
+                summary.push_back({key, "", "", "NoTest", {}});
                 failures++;
                 continue;
             }
-            string desc = tests.at(key).contains("description") ? tests.at(key).at("description").get<string>() : "";
-            cout << "=== LC " << key << ": " << desc << " ===\n";
-            bool ok = handlers[prob_num](tests.at(key));
-            cout << (ok ? "Result: PASS\n" : "Result: FAIL\n");
+            const auto& test = tests.at(key);
+            string desc = test.contains("description") ? test.at("description").get<string>() : "";
+            string category = test.contains("category") ? test.at("category").get<string>() : "";
+            vector<int> case_indices;
+            if (test.contains("cases")) {
+                int idx = 1;
+                for (size_t i = 0; i < test.at("cases").size(); ++i) case_indices.push_back(idx++);
+            }
+            bool ok = handlers[prob_num](test);
+            summary.push_back({key, desc, category, ok ? "Pass" : "Fail", case_indices});
             if (!ok) failures++;
         }
+        cout << left << setw(5) << "No" << setw(28) << "Description" << setw(16) << "Category" << setw(7) << "Result" << "Cases" << endl;
+        for (const auto& row : summary) {
+            cout << left << setw(5) << row.num
+                 << setw(28) << row.desc.substr(0,27)
+                 << setw(16) << row.category
+                 << setw(7) << row.result
+                 << "[";
+            for (size_t i = 0; i < row.cases.size(); ++i) {
+                if (i) cout << " ";
+                cout << row.cases[i];
+            }
+            cout << "]\n";
+        }
+        cout << "Final Result: " << (failures == 0 ? "PASS yes" : "FAIL") << endl;
         return failures == 0 ? 0 : 1;
     }
 

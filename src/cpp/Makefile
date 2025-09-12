@@ -34,7 +34,7 @@ $(BIN_DIR):
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(CENTRAL): $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
+$(CENTRAL): $(BIN_DIR)/main.o $(PROBLEM_OBJS) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 ID := $(word 2,$(MAKECMDGOALS))
@@ -42,7 +42,7 @@ ID := $(word 2,$(MAKECMDGOALS))
 run:
 ifeq ($(ID),all)
 	$(MAKE) $(CENTRAL)
-	NUM=all $(CENTRAL)
+	REPO_ROOT=$(ROOT) NUM=all $(CENTRAL)
 else ifneq ($(ID),)
 	src=""; obj=""; \
 	for f in $(PROBLEM_SRCS); do \
@@ -52,10 +52,14 @@ else ifneq ($(ID),)
 	if [ -z "$$obj" ]; then echo "No source for problem $(ID) in $(SRC_DIR)"; exit 3; fi; \
 	$(MAKE) $(BIN_DIR)/main.o $(PROBLEM_OBJS); \
 	$(CXX) $(CXXFLAGS) -o $(CENTRAL) $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(LDFLAGS); \
-	NUM=$(ID) $(CENTRAL)
+	REPO_ROOT=$(ROOT) NUM=$(ID) $(CENTRAL)
 else
 	@echo "Usage: make run <id|all>"; exit 1
 endif
+
+run-all:
+	$(MAKE) $(CENTRAL)
+	REPO_ROOT=$(ROOT) NUM=all $(CENTRAL)
 
 build-all: $(CENTRAL)
 	@echo "Built $(CENTRAL)"
