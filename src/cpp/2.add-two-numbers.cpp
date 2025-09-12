@@ -1,47 +1,31 @@
+
 /*
- * @lc app=leetcode id=21 lang=cpp
+ * @lc app=leetcode id=2 lang=cpp
  *
- * [21] Merge Two Sorted Lists
+ * [2] Add Two Numbers
  */
-#include "lc_test_utils.h"
+#include "lc_types.h"
 
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* a, ListNode* b) {
-        ListNode dummy;
-        ListNode* tail = &dummy;
-
-        while (a && b) {
-            if (a->val < b->val) { tail->next = a; a = a->next; }
-            else                  { tail->next = b; b = b->next; }
-            tail = tail->next;
-        }
-        tail->next = a ? a : b;       // append remaining nodes
-        return dummy.next;
+#endif
+ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    ListNode dummy;
+    ListNode* tail = &dummy;
+    int carry = 0;
+    while (l1 || l2 || carry) {
+        int sum = carry;
+        if (l1) { sum += l1->val; l1 = l1->next; }
+        if (l2) { sum += l2->val; l2 = l2->next; }
+        tail->next = new ListNode(sum % 10);
+        tail = tail->next;
+        carry = sum / 10;
     }
-};
-// @lc code=end
-
-#include <vector>
-using namespace std;
-
-int main() {
-    Solution sol;
-    using In  = pair<vector<int>, vector<int>>;
-    using Out = vector<int>;
-
-    vector<pair<In, Out>> tests = {
-        { {{1,2,4}, {}},            {1,2,4} },
-        { {{}, {1,3,4}},            {1,3,4} },
-        { {{1,2,4}, {1,3,4}},       {1,1,2,3,4,4} },
-        { {{}, {}},                 {} },
-        { {{2}, {1}},               {1,2} },
-        { {{1,3,5}, {2,4,6}},       {1,2,3,4,5,6} }
-    };
-
-    auto fn = [&](auto* l1, auto* l2) { return sol.mergeTwoLists(l1, l2); };
-
-    // This solution reuses input nodes → free ONLY the merged result.
-    return run_ll_cases<ListNode>(tests, fn, /* reuse_inputs = */ true) ? 0 : 1;
+    return dummy.next;
 }
+#ifndef LC_LOCAL_TEST
+};
+#endif
+// @lc code=end

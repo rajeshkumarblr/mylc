@@ -1,1 +1,0 @@
-/home/rajesh/lc/build/cpp/lc1

@@ -14,10 +14,14 @@
 #include "lc_test_utils.h"
 using namespace std;
 
+int characterReplacement_vector(string s, int k);
+
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution
 {
 public:
+#endif
     int characterReplacement(string s, int k)
     {
         return characterReplacement_vector(s,k);
@@ -68,28 +72,9 @@ public:
         }
         return best;
     }
+#ifndef LC_LOCAL_TEST
 };
+#endif
 // @lc code=end
 
-int main() {
-    Solution sol;
-    vector<pair<pair<string, int>, int>> tests = {
-        {{"ABAB", 2}, 4},    // Example 1
-        {{"AABABBA", 1}, 4}, // Example 2
-        {{"AAAA", 2}, 4},    // All same
-        {{"ABCDE", 1}, 2},   // Only one change allowed
-        {{"A", 0}, 1}        // Single char
-    };
-    bool all_passed = true;
-    for (const auto& [input, expected] : tests) {
-        const string& s = input.first;
-        int k = input.second;
-        int result = sol.characterReplacement(s, k);
-        // Compose input string for print_test_result
-        std::ostringstream oss;
-        oss << "(\"" << s << "\", k=" << k << ")";
-        all_passed &= print_test_result(oss.str(), result, expected);
-    }
-    cout << "\nFinal Result: " << (all_passed ? "PASS" :  "FAIL") << endl;
-    return all_passed ? 0 : 1;
-}
+

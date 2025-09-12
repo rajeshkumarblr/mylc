@@ -13,10 +13,15 @@
 
 using namespace std;
 
+int trap_minmax(std::vector<int>& height);
+int trap_twopointer(std::vector<int>& height);
 
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution {
 public:
+#endif
+
     int trap(vector<int>& height) {
         return trap_twopointer(height);
         //return trap_minmax(height);
@@ -84,28 +89,9 @@ public:
         }
         return res;
     }
+
+#ifndef LC_LOCAL_TEST
 };
+#endif
 // @lc code=end
-
-#include <vector>
-#include "lc_test_utils.h"
-using namespace std;
-
-int main() {
-    Solution sol;
-    vector<pair<vector<int>, int>> tests = {
-        {{0,1,0,2,1,0,1,3,2,1,2,1}, 6},
-        {{4,2,0,3,2,5}, 9},
-        {{1,2,3,4,5}, 0},
-        {{5,4,1,2}, 1},
-        {{2,0,2}, 2},
-        {{}, 0}
-    };
-
-    auto fn = [&](vector<int>& v) { return sol.trap(v); };
-    const int iters = lc_env_iters(); // default 1; override with LC_STRESS_ITERS
-    const bool ok = run_vec_cases<vector<int>, int>(tests, fn, iters);
-    std::cout << "\nFinal Result: " << (ok ? "PASS" : "FAIL") << std::endl;
-    return ok ? 0 : 1;
-}
 

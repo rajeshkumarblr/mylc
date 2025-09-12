@@ -15,8 +15,10 @@
 using namespace std;
 
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution {
 public:
+#endif
         vector<int> findAnagrams(string s, string p) {
             vector<int> result = {};
             if (s.size() < p.size()) return result;
@@ -51,24 +53,9 @@ public:
             }
             return result;
         }
+
+#ifndef LC_LOCAL_TEST
 };
+#endif
 // @lc code=end
 
-
-int main() {
-    Solution sol;
-    vector<tuple<string, string, vector<int>>> tests = {
-        {"cbaebabacd", "abc", {0,6}},    // Example 1
-        {"abab", "ab", {0,1,2}},         // Example 2
-        {"a", "a", {0}},                 // Edge case
-        {"a", "b", {}},                  // Edge case
-        {"baa", "aa", {1}},              // Custom
-        {"abc", "abcd", {}}              // Custom: p longer than s
-    };
-    bool all_passed = true;
-    for (const auto& [s, p, expected] : tests) {
-        auto result = sol.findAnagrams(s, p);
-        all_passed &= print_test_result(s + ", " + p, result, expected);
-    }
-    return all_passed ? 0 : 1;
-}

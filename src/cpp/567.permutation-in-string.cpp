@@ -10,9 +10,13 @@
 #include "lc_test_utils.h"
 using namespace std;
 
+bool checkInclusion_vector(string s1, string s2);
+
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution {
 public:
+#endif
     bool checkInclusion(string s1, string s2) {
         return checkInclusion_vector(s1,s2);
         //return checkInclusion_map(s1,s2);
@@ -63,23 +67,9 @@ public:
         }
         return (s1Map == s2Map);
     }
+
+#ifndef LC_LOCAL_TEST
 };
+#endif
 // @lc code=end
 
-int main() {
-    Solution sol;
-    vector<tuple<string, string, bool>> tests = {
-        {"ab", "eidbaooo", true},    // Example 1
-        {"ab", "eidboaoo", false},   // Example 2
-        {"adc", "dcda", true},       // Custom
-        {"a", "a", true},            // Edge case
-        {"a", "b", false},           // Edge case
-        {"abc", "ccccbbbbaaaa", false} // Custom
-    };
-    bool all_passed = true;
-    for (const auto& [s1, s2, expected] : tests) {
-        bool result = sol.checkInclusion(s1, s2);
-        all_passed &= print_test_result(s1 + ", " + s2, result, expected);
-    }
-    return all_passed ? 0 : 1;
-}

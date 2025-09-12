@@ -1,218 +1,84 @@
-# === lc/src/cpp/Makefile =====================================================
-# Flat naming: <id>.<desc>.cpp  (e.g., 104.maximum-depth-of-binary-tree.cpp)
-
+%:
+	@:
+run.%:
+	@$(MAKE) run $(subst run.,,$@)
 SHELL := /bin/bash
-.ONESHELL:
-.SHELLFLAGS := -eu -o pipefail -c
-
-ROOT          := $(abspath $(CURDIR)/../..)
-SRC_DIR       := $(CURDIR)
-BUILD_DIR     := $(ROOT)/build/cpp
-SOLUTION_LINK := $(ROOT)/solution
-LAST_PROF_ID  := $(BUILD_DIR)/.last_prof_id
-
-PY ?= python3
-BEAT := $(ROOT)/src/mk/leetcode_beat.py
 
 CXX ?= g++
-STD := -std=gnu++17
-WARN := -Wall -Wextra -Wpedantic
-INCLUDES := -I$(SRC_DIR) -I$(ROOT)
+CXXFLAGS ?= -std=gnu++20 -O2 -pipe -Wall -Wextra -Wno-unused-parameter -I. -DLC_LOCAL_TEST
+LDFLAGS ?=
 
-CXXFLAGS_DBG  := $(STD) $(WARN) -g -O0 $(INCLUDES)
-CXXFLAGS_PROF := $(STD) $(WARN) -pg -O2 $(INCLUDES)
-LDFLAGS :=
-LDLIBS  :=
 
-# Optional: override if you use another submit tool.
-SUBMIT_CMD ?= leetcode submit
+SHELL := /bin/bash
+CXX ?= g++
+CXXFLAGS ?= -std=gnu++20 -O2 -pipe -Wall -Wextra -Wno-unused-parameter -I. -DLC_LOCAL_TEST
+LDFLAGS ?=
 
-# --- Discover problems -------------------------------------------------------
-PROBLEM_IDS := $(shell ls -1 $(SRC_DIR)/*.cpp 2>/dev/null | sed -E 's#.*/([0-9]+)\..*#\1#' | sort -n | uniq)
-DEBUG_BINS  := $(addprefix $(BUILD_DIR)/lc,$(addsuffix .dbg,$(PROBLEM_IDS)))
+ROOT := $(abspath $(CURDIR)/../..)
+SRC_DIR := $(CURDIR)
+BIN_DIR := $(ROOT)/build/cpp
+CENTRAL := $(BIN_DIR)/lc_all
 
-# Resolve the source path for an ID (glob, not regex)
-define SRC_FOR
-$(firstword $(wildcard $(SRC_DIR)/$(1).*cpp))
-endef
+PROBLEM_SRCS := $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp))
+PROBLEM_OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(PROBLEM_SRCS))
 
-# Parse CLI numbers (ignore meta targets)
-ARGS_NUM := $(filter-out all dbg prof run submit show clean clobber,$(MAKECMDGOALS))
-RUN_ALL  := $(filter all,$(MAKECMDGOALS))
+.PHONY: all run build-all clean submit help
+.NOTPARALLEL:
 
-.DEFAULT_GOAL := all
-.PHONY: all run dbg prof submit show clean clobber prof-show
+all: run
 
-# === Build all ===============================================================
-all: $(DEBUG_BINS)
-	@echo "✔ Built $(words $(DEBUG_BINS)) debug binaries."
+$(BIN_DIR):
+	mkdir -p $(BIN_DIR)
 
-# Build a debug bin given an ID: lc<ID>.dbg
-$(BUILD_DIR)/lc%.dbg:
-	@ID="$*"; SRC="$(call SRC_FOR,$*)"; \
-	if [[ -z "$$SRC" ]]; then echo "✗ Source for $$ID not found under $(SRC_DIR)"; exit 2; fi; \
-	mkdir -p "$(BUILD_DIR)"; \
-	echo "→ Compiling $$SRC → $(BUILD_DIR)/lc$${ID}.dbg"; \
-	$(CXX) $(CXXFLAGS_DBG) "$$SRC" -o "$(BUILD_DIR)/lc$${ID}.dbg" $(LDFLAGS) $(LDLIBS)
 
-# === Debug one & link solution ==============================================
-dbg: $(addprefix dbg-,$(ARGS_NUM))
-	@[[ -n "$(ARGS_NUM)" ]] || echo "Usage: make dbg <id>"
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-dbg-%:
-	@ID="$*"; SRC="$(call SRC_FOR,$*)"; \
-	if [[ -z "$$SRC" ]]; then echo "✗ Source for $$ID not found"; exit 2; fi; \
-	mkdir -p "$(BUILD_DIR)"; \
-	echo "→ Compiling $$SRC → $(BUILD_DIR)/lc$${ID}.dbg"; \
-	$(CXX) $(CXXFLAGS_DBG) "$$SRC" -o "$(BUILD_DIR)/lc$${ID}.dbg" $(LDFLAGS) $(LDLIBS); \
-	ln -snf "$(BUILD_DIR)/lc$${ID}.dbg" "$(SOLUTION_LINK)"; \
-	echo "→ Linked $(SOLUTION_LINK) -> $(BUILD_DIR)/lc$${ID}.dbg"
+$(CENTRAL): $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
-# === Run =====================================================================
-# make run all  -> build (if needed) and run all debug bins in numeric order
-# make run <id> -> build debug & run that one
-# make run      -> run current solution symlink
+ID := $(word 2,$(MAKECMDGOALS))
+
 run:
-	@if [[ -n "$(RUN_ALL)" ]]; then \
-	  $(MAKE) --no-print-directory all; \
-	  echo "→ Running all debug binaries:"; \
-	  set -e; for id in $(PROBLEM_IDS); do \
-	    bin="$(BUILD_DIR)/lc$${id}.dbg"; \
-	    echo "===== RUN $$bin ====="; "$$bin"; \
-	  done; \
-	elif [[ -n "$(ARGS_NUM)" ]]; then \
-	  id="$(firstword $(ARGS_NUM))"; \
-	  $(MAKE) --no-print-directory dbg-$$id; \
-	  bin="$(BUILD_DIR)/lc$${id}.dbg"; \
-	  echo "→ Running $$bin"; exec "$$bin"; \
-	else \
-	  if [[ ! -e "$(SOLUTION_LINK)" ]]; then \
-	    echo "✗ No solution binary. Use 'make dbg <id>' first."; exit 2; \
-	  fi; \
-	  if [[ -L "$(SOLUTION_LINK)" && ! -e "$$(readlink $(SOLUTION_LINK))" ]]; then \
-	    echo "✗ $(SOLUTION_LINK) is a broken symlink."; exit 2; \
-	  fi; \
-	  echo "→ Running $(SOLUTION_LINK)"; exec "$(SOLUTION_LINK)"; \
-	fi
+ifeq ($(ID),all)
+	$(MAKE) $(CENTRAL)
+	NUM=all $(CENTRAL)
+else ifneq ($(ID),)
+	src=""; obj=""; \
+	for f in $(PROBLEM_SRCS); do \
+	  base=$$(basename $$f); id=$${base%%.*}; \
+	  if [ "$$id" = "$(ID)" ]; then src="$$f"; obj="$(BIN_DIR)/$${base%.cpp}.o"; fi; \
+	done; \
+	if [ -z "$$obj" ]; then echo "No source for problem $(ID) in $(SRC_DIR)"; exit 3; fi; \
+	$(MAKE) $(BIN_DIR)/main.o $(PROBLEM_OBJS); \
+	$(CXX) $(CXXFLAGS) -o $(CENTRAL) $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(LDFLAGS); \
+	NUM=$(ID) $(CENTRAL)
+else
+	@echo "Usage: make run <id|all>"; exit 1
+endif
 
-# Handy: make run-104
-run-%:
-	@$(MAKE) --no-print-directory dbg-$*; \
-	BIN="$(BUILD_DIR)/lc$*.dbg"; \
-	echo "→ Running $$BIN"; exec "$$BIN"
+build-all: $(CENTRAL)
+	@echo "Built $(CENTRAL)"
 
-# === Profiling (gprof) =======================================================
-# make prof <id> [...]  -> build with -pg, run, write lc<ID>.prof.txt
-# make prof show        -> show last profiling report
-prof:
-	@if [[ -n "$(ARGS_NUM)" && "$(firstword $(ARGS_NUM))" != "show" ]]; then \
-	  for id in $(ARGS_NUM); do $(MAKE) --no-print-directory prof-$$id; done; \
-	fi
+submit:
+	@if [ -z "$(NUM)" ]; then echo "Usage: make submit NUM=<id>"; exit 2; fi; \
+	src=""; \
+	for f in $(PROBLEM_SRCS); do \
+	  base=$$(basename $$f); id=$${base%%.*}; \
+	  if [ "$$id" = "$(NUM)" ]; then src="$$f"; fi; \
+	done; \
+	if [ -z "$$src" ]; then echo "No source for problem $(NUM)"; exit 3; fi; \
+	out="$(BIN_DIR)/submit.$(NUM).cpp"; \
+	mkdir -p "$(BIN_DIR)"; \
+	awk '/@lc code=start/{flag=1; print; next} /@lc code=end/{print; flag=0} flag' "$$src" > "$$out"; \
+	echo "Wrote $$out (exact @lc code block)."
 
-prof-%:
-	@ID="$*"; SRC="$(call SRC_FOR,$*)"; \
-	if [[ -z "$$SRC" ]]; then echo "✗ Source for $$ID not found"; exit 2; fi; \
-	mkdir -p "$(BUILD_DIR)"; \
-	echo "→ Compiling (profile) $$SRC → $(BUILD_DIR)/lc$${ID}.prof"; \
-	$(CXX) $(CXXFLAGS_PROF) "$$SRC" -o "$(BUILD_DIR)/lc$${ID}.prof" $(LDFLAGS) $(LDLIBS); \
-	echo "→ Running profiled binary to record gmon.out"; \
-	( cd "$(BUILD_DIR)" && "./lc$${ID}.prof" >/dev/null 2>&1 || true ); \
-	if [[ -f "$(BUILD_DIR)/gmon.out" ]]; then \
-	  mv -f "$(BUILD_DIR)/gmon.out" "$(BUILD_DIR)/lc$${ID}.gmon.out"; \
-	  echo "→ Generating gprof report: $(BUILD_DIR)/lc$${ID}.prof.txt"; \
-	  gprof "$(BUILD_DIR)/lc$${ID}.prof" "$(BUILD_DIR)/lc$${ID}.gmon.out" > "$(BUILD_DIR)/lc$${ID}.prof.txt"; \
-	  echo "$$ID" > "$(LAST_PROF_ID)"; \
-	  echo "✔ Profile written to $(BUILD_DIR)/lc$${ID}.prof.txt"; \
-	else \
-	  echo "⚠ No gmon.out produced (program may have exited too early)."; \
-	fi
-
-# Show last profile report
-show prof-show:
-	@if [[ -f "$(LAST_PROF_ID)" ]]; then \
-	  id="$$(cat "$(LAST_PROF_ID)")"; rpt="$(BUILD_DIR)/lc$${id}.prof.txt"; \
-	  if [[ -f "$$rpt" ]]; then echo "===== $$rpt ====="; cat "$$rpt"; exit 0; fi; \
-	fi; \
-	last="$$(ls -1t $(BUILD_DIR)/lc*.prof.txt 2>/dev/null | head -n1)"; \
-	if [[ -n "$$last" ]]; then echo "===== $$last ====="; cat "$$last"; \
-	else echo "✗ No profile report found. Run 'make prof <id>' first."; exit 2; fi
-
-# === Submit (build a clean file with header + code block only) ==============
-submit: $(addprefix submit-,$(ARGS_NUM))
-	@if [[ -z "$(ARGS_NUM)" ]]; then echo "Usage: make submit <id>"; exit 2; fi
-
-submit-%:
-	@ID="$*"
-	SRC="$(call SRC_FOR,$*)"
-	if [[ -z "$$SRC" ]]; then
-	  echo "✗ Source for $$ID not found"; exit 2
-	fi
-
-	mkdir -p "$(BUILD_DIR)"
-	SNIP="$(BUILD_DIR)/lc$${ID}.submit.cpp"
-	FULL="$(BUILD_DIR)/lc$${ID}.submit.full.cpp"
-
-	# 1) Extract only the code between markers (for your records)
-	if ! awk '/@lc code=start/{flag=1;next} /@lc code=end/{flag=0} flag' "$$SRC" > "$$SNIP"; then
-	  echo "✗ Failed to extract code block for $$ID"; exit 2
-	fi
-	if [[ ! -s "$$SNIP" ]]; then
-	  echo "✗ No code between @lc code markers in $$SRC"; exit 2
-	fi
-	echo "→ Extracted solution to $$SNIP"
-
-	# 2) Build a CLEAN submit file with header + markers ONLY (no local includes)
-	HDR_LINE="$$(grep -m1 -E '^//[[:space:]]*@lc[[:space:]]+app=leetcode' "$$SRC" || true)"
-	if [[ -z "$$HDR_LINE" ]]; then
-	  HDR_LINE="// @lc app=leetcode id=$$ID lang=cpp"
-	fi
-
-	{
-	  echo "$$HDR_LINE"
-	  echo "// @lc code=start"
-	  cat "$$SNIP"
-	  echo "// @lc code=end"
-	} > "$$FULL"
-
-	echo "→ Prepared clean submit file: $$FULL"
-
-	# 3) Submit the CLEAN file
-	if ! command -v leetcode >/dev/null 2>&1; then
-	  echo "⚠ 'leetcode' CLI not found. To submit manually run:"
-	  echo "   leetcode submit \"$$FULL\""
-	  exit 0
-	fi
-	echo "→ Submitting with: leetcode submit $$FULL"
-	leetcode submit "$$FULL"
-	# Fetch beat ratio (GraphQL via stdlib Python; no extra deps)
-	if [ -x "$(BEAT)" ]; then
-	  $(PY) "$(BEAT)" --id "$$ID" --src-dir "$(SRC_DIR)" || true
-	else
-	  echo "ℹ To auto-fetch beat ratio, save the script at: $(BEAT)"
-	fi
-
-.PHONY: beat
-beat:
-	@if [ -z "$(ARGS_NUM)" ]; then echo "Usage: make beat <id>"; exit 2; fi
-	$(PY) "$(BEAT)" --id "$(firstword $(ARGS_NUM))" --src-dir "$(SRC_DIR)"	
-
-# === Convenience: numeric-only builds debug (e.g., `make 104`) ==============
-%:
-	@case "$@" in \
-	  (*[!0-9]* ) echo "Unknown target '$@'"; exit 2 ;; \
-	  (*) $(MAKE) --no-print-directory dbg-$@ ;; \
-	esac
-
-# === Cleanup =================================================================
 clean:
-	@mkdir -p "$(BUILD_DIR)"
-	@echo "Cleaning $(BUILD_DIR):"
-	@find "$(BUILD_DIR)" -maxdepth 1 -type f \
-	  \( -name 'lc*.dbg' -o -name 'lc*.prof' -o -name 'lc*.gmon.out' -o -name 'lc*.prof.txt' -o -name 'lc*.submit.cpp' \) \
-	  -print -delete 2>/dev/null || true
+	rm -rf $(BIN_DIR)
 
-clobber: clean
-	@rm -rf "$(BUILD_DIR)" 2>/dev/null || true
-	@rm -f "$(SOLUTION_LINK)" 2>/dev/null || true
-	@echo "✔ Cleaned."
-# ============================================================================
+help:
+	@echo "Usage:"
+	@echo "  make run 1      # build & run a single problem"
+	@echo "  make run all    # build & run all problems"
+	@echo "  make submit NUM=1   # extract @lc code block -> build/cpp/submit.1.cpp"
+	mkdir -p "$(BIN_DIR)"; \

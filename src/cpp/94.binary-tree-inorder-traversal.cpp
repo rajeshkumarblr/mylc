@@ -11,13 +11,18 @@
 
 #include <vector>
 #include <stack>
-#include "lc_test_utils.h"
+#include "lc_types.h"
 
 using namespace std;
+void inOrder_iterative(TreeNode* root, vector<int>& vec);
+void inOrder_recursive(TreeNode* root, vector<int>& vec);
 
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution {
 public:
+#endif
+
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> vec;
         inOrder_iterative(root, vec);
@@ -47,10 +52,14 @@ public:
             inOrder_recursive(root->right, vec);
         }
     }
+
+#ifndef LC_LOCAL_TEST
 };
+#endif
 // @lc code=end
 
 
+#ifdef LC_STANDALONE_MAIN
 int main() {
     using input_t = std::vector<std::optional<int>>;
     using output_t = std::vector<int>;
@@ -69,3 +78,5 @@ int main() {
     return run_tree_tests(test_cases, func) ? 0 : 1;
 }
 
+
+#endif // LC_STANDALONE_MAIN

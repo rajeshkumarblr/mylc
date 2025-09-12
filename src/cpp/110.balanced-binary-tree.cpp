@@ -6,9 +6,13 @@
 #include "lc_test_utils.h"
 using namespace std;
 
+int height(TreeNode* node);
+
 // @lc code=start
+#ifndef LC_LOCAL_TEST
 class Solution {
 public:
+#endif
     bool isBalanced(TreeNode* root) {
         return height(root) != -1;
     }
@@ -21,25 +25,9 @@ public:
         return 1 + max(L,R);
     }
 
+
+#ifndef LC_LOCAL_TEST
 };
+#endif
 // @lc code=end
 
-int main() {
-    Solution sol;
-    using In  = vector<optional<int>>;
-    using Out = bool;
-
-    vector<pair<In, Out>> tests = {
-        { {3,9,20,nullopt,nullopt,15,7},              true  },
-        { {},                                         true  },
-        { {1},                                        true  },
-        { {1,2},                                      true  },
-        { {1,2,2,3,3,nullopt,nullopt,4,4},            false }, // classic unbalanced
-        { {1,2,nullopt,3,nullopt,4,nullopt,5},        false }, // left chain
-        { {1,nullopt,2,nullopt,3,nullopt,4},          false }, // right chain
-        { {1,2,3,4,5,nullopt,7},                      true  }
-    };
-
-    auto fn = [&](TreeNode* root) { return sol.isBalanced(root); };
-    return run_tree_tests(tests, fn) ? 0 : 1;
-}
