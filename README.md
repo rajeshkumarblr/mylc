@@ -1,80 +1,93 @@
-# LeetCode Solutions
+# mylc — LeetCode practice (C++ & Go)
 
-This repository contains categorized solutions to LeetCode problems. Each problem is organized in its own directory under a category (such as `array`, `linked_list`, `sliding_window`, `two_pointers`, etc.).
+Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-## Repository Structure
+**Problems covered:** 13  
+**Languages:** C++, Go
 
+## Repository layout
 ```
-<category>/
-    lc<id>.cpp
-    lc<id2>.cpp
-    Makefile
-    ...
+./
+  env.sh           # sets paths and defaults (LC_LANG)
+  run              # thin wrapper to run a single problem (cpp/go)
+  testcases.json   # single source of truth for problems & cases
+  src/
+    cpp/           # C++ solutions + test harness
+    go/            # Go solutions + test harness
+    mk/            # helper scripts
+  build/           # build artifacts (created on demand)
 ```
-Each problem has a single C++ file (e.g., `lc3.cpp`) containing all solution variants for that problem.
+## Prerequisites
+- **Linux/WSL/macOS** with `make`.
+- **C++20** compiler (`g++` or `clang++`).
+- **nlohmann/json** single‑header library installed system‑wide (e.g., `sudo apt-get install nlohmann-json3-dev`).
+- **Go 1.21+** (module mode).
 
-## Problems
+## Quick start
+```bash
+# one-time
+source ./env.sh
 
-### array
+# C++: build & run all
+make -C src/cpp run-all
 
-- [1] [Two Sum](https://leetcode.com/problems/two-sum/) — *Easy* — tags: array, hash-table — file: `array/lc1.cpp`
-- [2] [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/) — *Medium* — tags: linked-list, math — file: `array/lc2.cpp`
-- [9] lc9.cpp — *Unknown* — file: `array/lc9.cpp`
+# Go: build & run all
+make -C src/go run-all
 
-### linked_list
+# Run a single problem via helper (defaults to LC_LANG=cpp)
+./run 94           # runs C++ lc94 by default
+./run 94 go        # runs Go version
+```
 
-- [21] [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/) — *Easy* — tags: linked-list, recursion — file: `linked_list/lc21.cpp`
+## How it works
+- `testcases.json` holds metadata for each problem:
+  - `category` — tag like `tree`, `sliding_window`.
+  - `description` — short human title.
+  - `cases` — array of inputs/expected values interpreted by the harness.
+- Language harnesses read `testcases.json` and dispatch to `lc_test_<id>(json)` functions that call your solution functions.
 
-### sliding_window
+## Problems & status
+| # | Problem | Category | Test cases | Languages |
+|---:|---|---|---:|---|
+| 1 | Two Sum | `hash` | 2 | C++, Go |
+| 2 | Add Two Numbers | `list` | 1 | C++, Go |
+| 3 | Longest Substring Without Repeating Characters | `sliding_window` | 2 | C++, Go |
+| 9 | Palindrome Number | `misc` | 5 | C++, Go |
+| 11 | Container With Most Water | `two_pointer` | 3 | C++, Go |
+| 21 | Merge Two Sorted Lists | `list` | 3 | C++, Go |
+| 42 | Trapping Rain Water | `two_pointer` | 4 | C++, Go |
+| 94 | Binary Tree Inorder Traversal | `tree` | 3 | C++, Go |
+| 104 | Maximum Depth of Binary Tree | `tree` | 4 | C++, Go |
+| 110 | Balanced Binary Tree | `tree` | 6 | C++, Go |
+| 424 | Longest Repeating Character Replacement | `sliding_window` | 5 | C++, Go |
+| 438 | Find All Anagrams in a String | `sliding_window` | 4 | C++, Go |
+| 567 | Permutation in String | `sliding_window` | 5 | C++, Go |
 
-- [3] [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) — *Medium* — tags: sliding-window, string, hash-table — file: `sliding_window/lc3.cpp`
-- [424] [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) — *Unknown* — file: `sliding_window/lc424.cpp`
-- [438] [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/) — *Medium* — tags: sliding-window, string, hash-table — file: `sliding_window/lc438.cpp`
-- [567] [Permutation in String](https://leetcode.com/problems/permutation-in-string/) — *Medium* — tags: sliding-window, string, hash-table — file: `sliding_window/lc567.cpp`
+## C++ workflow
+Key targets (see `src/cpp/Makefile`):
+```bash
+make -C src/cpp 94        # build & run problem 94
+make -C src/cpp run NUM=94 # same as above
+make -C src/cpp run-all    # run all problems & print summary
+make -C src/cpp submit NUM=94  # extract @lc code block to build/cpp/submit.94.cpp
+```
 
-### two_pointers
+## Go workflow
+Key targets (see `src/go/Makefile`):
+```bash
+make -C src/go 94          # build & run problem 94
+make -C src/go run NUM=94  # build & run
+make -C src/go run-all     # run all problems through central runner
+make -C src/go stress NUM=94 N=100000  # micro-stress a single problem
+```
 
-- [42] [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) — *Unknown* — file: `two_pointers/lc42.cpp`
+## Notes & tips
+- Set default language via `LC_LANG` in `env.sh`.
+- Binaries land in `build/cpp` and `build/go`; `env.sh` prepends them to `PATH` so `lc94` etc. are runnable directly.
+- The harness prints a compact PASS/FAIL summary per case and a final result line.
 
-
-## Features
-- **Multiple Approaches:** Each problem may have several solution variants, all in a single file (e.g., different methods in `lc3.cpp`).
-- **Category Organization:** Problems are grouped by topic for easy navigation.
-- **Makefile Automation:** Each category includes a Makefile for easy building and testing.
-- **Standardized Test Output:** All C++ solutions use a common test utility for readable, aligned output.
-
-## How to Use
-1. **Clone the repository:**
-    ```bash
-    git clone https://github.com/rajeshkumarblr/mylc.git
-    cd mylc
-    ```
-2. **Build and run a C++ solution:**
-    ```bash
-    cd array
-    make lc1
-    ./build/lc1
-    ```
-    Or for other problems:
-    ```bash
-    cd sliding_window
-    make lc3
-    ./build/lc3
-    ```
-3. **Add your own solutions:**
-    - Add a new file (e.g., `lc42.cpp`) in the appropriate category directory.
-    - Add your solution variants as methods in that file.
-    - Use the provided `lc_test_utils.h` for standardized test output.
-
-## Categories
-- `array/` — Array and math problems
-- `linked_list/` — Linked list problems
-- `sliding_window/` — Sliding window techniques
-- `two_pointers/` — Two pointers and related problems
-- *(Add more categories as needed)*
-
-## Contributing
-Pull requests are welcome! Please follow the directory and naming conventions, and use the test utilities for consistency.
-
-## License
-This project is licensed under the MIT License.
+## Adding a new problem
+1. Add an entry to `testcases.json` with `category`, `description`, and `cases`.
+2. Implement the solution file(s): `src/cpp/<id>.*.cpp` and/or `src/go/<id>.*.go`.
+3. Implement `lc_test_<id>()` in the harness for that language if needed.
+4. `make -C src/<lang> run NUM=<id>` or `./run <id> <lang>`.
