@@ -24,8 +24,9 @@ Options:
 
 Notes:
   • Runs prebuilt binaries: build/<lang>/runner
+  • If the runner is missing, this script auto-builds it via: make -C src/<lang> all
   • Exports LC_PROB_NUM / LC_CATEGORY for the runners
-  • Errors out if a single problem is requested but not implemented for the selected language
+  • Errors out if a single problem is requested but not implemented in the selected language
 
 Examples:
   ./run 94
@@ -52,9 +53,12 @@ runner_path() { echo "$ROOT/build/$1/runner"; }
 
 ensure_runner() {
   local lang="$1" bin; bin="$(runner_path "$lang")"
-  [[ -x "$bin" ]] || die "Missing runner: $bin
-Build it first, e.g.:
-  make -C src/$lang runner"
+  if [[ ! -x "$bin" ]]; then
+    echo "Runner missing: $bin"
+    echo "→ Building via: make -C src/$lang all"
+    make -C "$ROOT/src/$lang" all || die "Build failed for language '$lang'"
+    [[ -x "$bin" ]] || die "Build succeeded but runner still missing: $bin"
+  fi
 }
 
 list_from_testcases() {
@@ -167,12 +171,12 @@ if [[ -z "$PROB" && -z "$CATEGORY" && $RUN_ALL -eq 0 && $LIST_ONLY -eq 0 ]]; the
   usage; exit 0
 fi
 
-# Listing mode
+# Listing mode doesn't require building
 if [[ $LIST_ONLY -eq 1 ]]; then
   list_from_testcases; exit 0
 fi
 
-# Validate language and runner
+# Validate language and ensure runner (auto-build if missing)
 case "$LANG" in cpp|go) : ;; *) die "Unsupported language: $LANG (use cpp|go)";; esac
 print_lang "$LANG"
 ensure_runner "$LANG"
@@ -191,8 +195,7 @@ elif [[ $RUN_ALL -eq 1 ]]; then
   export LC_PROB_NUM="all"
   echo "Mode: run all (LC_PROB_NUM=$LC_PROB_NUM)"
   echo "→ $BIN"
-  echo LC_PROB_NUM="all" "$BIN"
-  LC_PROB_NUM="all" "$BIN"
+  exec "$BIN"
 elif [[ -n "$PROB" ]]; then
   problem_exists_in_tests "$PROB" || die "Problem $PROB not found in testcases.json"
   has_impl "$LANG" "$PROB" || die "Problem $PROB is not implemented for language '$LANG'"
