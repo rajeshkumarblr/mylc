@@ -3,8 +3,13 @@
 # Resolve repo root (bash)
 export REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-# Defaults
-export LC_LANG=cpp
+if [ -n "$1" ]; then
+  export LC_LANG="$1"
+elif [ -n "$LC_LANG" ]; then
+  export LC_LANG="$LC_LANG"
+else
+  export LC_LANG=cpp
+fi
 export BUILD_DIR="$REPO_ROOT/build"
 export CPP_BIN_DIR="$BUILD_DIR/cpp"
 export GO_BIN_DIR="$BUILD_DIR/go"

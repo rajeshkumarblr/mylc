@@ -257,7 +257,7 @@ func RunAllTests(funcRegistry map[string]interface{}) bool {
 	allOk := true
 
 	for probNum, probTest := range allTests {
-		if probNumFilter != "" && probNum != probNumFilter {
+		if probNumFilter != "" && probNumFilter != "all" && probNum != probNumFilter {
 			continue
 		}
 		fn, found := funcRegistry[probNum]

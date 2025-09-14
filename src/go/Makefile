@@ -18,11 +18,11 @@ BIN_DIR := ../../build/go
 GO_SRCS := $(sort $(wildcard *.go))
 CENTRAL_MAIN := main.go
 UTILS := lc_test_utils.go
-CENTRAL_BIN := $(BIN_DIR)/runall
+CENTRAL_BIN := $(BIN_DIR)/runner
 
 # Build the central runner with all solution files + utils
-.PHONY: build-all
-build-all: $(BIN_DIR)
+.PHONY: all
+all: $(BIN_DIR)
 	@set -euo pipefail; \
 	if [ ! -f "$(CENTRAL_MAIN)" ]; then echo "main.go not found"; exit 1; fi; \
 	if [ ! -f "$(UTILS)" ]; then echo "lc_test_utils.go not found"; exit 1; fi; \
@@ -34,11 +34,11 @@ build-all: $(BIN_DIR)
 # Run all problems using the central runner
 ITERS ?= 1
 .PHONY: run-all
-run-all: build-all
-		@echo "==> Running all problems via central runner"
-		REPO_ROOT=$(realpath ../..) LC_STRESS_ITERS=$(ITERS) "$(CENTRAL_BIN)"
+run-all: all
+	@echo "==> Running all problems via central runner"
+	REPO_ROOT=$(realpath ../..) LC_STRESS_ITERS=$(ITERS) "$(CENTRAL_BIN)"
 
-.DEFAULT_GOAL := run
+DEFAULT_GOAL := help
 
 .PHONY: run
 run:
@@ -89,13 +89,31 @@ vet:
 
 clean:
 ifneq ($(wildcard $(BIN_DIR)),)
-	rm -f $(BIN_DIR)/*
+	# Remove all contents (files or directories) inside BIN_DIR safely
+	find $(BIN_DIR) -mindepth 1 -maxdepth 1 -exec rm -rf {} +
 endif
 
+.PHONY: distclean
+distclean: clean
+	# Optionally remove the bin directory itself if desired
+	rmdir $(BIN_DIR) 2>/dev/null || true
+
 help:
-	@echo "Usage:"
-	@echo "  make run-all ITERS=1       # run all problems (summary, via central runner)"
-	@echo "  make build-all             # build central runner"
-	@echo "  make <num>                 # build & run e.g., 42"
-	@echo "  make run NUM=42            # build & run"
-	@echo "  make fmt | vet | clean"
+	@echo "LeetCode Go Harness"
+	@echo
+	@echo "Central runner targets:" 
+	@echo "  make run <n|all|category>    # run a problem, all, or category" 
+	@echo "  make all                     # alias for run-all" 
+	@echo "  make run-all [ITERS=1]       # run all problems" 
+	@echo
+	@echo "Single problem build modes:" 
+	@echo "  make NUM=42 build            # build only central + problem 42" 
+	@echo
+	@echo "Maintenance:" 
+	@echo "  make fmt | vet | clean | distclean" 
+	@echo
+	@echo "Examples:" 
+	@echo "  make run 42" 
+	@echo "  make run all" 
+	@echo "  make run sliding_window" 
+	@echo "  make run two_pointer" 

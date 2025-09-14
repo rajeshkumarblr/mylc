@@ -37,7 +37,16 @@ func main() {
 	}
 
 	probNum := os.Getenv("LC_PROB_NUM")
-	if probNum != "" {
+	if probNum == "all" { // explicit all
+		ok := RunAllTests(funcRegistry)
+		if ok {
+			fmt.Println("Final Result: PASS yes")
+			os.Exit(0)
+		} else {
+			fmt.Println("Final Result: FAIL")
+			os.Exit(1)
+		}
+	} else if probNum != "" { // single problem
 		ok := RunAllTestsFiltered(funcRegistry, probNum)
 		if ok {
 			fmt.Println("Final Result: PASS yes")
@@ -46,7 +55,7 @@ func main() {
 			fmt.Println("Final Result: FAIL")
 			os.Exit(1)
 		}
-	} else {
+	} else { // default run all
 		ok := RunAllTests(funcRegistry)
 		if ok {
 			fmt.Println("Final Result: PASS yes")

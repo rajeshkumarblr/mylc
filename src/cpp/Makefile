@@ -17,7 +17,7 @@ LDFLAGS ?=
 ROOT := $(abspath $(CURDIR)/../..)
 SRC_DIR := $(CURDIR)
 BIN_DIR := $(ROOT)/build/cpp
-CENTRAL := $(BIN_DIR)/lc_all
+CENTRAL := $(BIN_DIR)/runner
 
 PROBLEM_SRCS := $(filter-out $(SRC_DIR)/main.cpp, $(wildcard $(SRC_DIR)/*.cpp))
 PROBLEM_OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(PROBLEM_SRCS))
@@ -26,6 +26,7 @@ PROBLEM_OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(PROBLEM_SRCS))
 .PHONY: all build run build-all clean submit help
 .NOTPARALLEL:
 
+build: $(CENTRAL)
 all: build
 
 build: $(CENTRAL)

@@ -1,61 +1,203 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Simple runner for build/<lang>/runner
+# Language comes from LC_LANGUAGE (env). Override with -l/--lang.
+# -c/--category <cat>   Run a category
+# -a/--all              Run all (LC_PROB_NUM=all)
+# -l (no arg) or -L     List categories & problems
+# -h/--help or no args  Usage
+set -Eeuo pipefail
 
-# Source environment
-source "$(dirname "$0")/env.sh"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-if [ $# -lt 1 ]; then
-    echo "Usage: $0 <problem_number> [lang]"
-    exit 1
+usage() {
+  cat <<'EOF'
+Usage:
+  ./run [options] [problem-id]
+
+Options:
+  -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANGUAGE, else env.sh, else cpp)
+                       Without an argument: list categories & problems
+  -c, --category <cat> Run the given category
+  -a, --all            Run all problems (sets LC_PROB_NUM=all)
+  -L                   List categories & problems (same as bare -l)
+  -h, --help           Show this help
+
+Notes:
+  • Runs prebuilt binaries: build/<lang>/runner
+  • Exports LC_PROB_NUM / LC_CATEGORY for the runners
+  • Errors out if a single problem is requested but not implemented for the selected language
+
+Examples:
+  ./run 94
+  ./run -l go 94
+  ./run -c sliding_window
+  ./run -a
+  ./run -l        # list
+  ./run -L        # list
+EOF
+}
+
+die() { echo "ERROR: $*" >&2; exit 2; }
+
+# --- Discover default language safely ---
+DEFAULT_LANG="${LC_LANG:-}"
+if [[ -z "${DEFAULT_LANG}" && -f "$ROOT/env.sh" ]]; then
+  # Read LC_LANGUAGE from env.sh without sourcing it in the current shell.
+  DEFAULT_LANG="$(bash -c 'set +u; source "$1" dummy >/dev/null 2>&1; printf "%s" "${LC_LANGUAGE:-}"' bash "$ROOT/env.sh" || true)"
+fi
+DEFAULT_LANG="${DEFAULT_LANG:-cpp}"
+
+# --- Helpers ---
+runner_path() { echo "$ROOT/build/$1/runner"; }
+
+ensure_runner() {
+  local lang="$1" bin; bin="$(runner_path "$lang")"
+  [[ -x "$bin" ]] || die "Missing runner: $bin
+Build it first, e.g.:
+  make -C src/$lang runner"
+}
+
+list_from_testcases() {
+  python3 - <<'PY'
+import json, sys
+from pathlib import Path
+
+p = Path("testcases.json")
+if not p.exists():
+    print("ERROR: testcases.json not found", file=sys.stderr); sys.exit(2)
+
+data = json.loads(p.read_text(encoding="utf-8"))
+probs = data.get("problems", data)
+
+def it():
+    if isinstance(probs, dict):
+        for k, v in probs.items(): yield str(k), v
+    else:
+        for v in probs: yield str(v.get("id","")), v
+
+rows, cats = [], set()
+for k, v in it():
+    desc = (v.get("description") or "").strip()
+    cat  = (v.get("category") or "misc").strip()
+    cats.add(cat)
+    try: key = int(k)
+    except: key = 10**9
+    rows.append((key, k, cat, desc))
+
+rows.sort()
+print("Categories:")
+for c in sorted(cats):
+    print("  -", c)
+print("\nProblems:")
+print("  ID   Category             Title")
+for _, k, c, d in rows:
+    print(f"  {k:<4} {c:<20} {d}")
+PY
+}
+
+problem_exists_in_tests() {
+  local id="$1"
+  python3 - "$id" <<'PY'
+import json, sys
+from pathlib import Path
+pid = sys.argv[1]
+d = json.loads(Path("testcases.json").read_text(encoding="utf-8"))
+p = d.get("problems", d)
+ok = (pid in p) if isinstance(p, dict) else any(str(x.get("id"))==pid for x in p)
+sys.exit(0 if ok else 1)
+PY
+}
+
+has_impl() {
+  local lang="$1" id="$2"
+  shopt -s nullglob
+  local m=()
+  case "$lang" in
+    cpp) m=( "$ROOT/src/cpp/${id}."*".cpp" "$ROOT/src/cpp/${id}.cpp" );;
+    go)  m=( "$ROOT/src/go/${id}."*".go"  "$ROOT/src/go/${id}.go"  );;
+    *)   return 1;;
+  esac
+  shopt -u nullglob
+  [[ ${#m[@]} -gt 0 ]]
+}
+
+print_lang() {
+  case "$1" in
+    cpp) echo "Language set to: C++" ;;
+    go)  echo "Language set to: Go"  ;;
+    *)   echo "Language set to: $1"  ;;
+  esac
+}
+
+# --- Parse args ---
+LANG="$DEFAULT_LANG"
+PROB=""
+CATEGORY=""
+RUN_ALL=0
+LIST_ONLY=0
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -l|--lang)
+      # If next token looks like a valid lang, consume it; else treat bare -l as "list"
+      if [[ $# -ge 2 && "$2" =~ ^(cpp|go)$ ]]; then
+        LANG="$2"; shift 2
+      else
+        LIST_ONLY=1; shift
+      fi
+      ;;
+    -L)
+      LIST_ONLY=1; shift ;;
+    -c|--category)
+      [[ $# -ge 2 ]] || die "--category requires a value"
+      CATEGORY="$2"; shift 2;;
+    -a|--all)
+      RUN_ALL=1; shift ;;
+    -h|--help)
+      usage; exit 0 ;;
+    -*)
+      die "Unknown option: $1" ;;
+    *)
+      PROB="$1"; shift ;;
+  esac
+done
+
+# No options/args => print usage
+if [[ -z "$PROB" && -z "$CATEGORY" && $RUN_ALL -eq 0 && $LIST_ONLY -eq 0 ]]; then
+  usage; exit 0
 fi
 
-PROBLEM="$1"
-LANG_ARG="${2:-$LC_LANG}"
-
-if [ "$LANG_ARG" = "cpp" ]; then
-    BIN="$CPP_BIN_DIR/lc${PROBLEM}"
-    SRC_DIR="$REPO_ROOT/src/cpp"
-    # Find the source file in all category dirs
-    SRC_FILE=$(find "$SRC_DIR" -name "lc${PROBLEM}.cpp" | head -n 1)
-    if [ ! -f "$BIN" ]; then
-        if [ -z "$SRC_FILE" ]; then
-            echo "Source file not found for problem $PROBLEM in C++"
-            exit 2
-        fi
-        echo "Building $SRC_FILE..."
-        make -C "$(dirname "$SRC_FILE")" "lc${PROBLEM}" || exit 3
-    fi
-elif [ "$LANG_ARG" = "go" ]; then
-    BIN="$GO_BIN_DIR/lc${PROBLEM}"
-    SRC_DIR="$REPO_ROOT/src/go"
-    SRC_FILE=$(find "$SRC_DIR" -name "lc${PROBLEM}.go" | head -n 1)
-    if [ ! -f "$BIN" ]; then
-        if [ -z "$SRC_FILE" ]; then
-            echo "Source file not found for problem $PROBLEM in Go"
-            exit 2
-        fi
-        echo "Building $SRC_FILE..."
-        go build -o "$BIN" "$SRC_FILE" || exit 3
-    fi
-elif [ "$LANG_ARG" = "python" ]; then
-    SRC_FILE=$(find "$REPO_ROOT/src/python" -name "lc${PROBLEM}.py" | head -n 1)
-    if [ -z "$SRC_FILE" ]; then
-        echo "Source file not found for problem $PROBLEM in Python"
-        exit 2
-    fi
-    BIN="$SRC_FILE"
-else
-    echo "Unsupported language: $LANG_ARG"
-    exit 4
+# Listing mode
+if [[ $LIST_ONLY -eq 1 ]]; then
+  list_from_testcases; exit 0
 fi
 
-if [ ! -x "$BIN" ]; then
-    echo "Binary not found or not executable: $BIN"
-    exit 5
-fi
+# Validate language and runner
+case "$LANG" in cpp|go) : ;; *) die "Unsupported language: $LANG (use cpp|go)";; esac
+print_lang "$LANG"
+ensure_runner "$LANG"
+BIN="$(runner_path "$LANG")"
 
-echo "Running $LANG_ARG solution for problem $PROBLEM:"
-if [ "$LANG_ARG" = "python" ]; then
-    python3 "$BIN"
-else
-    "$BIN"
+# Prepare env for runner
+export LC_CATEGORY=""
+export LC_PROB_NUM=""
+
+if [[ -n "$CATEGORY" ]]; then
+  export LC_CATEGORY="$CATEGORY"
+  echo "Mode: category='$LC_CATEGORY'"
+  echo "→ $BIN"
+  exec "$BIN"
+elif [[ $RUN_ALL -eq 1 ]]; then
+  export LC_PROB_NUM="all"
+  echo "Mode: run all (LC_PROB_NUM=$LC_PROB_NUM)"
+  echo "→ $BIN"
+  echo LC_PROB_NUM="all" "$BIN"
+  LC_PROB_NUM="all" "$BIN"
+elif [[ -n "$PROB" ]]; then
+  problem_exists_in_tests "$PROB" || die "Problem $PROB not found in testcases.json"
+  has_impl "$LANG" "$PROB" || die "Problem $PROB is not implemented for language '$LANG'"
+  export LC_PROB_NUM="$PROB"
+  echo "Mode: single problem $LC_PROB_NUM"
+  echo "→ $BIN"
+  exec "$BIN"
 fi

@@ -24,7 +24,7 @@ int main(int, char**) {
     // Get problem number from env or default to 1
     string prob = "1";
     string category = "";
-    if (const char* s = getenv("NUM")) prob = s;
+    if (const char* s = getenv("LC_PROB_NUM")) prob = s;
     if (const char* c = getenv("LC_CATEGORY")) category = c;
 
     // Map of supported problems to their handler functions
@@ -46,6 +46,7 @@ int main(int, char**) {
         {567, lc_test_567}
     };
 
+    // If LC_PROB_NUM is "all" or LC_CATEGORY is set, run all problems (summary table)
     if (prob == "all" || !category.empty()) {
         struct SummaryRow {
             string num, desc, category, result;
@@ -53,6 +54,7 @@ int main(int, char**) {
         };
         vector<SummaryRow> summary;
         int failures = 0;
+        int matched = 0;
         for (int prob_num : solved) {
             string key = to_string(prob_num);
             if (!tests.contains(key)) {
@@ -64,6 +66,7 @@ int main(int, char**) {
             string desc = test.contains("description") ? test.at("description").get<string>() : "";
             string cat = test.contains("category") ? test.at("category").get<string>() : "";
             if (!category.empty() && cat != category) continue;
+            matched++;
             vector<int> case_indices;
             if (test.contains("cases")) {
                 int idx = 1;
@@ -72,6 +75,10 @@ int main(int, char**) {
             bool ok = handlers[prob_num](test);
             summary.push_back({key, desc, cat, ok ? "Pass" : "Fail", case_indices});
             if (!ok) failures++;
+        }
+        if (!category.empty() && matched == 0) {
+            cout << "No solved problems matched category '" << category << "'.\n";
+            return 4; // distinct exit for empty category
         }
         cout << left << setw(5) << "No" << setw(28) << "Description" << setw(16) << "Category" << setw(7) << "Result" << "Cases" << endl;
         for (const auto& row : summary) {
@@ -90,6 +97,7 @@ int main(int, char**) {
         return failures == 0 ? 0 : 1;
     }
 
+    // Otherwise, run a single problem
     if (!tests.contains(prob)) {
         cout << "No testcases for problem " << prob << ".\n";
         return 0;
