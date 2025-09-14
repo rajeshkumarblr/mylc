@@ -21,6 +21,10 @@ Central runner + shared test harness. Problems and test data live in **`testcase
 - **Linux/WSL/macOS** with `make`.
 - **C++20** compiler (`g++` or `clang++`).
 - **nlohmann/json** single‑header library installed system‑wide (e.g., `sudo apt-get install nlohmann-json3-dev`).
+- **vsc-leetcode-cli** for submitting solutions (used by `make submit`):
+  ```bash
+  npm install -g vsc-leetcode-cli
+  ```
 - **Go 1.21+** (module mode).
 
 ## Quick start
@@ -44,7 +48,17 @@ make -C src/go run-all
   - `category` — tag like `tree`, `sliding_window`.
   - `description` — short human title.
   - `cases` — array of inputs/expected values interpreted by the harness.
-- Language harnesses read `testcases.json` and dispatch to `lc_test_<id>(json)` functions that call your solution functions.
+- Main drivers:
+  - **C++:** [`src/cpp/main.cpp`](src/cpp/main.cpp) reads `testcases.json` and dispatches to `lc_test_<id>(json)` functions for each problem.
+  - **Go:** [`src/go/main.go`](src/go/main.go) reads `testcases.json` and dispatches to corresponding Go test functions.
+- Language harnesses read `testcases.json` and call your solution functions for each test case.
+# Running a problem locally
+You can build and run a specific problem solution using:
+```bash
+make -C src/cpp run NUM=434   # C++: build & run problem 434
+make -C src/go run NUM=434    # Go: build & run problem 434
+make run 434                  # Uses LC_LANG (default: cpp) to run problem 434
+```
 
 ## Problems & status
 | # | Problem | Category | Test cases | Languages |
