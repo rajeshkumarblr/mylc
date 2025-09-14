@@ -35,7 +35,7 @@ run:
 	  echo "Usage: make run <problem_number>"; exit 1; \
 	fi; \
 	NUM="$(word 2,$(MAKECMDGOALS))"; \
-	case "$(LANG)" in \
+	case "$(LC_LANG)" in \
 	  cpp)   EXT=cpp ; DIR="$(call FIND_DIR,$(word 2,$(MAKECMDGOALS)),cpp)" ;; \
 	  go)    EXT=go  ; DIR="$(call FIND_DIR,$(word 2,$(MAKECMDGOALS)),go)"  ;; \
 	  python)EXT=py  ; DIR="$(call FIND_DIR,$(word 2,$(MAKECMDGOALS)),py)"  ;; \
