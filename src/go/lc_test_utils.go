@@ -136,6 +136,8 @@ var problemDescriptions = map[string]string{
 	"21":  "merge two sorted lists",
 	"42":  "trapping rain water",
 	"94":  "inorder traversal",
+	"102": "level order traversal",
+	"103": "zigzag level order",
 	"104": "max depth",
 	"110": "is balanced",
 	"424": "character replacement",
@@ -405,6 +407,54 @@ func RunAllTests(funcRegistry map[string]interface{}) bool {
 				}
 				got := fn.(func(*TreeNode) []int)(root)
 				if compareSlices(got, expected) {
+					caseResults[idx] = "Pass"
+					caseIndices = append(caseIndices, idx+1)
+				} else {
+					caseResults[idx] = "Fail"
+					ok = false
+					caseIndices = append(caseIndices, idx+1)
+				}
+			}
+		case "102":
+			for idx, tc := range tests {
+				vals := tc["tree"].([]interface{})
+				root := buildTree(vals)
+				expectedIface := tc["expected"].([]interface{})
+				expected := make([][]int, len(expectedIface))
+				for i, lv := range expectedIface {
+					levelArr := lv.([]interface{})
+					levelVals := make([]int, len(levelArr))
+					for j, v := range levelArr {
+						levelVals[j] = int(v.(float64))
+					}
+					expected[i] = levelVals
+				}
+				got := fn.(func(*TreeNode) [][]int)(root)
+				if deepEqual2D(got, expected) {
+					caseResults[idx] = "Pass"
+					caseIndices = append(caseIndices, idx+1)
+				} else {
+					caseResults[idx] = "Fail"
+					ok = false
+					caseIndices = append(caseIndices, idx+1)
+				}
+			}
+		case "103":
+			for idx, tc := range tests {
+				vals := tc["tree"].([]interface{})
+				root := buildTree(vals)
+				expectedIface := tc["expected"].([]interface{})
+				expected := make([][]int, len(expectedIface))
+				for i, lv := range expectedIface {
+					levelArr := lv.([]interface{})
+					levelVals := make([]int, len(levelArr))
+					for j, v := range levelArr {
+						levelVals[j] = int(v.(float64))
+					}
+					expected[i] = levelVals
+				}
+				got := fn.(func(*TreeNode) [][]int)(root)
+				if deepEqual2D(got, expected) {
 					caseResults[idx] = "Pass"
 					caseIndices = append(caseIndices, idx+1)
 				} else {
@@ -882,6 +932,24 @@ func compareSlices(a, b []int) bool {
 	for i := range a {
 		if a[i] != b[i] {
 			return false
+		}
+	}
+	return true
+}
+
+// deepEqual2D compares two [][]int slices for equality.
+func deepEqual2D(a, b [][]int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if len(a[i]) != len(b[i]) {
+			return false
+		}
+		for j := range a[i] {
+			if a[i][j] != b[i][j] {
+				return false
+			}
 		}
 	}
 	return true

@@ -14,6 +14,8 @@ var funcRegistry = map[string]interface{}{
 	"21":  mergeTwoLists,
 	"42":  trap,
 	"94":  inorderTraversal,
+	"102": levelOrder,
+	"103": zigzagLevelOrder,
 	"104": maxDepth,
 	"110": isBalanced,
 	"424": characterReplacement,

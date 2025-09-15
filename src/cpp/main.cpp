@@ -28,7 +28,7 @@ int main(int, char**) {
     if (const char* c = getenv("LC_CATEGORY")) category = c;
 
     // Map of supported problems to their handler functions
-    const std::vector<int> solved = {1, 2, 3, 9, 11, 21, 42, 94, 104, 110, 424, 438, 567};
+    const std::vector<int> solved = {1, 2, 3, 9, 11, 21, 42, 94, 102, 103, 104, 110, 424, 438, 567};
     using TestFn = bool(*)(const json&);
     std::map<int, TestFn> handlers = {
         {1,  lc_test_1},
@@ -39,6 +39,8 @@ int main(int, char**) {
         {21, lc_test_21},
         {42, lc_test_42},
         {94, lc_test_94},
+    {102, lc_test_102},
+    {103, lc_test_103},
         {104, lc_test_104},
         {110, lc_test_110},
         {424, lc_test_424},

@@ -283,6 +283,56 @@ bool lc_test_104(const json& j) {
     return all;
 }
 
+bool lc_test_102(const json& j) {
+    // Each case has a tree (level order with nulls) and expected 2D vector
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::vector<std::optional<int>> data;
+        for (const auto& val : tc.at("tree")) {
+            if (val.is_null()) data.push_back(std::nullopt); else data.push_back(val.get<int>());
+        }
+        std::vector<std::vector<int>> expect = tc.at("expected").get<std::vector<std::vector<int>>>();
+        TreeNode* root = build_tree_from_level_order(data);
+        std::vector<std::vector<int>> got = levelOrder(root);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=";
+            std::cout << "[";
+            for (size_t i=0;i<got.size();++i){ if(i) std::cout<<"|"; std::cout<<"["; for(size_t j=0;j<got[i].size();++j){ if(j) std::cout<<","; std::cout<<got[i][j]; } std::cout<<"]"; }
+            std::cout << "] expected=";
+            std::cout << "[";
+            for (size_t i=0;i<expect.size();++i){ if(i) std::cout<<"|"; std::cout<<"["; for(size_t j=0;j<expect[i].size();++j){ if(j) std::cout<<","; std::cout<<expect[i][j]; } std::cout<<"]"; }
+            std::cout << "]\n";
+        } else { ++idx; }
+        free_tree(root);
+        all &= ok;
+    }
+    return all;
+}
+
+bool lc_test_103(const json& j) {
+    bool all = true; size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::vector<std::optional<int>> data;
+        for (const auto& v : tc.at("tree")) {
+            if (v.is_null()) data.push_back(std::nullopt); else data.push_back(v.get<int>());
+        }
+        std::vector<std::vector<int>> expect = tc.at("expected").get<std::vector<std::vector<int>>>();
+        TreeNode* root = build_tree_from_level_order(data);
+        auto got = zigzagLevelOrder(root);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=";
+            std::cout << "["; for(size_t i=0;i<got.size();++i){ if(i) std::cout<<"|"; std::cout<<"["; for(size_t j=0;j<got[i].size();++j){ if(j) std::cout<<","; std::cout<<got[i][j]; } std::cout<<"]"; } std::cout << "] expected=";
+            std::cout << "["; for(size_t i=0;i<expect.size();++i){ if(i) std::cout<<"|"; std::cout<<"["; for(size_t j=0;j<expect[i].size();++j){ if(j) std::cout<<","; std::cout<<expect[i][j]; } std::cout<<"]"; } std::cout << "]\n";
+        } else { ++idx; }
+        free_tree(root);
+        all &= ok;
+    }
+    return all;
+}
+
 bool lc_test_110(const json& j) {
     bool all = true;
     size_t idx = 0;

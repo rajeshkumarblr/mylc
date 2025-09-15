@@ -67,4 +67,9 @@ bool lc_test_438(const json& j);
 bool checkInclusion(std::string s1, std::string s2);
 bool lc_test_567(const json& j);
 
+std::vector<std::vector<int>> levelOrder(TreeNode* root);
+bool lc_test_102(const json& j);
+
+std::vector<std::vector<int>> zigzagLevelOrder(TreeNode* root);
+bool lc_test_103(const json& j);
 std::string get_testcases_json_path();
