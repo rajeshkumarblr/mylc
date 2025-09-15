@@ -203,4 +203,5 @@ elif [[ -n "$PROB" ]]; then
   echo "Mode: single problem $LC_PROB_NUM"
   echo "→ $BIN"
   exec "$BIN"
+    LC_VERBOSE=1 LC_PROB_NUM="$LC_PROB_NUM" "$RUNNER"
 fi

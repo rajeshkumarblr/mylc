@@ -111,14 +111,33 @@ int main(int, char**) {
         cout << "Invalid problem number: " << prob << "\n";
         return 1;
     }
-    string desc = tests.at(prob).contains("description") ? tests.at(prob).at("description").get<string>() : "";
-    cout << "=== LC " << prob << ": " << desc << " ===\n";
+    const auto &test = tests.at(prob);
+    string desc = test.contains("description") ? test.at("description").get<string>() : "";
+    string cat  = test.contains("category") ? test.at("category").get<string>() : "";
+    // Execute
     if (handlers.count(prob_num)) {
-        ok = handlers[prob_num](tests.at(prob));
+        ok = handlers[prob_num](test);
     } else {
         cout << "No runner for problem " << prob << ".\n";
         return 1;
     }
-    cout << (ok ? "Result: PASS\n" : "Result: FAIL\n");
+    // Collect case indices similar to summary mode
+    vector<int> case_indices;
+    if (test.contains("cases")) {
+        int idx = 1; for (size_t i = 0; i < test.at("cases").size(); ++i) case_indices.push_back(idx++);
+    }
+    // Print in summary table style for consistency with 'all'
+    cout << left << setw(5) << "No" << setw(28) << "Description" << setw(16) << "Category" << setw(7) << "Result" << "Cases" << endl;
+    cout << left << setw(5) << prob
+         << setw(28) << desc.substr(0,27)
+         << setw(16) << cat
+         << setw(7) << (ok ? "Pass" : "Fail")
+         << "[";
+    for (size_t i = 0; i < case_indices.size(); ++i) {
+        if (i) cout << " ";
+        cout << case_indices[i];
+    }
+    cout << "]\n";
+    cout << "Final Result: " << (ok ? "PASS yes" : "FAIL") << endl;
     return ok ? 0 : 1;
 }
