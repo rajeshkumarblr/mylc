@@ -2,7 +2,7 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 13  
+**Problems covered:** 15  
 **Languages:** C++, Go
 
 ## Repository layout
@@ -67,9 +67,18 @@ Behavior:
 ./run -l     # or: ./run -L
 ```
 
-### Environment
+### Environment variables
+These are consumed by the runners (the `run` helper exports them for you):
+
+| Variable | Purpose | Typical values / notes |
+|----------|---------|------------------------|
+| `LC_PROB_NUM` | Single problem id to run, or `all` | e.g. `94`, `102`, `all` |
+| `LC_CATEGORY` | Category filter (mutually exclusive with single id) | e.g. `tree`, `sliding_window` |
+| `LC_LANGUAGE` / `LC_LANG` | Default language for the `run` script | `cpp` (default) or `go` |
+| `LC_VERBOSE` | (Planned / partial) Force verbose per‑test output in single‑problem mode | `1` |
+
+Set a default language (optional):
 ```bash
-# Set your preferred default language for the run helper
 export LC_LANGUAGE=cpp   # or: go
 ```
 
@@ -130,13 +139,29 @@ make -C src/go run-all
 | 1 | Two Sum | `hash` | 2 | C++, Go |
 | 2 | Add Two Numbers | `list` | 1 | C++, Go |
 | 3 | Longest Substring Without Repeating Characters | `sliding_window` | 2 | C++, Go |
-| 9 | Palindrome Number | `misc` | 5 | C++, Go |
-| 11 | Container With Most Water | `two_pointer` | 3 | C++, Go |
-| 21 | Merge Two Sorted Lists | `list` | 3 | C++, Go |
-| 42 | Trapping Rain Water | `two_pointer` | 4 | C++, Go |
-| 94 | Binary Tree Inorder Traversal | `tree` | 3 | C++, Go |
-| 104 | Maximum Depth of Binary Tree | `tree` | 4 | C++, Go |
-| 110 | Balanced Binary Tree | `tree` | 6 | C++, Go |
+| 9 | Palindrome Number | `misc` | 6 | C++, Go |
+| 11 | Container With Most Water | `two_pointer` | 9 | C++, Go |
+| 21 | Merge Two Sorted Lists | `list` | 7 | C++, Go |
+| 42 | Trapping Rain Water | `two_pointer` | 6 | C++, Go |
+| 94 | Binary Tree Inorder Traversal | `tree` | 5 | C++, Go |
+| 102 | Binary Tree Level Order Traversal | `tree` | 5 | C++, Go |
+| 103 | Binary Tree Zigzag Level Order Traversal | `tree` | 5 | C++, Go |
+| 104 | Maximum Depth of Binary Tree | `tree` | 8 | C++, Go |
+| 110 | Balanced Binary Tree | `tree` | 8 | C++, Go |
 | 424 | Longest Repeating Character Replacement | `sliding_window` | 5 | C++, Go |
 | 438 | Find All Anagrams in a String | `sliding_window` | 4 | C++, Go |
 | 567 | Permutation in String | `sliding_window` | 5 | C++, Go |
+
+> Counts reflect entries in `testcases.json`. If you add/modify cases there, re-run `./run -l` to inspect.
+
+### Categories
+Current categories: `hash`, `list`, `sliding_window`, `misc`, `two_pointer`, `tree`.
+
+### Adding a new problem (quick checklist)
+1. Append its spec & cases to `testcases.json` (unique numeric id, category, description, cases array).
+2. Implement solution file(s): `src/cpp/<id>.<slug>.cpp` and/or `src/go/<id>.<slug>.go`.
+3. Register handler:
+  - C++: add to the handler map in `src/cpp/main.cpp`.
+  - Go: add to `funcRegistry` in `src/go/main.go` and a switch branch (filtered runner) if required.
+4. Build (or just run once and let `./run` auto-build).
+5. Execute: `./run <id>` or category / all.
