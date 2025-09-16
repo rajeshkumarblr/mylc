@@ -42,5 +42,8 @@ public:
                        maxDepth_recursive(root->right));     // +1 for the current node
     }
 
+#ifndef LC_LOCAL_TEST
+};
+#endif
 
 // @lc code=end

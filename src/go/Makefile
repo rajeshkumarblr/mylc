@@ -14,8 +14,10 @@ GO    ?= go
 DLV   ?= dlv
 
 BIN_DIR := ../../build/go
+TMP_BUILD_DIR := $(BIN_DIR)/_merged
 
-GO_SRCS := $(sort $(wildcard *.go))
+CATEGORY_DIRS := hash list sliding_window misc two_pointer tree
+GO_SRCS := $(sort $(wildcard *.go) $(foreach d,$(CATEGORY_DIRS),$(wildcard $(d)/*.go)))
 CENTRAL_MAIN := main.go
 UTILS := lc_test_utils.go
 CENTRAL_BIN := $(BIN_DIR)/runner
@@ -26,9 +28,15 @@ all: $(BIN_DIR)
 	@set -euo pipefail; \
 	if [ ! -f "$(CENTRAL_MAIN)" ]; then echo "main.go not found"; exit 1; fi; \
 	if [ ! -f "$(UTILS)" ]; then echo "lc_test_utils.go not found"; exit 1; fi; \
-	$(GO) mod tidy; \
+	rm -rf $(TMP_BUILD_DIR); mkdir -p $(TMP_BUILD_DIR); \
+	# Copy all main-package files into a single directory to satisfy go build constraint
+	cp $(CENTRAL_MAIN) $(UTILS) $(TMP_BUILD_DIR)/; \
+	for f in $(filter-out $(CENTRAL_MAIN) $(UTILS),$(GO_SRCS)); do cp $$f $(TMP_BUILD_DIR)/; done; \
+	cd $(TMP_BUILD_DIR) && $(GO) mod init tempbuild >/dev/null 2>&1 || true; \
+	cd $(TMP_BUILD_DIR) && grep -q 'module ' go.mod || echo 'module tempbuild' > go.mod; \
+	cd $(TMP_BUILD_DIR) && $(GO) mod tidy >/dev/null 2>&1 || true; \
 	echo "==> Building central runner: $(CENTRAL_BIN)"; \
-	$(GO) build -o "$(CENTRAL_BIN)" $(CENTRAL_MAIN) $(UTILS) $(filter-out $(CENTRAL_MAIN) $(UTILS),$(GO_SRCS)); \
+	cd $(TMP_BUILD_DIR) && $(GO) build -o "$(CENTRAL_BIN)" .; \
 	echo "Build-all: done."
 
 # Run all problems using the central runner
@@ -67,7 +75,7 @@ run:
 
 # Single problem: build and run with main.go + utils.go + problem.go
 NUM ?=
-SRC := $(if $(NUM),$(shell ls $(NUM).*\.go 2>/dev/null | head -n1))
+SRC := $(if $(NUM),$(shell ls $(NUM).*\.go $(foreach d,$(CATEGORY_DIRS),$(d)/$(NUM).*\.go) 2>/dev/null | head -n1))
 BIN := $(if $(NUM),$(BIN_DIR)/lc$(NUM))
 
 .PHONY: build
@@ -76,7 +84,11 @@ ifndef SRC
 	$(error No Go file found for NUM='$(NUM)'. Expecting '$(NUM).*\.go')
 endif
 	$(GO) mod tidy
-	$(GO) build -o $(BIN) $(CENTRAL_MAIN) $(UTILS) $(SRC)
+	rm -rf $(TMP_BUILD_DIR); mkdir -p $(TMP_BUILD_DIR); \
+	cp $(CENTRAL_MAIN) $(UTILS) $(TMP_BUILD_DIR)/; \
+	cp $(SRC) $(TMP_BUILD_DIR)/; \
+	cd $(TMP_BUILD_DIR) && echo 'module tempbuild' > go.mod; \
+	cd $(TMP_BUILD_DIR) && $(GO) build -o $(BIN) .
 
 LC_STRESS_ITERS ?= 1
 

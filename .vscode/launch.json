@@ -2,27 +2,30 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Go: Run/Debug current file",
+            "name": "Go: Debug runner (single problem)",
             "type": "go",
             "request": "launch",
-            "mode": "auto",
-            "program": "${file}",
-            "cwd": "${fileDirname}",
+            "mode": "exec",
+            "program": "${workspaceFolder}/build/go/runner",
+            "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "env": {
-                "LC_STRESS_ITERS": "1"
-            },
-            "dlvToolPath": "/home/${env:USER}/go/bin/dlv"
+                "LC_LANGUAGE": "go",
+                "LC_PROB_NUM": "1" // change to target problem number
+            }
         },
         {
-            "name": "(gdb) Launch",
+            "name": "C++: Debug runner (single problem)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/solution",
+            "program": "${workspaceFolder}/build/cpp/runner",
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
-            "environment": [],
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                { "name": "LC_LANGUAGE", "value": "cpp" },
+                { "name": "LC_PROB_NUM", "value": "100" } // change to target problem number
+            ],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [

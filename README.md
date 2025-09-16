@@ -12,8 +12,14 @@ Central runner + shared test harness. Problems and test data live in **`testcase
   run              # helper script: builds runner on demand & executes tests
   testcases.json   # single source of truth for problems & cases
   src/
-    cpp/           # C++ solutions + test harness
-    go/            # Go solutions + test harness
+    cpp/
+      hash/ list/ sliding_window/ misc/ two_pointer/ tree/
+        <id>.*.cpp  # per-problem sources grouped by category
+      main.cpp lc_test_utils.*  Makefile
+    go/
+      hash/ list/ sliding_window/ misc/ two_pointer/ tree/
+        <id>.*.go   # per-problem sources grouped by category
+      main.go lc_test_utils.go Makefile
   build/           # build artifacts (created on demand)
 ```
 
@@ -144,7 +150,7 @@ make -C src/go run-all
 | 21 | Merge Two Sorted Lists | `list` | 7 | C++, Go |
 | 42 | Trapping Rain Water | `two_pointer` | 6 | C++, Go |
 | 94 | Binary Tree Inorder Traversal | `tree` | 5 | C++, Go |
-| 100 | Same Tree | `tree` | 5 | C++ |
+| 100 | Same Tree | `tree` | 5 | C++, Go |
 | 102 | Binary Tree Level Order Traversal | `tree` | 5 | C++, Go |
 | 103 | Binary Tree Zigzag Level Order Traversal | `tree` | 5 | C++, Go |
 | 104 | Maximum Depth of Binary Tree | `tree` | 8 | C++, Go |
@@ -160,7 +166,9 @@ Current categories: `hash`, `list`, `sliding_window`, `misc`, `two_pointer`, `tr
 
 ### Adding a new problem (quick checklist)
 1. Append its spec & cases to `testcases.json` (unique numeric id, category, description, cases array).
-2. Implement solution file(s): `src/cpp/<id>.<slug>.cpp` and/or `src/go/<id>.<slug>.go`.
+2. Implement solution file(s): place them inside the category folder:
+  - C++: `src/cpp/<category>/<id>.<slug>.cpp`
+  - Go:  `src/go/<category>/<id>.<slug>.go`
 3. Register handler:
   - C++: add to the handler map in `src/cpp/main.cpp`.
   - Go: add to `funcRegistry` in `src/go/main.go` and a switch branch (filtered runner) if required.
