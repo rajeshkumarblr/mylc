@@ -5,7 +5,8 @@ run.%:
 SHELL := /bin/bash
 
 CXX ?= g++
-CXXFLAGS ?= -std=gnu++20 -O2 -pipe -Wall -Wextra -Wno-unused-parameter -I. -DLC_LOCAL_TEST
+CXXFLAGS ?= -std=gnu++20 -pipe -Wall -Wextra -Wno-unused-parameter -I. -DLC_LOCAL_TEST
+CXXFLAGS += -g -O0 -fno-omit-frame-pointer -DDEBUG -rdynamic
 LDFLAGS ?=
 
 
