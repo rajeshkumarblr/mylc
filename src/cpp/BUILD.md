@@ -37,18 +37,17 @@ From `src/cpp/`:
 | Target | Purpose |
 | ------ | ------- |
 | `make` / `make build` | Build the runner (`build/cpp/runner`). |
-| `make run <id>` | Build (if needed) and run a single problem by numeric id. |
-| `make run all` | Run all problems. (Alias: `make run-all`) |
-| `make run <category>` | Run all problems in a category (e.g. `make run tree`). |
+| (execution moved) | Use top-level `./run` script to execute problems. |
 | `make submit NUM=<id>` | Extract only the LeetCode @lc code block for submission. |
 | `make clean` | Remove `build/cpp`. |
 
-Shorthands / examples:
+Execution examples (from repo root):
 ```
-make run 1          # run problem 1
-make run tree       # run the tree category
-make run all        # run everything
-make submit NUM=42  # extract problem 42 body to build/cpp/submit.42.cpp
+./run 1                 # run problem 1
+./run -c tree           # run all tree problems
+./run -a                # run everything
+./run -l                # list categories & problems
+make submit NUM=42      # extract problem 42 body to build/cpp/submit.42.cpp
 ```
 
 ## Environment Variables (Runner)
@@ -70,10 +69,10 @@ When using the VS Code launch config `C++: Debug runner (single problem)` you ca
 2. Name the file `<number>.<kebab-case-title>.cpp`.
 3. Implement the solution exposing the expected function signature used by the harness (see similar problems in the category for patterns).
 4. Add test cases to `testcases.json` (under the root of the repo in `src/go` currently).
-5. Run:
-   ```
-   make run <number>
-   ```
+5. Run it via the script (from repo root):
+  ```
+  ./run <number>
+  ```
 6. (Optional) Debug in VS Code by updating `LC_PROB_NUM` in the launch configuration.
 
 ## Submitting to LeetCode

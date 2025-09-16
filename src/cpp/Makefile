@@ -27,15 +27,11 @@ PROBLEM_SRCS := $(filter-out $(SRC_DIR)/main.cpp, \
 PROBLEM_OBJS := $(patsubst $(SRC_DIR)/%.cpp,$(BIN_DIR)/%.o,$(PROBLEM_SRCS))
 
 
-.PHONY: all build run build-all clean submit help
+.PHONY: all build build-all clean submit help
 .NOTPARALLEL:
 
 build: $(CENTRAL)
 all: build
-
-build: $(CENTRAL)
-
-run: build
 
 $(BIN_DIR):
 	mkdir -p $(BIN_DIR)
@@ -52,36 +48,6 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/*/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
 
 $(CENTRAL): $(BIN_DIR)/main.o $(PROBLEM_OBJS) | $(BIN_DIR)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
-
-ID := $(word 2,$(MAKECMDGOALS))
-
-run:
-ifeq ($(ID),all)
-	$(MAKE) $(CENTRAL)
-	REPO_ROOT=$(ROOT) NUM=all $(CENTRAL)
-else ifneq ($(ID),)
-	CATEGORIES="two_pointer sliding_window hash list misc tree"; \
-	if echo "$$CATEGORIES" | grep -wq "$(ID)"; then \
-		$(MAKE) $(CENTRAL); \
-		REPO_ROOT=$(ROOT) LC_CATEGORY=$(ID) $(CENTRAL); \
-	else \
-		src=""; obj=""; \
-		for f in $(PROBLEM_SRCS); do \
-		  base=$$(basename $$f); id=$${base%%.*}; \
-		  if [ "$$id" = "$(ID)" ]; then src="$$f"; obj="$(BIN_DIR)/$${base%.cpp}.o"; fi; \
-		done; \
-		if [ -z "$$obj" ]; then echo "No source for problem $(ID) in $(SRC_DIR)"; exit 3; fi; \
-		$(MAKE) $(BIN_DIR)/main.o $(PROBLEM_OBJS); \
-		$(CXX) $(CXXFLAGS) -o $(CENTRAL) $(BIN_DIR)/main.o $(PROBLEM_OBJS) $(LDFLAGS); \
-		REPO_ROOT=$(ROOT) NUM=$(ID) $(CENTRAL); \
-	fi
-else
-	@echo "Usage: make run <id|all|category>"; exit 1
-endif
-
-run-all:
-	$(MAKE) $(CENTRAL)
-	REPO_ROOT=$(ROOT) NUM=all $(CENTRAL)
 
 build-all: $(CENTRAL)
 	@echo "Built $(CENTRAL)"
@@ -103,11 +69,9 @@ clean:
 	rm -rf $(BIN_DIR)
 
 help:
-	@echo "Usage:"
-	@echo "  make run 1         # build & run a single problem"
-	@echo "  make run all       # build & run all problems"
-	@echo "  make run list      # build & run all problems in 'list' category"
-	@echo "  make run tree      # build & run all problems in 'tree' category"
-	@echo "  make run <category> # build & run all problems in category"
-	@echo "  make submit NUM=1  # extract @lc code block -> build/cpp/submit.1.cpp"
+	@echo "Usage (build only; use ./run script to execute):"
+	@echo "  make / make build       # build central runner"
+	@echo "  make build-all          # same as build"
+	@echo "  make submit NUM=1       # extract @lc code block -> build/cpp/submit.1.cpp"
+	@echo "  ./run 1 | ./run -c tree | ./run -a  # execute via top-level script"
 	mkdir -p "$(BIN_DIR)"; \
