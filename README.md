@@ -2,7 +2,7 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 15  
+**Problems covered:** 16  
 **Languages:** C++, Go
 
 ## Repository layout
@@ -144,6 +144,7 @@ make -C src/go run-all
 | 21 | Merge Two Sorted Lists | `list` | 7 | C++, Go |
 | 42 | Trapping Rain Water | `two_pointer` | 6 | C++, Go |
 | 94 | Binary Tree Inorder Traversal | `tree` | 5 | C++, Go |
+| 100 | Same Tree | `tree` | 5 | C++ |
 | 102 | Binary Tree Level Order Traversal | `tree` | 5 | C++, Go |
 | 103 | Binary Tree Zigzag Level Order Traversal | `tree` | 5 | C++, Go |
 | 104 | Maximum Depth of Binary Tree | `tree` | 8 | C++, Go |

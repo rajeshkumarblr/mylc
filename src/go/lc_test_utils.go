@@ -5,9 +5,12 @@ import (
 	"fmt"
 	"os"
 	"reflect"
+	"sort"
+	"strconv"
 )
 
-// Shared ListNode and TreeNode definitions
+// ===== Shared types =====
+
 type ListNode struct {
 	Val  int
 	Next *ListNode
@@ -19,114 +22,6 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-// Shared allZero helper
-func allZero(arr []int) bool {
-	for _, v := range arr {
-		if v != 0 {
-			return false
-		}
-	}
-	return true
-}
-
-type FuncType int
-
-const (
-	SliceToInt FuncType = iota
-	SliceIntToSliceInt
-)
-
-type FuncEntry struct {
-	Typ FuncType
-	Fn  interface{}
-}
-
-func runTests(probNum string, entry FuncEntry, tests []map[string]interface{}) bool {
-	ok := true
-	for idx, tc := range tests {
-		inputIface := tc["input"].([]interface{})
-		input := make([]int, len(inputIface))
-		for i, v := range inputIface {
-			input[i] = int(v.(float64))
-		}
-		switch entry.Typ {
-		case SliceToInt:
-			expected := int(tc["expected"].(float64))
-			got := entry.Fn.(func([]int) int)(input)
-			if got != expected {
-				fmt.Printf("  FAIL at case %d: got=%d want=%d\n", idx, got, expected)
-				ok = false
-			} else {
-				fmt.Printf("  PASS at case %d\n", idx)
-			}
-		case SliceIntToSliceInt:
-			target := int(tc["target"].(float64))
-			expectedIface := tc["expected"].([]interface{})
-			expected := make([]int, len(expectedIface))
-			for i, v := range expectedIface {
-				expected[i] = int(v.(float64))
-			}
-			got := entry.Fn.(func([]int, int) []int)(input, target)
-			if !reflect.DeepEqual(got, expected) {
-				fmt.Printf("  FAIL at case %d: got=%v want=%v\n", idx, got, expected)
-				ok = false
-			} else {
-				fmt.Printf("  PASS at case %d\n", idx)
-			}
-		}
-	}
-	return ok
-}
-
-// Generic test runner for problems with signature func([]int) int
-func RunSliceToIntTests(fn func([]int) int, tests []map[string]interface{}) bool {
-	ok := true
-	for idx, tc := range tests {
-		inputIface := tc["input"].([]interface{})
-		input := make([]int, len(inputIface))
-		for i, v := range inputIface {
-			input[i] = int(v.(float64))
-		}
-		expected := int(tc["expected"].(float64))
-		got := fn(input)
-		if got != expected {
-			fmt.Printf("  FAIL at case %d: got=%d want=%d\n", idx, got, expected)
-			ok = false
-		} else {
-			fmt.Printf("  PASS at case %d\n", idx)
-		}
-	}
-	return ok
-}
-
-// Generic test runner for problems with signature func([]int, int) []int
-func RunSliceIntToSliceIntTests(fn func([]int, int) []int, tests []map[string]interface{}) bool {
-	ok := true
-	for idx, tc := range tests {
-		inputIface := tc["input"].([]interface{})
-		input := make([]int, len(inputIface))
-		for i, v := range inputIface {
-			input[i] = int(v.(float64))
-		}
-		target := int(tc["target"].(float64))
-		expectedIface := tc["expected"].([]interface{})
-		expected := make([]int, len(expectedIface))
-		for i, v := range expectedIface {
-			expected[i] = int(v.(float64))
-		}
-		got := fn(input, target)
-		if !reflect.DeepEqual(got, expected) {
-			fmt.Printf("  FAIL at case %d: got=%v want=%v\n", idx, got, expected)
-			ok = false
-		} else {
-			fmt.Printf("  PASS at case %d\n", idx)
-		}
-	}
-	return ok
-}
-
-// Top-level test runner: parses testcases.json and dispatches to the correct generic runner
-
 var problemDescriptions = map[string]string{
 	"1":   "two sum",
 	"2":   "add two numbers",
@@ -136,6 +31,7 @@ var problemDescriptions = map[string]string{
 	"21":  "merge two sorted lists",
 	"42":  "trapping rain water",
 	"94":  "inorder traversal",
+	"100": "same tree",
 	"102": "level order traversal",
 	"103": "zigzag level order",
 	"104": "max depth",
@@ -150,717 +46,20 @@ type ProblemTest struct {
 	Cases    []map[string]interface{} `json:"cases"`
 }
 
-// Run all tests for problems in a given category
-func RunAllTestsByCategory(funcRegistry map[string]interface{}, category string) bool {
-	file, err := openTestcasesFile()
-	if err != nil {
-		fmt.Println("Error opening testcases.json:", err)
-		return false
-	}
-	defer file.Close()
+// ===== JSON / file helpers =====
 
-	var allTests map[string]ProblemTest
-	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
-		fmt.Println("Error decoding testcases:", err)
-		return false
-	}
-
-	type summaryRow struct {
-		Num         string
-		Description string
-		Category    string
-		Result      string
-		Cases       []int
-	}
-	var summary []summaryRow
-	allOk := true
-
-	for probNum, probTest := range allTests {
-		if probTest.Category != category {
-			continue
+func openTestcasesFile() (*os.File, error) {
+	repoRoot := os.Getenv("REPO_ROOT")
+	if repoRoot != "" {
+		if f, err := os.Open(repoRoot + "/testcases.json"); err == nil {
+			return f, nil
 		}
-		fn, found := funcRegistry[probNum]
-		if !found {
-			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "", "NoFunc", nil})
-			allOk = false
-			continue
-		}
-		tests := probTest.Cases
-		caseResults := make([]string, len(tests))
-		caseIndices := make([]int, 0, len(tests))
-		ok := true
-		switch probNum {
-		case "1":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				target := int(tc["target"].(float64))
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func([]int, int) []int)(input, target)
-				if reflect.DeepEqual(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-				}
-			}
-		// ...existing code for other problems...
-		default:
-			// ...existing code for other problems...
-		}
-		result := "PASS"
-		if !ok {
-			result = "FAIL"
-			allOk = false
-		}
-		summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], probTest.Category, result, caseIndices})
 	}
-
-	// Print summary
-	fmt.Printf("%-6s %-30s %-15s %-6s %s\n", "Num", "Description", "Category", "Result", "Cases")
-	for _, row := range summary {
-		fmt.Printf("%-6s %-30s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
-	}
-	return allOk
+	return os.Open("testcases.json")
 }
 
-func RunAllTests(funcRegistry map[string]interface{}) bool {
-	file, err := openTestcasesFile()
-	if err != nil {
-		fmt.Println("Error opening testcases.json:", err)
-		return false
-	}
-	defer file.Close()
+// ===== Builders & comparators =====
 
-	var allTests map[string]ProblemTest
-	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
-		fmt.Println("Error decoding testcases:", err)
-		return false
-	}
-
-	probNumFilter := os.Getenv("LC_PROB_NUM")
-
-	type summaryRow struct {
-		Num         string
-		Description string
-		Category    string
-		Result      string
-		Cases       []int
-	}
-	var summary []summaryRow
-	allOk := true
-
-	for probNum, probTest := range allTests {
-		if probNumFilter != "" && probNumFilter != "all" && probNum != probNumFilter {
-			continue
-		}
-		fn, found := funcRegistry[probNum]
-		if !found {
-			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "", "NoFunc", nil})
-			allOk = false
-			continue
-		}
-		tests := probTest.Cases
-		caseResults := make([]string, len(tests))
-		caseIndices := make([]int, 0, len(tests))
-		ok := true
-		switch probNum {
-		case "1":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				target := int(tc["target"].(float64))
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func([]int, int) []int)(input, target)
-				if reflect.DeepEqual(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "2":
-			for idx, tc := range tests {
-				l1Iface := tc["l1"].([]interface{})
-				l2Iface := tc["l2"].([]interface{})
-				l1 := buildList(l1Iface)
-				l2 := buildList(l2Iface)
-				expectedIface := tc["expected"].([]interface{})
-				expected := buildList(expectedIface)
-				got := fn.(func(*ListNode, *ListNode) *ListNode)(l1, l2)
-				if compareLists(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "3":
-			for idx, tc := range tests {
-				input := tc["input"].(string)
-				expected := int(tc["expected"].(float64))
-				got := fn.(func(string) int)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "9":
-			for idx, tc := range tests {
-				input := int(tc["input"].(float64))
-				expected := tc["expected"].(bool)
-				got := fn.(func(int) bool)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "11":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				expected := int(tc["expected"].(float64))
-				got := fn.(func([]int) int)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "21":
-			for idx, tc := range tests {
-				l1Iface := tc["l1"].([]interface{})
-				l2Iface := tc["l2"].([]interface{})
-				l1 := buildList(l1Iface)
-				l2 := buildList(l2Iface)
-				expectedIface := tc["expected"].([]interface{})
-				expected := buildList(expectedIface)
-				got := fn.(func(*ListNode, *ListNode) *ListNode)(l1, l2)
-				if compareLists(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "42":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				expected := int(tc["expected"].(float64))
-				got := fn.(func([]int) int)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "94":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func(*TreeNode) []int)(root)
-				if compareSlices(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "102":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([][]int, len(expectedIface))
-				for i, lv := range expectedIface {
-					levelArr := lv.([]interface{})
-					levelVals := make([]int, len(levelArr))
-					for j, v := range levelArr {
-						levelVals[j] = int(v.(float64))
-					}
-					expected[i] = levelVals
-				}
-				got := fn.(func(*TreeNode) [][]int)(root)
-				if deepEqual2D(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "103":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([][]int, len(expectedIface))
-				for i, lv := range expectedIface {
-					levelArr := lv.([]interface{})
-					levelVals := make([]int, len(levelArr))
-					for j, v := range levelArr {
-						levelVals[j] = int(v.(float64))
-					}
-					expected[i] = levelVals
-				}
-				got := fn.(func(*TreeNode) [][]int)(root)
-				if deepEqual2D(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "104":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expected := int(tc["expected"].(float64))
-				got := fn.(func(*TreeNode) int)(root)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "110":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expected := tc["expected"].(bool)
-				got := fn.(func(*TreeNode) bool)(root)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "424":
-			for idx, tc := range tests {
-				input := tc["input"].(string)
-				k := int(tc["k"].(float64))
-				expected := int(tc["expected"].(float64))
-				got := fn.(func(string, int) int)(input, k)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "438":
-			for idx, tc := range tests {
-				s := tc["s"].(string)
-				p := tc["p"].(string)
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func(string, string) []int)(s, p)
-				if reflect.DeepEqual(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "567":
-			for idx, tc := range tests {
-				s1 := tc["s1"].(string)
-				s2 := tc["s2"].(string)
-				expected := tc["expected"].(bool)
-				got := fn.(func(string, string) bool)(s1, s2)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		default:
-			caseResults[0] = "NoRunner"
-			ok = false
-		}
-		result := "Pass"
-		for _, r := range caseResults {
-			if r != "Pass" {
-				result = "Fail"
-				break
-			}
-		}
-		desc := problemDescriptions[probNum]
-		if desc == "" {
-			desc = "?"
-		}
-		summary = append(summary, summaryRow{probNum, desc, probTest.Category, result, caseIndices})
-		if !ok {
-			allOk = false
-		}
-	}
-
-	fmt.Printf("%-4s %-25s %-15s %-6s %s\n", "No", "Description", "Category", "Result", "Cases")
-	for _, row := range summary {
-		fmt.Printf("%-4s %-25s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
-	}
-
-	return allOk
-}
-
-func RunAllTestsFiltered(funcRegistry map[string]interface{}, probNumFilter string) bool {
-	file, err := openTestcasesFile()
-	if err != nil {
-		fmt.Println("Error opening testcases.json:", err)
-		return false
-	}
-	defer file.Close()
-
-	var allTests map[string]ProblemTest
-	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
-		fmt.Println("Error decoding testcases:", err)
-		return false
-	}
-
-	type summaryRow struct {
-		Num         string
-		Description string
-		Category    string
-		Result      string
-		Cases       []int
-	}
-	var summary []summaryRow
-	allOk := true
-
-	for probNum, probTest := range allTests {
-		if probNum != probNumFilter {
-			continue
-		}
-		fn, found := funcRegistry[probNum]
-		if !found {
-			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], "", "NoFunc", nil})
-			allOk = false
-			continue
-		}
-		tests := probTest.Cases
-		caseResults := make([]string, len(tests))
-		caseIndices := make([]int, 0, len(tests))
-		ok := true
-		switch probNum {
-		case "1":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				target := int(tc["target"].(float64))
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func([]int, int) []int)(input, target)
-				if reflect.DeepEqual(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "2":
-			for idx, tc := range tests {
-				l1Iface := tc["l1"].([]interface{})
-				l2Iface := tc["l2"].([]interface{})
-				l1 := buildList(l1Iface)
-				l2 := buildList(l2Iface)
-				expectedIface := tc["expected"].([]interface{})
-				expected := buildList(expectedIface)
-				got := fn.(func(*ListNode, *ListNode) *ListNode)(l1, l2)
-				if compareLists(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "3":
-			for idx, tc := range tests {
-				input := tc["input"].(string)
-				expected := int(tc["expected"].(float64))
-				got := fn.(func(string) int)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "9":
-			for idx, tc := range tests {
-				input := int(tc["input"].(float64))
-				expected := tc["expected"].(bool)
-				got := fn.(func(int) bool)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "11":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				expected := int(tc["expected"].(float64))
-				got := fn.(func([]int) int)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "21":
-			for idx, tc := range tests {
-				l1Iface := tc["l1"].([]interface{})
-				l2Iface := tc["l2"].([]interface{})
-				l1 := buildList(l1Iface)
-				l2 := buildList(l2Iface)
-				expectedIface := tc["expected"].([]interface{})
-				expected := buildList(expectedIface)
-				got := fn.(func(*ListNode, *ListNode) *ListNode)(l1, l2)
-				if compareLists(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "42":
-			for idx, tc := range tests {
-				inputIface := tc["input"].([]interface{})
-				input := make([]int, len(inputIface))
-				for i, v := range inputIface {
-					input[i] = int(v.(float64))
-				}
-				expected := int(tc["expected"].(float64))
-				got := fn.(func([]int) int)(input)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "94":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func(*TreeNode) []int)(root)
-				if compareSlices(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "104":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expected := int(tc["expected"].(float64))
-				got := fn.(func(*TreeNode) int)(root)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "110":
-			for idx, tc := range tests {
-				vals := tc["tree"].([]interface{})
-				root := buildTree(vals)
-				expected := tc["expected"].(bool)
-				got := fn.(func(*TreeNode) bool)(root)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "424":
-			for idx, tc := range tests {
-				input := tc["input"].(string)
-				k := int(tc["k"].(float64))
-				expected := int(tc["expected"].(float64))
-				got := fn.(func(string, int) int)(input, k)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "438":
-			for idx, tc := range tests {
-				s := tc["s"].(string)
-				p := tc["p"].(string)
-				expectedIface := tc["expected"].([]interface{})
-				expected := make([]int, len(expectedIface))
-				for i, v := range expectedIface {
-					expected[i] = int(v.(float64))
-				}
-				got := fn.(func(string, string) []int)(s, p)
-				if reflect.DeepEqual(got, expected) {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		case "567":
-			for idx, tc := range tests {
-				s1 := tc["s1"].(string)
-				s2 := tc["s2"].(string)
-				expected := tc["expected"].(bool)
-				got := fn.(func(string, string) bool)(s1, s2)
-				if got == expected {
-					caseResults[idx] = "Pass"
-					caseIndices = append(caseIndices, idx+1)
-				} else {
-					caseResults[idx] = "Fail"
-					ok = false
-					caseIndices = append(caseIndices, idx+1)
-				}
-			}
-		default:
-			caseResults[0] = "NoRunner"
-			ok = false
-		}
-		result := "Pass"
-		for _, r := range caseResults {
-			if r != "Pass" {
-				result = "Fail"
-				break
-			}
-		}
-		desc := problemDescriptions[probNum]
-		if desc == "" {
-			desc = "?"
-		}
-		summary = append(summary, summaryRow{probNum, desc, probTest.Category, result, caseIndices})
-		if !ok {
-			allOk = false
-		}
-	}
-
-	fmt.Printf("%-4s %-25s %-15s %-6s %s\n", "No", "Description", "Category", "Result", "Cases")
-	for _, row := range summary {
-		fmt.Printf("%-4s %-25s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
-	}
-
-	return allOk
-}
-
-// Helper functions for ListNode
 func buildList(vals []interface{}) *ListNode {
 	if len(vals) == 0 {
 		return nil
@@ -874,15 +73,6 @@ func buildList(vals []interface{}) *ListNode {
 	return head
 }
 
-func listToSlice(head *ListNode) []int {
-	var res []int
-	for head != nil {
-		res = append(res, head.Val)
-		head = head.Next
-	}
-	return res
-}
-
 func compareLists(l1, l2 *ListNode) bool {
 	for l1 != nil && l2 != nil {
 		if l1.Val != l2.Val {
@@ -894,7 +84,6 @@ func compareLists(l1, l2 *ListNode) bool {
 	return l1 == nil && l2 == nil
 }
 
-// Helper to build a binary tree from a LeetCode-style level-order list
 func buildTree(vals []interface{}) *TreeNode {
 	if len(vals) == 0 || vals[0] == nil {
 		return nil
@@ -924,20 +113,29 @@ func buildTree(vals []interface{}) *TreeNode {
 	return nodes[0]
 }
 
-// Helper to compare slices
-func compareSlices(a, b []int) bool {
-	if len(a) != len(b) {
-		return false
+func sliceInt(tcKey string, tc map[string]interface{}) []int {
+	src := tc[tcKey].([]interface{})
+	out := make([]int, len(src))
+	for i, v := range src {
+		out[i] = int(v.(float64))
 	}
-	for i := range a {
-		if a[i] != b[i] {
-			return false
-		}
-	}
-	return true
+	return out
 }
 
-// deepEqual2D compares two [][]int slices for equality.
+func slice2DInt(tcKey string, tc map[string]interface{}) [][]int {
+	src := tc[tcKey].([]interface{})
+	out := make([][]int, len(src))
+	for i, lv := range src {
+		level := lv.([]interface{})
+		row := make([]int, len(level))
+		for j, v := range level {
+			row[j] = int(v.(float64))
+		}
+		out[i] = row
+	}
+	return out
+}
+
 func deepEqual2D(a, b [][]int) bool {
 	if len(a) != len(b) {
 		return false
@@ -955,13 +153,373 @@ func deepEqual2D(a, b [][]int) bool {
 	return true
 }
 
-func openTestcasesFile() (*os.File, error) {
-	repoRoot := os.Getenv("REPO_ROOT")
-	if repoRoot != "" {
-		f, err := os.Open(repoRoot + "/testcases.json")
-		if err == nil {
-			return f, nil
+// ===== Driver abstraction =====
+
+// Driver takes the registered solution `fn` and its `tests`, returns indices (1-based) of executed cases and whether all passed.
+type Driver func(fn interface{}, tests []map[string]interface{}) ([]int, bool)
+
+// ---- Problem-specific drivers (exactly one per problem) ----
+
+// 1. two sum  func([]int,int) []int
+func driver1_TwoSum(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int, int) []int)
+	for i, tc := range tests {
+		nums := sliceInt("input", tc)
+		target := int(tc["target"].(float64))
+		want := sliceInt("expected", tc)
+		got := f(nums, target)
+		if !reflect.DeepEqual(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 2. add two numbers  func(*ListNode,*ListNode)*ListNode
+func driver2_AddTwoNumbers(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*ListNode, *ListNode) *ListNode)
+	for i, tc := range tests {
+		l1 := buildList(tc["l1"].([]interface{}))
+		l2 := buildList(tc["l2"].([]interface{}))
+		want := buildList(tc["expected"].([]interface{}))
+		got := f(l1, l2)
+		if !compareLists(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 3. longest substring  func(string) int
+func driver3_LongestSubstring(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(string) int)
+	for i, tc := range tests {
+		s := tc["input"].(string)
+		want := int(tc["expected"].(float64))
+		got := f(s)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 9. palindrome number  func(int) bool
+func driver9_PalindromeNumber(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(int) bool)
+	for i, tc := range tests {
+		x := int(tc["input"].(float64))
+		want := tc["expected"].(bool)
+		got := f(x)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 11. container with most water  func([]int) int
+func driver11_MaxArea(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int) int)
+	for i, tc := range tests {
+		h := sliceInt("input", tc)
+		want := int(tc["expected"].(float64))
+		got := f(h)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 21. merge two sorted lists  func(*ListNode,*ListNode)*ListNode
+func driver21_MergeTwoLists(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	return driver2_AddTwoNumbers(fn, tests)
+}
+
+// 42. trapping rain water  func([]int) int
+func driver42_Trap(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	return driver11_MaxArea(fn, tests)
+}
+
+// 94. inorder traversal  func(*TreeNode) []int
+func driver94_InorderTraversal(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*TreeNode) []int)
+	for i, tc := range tests {
+		root := buildTree(tc["tree"].([]interface{}))
+		want := sliceInt("expected", tc)
+		got := f(root)
+		if !reflect.DeepEqual(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 100. same tree  func(*TreeNode,*TreeNode) bool
+func driver100_SameTree(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*TreeNode, *TreeNode) bool)
+	for i, tc := range tests {
+		p := buildTree(tc["p"].([]interface{}))
+		q := buildTree(tc["q"].([]interface{}))
+		want := tc["expected"].(bool)
+		got := f(p, q)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 102. level order  func(*TreeNode) [][]int
+func driver102_LevelOrder(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*TreeNode) [][]int)
+	for i, tc := range tests {
+		root := buildTree(tc["tree"].([]interface{}))
+		want := slice2DInt("expected", tc)
+		got := f(root)
+		if !deepEqual2D(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 103. zigzag level order  func(*TreeNode) [][]int
+func driver103_ZigzagLevelOrder(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	return driver102_LevelOrder(fn, tests)
+}
+
+// 104. max depth  func(*TreeNode) int
+func driver104_MaxDepth(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*TreeNode) int)
+	for i, tc := range tests {
+		root := buildTree(tc["tree"].([]interface{}))
+		want := int(tc["expected"].(float64))
+		got := f(root)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 110. is balanced  func(*TreeNode) bool
+func driver110_IsBalanced(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*TreeNode) bool)
+	for i, tc := range tests {
+		root := buildTree(tc["tree"].([]interface{}))
+		want := tc["expected"].(bool)
+		got := f(root)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 424. character replacement  func(string,int) int
+func driver424_CharacterReplacement(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(string, int) int)
+	for i, tc := range tests {
+		s := tc["input"].(string)
+		k := int(tc["k"].(float64))
+		want := int(tc["expected"].(float64))
+		got := f(s, k)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 438. find all anagrams  func(string,string) []int
+func driver438_FindAnagrams(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(string, string) []int)
+	for i, tc := range tests {
+		s := tc["s"].(string)
+		p := tc["p"].(string)
+		want := sliceInt("expected", tc)
+		got := f(s, p)
+		if !reflect.DeepEqual(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// 567. permutation in string  func(string,string) bool
+func driver567_CheckInclusion(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(string, string) bool)
+	for i, tc := range tests {
+		s1 := tc["s1"].(string)
+		s2 := tc["s2"].(string)
+		want := tc["expected"].(bool)
+		got := f(s1, s2)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
+// Registry of problem → driver
+var drivers = map[string]Driver{
+	"1":   driver1_TwoSum,
+	"2":   driver2_AddTwoNumbers,
+	"3":   driver3_LongestSubstring,
+	"9":   driver9_PalindromeNumber,
+	"11":  driver11_MaxArea,
+	"21":  driver21_MergeTwoLists,
+	"42":  driver42_Trap,
+	"94":  driver94_InorderTraversal,
+	"100": driver100_SameTree,
+	"102": driver102_LevelOrder,
+	"103": driver103_ZigzagLevelOrder,
+	"104": driver104_MaxDepth,
+	"110": driver110_IsBalanced,
+	"424": driver424_CharacterReplacement,
+	"438": driver438_FindAnagrams,
+	"567": driver567_CheckInclusion,
+}
+
+// ===== Unified runner core =====
+
+type summaryRow struct {
+	Num         string
+	Description string
+	Category    string
+	Result      string
+	Cases       []int
+}
+
+func runProblems(funcRegistry map[string]interface{}, probNumFilter string, categoryFilter string) bool {
+	file, err := openTestcasesFile()
+	if err != nil {
+		fmt.Println("Error opening testcases.json:", err)
+		return false
+	}
+	defer file.Close()
+
+	var allTests map[string]ProblemTest
+	if err := json.NewDecoder(file).Decode(&allTests); err != nil {
+		fmt.Println("Error decoding testcases:", err)
+		return false
+	}
+
+	var summary []summaryRow
+	allOk := true
+
+	for probNum, probTest := range allTests {
+		if categoryFilter != "" && probTest.Category != categoryFilter {
+			continue
+		}
+		if probNumFilter != "" && probNumFilter != "all" && probNum != probNumFilter {
+			continue
+		}
+
+		fn, hasFn := funcRegistry[probNum]
+		drv, hasDrv := drivers[probNum]
+
+		switch {
+		case !hasFn:
+			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], probTest.Category, "NoFunc", nil})
+			allOk = false
+			continue
+		case !hasDrv:
+			summary = append(summary, summaryRow{probNum, problemDescriptions[probNum], probTest.Category, "NoRunner", nil})
+			allOk = false
+			continue
+		}
+
+		caseIndices, ok := drv(fn, probTest.Cases)
+		result := "PASS"
+		if !ok {
+			result = "FAIL"
+			allOk = false
+		}
+		desc := problemDescriptions[probNum]
+		if desc == "" {
+			desc = "?"
+		}
+		summary = append(summary, summaryRow{probNum, desc, probTest.Category, result, caseIndices})
+	}
+
+	// Print summary (sorted by problem number)
+	sort.Slice(summary, func(i, j int) bool {
+		ai, _ := strconv.Atoi(summary[i].Num)
+		aj, _ := strconv.Atoi(summary[j].Num)
+		if ai != aj {
+			return ai < aj
+		}
+		return summary[i].Description < summary[j].Description
+	})
+
+	fmt.Printf("%-4s %-25s %-15s %-6s %s\n", "No", "Description", "Category", "Result", "Cases")
+
+	totalCases := 0
+	passedProblems := 0
+
+	for _, row := range summary {
+		fmt.Printf("%-4s %-25s %-15s %-6s %v\n", row.Num, row.Description, row.Category, row.Result, row.Cases)
+		totalCases += len(row.Cases)
+		if row.Result == "PASS" {
+			passedProblems++
 		}
 	}
-	return os.Open("testcases.json")
+
+	failedProblems := len(summary) - passedProblems
+	fmt.Printf("\nSummary: problems=%d, passed=%d, failed=%d, total_cases=%d\n",
+		len(summary), passedProblems, failedProblems, totalCases)
+
+	return allOk
+}
+
+// Public entry points (thin wrappers)
+func RunAllTests(funcRegistry map[string]interface{}) bool {
+	return runProblems(funcRegistry, os.Getenv("LC_PROB_NUM"), "")
+}
+
+func RunAllTestsFiltered(funcRegistry map[string]interface{}, probNumFilter string) bool {
+	return runProblems(funcRegistry, probNumFilter, "")
+}
+
+func RunAllTestsByCategory(funcRegistry map[string]interface{}, category string) bool {
+	return runProblems(funcRegistry, "", category)
+}
+
+// allZero reports whether all counts are zero.
+func allZero(cnt []int) bool {
+	for _, v := range cnt {
+		if v != 0 {
+			return false
+		}
+	}
+	return true
 }

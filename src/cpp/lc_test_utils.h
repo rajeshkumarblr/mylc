@@ -72,4 +72,7 @@ bool lc_test_102(const json& j);
 
 std::vector<std::vector<int>> zigzagLevelOrder(TreeNode* root);
 bool lc_test_103(const json& j);
+// Problem 100: Same Tree
+bool isSameTree(TreeNode* p, TreeNode* q);
+bool lc_test_100(const json& j);
 std::string get_testcases_json_path();

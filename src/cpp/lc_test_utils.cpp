@@ -333,6 +333,27 @@ bool lc_test_103(const json& j) {
     return all;
 }
 
+bool lc_test_100(const json& j) {
+    // Each case contains two trees (p and q) and expected boolean
+    bool all = true; size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::vector<std::optional<int>> dataP, dataQ;
+        for (const auto& v : tc.at("p")) { if (v.is_null()) dataP.push_back(std::nullopt); else dataP.push_back(v.get<int>()); }
+        for (const auto& v : tc.at("q")) { if (v.is_null()) dataQ.push_back(std::nullopt); else dataQ.push_back(v.get<int>()); }
+        bool expect = tc.at("expected").get<bool>();
+        TreeNode* pRoot = build_tree_from_level_order(dataP);
+        TreeNode* qRoot = build_tree_from_level_order(dataQ);
+        bool got = isSameTree(pRoot, qRoot);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << (got?"true":"false") << " expected=" << (expect?"true":"false") << "\n";
+        } else { ++idx; }
+        free_tree(pRoot); free_tree(qRoot);
+        all &= ok;
+    }
+    return all;
+}
+
 bool lc_test_110(const json& j) {
     bool all = true;
     size_t idx = 0;

@@ -85,6 +85,17 @@
       { "tree": [1,null,2], "expected": [1,2] }
     ]
   },
+  "100": {
+    "category": "tree",
+    "description": "Same Tree",
+    "cases": [
+      { "p": [], "q": [], "expected": true },
+      { "p": [1,2,3], "q": [1,2,3], "expected": true },
+      { "p": [1,2], "q": [1,null,2], "expected": false },
+      { "p": [1,2,1], "q": [1,1,2], "expected": false },
+      { "p": [], "q": [1], "expected": false }
+    ]
+  },
   "102": {
     "category": "tree",
     "description": "Binary Tree Level Order Traversal",
