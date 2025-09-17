@@ -46,6 +46,7 @@ Options:
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
   -h, --help           Show help
+  -s, --submit <id>    Extract @lc code block into build/<lang>/submit.<id>.<ext>
 
 Behavior:
   • If build/<lang>/runner is missing, the script auto-builds it via: make -C src/<lang> all
@@ -71,6 +72,10 @@ Behavior:
 
 # List categories & problems (pulled from testcases.json)
 ./run -l     # or: ./run -L
+
+# Extract a submission snippet (writes to build/<lang>/submit.<id>.<ext>)
+./run -s 9 -l cpp
+./run --submit 21 -l go
 ```
 
 ### Environment variables

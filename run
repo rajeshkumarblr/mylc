@@ -5,6 +5,7 @@
 # -a/--all              Run all (LC_PROB_NUM=all)
 # -l (no arg) or -L     List categories & problems
 # -h/--help or no args  Usage
+# -s, --submit <id>     Extract @lc code block to build/<lang>/submit.<id>.<ext>
 set -Eeuo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -21,6 +22,7 @@ Options:
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
   -h, --help           Show this help
+  -s, --submit <id>    Extract @lc code block into build/<lang>/submit.<id>.<ext>
 
 Notes:
   • Runs prebuilt binaries: build/<lang>/runner
@@ -35,6 +37,7 @@ Examples:
   ./run -a
   ./run -l        # list
   ./run -L        # list
+  ./run -s 9 -l cpp   # extract @lc code block for problem 9 (C++)
 EOF
 }
 
@@ -117,9 +120,23 @@ has_impl() {
   shopt -s nullglob
   local m=()
   case "$lang" in
-    cpp) m=( "$ROOT/src/cpp/${id}."*".cpp" "$ROOT/src/cpp/${id}.cpp" );;
-    go)  m=( "$ROOT/src/go/${id}."*".go"  "$ROOT/src/go/${id}.go"  );;
-    *)   return 1;;
+    cpp)
+      m=( \
+        "$ROOT/src/cpp/${id}."*".cpp" "$ROOT/src/cpp/${id}.cpp" \
+        "$ROOT/src/cpp/hash/${id}."*".cpp" "$ROOT/src/cpp/list/${id}."*".cpp" \
+        "$ROOT/src/cpp/sliding_window/${id}."*".cpp" "$ROOT/src/cpp/misc/${id}."*".cpp" \
+        "$ROOT/src/cpp/two_pointer/${id}."*".cpp" "$ROOT/src/cpp/tree/${id}."*".cpp"
+      )
+      ;;
+    go)
+      m=( \
+        "$ROOT/src/go/${id}."*".go" "$ROOT/src/go/${id}.go" \
+        "$ROOT/src/go/hash/${id}."*".go" "$ROOT/src/go/list/${id}."*".go" \
+        "$ROOT/src/go/sliding_window/${id}."*".go" "$ROOT/src/go/misc/${id}."*".go" \
+        "$ROOT/src/go/two_pointer/${id}."*".go" "$ROOT/src/go/tree/${id}."*".go"
+      )
+      ;;
+    *)   shopt -u nullglob; return 1;;
   esac
   shopt -u nullglob
   [[ ${#m[@]} -gt 0 ]]
@@ -139,6 +156,7 @@ PROB=""
 CATEGORY=""
 RUN_ALL=0
 LIST_ONLY=0
+SUBMIT_ID=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -159,6 +177,9 @@ while [[ $# -gt 0 ]]; do
       RUN_ALL=1; shift ;;
     -h|--help)
       usage; exit 0 ;;
+    -s|--submit)
+      [[ $# -ge 2 ]] || die "--submit requires an id"
+      SUBMIT_ID="$2"; shift 2 ;;
     -*)
       die "Unknown option: $1" ;;
     *)
@@ -167,13 +188,53 @@ while [[ $# -gt 0 ]]; do
 done
 
 # No options/args => print usage
-if [[ -z "$PROB" && -z "$CATEGORY" && $RUN_ALL -eq 0 && $LIST_ONLY -eq 0 ]]; then
+if [[ -z "$PROB" && -z "$CATEGORY" && $RUN_ALL -eq 0 && $LIST_ONLY -eq 0 && -z "$SUBMIT_ID" ]]; then
   usage; exit 0
 fi
 
 # Listing mode doesn't require building
 if [[ $LIST_ONLY -eq 1 ]]; then
   list_from_testcases; exit 0
+fi
+
+# Submit extraction doesn't require runners either
+if [[ -n "$SUBMIT_ID" ]]; then
+  case "$LANG" in
+    cpp)
+      ext=cpp
+      candidates=( \
+        "$ROOT/src/cpp/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/$SUBMIT_ID.$ext" \
+        "$ROOT/src/cpp/hash/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/list/$SUBMIT_ID."*".$ext" \
+        "$ROOT/src/cpp/sliding_window/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/misc/$SUBMIT_ID."*".$ext" \
+        "$ROOT/src/cpp/two_pointer/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/tree/$SUBMIT_ID."*".$ext"
+      )
+      ;;
+    go)
+      ext=go
+      candidates=( \
+        "$ROOT/src/go/$SUBMIT_ID."*".$ext" "$ROOT/src/go/$SUBMIT_ID.$ext" \
+        "$ROOT/src/go/hash/$SUBMIT_ID."*".$ext" "$ROOT/src/go/list/$SUBMIT_ID."*".$ext" \
+        "$ROOT/src/go/sliding_window/$SUBMIT_ID."*".$ext" "$ROOT/src/go/misc/$SUBMIT_ID."*".$ext" \
+        "$ROOT/src/go/two_pointer/$SUBMIT_ID."*".$ext" "$ROOT/src/go/tree/$SUBMIT_ID."*".$ext"
+      )
+      ;;
+    *) die "Unsupported language for submit: $LANG" ;;
+  esac
+  shopt -s nullglob
+  src=""
+  for f in "${candidates[@]}"; do if [[ -f "$f" ]]; then src="$f"; break; fi; done
+  shopt -u nullglob
+  [[ -n "$src" ]] || die "No source found for $SUBMIT_ID in $src_dir"
+  out_dir="$ROOT/build/$LANG"; mkdir -p "$out_dir"
+  out="$out_dir/submit.$SUBMIT_ID.$ext"
+  if grep -q "@lc code=start" "$src"; then
+    awk '/@lc code=start/{flag=1; print; next} /@lc code=end/{print; flag=0} flag' "$src" > "$out"
+    echo "Wrote $out (exact @lc code block)."
+  else
+    cp "$src" "$out"
+    echo "No @lc markers; copied full file to $out."
+  fi
+  exit 0
 fi
 
 # Validate language and ensure runner (auto-build if missing)
