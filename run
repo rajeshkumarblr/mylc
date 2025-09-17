@@ -5,7 +5,7 @@
 # -a/--all              Run all (LC_PROB_NUM=all)
 # -l (no arg) or -L     List categories & problems
 # -h/--help or no args  Usage
-# -s, --submit <id>     Extract @lc code block to build/<lang>/submit.<id>.<ext>
+# -s, --submit <id>     Extract and submit online (lang from -l or $LC_LANGUAGE)
 set -Eeuo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -22,7 +22,7 @@ Options:
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
   -h, --help           Show this help
-  -s, --submit <id>    Extract @lc code block into build/<lang>/submit.<id>.<ext>
+  -s, --submit <id>    Extract and submit via vsc-leetcode-cli (lang from -l or $LC_LANGUAGE)
 
 Notes:
   • Runs prebuilt binaries: build/<lang>/runner
@@ -37,7 +37,7 @@ Examples:
   ./run -a
   ./run -l        # list
   ./run -L        # list
-  ./run -s 9 -l cpp   # extract @lc code block for problem 9 (C++)
+  ./run -s 9 -l cpp   # extract + submit problem 9 (C++)
 EOF
 }
 
@@ -197,47 +197,23 @@ if [[ $LIST_ONLY -eq 1 ]]; then
   list_from_testcases; exit 0
 fi
 
-# Submit extraction doesn't require runners either
+# Submit path: extract then submit online; no runner build needed
 if [[ -n "$SUBMIT_ID" ]]; then
-  case "$LANG" in
-    cpp)
-      ext=cpp
-      candidates=( \
-        "$ROOT/src/cpp/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/$SUBMIT_ID.$ext" \
-        "$ROOT/src/cpp/hash/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/list/$SUBMIT_ID."*".$ext" \
-        "$ROOT/src/cpp/sliding_window/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/misc/$SUBMIT_ID."*".$ext" \
-        "$ROOT/src/cpp/two_pointer/$SUBMIT_ID."*".$ext" "$ROOT/src/cpp/tree/$SUBMIT_ID."*".$ext"
-      )
-      ;;
-    go)
-      ext=go
-      candidates=( \
-        "$ROOT/src/go/$SUBMIT_ID."*".$ext" "$ROOT/src/go/$SUBMIT_ID.$ext" \
-        "$ROOT/src/go/hash/$SUBMIT_ID."*".$ext" "$ROOT/src/go/list/$SUBMIT_ID."*".$ext" \
-        "$ROOT/src/go/sliding_window/$SUBMIT_ID."*".$ext" "$ROOT/src/go/misc/$SUBMIT_ID."*".$ext" \
-        "$ROOT/src/go/two_pointer/$SUBMIT_ID."*".$ext" "$ROOT/src/go/tree/$SUBMIT_ID."*".$ext"
-      )
-      ;;
-    *) die "Unsupported language for submit: $LANG" ;;
-  esac
-  shopt -s nullglob
-  src=""
-  for f in "${candidates[@]}"; do if [[ -f "$f" ]]; then src="$f"; break; fi; done
-  shopt -u nullglob
-  [[ -n "$src" ]] || die "No source found for $SUBMIT_ID in $src_dir"
-  out_dir="$ROOT/build/$LANG"; mkdir -p "$out_dir"
-  out="$out_dir/submit.$SUBMIT_ID.$ext"
-  if grep -q "@lc code=start" "$src"; then
-    awk '/@lc code=start/{flag=1; print; next} /@lc code=end/{print; flag=0} flag' "$src" > "$out"
-    echo "Wrote $out (exact @lc code block)."
-  else
-    cp "$src" "$out"
-    echo "No @lc markers; copied full file to $out."
+  # Preflight checks
+  command -v python3 >/dev/null 2>&1 || die "python3 not found; required for submit"
+  [[ -f "$ROOT/scripts/submit_lc.py" ]] || die "scripts/submit_lc.py not found"
+  if ! command -v leetcode >/dev/null 2>&1; then
+    cat >&2 <<'EOT'
+ERROR: `leetcode` CLI not found. Please install and login with vsc-leetcode-cli:
+  npm uninstall -g leetcode-cli
+  npm install -g vsc-leetcode-cli
+  leetcode user login
+EOT
+    exit 2
   fi
-  exit 0
+  echo "Submitting problem $SUBMIT_ID for language '$LANG'..."
+  exec python3 "$ROOT/scripts/submit_lc.py" --id "$SUBMIT_ID" --lang "$LANG" --src-root "$ROOT/src" --build-root "$ROOT/build"
 fi
-
-# Validate language and ensure runner (auto-build if missing)
 case "$LANG" in cpp|go) : ;; *) die "Unsupported language: $LANG (use cpp|go)";; esac
 print_lang "$LANG"
 ensure_runner "$LANG"
@@ -264,5 +240,4 @@ elif [[ -n "$PROB" ]]; then
   echo "Mode: single problem $LC_PROB_NUM"
   echo "→ $BIN"
   exec "$BIN"
-    LC_VERBOSE=1 LC_PROB_NUM="$LC_PROB_NUM" "$RUNNER"
 fi

@@ -11,8 +11,15 @@ def run_stream(cmd: List[str]) -> int:
 # ---------- file discovery & extraction ----------
 def candidate_sources(problem_id: str, lang: str, src_root: Path) -> List[Path]:
     ext = "cpp" if lang == "cpp" else "go"
-    patt = str((src_root / lang) / f"{problem_id}.*.{ext}")
-    return sorted(Path(p) for p in glob.glob(patt))
+    base = (src_root / lang)
+    patterns = [
+        str(base / f"{problem_id}.*.{ext}"),           # top-level
+        str(base / "*" / f"{problem_id}.*.{ext}"),    # category subdirs
+    ]
+    files: List[Path] = []
+    for patt in patterns:
+        files.extend(Path(p) for p in glob.glob(patt))
+    return sorted({p.resolve() for p in files})
 
 def has_markers(p: Path) -> bool:
     try:
@@ -28,15 +35,15 @@ def pick_source(problem_id: str, lang: str, src_root: Path, verbose=False) -> Pa
     if not cands:
         raise FileNotFoundError(f"No source for id={problem_id} under {src_root/lang}")
     with_markers = [p for p in cands if has_markers(p)]
-    if not with_markers:
-        raise RuntimeError("No file with @lc markers among: " + ", ".join(str(p) for p in cands))
-    return with_markers[0]
+    # Prefer a file with markers; otherwise fall back to the first candidate
+    return (with_markers[0] if with_markers else cands[0])
 
 def extract_block(src: Path) -> str:
     txt = src.read_text(encoding="utf-8", errors="ignore")
     m = re.search(r"@lc\s+code=start(.*)@lc\s+code=end", txt, flags=re.S)
     if not m:
-        raise ValueError(f"Could not find @lc markers in {src}")
+        # No markers: return full file content
+        return txt
     snippet = (m.group(1) or "").strip()
     if len(snippet) < 16:
         raise ValueError(f"Extracted snippet from {src} is too small ({len(snippet)} chars).")
@@ -60,6 +67,30 @@ def main():
     if args.verbose:
         print(f"[submit] source: {src}")
     snippet = extract_block(src)
+    # Make Go submissions self-contained if they rely on small utils
+    if args.lang == "go":
+        if "allZero(" in snippet and "func allZero(" not in snippet:
+            helper = """
+func allZero(cnt []int) bool {
+    for _, v := range cnt {
+        if v != 0 {
+            return false
+        }
+    }
+    return true
+}
+"""
+            # Insert helper after package line if present, else prepend
+            if snippet.strip().startswith("package "):
+                lines = snippet.splitlines(True)
+                # find first non-package line to insert after package declaration and any blank line
+                insert_idx = 1
+                if len(lines) >= 2 and lines[1].strip() == "":
+                    insert_idx = 2
+                lines[insert_idx:insert_idx] = [helper]
+                snippet = "".join(lines)
+            else:
+                snippet = helper + snippet
     out_dir = build_root / args.lang / "submit"
     out_dir.mkdir(parents=True, exist_ok=True)
     snip_path = out_dir / f"{args.id}.{ext}"
