@@ -53,7 +53,13 @@ run_and_expect() {
   fi
 }
 
-# 1) Clean builds
+# 1) Validate Makefiles and clean builds
+log "Top-level make clean"
+run_and_expect "Top-level clean" make -C "$ROOT" clean
+
+log "Top-level make default (may build language-specific or no-op)"
+run_and_expect "Top-level make" make -C "$ROOT"
+
 log "Cleaning previous builds"
 rm -rf "$ROOT/build/cpp" "$ROOT/build/go" || true
 
@@ -81,12 +87,12 @@ fi
 run_and_expect "List problems/categories" "$ROOT/run" -L --EXPECT-- "^Categories:"
 run_and_expect "Run all (C++)" "$ROOT/run" -a --EXPECT-- "Final Result: PASS"
 run_and_expect "Run category tree (C++)" "$ROOT/run" -c tree --EXPECT-- "Final Result: PASS"
-run_and_expect "Run single 94 (C++)" "$ROOT/run" 94 --EXPECT-- "Final Result: PASS"
+run_and_expect "Run single 94 (C++)" "$ROOT/run" -p 94 --EXPECT-- "Final Result: PASS"
 
 # 3) Run modes - Go
 if [[ $HAVE_GO -eq 1 ]]; then
   run_and_expect "Run category sliding_window (Go)" "$ROOT/run" -l go -c sliding_window --EXPECT-- "Final Result: PASS"
-  run_and_expect "Run single 567 (Go)" "$ROOT/run" -l go 567 --EXPECT-- "Final Result: PASS"
+  run_and_expect "Run single 567 (Go)" "$ROOT/run" -l go -p 567 --EXPECT-- "Final Result: PASS"
 else
   skip "Go run tests"
 fi

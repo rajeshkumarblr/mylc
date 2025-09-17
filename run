@@ -13,12 +13,13 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 usage() {
   cat <<'EOF'
 Usage:
-  ./run [options] [problem-id]
+  ./run [options]
 
 Options:
   -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANG via .env, else cpp)
                        Without an argument: list categories & problems
-  -c, --category <cat> Run the given category
+  -p, --problem [id]   Run a single problem id (if omitted, uses $LC_PROB_NUM or $LC_PROB_NO)
+  -c, --category [cat] Run the given category (if omitted, uses $LC_CATEGORY)
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
   -h, --help           Show this help
@@ -31,8 +32,8 @@ Notes:
   • Errors out if a single problem is requested but not implemented in the selected language
 
 Examples:
-  ./run 94
-  ./run -l go 94
+  ./run -p 94
+  ./run -l go -p 94
   ./run -c sliding_window
   ./run -a
   ./run -l        # list
@@ -171,9 +172,22 @@ while [[ $# -gt 0 ]]; do
       ;;
     -L)
       LIST_ONLY=1; shift ;;
+    -p|--problem)
+      if [[ $# -ge 2 && ! "$2" =~ ^- ]]; then
+        PROB="$2"; shift 2
+      else
+        PROB="${LC_PROB_NUM:-${LC_PROB_NO:-}}"
+        [[ -n "$PROB" ]] || die "--problem requires an id (or set $LC_PROB_NUM)"
+        shift 1
+      fi ;;
     -c|--category)
-      [[ $# -ge 2 ]] || die "--category requires a value"
-      CATEGORY="$2"; shift 2;;
+      if [[ $# -ge 2 && ! "$2" =~ ^- ]]; then
+        CATEGORY="$2"; shift 2
+      else
+        CATEGORY="${LC_CATEGORY:-}"
+        [[ -n "$CATEGORY" ]] || die "--category requires a value (or set $LC_CATEGORY)"
+        shift 1
+      fi;;
     -a|--all)
       RUN_ALL=1; shift ;;
     -h|--help)
@@ -184,7 +198,7 @@ while [[ $# -gt 0 ]]; do
     -*)
       die "Unknown option: $1" ;;
     *)
-      PROB="$1"; shift ;;
+      die "Unknown option or unexpected argument: $1" ;;
   esac
 done
 
@@ -212,8 +226,10 @@ ERROR: `leetcode` CLI not found. Please install and login with vsc-leetcode-cli:
 EOT
     exit 2
   fi
-  echo "Submitting problem $SUBMIT_ID for language '$LANG'..."
-  exec python3 "$ROOT/scripts/submit_lc.py" --id "$SUBMIT_ID" --lang "$LANG" --src-root "$ROOT/src" --build-root "$ROOT/build"
+  # Choose language: explicit -l overrides, else LC_LANG, default cpp
+  LANG_FOR_SUBMIT="${LANG:-${LC_LANG:-cpp}}"
+  echo "Submitting problem $SUBMIT_ID for language '$LANG_FOR_SUBMIT'..."
+  exec python3 "$ROOT/scripts/submit_lc.py" --id "$SUBMIT_ID" --lang "$LANG_FOR_SUBMIT" --src-root "$ROOT/src" --build-root "$ROOT/build"
 fi
 case "$LANG" in cpp|go) : ;; *) die "Unsupported language: $LANG (use cpp|go)";; esac
 print_lang "$LANG"
