@@ -20,12 +20,18 @@ LC_LANG := cpp
 endif
 
 # Delegate all targets except 'submit' to language-specific Makefile
-.PHONY: all build run run-all build-all clean help fmt vet
+.PHONY: all build run run-all build-all clean help fmt vet readme
 
 
 # Forward arguments for run/run-all/build-all
 all build run run-all build-all clean help fmt vet:
 	$(MAKE) -C $(LANG_MAKE_DIR) $@ $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+
+# Generate README Problems & status from testcases.json
+readme:
+	@echo "Generating README from testcases.json..."
+	@python3 scripts/update_readme.py
+	@echo "README updated."
 
 # Special handling for submit: only handled at top level
 # Minimal Makefile to submit LeetCode problems via Python helper

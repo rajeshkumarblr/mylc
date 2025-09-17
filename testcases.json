@@ -2,6 +2,9 @@
   "1": {
     "category": "hash",
     "description": "Two Sum",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/two-sum/",
+    "video": null,
     "cases": [
       { "input": [2,7,11,15], "target": 9, "expected": [0,1] },
       { "input": [3,2,4], "target": 6, "expected": [1,2] }
@@ -10,6 +13,9 @@
   "2": {
     "category": "list",
     "description": "Add Two Numbers",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/add-two-numbers/",
+    "video": null,
     "cases": [
       { "l1": [2,4,3], "l2": [5,6,4], "expected": [7,0,8] }
     ]
@@ -17,6 +23,9 @@
   "3": {
     "category": "sliding_window",
     "description": "Longest Substring Without Repeating Characters",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+    "video": null,
     "cases": [
       { "input": "abcabcbb", "expected": 3 },
       { "input": "bbbbb", "expected": 1 }
@@ -25,6 +34,9 @@
   "9": {
     "category": "misc",
     "description": "Palindrome Number",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/palindrome-number/",
+    "video": null,
     "cases": [
       { "input": 121, "expected": true },
       { "input": -121, "expected": false },
@@ -37,6 +49,9 @@
   "11": {
     "category": "two_pointer",
     "description": "Container With Most Water",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/container-with-most-water/",
+    "video": null,
     "cases": [
       { "input": [8,7,2,2], "expected": 7 },
       { "input": [1,8,6,2,5,4,8,3,7], "expected": 49 },
@@ -52,6 +67,9 @@
   "21": {
     "category": "list",
     "description": "Merge Two Sorted Lists",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+    "video": null,
     "cases": [
       { "l1": [1,2,4], "l2": [1,3,4], "expected": [1,1,2,3,4,4] },
       { "l1": [], "l2": [], "expected": [] },
@@ -65,6 +83,9 @@
   "42": {
     "category": "two_pointer",
     "description": "Trapping Rain Water",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/trapping-rain-water/",
+    "video": null,
     "cases": [
       { "input": [0,1,0,2,1,0,1,3,2,1,2,1], "expected": 6 },
       { "input": [4,2,0,3,2,5], "expected": 9 },
@@ -77,6 +98,9 @@
   "94": { 
     "category": "tree",
     "description": "Binary Tree Inorder Traversal",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+    "video": null,
     "cases": [
       { "tree": [1,null,2,3], "expected": [1,3,2] },
       { "tree": [], "expected": [] },
@@ -88,6 +112,9 @@
   "100": {
     "category": "tree",
     "description": "Same Tree",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/same-tree/",
+    "video": null,
     "cases": [
       { "p": [], "q": [], "expected": true },
       { "p": [1,2,3], "q": [1,2,3], "expected": true },
@@ -99,6 +126,9 @@
   "102": {
     "category": "tree",
     "description": "Binary Tree Level Order Traversal",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+    "video": null,
     "cases": [
       { "tree": [], "expected": [] },
       { "tree": [1], "expected": [[1]] },
@@ -110,6 +140,9 @@
   "103": {
     "category": "tree",
     "description": "Binary Tree Zigzag Level Order Traversal",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
+    "video": null,
     "cases": [
       { "tree": [], "expected": [] },
       { "tree": [1], "expected": [[1]] },
@@ -121,6 +154,9 @@
   "104": {
     "category": "tree",
     "description": "Maximum Depth of Binary Tree",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+    "video": null,
     "cases": [
       { "tree": [3,9,20,null,null,15,7], "expected": 3 },
       { "tree": [], "expected": 0 },
@@ -135,6 +171,9 @@
   "110": {
     "category": "tree",
     "description": "Balanced Binary Tree",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/balanced-binary-tree/",
+    "video": null,
     "cases": [
       { "tree": [3,9,20,null,null,15,7], "expected": true },
       { "tree": [], "expected": true },
@@ -149,6 +188,9 @@
   "424": {
     "category": "sliding_window",
     "description": "Longest Repeating Character Replacement",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
+    "video": null,
     "cases": [
       { "input": "AABABBA", "k": 1, "expected": 4 },
       { "input": "ABAB", "k": 2, "expected": 4 },
@@ -160,6 +202,9 @@
   "438": {
     "category": "sliding_window",
     "description": "Find All Anagrams in a String",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
+    "video": null,
     "cases": [
       { "s": "cbaebabacd", "p": "abc", "expected": [0,6] },
       { "s": "abab", "p": "ab", "expected": [0,1,2] },
@@ -170,6 +215,9 @@
   "567": {
     "category": "sliding_window",
     "description": "Permutation in String",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/permutation-in-string/",
+    "video": null,
     "cases": [
       { "s1": "ab", "s2": "eidbaooo", "expected": true },
       { "s1": "ab", "s2": "eidboaoo", "expected": false },

@@ -47,27 +47,73 @@ export LC_LANG=cpp   # or: go
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
 
 ## Problems & status
-| # | Problem | Category | Test cases | Languages |
-|---:|---|---|---:|---|
-| 1 | Two Sum | `hash` | 2 | C++, Go |
-| 2 | Add Two Numbers | `list` | 1 | C++, Go |
-| 3 | Longest Substring Without Repeating Characters | `sliding_window` | 2 | C++, Go |
-| 9 | Palindrome Number | `misc` | 6 | C++, Go |
-| 11 | Container With Most Water | `two_pointer` | 9 | C++, Go |
-| 21 | Merge Two Sorted Lists | `list` | 7 | C++, Go |
-| 42 | Trapping Rain Water | `two_pointer` | 6 | C++, Go |
-| 94 | Binary Tree Inorder Traversal | `tree` | 5 | C++, Go |
-| 100 | Same Tree | `tree` | 5 | C++, Go |
-| 102 | Binary Tree Level Order Traversal | `tree` | 5 | C++, Go |
-| 103 | Binary Tree Zigzag Level Order Traversal | `tree` | 5 | C++, Go |
-| 104 | Maximum Depth of Binary Tree | `tree` | 8 | C++, Go |
-| 110 | Balanced Binary Tree | `tree` | 8 | C++, Go |
-| 424 | Longest Repeating Character Replacement | `sliding_window` | 5 | C++, Go |
-| 438 | Find All Anagrams in a String | `sliding_window` | 4 | C++, Go |
-| 567 | Permutation in String | `sliding_window` | 5 | C++, Go |
+Expand a category to view its problems.
+
+<details>
+<summary><strong>hash</strong> (1)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy | 2 | C++, Go | [link](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
+
+</details>
+
+<details>
+<summary><strong>list</strong> (2)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [2](https://leetcode.com/problems/add-two-numbers/) | Add Two Numbers | Medium | 1 | C++, Go | [link](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
+| [21](https://leetcode.com/problems/merge-two-sorted-lists/) | Merge Two Sorted Lists | Easy | 7 | C++, Go | [link](https://www.youtube.com/watch?v=XIdigk956u0) |
+
+</details>
+
+<details>
+<summary><strong>misc</strong> (1)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [9](https://leetcode.com/problems/palindrome-number/) | Palindrome Number | Easy | 6 | C++, Go | [link](https://www.youtube.com/watch?v=f5qF2OowB5A) |
+
+</details>
+
+<details>
+<summary><strong>sliding_window</strong> (4)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating Characters | Medium | 2 | C++, Go | [link](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
+| [424](https://leetcode.com/problems/longest-repeating-character-replacement/) | Longest Repeating Character Replacement | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
+| [438](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Find All Anagrams in a String | Medium | 4 | C++, Go | [link](https://www.youtube.com/watch?v=G8xtZy0fDKg) |
+| [567](https://leetcode.com/problems/permutation-in-string/) | Permutation in String | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=UbyhOgBN834) |
+
+</details>
+
+<details>
+<summary><strong>tree</strong> (6)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [94](https://leetcode.com/problems/binary-tree-inorder-traversal/) | Binary Tree Inorder Traversal | Easy | 5 | C++, Go | [link](https://www.youtube.com/watch?v=g_S5WuasWUE) |
+| [100](https://leetcode.com/problems/same-tree/) | Same Tree | Easy | 5 | C++, Go | [link](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
+| [102](https://leetcode.com/problems/binary-tree-level-order-traversal/) | Binary Tree Level Order Traversal | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=6ZnyEApgFYg) |
+| [103](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | Binary Tree Zigzag Level Order Traversal | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=s6ATEkipzow) |
+| [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | Maximum Depth of Binary Tree | Easy | 8 | C++, Go | [link](https://www.youtube.com/watch?v=hTM3phVI6YQ) |
+| [110](https://leetcode.com/problems/balanced-binary-tree/) | Balanced Binary Tree | Easy | 8 | C++, Go | [link](https://www.youtube.com/watch?v=QfJsau0ItOY) |
+
+</details>
+
+<details>
+<summary><strong>two_pointer</strong> (2)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [11](https://leetcode.com/problems/container-with-most-water/) | Container With Most Water | Medium | 9 | C++, Go | [link](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
+| [42](https://leetcode.com/problems/trapping-rain-water/) | Trapping Rain Water | Hard | 6 | C++, Go | [link](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
+
+</details>
 
 > Counts reflect entries in `testcases.json`. If you add/modify cases there, re-run `./run -l` to inspect.
-
 ### Categories
 Current categories: `hash`, `list`, `sliding_window`, `misc`, `two_pointer`, `tree`.
 
