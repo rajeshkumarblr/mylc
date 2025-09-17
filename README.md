@@ -8,7 +8,7 @@ Central runner + shared test harness. Problems and test data live in **`testcase
 ## Repository layout
 ```
 ./
-  env.sh           # optional defaults (sets LC_LANGUAGE if you want)
+  .env             # primary config for defaults (e.g., LC_LANG); not committed
   run              # helper script: builds runner on demand & executes tests
   testcases.json   # single source of truth for problems & cases
   src/
@@ -29,6 +29,18 @@ Central runner + shared test harness. Problems and test data live in **`testcase
 - **Go 1.21+** (module mode)
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
 
+### Configuration (.env)
+- The `run` script will source `.env` from the repo root if present, and fall back to `env.sh` for backward compatibility.
+- Put non-secret defaults in `.env` (kept out of git via `.gitignore`). Example:
+
+```
+# .env (example)
+LC_LANG=cpp       # default language for ./run (cpp|go)
+# LC_PROB_NUM=all  # optional: run-all by default
+# LC_CATEGORY=tree # optional: default category
+# LC_VERBOSE=1     # optional: future per-test verbosity
+```
+
 ---
 
 ## Helper script: `run`
@@ -40,13 +52,13 @@ The `run` script is the simplest way to execute solutions using the prebuilt (or
 ./run [options] [problem-id]
 
 Options:
-  -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANGUAGE, else cpp)
-                       Without an argument: list categories & problems from testcases.json
+  -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANG via .env, else cpp)
+                       Without an argument: list categories & problems
   -c, --category <cat> Run the given category
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
   -h, --help           Show help
-  -s, --submit <id>    Extract @lc code block into build/<lang>/submit.<id>.<ext>
+  -s, --submit <id>    Extract and submit via vsc-leetcode-cli (lang from -l or $LC_LANG)
 
 Behavior:
   • If build/<lang>/runner is missing, the script auto-builds it via: make -C src/<lang> all
@@ -57,7 +69,7 @@ Behavior:
 
 ### Examples
 ```bash
-# Default language (from LC_LANGUAGE; falls back to cpp)
+# Default language (from LC_LANG; falls back to cpp)
 ./run 94
 
 # Force language
@@ -85,12 +97,12 @@ These are consumed by the runners (the `run` helper exports them for you):
 |----------|---------|------------------------|
 | `LC_PROB_NUM` | Single problem id to run, or `all` | e.g. `94`, `102`, `all` |
 | `LC_CATEGORY` | Category filter (mutually exclusive with single id) | e.g. `tree`, `sliding_window` |
-| `LC_LANGUAGE` / `LC_LANG` | Default language for the `run` script | `cpp` (default) or `go` |
+| `LC_LANG` | Default language for the `run` script | `cpp` (default) or `go` |
 | `LC_VERBOSE` | (Planned / partial) Force verbose per‑test output in single‑problem mode | `1` |
 
 Set a default language (optional):
 ```bash
-export LC_LANGUAGE=cpp   # or: go
+export LC_LANG=cpp   # or: go
 ```
 
 ---
@@ -98,7 +110,7 @@ export LC_LANGUAGE=cpp   # or: go
 ## Quick start
 ```bash
 # (Optional) set a default language for the run helper
-export LC_LANGUAGE=cpp
+export LC_LANG=cpp
 
 # Run a single problem (auto-builds the runner on first use)
 ./run 94
@@ -141,6 +153,17 @@ make -C src/go runner
 make -C src/go run NUM=94
 make -C src/go run-all
 ```
+
+---
+
+## Development workflow
+- After changes to `run`, Makefiles, or the harness, use the smoke test script to validate everything quickly:
+
+```
+./test.sh
+```
+
+It will clean-build C++ and Go runners, list problems, and run representative scenarios (all, category, and single) for both languages. Submit tests are skipped unless you set `TEST_SUBMIT=1` and have `vsc-leetcode-cli` installed and logged in.
 
 ---
 

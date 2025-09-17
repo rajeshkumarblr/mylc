@@ -65,7 +65,7 @@ Set before launching `build/go/runner` (the Makefile does most automatically):
 - `REPO_ROOT`: absolute path to repo root (used to locate `testcases.json`).
 - `LC_PROB_NUM`: numeric id to run a single problem.
 - `LC_CATEGORY`: run all problems in a category (ignored if `LC_PROB_NUM` is set).
-- `LC_LANGUAGE=go`: language tag (used in multi-language contexts).
+- `LC_LANG=go`: language tag (used in multi-language contexts).
 - `LC_STRESS_ITERS`: repeat count for stress mode (default 1).
 
 ## VS Code Debugging

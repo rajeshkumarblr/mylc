@@ -10,7 +10,7 @@
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "env": {
-                "LC_LANGUAGE": "go",
+                "LC_LANG": "go",
                 "LC_PROB_NUM": "1" // change to target problem number
             }
         },
@@ -23,7 +23,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [
-                { "name": "LC_LANGUAGE", "value": "cpp" },
+                { "name": "LC_LANG", "value": "cpp" },
                 { "name": "LC_PROB_NUM", "value": "100" } // change to target problem number
             ],
             "externalConsole": false,

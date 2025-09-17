@@ -1,5 +1,8 @@
 dbg:
 
+# Default language: LC_LANG only (cpp|go)
+LC_LANG ?= cpp
+
 ifeq ($(LC_LANG),cpp)
 LANG_MAKE_DIR := cpp
 else ifeq ($(LC_LANG),go)

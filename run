@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 # Simple runner for build/<lang>/runner
-# Language comes from LC_LANGUAGE (env). Override with -l/--lang.
+# Language comes from LC_LANG (env). Override with -l/--lang.
 # -c/--category <cat>   Run a category
 # -a/--all              Run all (LC_PROB_NUM=all)
 # -l (no arg) or -L     List categories & problems
 # -h/--help or no args  Usage
-# -s, --submit <id>     Extract and submit online (lang from -l or $LC_LANGUAGE)
+# -s, --submit <id>     Extract and submit online (lang from -l or $LC_LANG)
 set -Eeuo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -16,13 +16,13 @@ Usage:
   ./run [options] [problem-id]
 
 Options:
-  -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANGUAGE, else env.sh, else cpp)
+  -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANG via .env, else cpp)
                        Without an argument: list categories & problems
   -c, --category <cat> Run the given category
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
   -h, --help           Show this help
-  -s, --submit <id>    Extract and submit via vsc-leetcode-cli (lang from -l or $LC_LANGUAGE)
+  -s, --submit <id>    Extract and submit via vsc-leetcode-cli (lang from -l or $LC_LANG)
 
 Notes:
   • Runs prebuilt binaries: build/<lang>/runner
@@ -43,13 +43,14 @@ EOF
 
 die() { echo "ERROR: $*" >&2; exit 2; }
 
-# --- Discover default language safely ---
-DEFAULT_LANG="${LC_LANG:-}"
-if [[ -z "${DEFAULT_LANG}" && -f "$ROOT/env.sh" ]]; then
-  # Read LC_LANGUAGE from env.sh without sourcing it in the current shell.
-  DEFAULT_LANG="$(bash -c 'set +u; source "$1" dummy >/dev/null 2>&1; printf "%s" "${LC_LANGUAGE:-}"' bash "$ROOT/env.sh" || true)"
+# --- Load environment from .env
+if [[ -f "$ROOT/.env" ]]; then
+  # shellcheck disable=SC1091
+  source "$ROOT/.env"
 fi
-DEFAULT_LANG="${DEFAULT_LANG:-cpp}"
+
+# --- Discover default language safely ---
+DEFAULT_LANG="${LC_LANG:-cpp}"
 
 # --- Helpers ---
 runner_path() { echo "$ROOT/build/$1/runner"; }
@@ -219,17 +220,16 @@ print_lang "$LANG"
 ensure_runner "$LANG"
 BIN="$(runner_path "$LANG")"
 
-# Prepare env for runner
-export LC_CATEGORY=""
-export LC_PROB_NUM=""
-
+# Prepare env for runner: set only what's requested, keep existing defaults from .env
 if [[ -n "$CATEGORY" ]]; then
   export LC_CATEGORY="$CATEGORY"
+  unset LC_PROB_NUM || true
   echo "Mode: category='$LC_CATEGORY'"
   echo "→ $BIN"
   exec "$BIN"
 elif [[ $RUN_ALL -eq 1 ]]; then
   export LC_PROB_NUM="all"
+  unset LC_CATEGORY || true
   echo "Mode: run all (LC_PROB_NUM=$LC_PROB_NUM)"
   echo "→ $BIN"
   exec "$BIN"
@@ -237,6 +237,7 @@ elif [[ -n "$PROB" ]]; then
   problem_exists_in_tests "$PROB" || die "Problem $PROB not found in testcases.json"
   has_impl "$LANG" "$PROB" || die "Problem $PROB is not implemented for language '$LANG'"
   export LC_PROB_NUM="$PROB"
+  unset LC_CATEGORY || true
   echo "Mode: single problem $LC_PROB_NUM"
   echo "→ $BIN"
   exec "$BIN"

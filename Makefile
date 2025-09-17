@@ -3,7 +3,7 @@ SHELL := /bin/bash
 # Supported languages and their Makefile paths
 LANG_MAKEFILES := src/cpp/Makefile src/go/Makefile
 
-# Default language
+# Default language: LC_LANG only (cpp|go)
 LC_LANG ?= cpp
 
 # Helper to get Makefile path
