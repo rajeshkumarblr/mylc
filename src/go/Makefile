@@ -8,7 +8,7 @@ TMP_BUILD_DIR := $(BIN_DIR)/_merged
 ABS_BIN_DIR := $(abspath $(BIN_DIR))
 ABS_TMP_BUILD_DIR := $(abspath $(TMP_BUILD_DIR))
 
-CATEGORY_DIRS := hash list sliding_window misc two_pointer tree
+CATEGORY_DIRS := hash list sliding_window misc two_pointer tree stack
 GO_SRCS := $(sort $(wildcard *.go) $(foreach d,$(CATEGORY_DIRS),$(wildcard $(d)/*.go)))
 CENTRAL_MAIN := main.go
 UTILS := lc_test_utils.go

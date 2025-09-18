@@ -39,6 +39,7 @@ var problemDescriptions = map[string]string{
 	"424": "character replacement",
 	"438": "find all anagrams",
 	"567": "permutation in string",
+	"739": "daily temperatures",
 }
 
 type ProblemTest struct {
@@ -389,6 +390,22 @@ func driver567_CheckInclusion(fn interface{}, tests []map[string]interface{}) ([
 	return caseIdx, okAll
 }
 
+// 739. daily temperatures  func([]int) []int
+func driver739_DailyTemperatures(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int) []int)
+	for i, tc := range tests {
+		temps := sliceInt("input", tc)
+		want := sliceInt("expected", tc)
+		got := f(temps)
+		if !reflect.DeepEqual(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 // Registry of problem → driver
 var drivers = map[string]Driver{
 	"1":   driver1_TwoSum,
@@ -407,6 +424,7 @@ var drivers = map[string]Driver{
 	"424": driver424_CharacterReplacement,
 	"438": driver438_FindAnagrams,
 	"567": driver567_CheckInclusion,
+	"739": driver739_DailyTemperatures,
 }
 
 // ===== Unified runner core =====

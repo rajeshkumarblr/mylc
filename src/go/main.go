@@ -22,6 +22,7 @@ var funcRegistry = map[string]interface{}{
 	"424": characterReplacement,
 	"438": findAnagrams,
 	"567": checkInclusion,
+	"739": dailyTemperatures,
 	// Add more problems here as needed
 }
 
