@@ -18,6 +18,7 @@ Usage:
 Options:
   -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANG via .env, else cpp)
                        Without an argument: list categories & problems
+  -t [cpp|go]          Set default language in .env (writes LC_LANG) and exit
   -p, --problem [id]   Run a single problem id (if omitted, uses $LC_PROB_NUM or $LC_PROB_NO)
   -c, --category [cat] Run the given category (if omitted, uses $LC_CATEGORY)
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
@@ -34,6 +35,7 @@ Notes:
 Examples:
   ./run -p 94
   ./run -l go -p 94
+  ./run -t go      # persist default language
   ./run -c sliding_window
   ./run -a
   ./run -l        # list
@@ -162,6 +164,27 @@ SUBMIT_ID=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
+    -t)
+      # Set default language by updating $ROOT/.env (LC_LANG)
+      if [[ $# -ge 2 && "$2" =~ ^(cpp|go)$ ]]; then
+        TARGET_LANG="$2"
+        # Create or update .env with LC_LANG entry
+        if [[ -f "$ROOT/.env" ]]; then
+          # if LC_LANG exists, replace it; else append
+          if grep -q '^LC_LANG=' "$ROOT/.env"; then
+            sed -i -E 's/^LC_LANG=.*/LC_LANG='"$TARGET_LANG"'/' "$ROOT/.env"
+          else
+            echo "LC_LANG=$TARGET_LANG" >> "$ROOT/.env"
+          fi
+        else
+          echo "LC_LANG=$TARGET_LANG" > "$ROOT/.env"
+        fi
+        echo "Default language set to '$TARGET_LANG' in .env (LC_LANG)"
+        exit 0
+      else
+        die "-t requires one of: cpp|go"
+      fi
+      ;;
     -l|--lang)
       # If next token looks like a valid lang, consume it; else treat bare -l as "list"
       if [[ $# -ge 2 && "$2" =~ ^(cpp|go)$ ]]; then
