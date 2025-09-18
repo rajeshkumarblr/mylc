@@ -6,17 +6,14 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
-#include "lc_test_utils.h"
+#include <map>
 using namespace std;
 
 bool checkInclusion_vector(string s1, string s2);
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
     bool checkInclusion(string s1, string s2) {
         return checkInclusion_vector(s1,s2);
         //return checkInclusion_map(s1,s2);
@@ -67,9 +64,12 @@ public:
         }
         return (s1Map == s2Map);
     }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+bool checkInclusion(string s1, string s2) {
+    Solution sol;
+    return sol.checkInclusion(std::move(s1), std::move(s2));
+}
 

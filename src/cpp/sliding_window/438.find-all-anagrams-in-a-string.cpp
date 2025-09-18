@@ -9,16 +9,11 @@
 #include <vector>
 #include <string>
 #include <map>
-#include <iostream>
-#include <cstring>
-#include "lc_test_utils.h"
 using namespace std;
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
         vector<int> findAnagrams(string s, string p) {
             vector<int> result = {};
             if (s.size() < p.size()) return result;
@@ -53,9 +48,12 @@ public:
             }
             return result;
         }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+std::vector<int> findAnagrams(std::string s, std::string p) {
+    Solution sol;
+    return sol.findAnagrams(std::move(s), std::move(p));
+}
 

@@ -225,5 +225,20 @@
       { "s1": "a", "s2": "a", "expected": true },
       { "s1": "a", "s2": "b", "expected": false }
     ]
+  },
+  "739": {
+      "category": "stack",
+      "description": "Daily Temperatures",
+      "difficulty": "medium",
+      "url": "https://leetcode.com/problems/daily-temperatures/",
+      "video": null,
+      "cases": [
+        { "input": [73,74,75,71,69,72,76,73], "expected": [1,1,4,2,1,1,0,0] },
+        { "input": [30,40,50,60], "expected": [1,1,1,0] },
+        { "input": [30,60,90], "expected": [1,1,0] },
+        { "input": [90,80,70,60], "expected": [0,0,0,0] },
+        { "input": [], "expected": [] },
+        { "input": [42], "expected": [0] }
+      ]
   }
 }

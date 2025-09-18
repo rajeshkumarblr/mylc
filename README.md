@@ -90,6 +90,15 @@ Expand a category to view its problems.
 </details>
 
 <details>
+<summary><strong>stack</strong> (1)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++ | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
+
+</details>
+
+<details>
 <summary><strong>tree</strong> (6)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |

@@ -13,21 +13,10 @@
 
 using namespace std;
 
-int trap_minmax(std::vector<int>& height);
-int trap_twopointer(std::vector<int>& height);
-
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
-
     int trap(vector<int>& height) {
-        return trap_twopointer(height);
-        //return trap_minmax(height);
-    }
-
-    int trap_twopointer(vector<int>& height) {
         int len = (int)height.size();
         if (len <=2) return 0;
 
@@ -40,7 +29,7 @@ public:
         int rightMax = height[r];
 
         // Loop until left and right cross over.
-        while (l < r) {
+    while (l < r) {
 
             // If the current max left we have seen  is lesser
             // than the current max right, then increment left.
@@ -89,9 +78,13 @@ public:
         }
         return res;
     }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+
+// Non-LeetCode wrapper for harness
+int trap(std::vector<int>& height) {
+    Solution sol;
+    return sol.trap(height);
+}
 

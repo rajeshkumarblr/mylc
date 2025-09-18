@@ -10,11 +10,8 @@ using namespace std;
  */
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
-
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) 
     {
         ListNode dummy;
@@ -38,9 +35,12 @@ public:
         }
         return dummy.next;
     }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+    Solution sol;
+    return sol.mergeTwoLists(l1, l2);
+}
 

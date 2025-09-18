@@ -18,25 +18,24 @@
  */
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
-
-int maxArea(vector<int>& height) {
-    int l = 0, r = height.size() - 1, ans = 0;
-    while (l < r) {
-        ans = max(ans, (r - l) * min(height[l], height[r]));
-        if (height[l] < height[r]) ++l;
-        else --r;
+    int maxArea(vector<int>& height) {
+        int l = 0, r = (int)height.size() - 1, ans = 0;
+        while (l < r) {
+            ans = max(ans, (r - l) * min(height[l], height[r]));
+            if (height[l] < height[r]) ++l;
+            else --r;
+        }
+        return ans;
     }
-    return ans;
-}
-
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+int maxArea(vector<int>& height) {
+    Solution sol;
+    return sol.maxArea(height);
+}
 
 

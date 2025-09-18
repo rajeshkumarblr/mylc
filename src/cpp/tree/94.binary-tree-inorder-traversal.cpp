@@ -18,10 +18,8 @@ void inOrder_iterative(TreeNode* root, vector<int>& vec);
 void inOrder_recursive(TreeNode* root, vector<int>& vec);
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
 
     vector<int> inorderTraversal(TreeNode* root) {
         vector<int> vec;
@@ -52,31 +50,11 @@ public:
             inOrder_recursive(root->right, vec);
         }
     }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
 
-
-#ifdef LC_STANDALONE_MAIN
-int main() {
-    using input_t = std::vector<std::optional<int>>;
-    using output_t = std::vector<int>;
-    std::vector<std::pair<input_t, output_t>> test_cases = {
-        { {1, nullopt, 2, 3}, {1, 3, 2} },
-        { {}, {} },
-        { {1}, {1} },
-        { {1, 2, 3, 4, 5, 6, 7}, {4,2,5,1,6,3,7} },
-        { {1, 2, nullopt, 3}, {3,2,1} },
-        { {1, nullopt, 2, nullopt, 3}, {1,2,3} },
-        { {5, 4, nullopt, 3, nullopt, 2, nullopt, 1}, {1,2,3,4,5} }
-    };
-
+// Non-LeetCode wrapper for harness
+std::vector<int> inorderTraversal(TreeNode* root) {
     Solution sol;
-    auto func = [&](TreeNode* root) { return sol.inorderTraversal(root); };
-    return run_tree_tests(test_cases, func) ? 0 : 1;
+    return sol.inorderTraversal(root);
 }
-
-
-#endif // LC_STANDALONE_MAIN

@@ -3,16 +3,16 @@
  *
  * [110] Balanced Binary Tree
  */
-#include "lc_test_utils.h"
+// Needed for TreeNode and std helpers
+#include "lc_types.h"
+#include <algorithm>
 using namespace std;
 
 int height(TreeNode* node);
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
     bool isBalanced(TreeNode* root) {
         return height(root) != -1;
     }
@@ -24,10 +24,12 @@ public:
         if (abs(L - R) > 1) return -1;      
         return 1 + max(L,R);
     }
-
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+bool isBalanced(TreeNode* root) {
+    Solution sol;
+    return sol.isBalanced(root);
+}
 

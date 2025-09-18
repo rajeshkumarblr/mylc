@@ -13,7 +13,7 @@ CENTRAL := $(BIN_DIR)/runner
 BIN_DIR_DBG := $(BIN_DIR)/dbg
 CENTRAL_DBG := $(BIN_DIR)/runner.dbg
 
-CATEGORY_DIRS := hash list sliding_window misc two_pointer tree
+CATEGORY_DIRS := hash list sliding_window misc two_pointer tree stack
 PROBLEM_SRCS := $(filter-out $(SRC_DIR)/main.cpp, \
 	$(wildcard $(SRC_DIR)/*.cpp) \
 	$(foreach d,$(CATEGORY_DIRS),$(wildcard $(SRC_DIR)/$(d)/*.cpp)))
@@ -37,6 +37,7 @@ $(BIN_DIR_DBG):
 
 
 $(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
+	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS_RELEASE) -c $< -o $@
 
 # Pattern rule for category subdirectories (ensure target dir exists)
@@ -46,6 +47,7 @@ $(BIN_DIR)/%.o: $(SRC_DIR)/*/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR)
 
 # Debug object pattern rules
 $(BIN_DIR_DBG)/%.o: $(SRC_DIR)/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR_DBG)
+	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS_DEBUG) -c $< -o $@
 
 $(BIN_DIR_DBG)/%.o: $(SRC_DIR)/*/%.cpp $(SRC_DIR)/lc_test_utils.h | $(BIN_DIR_DBG)

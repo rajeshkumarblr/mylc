@@ -1,4 +1,8 @@
-#include "lc_test_utils.h"
+// Needed for TreeNode definition and STL containers
+#include "lc_types.h"
+#include <stack>
+#include <utility>
+#include <algorithm>
 using namespace std;
 
 
@@ -11,10 +15,8 @@ using namespace std;
 int maxDepth_recursive(TreeNode* root);
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
     int maxDepth(TreeNode* root) {
         return maxDepth_recursive(root);
         //return maxDepth_dfs(root);
@@ -41,9 +43,12 @@ public:
         return 1 + max(maxDepth_recursive(root->left),       // child depth
                        maxDepth_recursive(root->right));     // +1 for the current node
     }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+int maxDepth(TreeNode* root) {
+    Solution sol;
+    return sol.maxDepth(root);
+}

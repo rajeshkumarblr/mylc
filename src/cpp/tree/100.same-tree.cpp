@@ -10,10 +10,8 @@ using namespace std;
  */
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
 
     bool isSameTree(TreeNode* p, TreeNode* q) {
         if (!p && !q) return true;
@@ -23,9 +21,12 @@ public:
         return (isSameTree(p->left, q->left)  &&
                 isSameTree(p->right, q->right));
     }
-
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+bool isSameTree(TreeNode* p, TreeNode* q) {
+    Solution sol;
+    return sol.isSameTree(p, q);
+}
 

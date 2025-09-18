@@ -10,10 +10,8 @@
 using namespace std;
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution {
 public:
-#endif
     vector<vector<int>> levelOrder(TreeNode* root) {
         vector<vector<int>> res;
         if (!root) return res; // empty => [] not [[]]
@@ -33,8 +31,12 @@ public:
         }
         return res;
     }
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+std::vector<std::vector<int>> levelOrder(TreeNode* root) {
+    Solution sol;
+    return sol.levelOrder(root);
+}
 

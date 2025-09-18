@@ -7,21 +7,17 @@
  *
  */
 
-#include <iostream>
 #include <string>
 #include <vector>
 #include <map>
-#include "lc_test_utils.h"
 using namespace std;
 
 int characterReplacement_vector(string s, int k);
 
 // @lc code=start
-#ifndef LC_LOCAL_TEST
 class Solution
 {
 public:
-#endif
     int characterReplacement(string s, int k)
     {
         return characterReplacement_vector(s,k);
@@ -72,9 +68,13 @@ public:
         }
         return best;
     }
-#ifndef LC_LOCAL_TEST
 };
-#endif
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+int characterReplacement(string s, int k) {
+    Solution sol;
+    return sol.characterReplacement(std::move(s), k);
+}
 
 
