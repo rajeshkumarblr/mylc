@@ -52,6 +52,10 @@ std::vector<int> inorderTraversal(TreeNode* root);
 bool lc_test_94(const json& j);
 // Problem 11: Container With Most Water
 
+// Problem 98: Validate BST
+bool isValidBST(TreeNode* root);
+bool lc_test_98(const json& j);
+
 int maxDepth(TreeNode* root);
 bool lc_test_104(const json& j);
 

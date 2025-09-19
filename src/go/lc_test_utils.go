@@ -30,6 +30,7 @@ var problemDescriptions = map[string]string{
 	"11":  "container with most water",
 	"21":  "merge two sorted lists",
 	"42":  "trapping rain water",
+	"98":  "validate BST",
 	"94":  "inorder traversal",
 	"100": "same tree",
 	"102": "level order traversal",
@@ -339,6 +340,22 @@ func driver110_IsBalanced(fn interface{}, tests []map[string]interface{}) ([]int
 	return caseIdx, okAll
 }
 
+// 98. validate BST  func(*TreeNode) bool
+func driver98_ValidateBST(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(*TreeNode) bool)
+	for i, tc := range tests {
+		root := buildTree(tc["tree"].([]interface{}))
+		want := tc["expected"].(bool)
+		got := f(root)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 // 424. character replacement  func(string,int) int
 func driver424_CharacterReplacement(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
 	caseIdx, okAll := make([]int, 0, len(tests)), true
@@ -415,6 +432,7 @@ var drivers = map[string]Driver{
 	"11":  driver11_MaxArea,
 	"21":  driver21_MergeTwoLists,
 	"42":  driver42_Trap,
+	"98":  driver98_ValidateBST,
 	"94":  driver94_InorderTraversal,
 	"100": driver100_SameTree,
 	"102": driver102_LevelOrder,

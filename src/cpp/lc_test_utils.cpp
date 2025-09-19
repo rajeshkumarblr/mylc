@@ -258,6 +258,30 @@ bool lc_test_94(const json& j) {
     return all;
 }
 
+bool lc_test_98(const json& j) {
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::vector<std::optional<int>> tree;
+        for (const auto& val : tc.at("tree")) {
+            if (val.is_null()) tree.push_back(std::nullopt);
+            else tree.push_back(val.get<int>());
+        }
+        bool expect = tc.at("expected").get<bool>();
+        TreeNode* root = build_tree_from_level_order(tree);
+        bool got = isValidBST(root);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << (got?"true":"false") << " expected=" << (expect?"true":"false") << "\n";
+        } else {
+            ++idx;
+        }
+        free_tree(root);
+        all &= ok;
+    }
+    return all;
+}
+
 
 bool lc_test_104(const json& j) {
     bool all = true;

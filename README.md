@@ -94,16 +94,17 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++ | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
+| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++, Go | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
 
 </details>
 
 <details>
-<summary><strong>tree</strong> (6)</summary>
+<summary><strong>tree</strong> (7)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
 | [94](https://leetcode.com/problems/binary-tree-inorder-traversal/) | Binary Tree Inorder Traversal | Easy | 5 | C++, Go | [link](https://www.youtube.com/watch?v=g_S5WuasWUE) |
+| [98](https://leetcode.com/problems/validate-binary-search-tree/) | Validate Binary Search Tree | Medium | 6 | C++, Go | - |
 | [100](https://leetcode.com/problems/same-tree/) | Same Tree | Easy | 5 | C++, Go | [link](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
 | [102](https://leetcode.com/problems/binary-tree-level-order-traversal/) | Binary Tree Level Order Traversal | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=6ZnyEApgFYg) |
 | [103](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | Binary Tree Zigzag Level Order Traversal | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=s6ATEkipzow) |

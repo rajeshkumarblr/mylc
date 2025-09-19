@@ -109,6 +109,21 @@
       { "tree": [1,null,2], "expected": [1,2] }
     ]
   },
+  "98": {
+    "category": "tree",
+    "description": "Validate Binary Search Tree",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/validate-binary-search-tree/",
+    "video": null,
+    "cases": [
+      { "tree": [2,1,3], "expected": true },
+      { "tree": [5,1,4,null, null,3,6], "expected": false },
+      { "tree": [], "expected": true },
+      { "tree": [1], "expected": true },
+      { "tree": [10,5,15,null,null,6,20], "expected": false },
+      { "tree": [2147483647], "expected": true }
+    ]
+  },
   "100": {
     "category": "tree",
     "description": "Same Tree",

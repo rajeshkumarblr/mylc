@@ -18,13 +18,13 @@
             "name": "C++: Debug runner (single problem)",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/cpp/runner",
+            "program": "${workspaceFolder}/build/cpp/runner.dbg",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [
                 { "name": "LC_LANG", "value": "cpp" },
-                { "name": "LC_PROB_NUM", "value": "100" } // change to target problem number
+                { "name": "LC_PROB_NUM", "value": "739" } // change to target problem number
             ],
             "externalConsole": false,
             "MIMode": "gdb",
