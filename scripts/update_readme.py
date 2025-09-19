@@ -42,10 +42,13 @@ def detect_languages(repo_root: str, category: str, pid: str) -> List[str]:
     langs: List[str] = []
     cpp_glob = os.path.join(repo_root, "src", "cpp", category, f"{pid}.*.cpp")
     go_glob = os.path.join(repo_root, "src", "go", category, f"{pid}.*.go")
+    java_glob = os.path.join(repo_root, "src", "java", category, f"{pid}.*.java")
     if glob(cpp_glob):
         langs.append("C++")
     if glob(go_glob):
         langs.append("Go")
+    if glob(java_glob):
+        langs.append("Java")
     return langs
 
 

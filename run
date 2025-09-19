@@ -16,9 +16,9 @@ Usage:
   ./run [options]
 
 Options:
-  -l, --lang [cpp|go]  With an argument: set language (default from $LC_LANG via .env, else cpp)
+  -l, --lang [cpp|go|java]  With an argument: set language (default from $LC_LANG via .env, else cpp)
                        Without an argument: list categories & problems
-  -t [cpp|go]          Set default language in .env (writes LC_LANG) and exit
+  -t [cpp|go|java]     Set default language in .env (writes LC_LANG) and exit
   -p, --problem [id]   Run a single problem id (if omitted, uses $LC_PROB_NUM or $LC_PROB_NO)
   -c, --category [cat] Run the given category (if omitted, uses $LC_CATEGORY)
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
@@ -140,6 +140,15 @@ has_impl() {
         "$ROOT/src/go/two_pointer/${id}."*".go" "$ROOT/src/go/tree/${id}."*".go"
       )
       ;;
+    java)
+      m=( \
+        "$ROOT/src/java/${id}."*".java" "$ROOT/src/java/${id}.java" \
+        "$ROOT/src/java/hash/${id}."*".java" "$ROOT/src/java/list/${id}."*".java" \
+        "$ROOT/src/java/sliding_window/${id}."*".java" "$ROOT/src/java/misc/${id}."*".java" \
+        "$ROOT/src/java/two_pointer/${id}."*".java" "$ROOT/src/java/tree/${id}."*".java" \
+        "$ROOT/src/java/stack/${id}."*".java" \
+      )
+      ;;
     *)   shopt -u nullglob; return 1;;
   esac
   shopt -u nullglob
@@ -150,6 +159,7 @@ print_lang() {
   case "$1" in
     cpp) echo "Language set to: C++" ;;
     go)  echo "Language set to: Go"  ;;
+    java) echo "Language set to: Java" ;;
     *)   echo "Language set to: $1"  ;;
   esac
 }
@@ -166,7 +176,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     -t)
       # Set default language by updating $ROOT/.env (LC_LANG)
-      if [[ $# -ge 2 && "$2" =~ ^(cpp|go)$ ]]; then
+      if [[ $# -ge 2 && "$2" =~ ^(cpp|go|java)$ ]]; then
         TARGET_LANG="$2"
         # Create or update .env with LC_LANG entry
         if [[ -f "$ROOT/.env" ]]; then
@@ -187,7 +197,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -l|--lang)
       # If next token looks like a valid lang, consume it; else treat bare -l as "list"
-      if [[ $# -ge 2 && "$2" =~ ^(cpp|go)$ ]]; then
+      if [[ $# -ge 2 && "$2" =~ ^(cpp|go|java)$ ]]; then
         LANG="$2"; shift 2
       else
         LIST_ONLY=1; shift
@@ -254,7 +264,7 @@ EOT
   echo "Submitting problem $SUBMIT_ID for language '$LANG_FOR_SUBMIT'..."
   exec python3 "$ROOT/scripts/submit_lc.py" --id "$SUBMIT_ID" --lang "$LANG_FOR_SUBMIT" --src-root "$ROOT/src" --build-root "$ROOT/build"
 fi
-case "$LANG" in cpp|go) : ;; *) die "Unsupported language: $LANG (use cpp|go)";; esac
+case "$LANG" in cpp|go|java) : ;; *) die "Unsupported language: $LANG (use cpp|go|java)";; esac
 print_lang "$LANG"
 ensure_runner "$LANG"
 BIN="$(runner_path "$LANG")"

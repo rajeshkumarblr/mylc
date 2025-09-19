@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 # Supported languages and their Makefile paths
-LANG_MAKEFILES := src/cpp/Makefile src/go/Makefile
+LANG_MAKEFILES := src/cpp/Makefile src/go/Makefile src/java/Makefile
 
 # Default language: LC_LANG only (cpp|go)
 LC_LANG ?= cpp
@@ -12,6 +12,8 @@ ifeq ($(LC_LANG),cpp)
 LANG_MAKE_DIR := src/cpp
 else ifeq ($(LC_LANG),go)
 LANG_MAKE_DIR := src/go
+else ifeq ($(LC_LANG),java)
+LANG_MAKE_DIR := src/java
 else
 $(error Unknown LC_LANG '$(LC_LANG)'. Supported: cpp, go)
 endif

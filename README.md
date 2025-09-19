@@ -1,16 +1,16 @@
-# mylc — LeetCode practice (C++ & Go)
+# mylc — LeetCode practice (C++, Go & Java)
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
 **Problems covered:** 16  
-**Languages:** C++, Go
+**Languages:** C++, Go, Java (in progress)
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
 ## Quick start
 ```bash
 # (optional) set a default language for the run helper
-export LC_LANG=cpp   # or: go
+export LC_LANG=cpp   # or: go | java
 
 # run a single problem (auto-builds runner on first use)
 ./run -p 94
@@ -37,6 +37,10 @@ export LC_LANG=cpp   # or: go
       hash/ list/ sliding_window/ misc/ two_pointer/ tree/
         <id>.*.go   # per-problem sources grouped by category
       main.go lc_test_utils.go Makefile
+    java/
+      hash/ list/ sliding_window/ misc/ two_pointer/ tree/
+        <id>.*.java # per-problem sources grouped by category
+      Main.java LcTestUtils.java Makefile
   build/           # build artifacts (created on demand)
 ```
 
@@ -45,6 +49,7 @@ export LC_LANG=cpp   # or: go
 - C++20 compiler (`g++` or `clang++`)
 - Go 1.21+ (module mode)
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
+ - Java 17+ (OpenJDK recommended). Java support is being added incrementally; currently includes the harness and Problem 1 (Two Sum). We use a pinned Gson jar (no Maven/Gradle required).
 
 ## Problems & status
 Expand a category to view its problems.
@@ -54,7 +59,7 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy | 2 | C++, Go | [link](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
+| [1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy | 2 | C++, Go, Java | [link](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
 
 </details>
 
@@ -132,9 +137,11 @@ Current categories: `hash`, `list`, `sliding_window`, `misc`, `two_pointer`, `tr
 2. Implement solution file(s): place them inside the category folder:
   - C++: `src/cpp/<category>/<id>.<slug>.cpp`
   - Go:  `src/go/<category>/<id>.<slug>.go`
+  - Java: `src/java/<category>/<id>.<slug>.java` (class Solution inside @lc markers)
 3. Register handler:
   - C++: add to the handler map in `src/cpp/main.cpp`.
   - Go: add to `funcRegistry` in `src/go/main.go` and a switch branch (filtered runner) if required.
+  - Java: add to `Registry` in `src/java/LcTestUtils.java` and a driver in `Drivers` for the problem.
 4. Build (or just run once and let `./run` auto-build).
 5. Execute: `./run <id>` or category / all.
   - Use the flag form: `./run -p <id>` (e.g., `./run -p 94`).
