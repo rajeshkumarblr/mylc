@@ -3,7 +3,7 @@
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
 **Problems covered:** 16  
-**Languages:** C++, Go, Java (in progress)
+**Languages:** C++, Go, Java
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
@@ -49,7 +49,7 @@ export LC_LANG=cpp   # or: go | java
 - C++20 compiler (`g++` or `clang++`)
 - Go 1.21+ (module mode)
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
- - Java 17+ (OpenJDK recommended). Java support is being added incrementally; currently includes the harness and Problem 1 (Two Sum). We use a pinned Gson jar (no Maven/Gradle required).
+- Java 17+ (OpenJDK recommended). Java support is fully integrated across the solved problems. We use a pinned Gson jar (no Maven/Gradle required).
 
 ## Problems & status
 Expand a category to view its problems.
@@ -68,8 +68,8 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [2](https://leetcode.com/problems/add-two-numbers/) | Add Two Numbers | Medium | 1 | C++, Go | [link](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
-| [21](https://leetcode.com/problems/merge-two-sorted-lists/) | Merge Two Sorted Lists | Easy | 7 | C++, Go | [link](https://www.youtube.com/watch?v=XIdigk956u0) |
+| [2](https://leetcode.com/problems/add-two-numbers/) | Add Two Numbers | Medium | 1 | C++, Go, Java | [link](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
+| [21](https://leetcode.com/problems/merge-two-sorted-lists/) | Merge Two Sorted Lists | Easy | 7 | C++, Go, Java | [link](https://www.youtube.com/watch?v=XIdigk956u0) |
 
 </details>
 
@@ -78,7 +78,7 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [9](https://leetcode.com/problems/palindrome-number/) | Palindrome Number | Easy | 6 | C++, Go | [link](https://www.youtube.com/watch?v=f5qF2OowB5A) |
+| [9](https://leetcode.com/problems/palindrome-number/) | Palindrome Number | Easy | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=f5qF2OowB5A) |
 
 </details>
 
@@ -87,10 +87,10 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating Characters | Medium | 2 | C++, Go | [link](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
-| [424](https://leetcode.com/problems/longest-repeating-character-replacement/) | Longest Repeating Character Replacement | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
-| [438](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Find All Anagrams in a String | Medium | 4 | C++, Go | [link](https://www.youtube.com/watch?v=G8xtZy0fDKg) |
-| [567](https://leetcode.com/problems/permutation-in-string/) | Permutation in String | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=UbyhOgBN834) |
+| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating Characters | Medium | 2 | C++, Go, Java | [link](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
+| [424](https://leetcode.com/problems/longest-repeating-character-replacement/) | Longest Repeating Character Replacement | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
+| [438](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Find All Anagrams in a String | Medium | 4 | C++, Go, Java | [link](https://www.youtube.com/watch?v=G8xtZy0fDKg) |
+| [567](https://leetcode.com/problems/permutation-in-string/) | Permutation in String | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=UbyhOgBN834) |
 
 </details>
 
@@ -99,7 +99,7 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++, Go | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
+| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
 
 </details>
 
@@ -108,13 +108,13 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [94](https://leetcode.com/problems/binary-tree-inorder-traversal/) | Binary Tree Inorder Traversal | Easy | 5 | C++, Go | [link](https://www.youtube.com/watch?v=g_S5WuasWUE) |
-| [98](https://leetcode.com/problems/validate-binary-search-tree/) | Validate Binary Search Tree | Medium | 6 | C++, Go | - |
-| [100](https://leetcode.com/problems/same-tree/) | Same Tree | Easy | 5 | C++, Go | [link](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
-| [102](https://leetcode.com/problems/binary-tree-level-order-traversal/) | Binary Tree Level Order Traversal | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=6ZnyEApgFYg) |
-| [103](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | Binary Tree Zigzag Level Order Traversal | Medium | 5 | C++, Go | [link](https://www.youtube.com/watch?v=s6ATEkipzow) |
-| [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | Maximum Depth of Binary Tree | Easy | 8 | C++, Go | [link](https://www.youtube.com/watch?v=hTM3phVI6YQ) |
-| [110](https://leetcode.com/problems/balanced-binary-tree/) | Balanced Binary Tree | Easy | 8 | C++, Go | [link](https://www.youtube.com/watch?v=QfJsau0ItOY) |
+| [94](https://leetcode.com/problems/binary-tree-inorder-traversal/) | Binary Tree Inorder Traversal | Easy | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=g_S5WuasWUE) |
+| [98](https://leetcode.com/problems/validate-binary-search-tree/) | Validate Binary Search Tree | Medium | 6 | C++, Go, Java | - |
+| [100](https://leetcode.com/problems/same-tree/) | Same Tree | Easy | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
+| [102](https://leetcode.com/problems/binary-tree-level-order-traversal/) | Binary Tree Level Order Traversal | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=6ZnyEApgFYg) |
+| [103](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | Binary Tree Zigzag Level Order Traversal | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=s6ATEkipzow) |
+| [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | Maximum Depth of Binary Tree | Easy | 8 | C++, Go, Java | [link](https://www.youtube.com/watch?v=hTM3phVI6YQ) |
+| [110](https://leetcode.com/problems/balanced-binary-tree/) | Balanced Binary Tree | Easy | 8 | C++, Go, Java | [link](https://www.youtube.com/watch?v=QfJsau0ItOY) |
 
 </details>
 
@@ -123,8 +123,8 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [11](https://leetcode.com/problems/container-with-most-water/) | Container With Most Water | Medium | 9 | C++, Go | [link](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
-| [42](https://leetcode.com/problems/trapping-rain-water/) | Trapping Rain Water | Hard | 6 | C++, Go | [link](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
+| [11](https://leetcode.com/problems/container-with-most-water/) | Container With Most Water | Medium | 9 | C++, Go, Java | [link](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
+| [42](https://leetcode.com/problems/trapping-rain-water/) | Trapping Rain Water | Hard | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
 
 </details>
 

@@ -22,7 +22,7 @@ $(CLASSES_DIR):
 
 $(RUNNER): $(CLASSES_DIR)
 	@echo "==> Compiling Java sources to $(CLASSES_DIR)";
-	@$(JAVAC) -cp $(LIBS) -d $(CLASSES_DIR) $(JAVA_SRCS)
+	@$(JAVAC) -g -cp $(LIBS) -d $(CLASSES_DIR) $(JAVA_SRCS)
 	@mkdir -p $(BIN_DIR)
 	@# Copy libs to build dir for runtime
 	@mkdir -p $(BIN_DIR)/lib

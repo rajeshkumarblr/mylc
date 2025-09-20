@@ -4,8 +4,20 @@ import java.util.*;
 import com.google.gson.*;
 import com.google.gson.annotations.SerializedName;
 
-class ListNode { int Val; ListNode Next; ListNode(int v){Val=v;} }
-class TreeNode { int Val; TreeNode Left, Right; TreeNode(int v){Val=v;} }
+class ListNode {
+    // Harness fields
+    int Val; ListNode Next;
+    // LeetCode-friendly aliases
+    int val; ListNode next;
+    ListNode(int v){ this.Val = v; this.val = v; }
+}
+class TreeNode {
+    // Harness fields
+    int Val; TreeNode Left, Right;
+    // LeetCode-friendly aliases
+    int val; TreeNode left, right;
+    TreeNode(int v){ this.Val = v; this.val = v; }
+}
 
 class ProblemTest {
     @SerializedName("category") String Category;
@@ -39,6 +51,23 @@ class Registry {
     static Map<String, Problem> build() {
         Map<String, Problem> m = new HashMap<>();
         m.put("1", cases -> Drivers.driver1(cases));
+    m.put("2", cases -> Drivers.driver2(cases));
+        m.put("104", cases -> Drivers.driver104(cases));
+        m.put("3", cases -> Drivers.driver3(cases));
+        m.put("9", cases -> Drivers.driver9(cases));
+        m.put("11", cases -> Drivers.driver11(cases));
+        m.put("21", cases -> Drivers.driver21(cases));
+        m.put("42", cases -> Drivers.driver42(cases));
+        m.put("94", cases -> Drivers.driver94(cases));
+        m.put("98", cases -> Drivers.driver98(cases));
+        m.put("100", cases -> Drivers.driver100(cases));
+        m.put("102", cases -> Drivers.driver102(cases));
+        m.put("103", cases -> Drivers.driver103(cases));
+        m.put("110", cases -> Drivers.driver110(cases));
+        m.put("424", cases -> Drivers.driver424(cases));
+        m.put("438", cases -> Drivers.driver438(cases));
+        m.put("567", cases -> Drivers.driver567(cases));
+        m.put("739", cases -> Drivers.driver739(cases));
         return m;
     }
 }
@@ -125,7 +154,7 @@ class Drivers {
             int[] nums = toIntArray(tc.getAsJsonArray("input"));
             int target = tc.get("target").getAsInt();
             int[] want = toIntArray(tc.getAsJsonArray("expected"));
-            int[] got = new Solution().twoSum(nums, target);
+            int[] got = new P1_TwoSum().twoSum_local(nums, target);
             if (!Arrays.equals(got, want)) {
                 okAll = false;
             }
@@ -139,5 +168,279 @@ class Drivers {
         int[] a = new int[arr.size()];
         for (int i = 0; i < arr.size(); i++) a[i] = arr.get(i).getAsInt();
         return a;
+    }
+
+    private static List<List<Integer>> toListOfIntList(JsonArray arr) {
+        List<List<Integer>> out = new ArrayList<>();
+        if (arr == null) return out;
+        for (int i = 0; i < arr.size(); i++) {
+            JsonArray row = arr.get(i).getAsJsonArray();
+            List<Integer> r = new ArrayList<>();
+            for (int j = 0; j < row.size(); j++) r.add(row.get(j).getAsInt());
+            out.add(r);
+        }
+        return out;
+    }
+
+    private static boolean deepEquals2D(List<List<Integer>> a, List<List<Integer>> b) {
+        if (a.size() != b.size()) return false;
+        for (int i = 0; i < a.size(); i++) {
+            List<Integer> ra = a.get(i), rb = b.get(i);
+            if (ra.size() != rb.size()) return false;
+            for (int j = 0; j < ra.size(); j++) if (!Objects.equals(ra.get(j), rb.get(j))) return false;
+        }
+        return true;
+    }
+
+    // --- List helpers ---
+    private static ListNode buildList(JsonArray arr) {
+        if (arr == null || arr.size() == 0) return null;
+        ListNode dummy = new ListNode(0);
+        ListNode tail = dummy;
+        for (int i = 0; i < arr.size(); i++) {
+            int v = arr.get(i).getAsInt();
+            ListNode n = new ListNode(v);
+            tail.Next = n; tail.next = n; // keep aliases
+            tail = n;
+        }
+        return dummy.Next;
+    }
+    private static int[] listToArray(ListNode head) {
+        List<Integer> tmp = new ArrayList<>();
+        ListNode p = head;
+        while (p != null) {
+            tmp.add(p.val);
+            p = (p.Next != null ? p.Next : p.next);
+        }
+        int[] out = new int[tmp.size()];
+        for (int i = 0; i < tmp.size(); i++) out[i] = tmp.get(i);
+        return out;
+    }
+
+    // --- Tree helpers ---
+    private static Integer toNullableInt(JsonElement el) {
+        if (el == null || el.isJsonNull()) return null;
+        return el.getAsInt();
+    }
+
+    private static TreeNode buildTree(JsonArray arr) {
+        if (arr == null || arr.size() == 0) return null;
+        List<Integer> vals = new ArrayList<>(arr.size());
+        for (int i = 0; i < arr.size(); i++) {
+            vals.add(toNullableInt(arr.get(i)));
+        }
+        if (vals.get(0) == null) return null;
+        TreeNode root = new TreeNode(vals.get(0));
+        Queue<TreeNode> q = new ArrayDeque<>();
+        q.add(root);
+        int i = 1;
+        while (!q.isEmpty() && i < vals.size()) {
+            TreeNode cur = q.poll();
+            if (i < vals.size()) {
+                Integer lv = vals.get(i++);
+                if (lv != null) {
+                    cur.Left = new TreeNode(lv);
+                    cur.left = cur.Left; // keep aliases in sync
+                    q.add(cur.Left);
+                }
+            }
+            if (i < vals.size()) {
+                Integer rv = vals.get(i++);
+                if (rv != null) {
+                    cur.Right = new TreeNode(rv);
+                    cur.right = cur.Right; // keep aliases in sync
+                    q.add(cur.Right);
+                }
+            }
+        }
+        return root;
+    }
+
+    static Result driver104(List<JsonObject> cases) {
+        List<Integer> indices = new ArrayList<>();
+        boolean okAll = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            TreeNode root = buildTree(tc.getAsJsonArray("tree"));
+            int want = tc.get("expected").getAsInt();
+            int got = P104.run(root);
+            if (got != want) okAll = false;
+            indices.add(i+1);
+        }
+        return new Result(indices, okAll);
+    }
+
+    static Result driver2(List<JsonObject> cases){
+        List<Integer> indices = new ArrayList<>();
+        boolean okAll = true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc = cases.get(i);
+            ListNode l1 = buildList(tc.getAsJsonArray("l1"));
+            ListNode l2 = buildList(tc.getAsJsonArray("l2"));
+            int[] want = toIntArray(tc.getAsJsonArray("expected"));
+            ListNode res = new P2().new Solution().addTwoNumbers(l1,l2);
+            int[] got = listToArray(res);
+            if (!Arrays.equals(got, want)) okAll = false;
+            indices.add(i+1);
+        }
+        return new Result(indices, okAll);
+    }
+
+    // ==== Additional drivers ====
+    static Result driver3(List<JsonObject> cases) {
+        List<Integer> idx = new ArrayList<>(); boolean okAll = true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); String s=tc.get("input").getAsString(); int want=tc.get("expected").getAsInt();
+            int got = new P3().new Solution().lengthOfLongestSubstring(s);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver9(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int x=tc.get("input").getAsInt(); boolean want=tc.get("expected").getAsBoolean();
+            boolean got=new P9().new Solution().isPalindrome(x);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver11(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] h=toIntArray(tc.getAsJsonArray("input")); int want=tc.get("expected").getAsInt();
+            int got=new P11().new Solution().maxArea(h);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver21(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); ListNode l1=buildList(tc.getAsJsonArray("l1")); ListNode l2=buildList(tc.getAsJsonArray("l2"));
+            int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            ListNode gotHead=new P21().new Solution().mergeTwoLists(l1,l2);
+            int[] got=listToArray(gotHead);
+            if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver42(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] a=toIntArray(tc.getAsJsonArray("input")); int want=tc.get("expected").getAsInt();
+            int got=new P42().new Solution().trap(a);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver94(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode root=buildTree(tc.getAsJsonArray("tree")); int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            List<Integer> ans=new P94().new Solution().inorderTraversal(root);
+            int[] got=ans.stream().mapToInt(Integer::intValue).toArray();
+            if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver98(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode root=buildTree(tc.getAsJsonArray("tree")); boolean want=tc.get("expected").getAsBoolean();
+            boolean got=new P98().new Solution().isValidBST(root);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver100(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode p=buildTree(tc.getAsJsonArray("p")); TreeNode q=buildTree(tc.getAsJsonArray("q"));
+            boolean want=tc.get("expected").getAsBoolean();
+            boolean got=new P100().new Solution().isSameTree(p,q);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver102(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode root=buildTree(tc.getAsJsonArray("tree"));
+            List<List<Integer>> want=toListOfIntList(tc.getAsJsonArray("expected"));
+            List<List<Integer>> got=new P102().new Solution().levelOrder(root);
+            if (!deepEquals2D(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver103(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode root=buildTree(tc.getAsJsonArray("tree"));
+            List<List<Integer>> want=toListOfIntList(tc.getAsJsonArray("expected"));
+            List<List<Integer>> got=new P103().new Solution().zigzagLevelOrder(root);
+            if (!deepEquals2D(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver110(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode root=buildTree(tc.getAsJsonArray("tree")); boolean want=tc.get("expected").getAsBoolean();
+            boolean got=new P110().new Solution().isBalanced(root);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver424(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); String s=tc.get("input").getAsString(); int k=tc.get("k").getAsInt(); int want=tc.get("expected").getAsInt();
+            int got=new P424().new Solution().characterReplacement(s,k);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver438(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); String s=tc.get("s").getAsString(); String p=tc.get("p").getAsString(); int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            List<Integer> ans=new P438().new Solution().findAnagrams(s,p);
+            int[] got=ans.stream().mapToInt(Integer::intValue).toArray();
+            if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver567(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); String s1=tc.get("s1").getAsString(); String s2=tc.get("s2").getAsString(); boolean want=tc.get("expected").getAsBoolean();
+            boolean got=new P567().new Solution().checkInclusion(s1,s2);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver739(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] t=toIntArray(tc.getAsJsonArray("input")); int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            int[] got=new P739().new Solution().dailyTemperatures(t);
+            if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
     }
 }
