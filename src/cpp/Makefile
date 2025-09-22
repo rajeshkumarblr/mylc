@@ -2,8 +2,8 @@ SHELL := /bin/bash
 
 CXX ?= g++
 # Release vs Debug flags
-CXXFLAGS_RELEASE ?= -std=gnu++20 -O2 -pipe -Wall -Wextra -Wno-unused-parameter -I. -DLC_LOCAL_TEST
-CXXFLAGS_DEBUG   ?= -std=gnu++20 -O0 -g -fno-omit-frame-pointer -pipe -Wall -Wextra -Wno-unused-parameter -I. -DLC_LOCAL_TEST -DDEBUG -rdynamic
+CXXFLAGS_RELEASE ?= -std=gnu++20 -O2 -pipe -Wall -Wextra -Wno-unused-parameter -I. -Ithird_party -DLC_LOCAL_TEST
+CXXFLAGS_DEBUG   ?= -std=gnu++20 -O0 -g -fno-omit-frame-pointer -pipe -Wall -Wextra -Wno-unused-parameter -I. -Ithird_party -DLC_LOCAL_TEST -DDEBUG -rdynamic
 LDFLAGS ?=
 
 ROOT := $(abspath $(CURDIR)/../..)
