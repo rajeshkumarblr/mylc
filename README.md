@@ -2,7 +2,7 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 16  
+**Problems covered:** 19  
 **Languages:** C++, Go, Java
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
@@ -95,10 +95,11 @@ Expand a category to view its problems.
 </details>
 
 <details>
-<summary><strong>stack</strong> (1)</summary>
+<summary><strong>stack</strong> (2)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
+| [20](https://leetcode.com/problems/valid-parentheses/) | Valid Parentheses | Easy | 10 | C++ | [link](https://www.youtube.com/watch?v=WTzjTskDFMg) |
 | [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
 
 </details>

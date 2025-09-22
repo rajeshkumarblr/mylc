@@ -22,11 +22,11 @@ LC_LANG := cpp
 endif
 
 # Delegate all targets except 'submit' to language-specific Makefile
-.PHONY: all build run run-all build-all clean help fmt vet readme
+.PHONY: all build run run-all build-all clean help fmt vet readme dbg
 
 
 # Forward arguments for run/run-all/build-all
-all build run run-all build-all clean help fmt vet:
+all build run run-all build-all clean help fmt vet dbg:
 	$(MAKE) -C $(LANG_MAKE_DIR) $@ $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
 # Generate README Problems & status from testcases.json

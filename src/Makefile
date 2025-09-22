@@ -1,5 +1,3 @@
-dbg:
-
 # Default language: LC_LANG only (cpp|go)
 LC_LANG ?= cpp
 
@@ -11,9 +9,9 @@ else
 $(error Unknown LC_LANG '$(LC_LANG)'. Supported: cpp, go)
 endif
 
-.PHONY: all build run run-all build-all clean help fmt vet submit
+.PHONY: all build run run-all build-all clean help fmt vet submit dbg
 
-all build run run-all build-all clean help fmt vet:
+all build run run-all build-all clean help fmt vet dbg:
 	$(MAKE) -C $(LANG_MAKE_DIR) $@ $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
 
 submit:

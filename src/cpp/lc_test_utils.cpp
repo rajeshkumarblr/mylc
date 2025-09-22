@@ -459,6 +459,24 @@ bool lc_test_567(const json& j) {
     return all;
 }
 
+bool lc_test_20(const json& j) {
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::string input = tc.at("input").get<std::string>();
+        bool expect = tc.at("expected").get<bool>();
+        bool got = isValid(input);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  input=\"" << input << "\" got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        } else {
+            ++idx;
+        }
+        all &= ok;
+    }
+    return all;
+}
+
 bool lc_test_739(const json& j) {
     bool all = true;
     size_t idx = 0;

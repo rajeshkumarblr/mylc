@@ -81,6 +81,10 @@ bool isSameTree(TreeNode* p, TreeNode* q);
 bool lc_test_100(const json& j);
 std::string get_testcases_json_path();
 
+// Problem 20: Valid Parentheses
+bool isValid(std::string s);
+bool lc_test_20(const json& j);
+
 // Problem 739: Daily Temperatures
 std::vector<int> dailyTemperatures(std::vector<int> temperatures);
 bool lc_test_739(const json& j);

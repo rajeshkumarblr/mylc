@@ -21,7 +21,7 @@ public:
         }
         return {};
     }
-};
+    };
 // @lc code=end
 
 // Non-LeetCode wrapper for harness

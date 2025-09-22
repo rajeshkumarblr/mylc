@@ -241,6 +241,25 @@
       { "s1": "a", "s2": "b", "expected": false }
     ]
   },
+  "20": {
+    "category": "stack",
+    "description": "Valid Parentheses",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/valid-parentheses/",
+    "video": null,
+    "cases": [
+      { "input": "()", "expected": true },
+      { "input": "()[]{}", "expected": true },
+      { "input": "(]", "expected": false },
+      { "input": "([)]", "expected": false },
+      { "input": "{[]}", "expected": true },
+      { "input": "", "expected": true },
+      { "input": "(", "expected": false },
+      { "input": ")", "expected": false },
+      { "input": "((", "expected": false },
+      { "input": "))", "expected": false }
+    ]
+  },
   "739": {
       "category": "stack",
       "description": "Daily Temperatures",
