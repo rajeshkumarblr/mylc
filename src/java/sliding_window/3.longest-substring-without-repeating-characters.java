@@ -2,6 +2,7 @@ class P3 {
     // @lc app=leetcode id=3 lang=java
     // @lc code=start
     public class Solution {
+        // Array-based approach (main solution)
         public int lengthOfLongestSubstring(String s) {
             int[] last = new int[256];
             java.util.Arrays.fill(last, -1);

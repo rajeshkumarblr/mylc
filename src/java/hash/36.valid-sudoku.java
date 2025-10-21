@@ -1,14 +1,9 @@
-/*
- * @lc app=leetcode id=36 lang=java
- *
- * [36] Valid Sudoku
- */
-
-// @lc code=start
-
 import java.util.*;
 
-class Solution {
+class P36 {
+    // @lc app=leetcode id=36 lang=java
+    // @lc code=start
+    public class Solution {
     public boolean isValidSudoku(char[][] board) {
 
         if(board==null || board.length ==0 || board[0].length ==0)
@@ -73,9 +68,8 @@ class Solution {
         }
 
         return true;
-
-        
     }
+    }
+    // @lc code=end
 }
-// @lc code=end
 

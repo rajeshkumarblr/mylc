@@ -1,12 +1,12 @@
 import java.util.HashSet;
 import java.util.Set;
 
-public class P3_alt_sol_2 {
+class P3_alt_hashset {
     
      // @lc app=leetcode id=3 lang=java
     // @lc code=start
     public class Solution {
-         public int lengthOfLongestSubstring_sol_2(String s) {
+         public int lengthOfLongestSubstring(String s) {
         
         if(s == null ) {
             return 0;

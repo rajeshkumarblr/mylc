@@ -51,12 +51,14 @@ class Registry {
     static Map<String, Problem> build() {
         Map<String, Problem> m = new HashMap<>();
         m.put("1", cases -> Drivers.driver1(cases));
-    m.put("2", cases -> Drivers.driver2(cases));
+        m.put("2", cases -> Drivers.driver2(cases));
         m.put("104", cases -> Drivers.driver104(cases));
-        m.put("3", cases -> Drivers.driver3(cases));
+        m.put("3", cases -> Drivers.driver3_auto(cases));
         m.put("9", cases -> Drivers.driver9(cases));
         m.put("11", cases -> Drivers.driver11(cases));
         m.put("21", cases -> Drivers.driver21(cases));
+        m.put("35", cases -> Drivers.driver35(cases));
+        m.put("36", cases -> Drivers.driver36(cases));
         m.put("42", cases -> Drivers.driver42(cases));
         m.put("94", cases -> Drivers.driver94(cases));
         m.put("98", cases -> Drivers.driver98(cases));
@@ -64,8 +66,14 @@ class Registry {
         m.put("102", cases -> Drivers.driver102(cases));
         m.put("103", cases -> Drivers.driver103(cases));
         m.put("110", cases -> Drivers.driver110(cases));
+        m.put("160", cases -> Drivers.driver160(cases));
+        m.put("200", cases -> Drivers.driver200(cases));
+        m.put("206", cases -> Drivers.driver206(cases));
+        m.put("226", cases -> Drivers.driver226(cases));
+        m.put("238", cases -> Drivers.driver238(cases));
         m.put("424", cases -> Drivers.driver424(cases));
         m.put("438", cases -> Drivers.driver438(cases));
+        m.put("560", cases -> Drivers.driver560(cases));
         m.put("567", cases -> Drivers.driver567(cases));
         m.put("739", cases -> Drivers.driver739(cases));
         return m;
@@ -256,6 +264,40 @@ class Drivers {
         return root;
     }
 
+    private static char[][] to2DCharArray(JsonArray arr) {
+        char[][] result = new char[arr.size()][];
+        for (int i = 0; i < arr.size(); i++) {
+            JsonArray row = arr.get(i).getAsJsonArray();
+            result[i] = new char[row.size()];
+            for (int j = 0; j < row.size(); j++) {
+                result[i][j] = row.get(j).getAsString().charAt(0);
+            }
+        }
+        return result;
+    }
+
+    private static int[] treeToArray(TreeNode root) {
+        if (root == null) return new int[0];
+        List<Integer> result = new ArrayList<>();
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            TreeNode cur = q.poll();
+            if (cur != null) {
+                result.add(cur.val);
+                q.add(cur.left);
+                q.add(cur.right);
+            } else {
+                result.add(null);
+            }
+        }
+        // Remove trailing nulls
+        while (!result.isEmpty() && result.get(result.size() - 1) == null) {
+            result.remove(result.size() - 1);
+        }
+        return result.stream().mapToInt(x -> x == null ? 0 : x).toArray();
+    }
+
     static Result driver104(List<JsonObject> cases) {
         List<Integer> indices = new ArrayList<>();
         boolean okAll = true;
@@ -296,6 +338,66 @@ class Drivers {
         }
         return new Result(idx, okAll);
     }
+    
+    static Result driver3_auto(List<JsonObject> cases) {
+        System.out.println("Running problem 3 with multiple solutions:");
+        List<Integer> idx = new ArrayList<>();
+        boolean allPass = true;
+        
+        // Solution 1: Main (array-based)
+        System.out.println("  Solution 1 (main - array-based):");
+        boolean pass1 = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            String s = tc.get("input").getAsString();
+            int want = tc.get("expected").getAsInt();
+            int got = new P3().new Solution().lengthOfLongestSubstring(s);
+            if (got != want) {
+                System.out.printf("    Case %d: FAIL got=%d expected=%d\n", i+1, got, want);
+                pass1 = false;
+            }
+            idx.add(i + 1);
+        }
+        System.out.println("    " + (pass1 ? "PASS" : "FAIL"));
+        allPass &= pass1;
+        
+        // Solution 2: HashSet-based  
+        System.out.println("  Solution 2 (hashset-based):");
+        boolean pass2 = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            String s = tc.get("input").getAsString();
+            int want = tc.get("expected").getAsInt();
+            int got = new P3_alt_hashset().new Solution().lengthOfLongestSubstring(s);
+            if (got != want) {
+                System.out.printf("    Case %d: FAIL got=%d expected=%d\n", i+1, got, want);
+                pass2 = false;
+            }
+        }
+        System.out.println("    " + (pass2 ? "PASS" : "FAIL"));
+        allPass &= pass2;
+        
+        // Solution 3: HashMap-based
+        System.out.println("  Solution 3 (hashmap-based):");
+        boolean pass3 = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            String s = tc.get("input").getAsString();
+            int want = tc.get("expected").getAsInt();
+            int got = new P3_alt_hashmap().new Solution().lengthOfLongestSubstring(s);
+            if (got != want) {
+                System.out.printf("    Case %d: FAIL got=%d expected=%d\n", i+1, got, want);
+                pass3 = false;
+            }
+        }
+        System.out.println("    " + (pass3 ? "PASS" : "FAIL"));
+        allPass &= pass3;
+        
+        return new Result(idx, allPass);
+    }
+
+
+
 
     static Result driver9(List<JsonObject> cases){
         List<Integer> idx=new ArrayList<>(); boolean okAll=true;
@@ -440,6 +542,154 @@ class Drivers {
             JsonObject tc=cases.get(i); int[] t=toIntArray(tc.getAsJsonArray("input")); int[] want=toIntArray(tc.getAsJsonArray("expected"));
             int[] got=new P739().new Solution().dailyTemperatures(t);
             if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver35(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] nums=toIntArray(tc.getAsJsonArray("nums")); int target=tc.get("target").getAsInt(); int want=tc.get("expected").getAsInt();
+            int got=new P35().new Solution().searchInsert(nums,target);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver36(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); char[][] board=to2DCharArray(tc.getAsJsonArray("board")); boolean want=tc.get("expected").getAsBoolean();
+            boolean got=new P36().new Solution().isValidSudoku(board);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver160(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i);
+            int intersectVal=tc.has("intersectVal") ? tc.get("intersectVal").getAsInt() : 0;
+            
+            ListNode headA, headB;
+            
+            if(intersectVal == 0) {
+                // No intersection
+                headA = buildList(tc.getAsJsonArray("listA"));
+                headB = buildList(tc.getAsJsonArray("listB"));
+            } else {
+                // Create intersection properly
+                JsonArray arrA = tc.getAsJsonArray("listA");
+                JsonArray arrB = tc.getAsJsonArray("listB");
+                int skipA = tc.get("skipA").getAsInt();
+                int skipB = tc.get("skipB").getAsInt();
+                
+                // Build the shared intersection part first (from skipA onward in listA)
+                ListNode intersection = null;
+                if (skipA < arrA.size()) {
+                    ListNode dummy = new ListNode(0);
+                    ListNode tail = dummy;
+                    for (int k = skipA; k < arrA.size(); k++) {
+                        ListNode n = new ListNode(arrA.get(k).getAsInt());
+                        tail.Next = n; tail.next = n;
+                        tail = n;
+                    }
+                    intersection = dummy.Next;
+                }
+                
+                // Build listA up to intersection, then connect
+                headA = null;
+                if (skipA > 0) {
+                    ListNode dummy = new ListNode(0);
+                    ListNode tail = dummy;
+                    for (int k = 0; k < skipA; k++) {
+                        ListNode n = new ListNode(arrA.get(k).getAsInt());
+                        tail.Next = n; tail.next = n;
+                        tail = n;
+                    }
+                    tail.Next = intersection; tail.next = intersection;
+                    headA = dummy.Next;
+                } else {
+                    headA = intersection;
+                }
+                
+                // Build listB up to intersection, then connect
+                headB = null;
+                if (skipB > 0) {
+                    ListNode dummy = new ListNode(0);
+                    ListNode tail = dummy;
+                    for (int k = 0; k < skipB; k++) {
+                        ListNode n = new ListNode(arrB.get(k).getAsInt());
+                        tail.Next = n; tail.next = n;
+                        tail = n;
+                    }
+                    tail.Next = intersection; tail.next = intersection;
+                    headB = dummy.Next;
+                } else {
+                    headB = intersection;
+                }
+            }
+            Integer want=tc.has("expected") && !tc.get("expected").isJsonNull() ? tc.get("expected").getAsInt() : null;
+            ListNode gotNode=new P160().new Solution().getIntersectionNode(headA,headB);
+            Integer got=gotNode!=null ? gotNode.val : null;
+            if (!Objects.equals(got,want)) okAll=false; 
+            idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver200(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); char[][] grid=to2DCharArray(tc.getAsJsonArray("grid")); int want=tc.get("expected").getAsInt();
+            int got=new P200().new Solution().numIslands(grid);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver206(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); 
+            ListNode head=buildList(tc.getAsJsonArray("head")); 
+            int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            ListNode gotHead=new P206().new Solution().reverseList(head);
+            int[] got=listToArray(gotHead);
+            if (!Arrays.equals(got,want)) okAll=false; 
+            idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver226(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); TreeNode root=buildTree(tc.getAsJsonArray("root")); int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            TreeNode gotRoot=new P226().new Solution().invertTree(root);
+            int[] got=treeToArray(gotRoot);
+            if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver238(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] nums=toIntArray(tc.getAsJsonArray("nums")); int[] want=toIntArray(tc.getAsJsonArray("expected"));
+            int[] got=new P238().new Solution().productExceptSelf(nums);
+            if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver560(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] nums=toIntArray(tc.getAsJsonArray("nums")); int k=tc.get("k").getAsInt(); int want=tc.get("expected").getAsInt();
+            int got=new P560().new Solution().subarraySum(nums,k);
+            if (got!=want) okAll=false; idx.add(i+1);
         }
         return new Result(idx, okAll);
     }

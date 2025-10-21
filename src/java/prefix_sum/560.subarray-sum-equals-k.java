@@ -1,13 +1,9 @@
-/*
- * @lc app=leetcode id=560 lang=java
- *
- * [560] Subarray Sum Equals K
- */
-
-// @lc code=start
 import java.util.*;
-class Solution_560 {
-class Solution {
+
+class P560 {
+    // @lc app=leetcode id=560 lang=java
+    // @lc code=start
+    public class Solution {
     public int subarraySum(int[] nums, int k) {
         Map<Integer,Integer> prefixMap = new HashMap<>();
                         //base case
@@ -30,7 +26,7 @@ class Solution {
 
         return numOfSubarray;
     }
+    }
+    // @lc code=end
 }
-}
-// @lc code=end
 

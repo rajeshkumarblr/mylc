@@ -1,43 +1,22 @@
-/*
- * @lc app=leetcode id=206 lang=java
- *
- * [206] Reverse Linked List
- */
-
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- * int val;
- * ListNode next;
- * ListNode() {}
- * ListNode(int val) { this.val = val; }
- * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode reverseList(ListNode head) {
-
-        if (head != null) {
-            return getReversdList(head);
+class P206 {
+    // @lc app=leetcode id=206 lang=java
+    // @lc code=start
+    public class Solution {
+        public ListNode reverseList(ListNode head) {
+            ListNode prev = null;
+            ListNode curr = head;
+            
+            while (curr != null) {
+                ListNode next = (curr.Next != null ? curr.Next : curr.next);
+                // Update both fields to maintain consistency
+                curr.next = prev;
+                curr.Next = prev;
+                prev = curr;
+                curr = next;
+            }
+            
+            return prev;
         }
-
-        return head;
-
     }
-
-    public ListNode getReversdList(ListNode head) {
-
-        if (head.next == null) {
-            return head;
-        }
-
-        ListNode newHead = getReversdList(head.next);
-
-        head.next.next = head;
-        head.next = null;
-        return newHead;
-    }
-
+    // @lc code=end
 }
-// @lc code=end

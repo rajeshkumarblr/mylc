@@ -1,11 +1,7 @@
-/*
- * @lc app=leetcode id=238 lang=java
- *
- * [238] Product of Array Except Self
- */
-
-// @lc code=start
-class Solution {
+class P238 {
+    // @lc app=leetcode id=238 lang=java
+    // @lc code=start
+    public class Solution {
     public int[] productExceptSelf(int[] nums) {
      if (nums == null | nums.length == 0) {
                 return null;
@@ -29,9 +25,9 @@ class Solution {
                 res[i] = rightProduct * res[i];
                 rightProduct *= nums[i];
             }
-            
             return res;   
     }
+    }
+    // @lc code=end
 }
-// @lc code=end
 

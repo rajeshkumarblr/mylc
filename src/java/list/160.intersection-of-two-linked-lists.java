@@ -1,77 +1,50 @@
-/*
- * @lc app=leetcode id=160 lang=java
- *
- * [160] Intersection of Two Linked Lists
- */
-
-// @lc code=start
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) {
- *         val = x;
- *         next = null;
- *     }
- * }
- */
-
- //* Definition for singly-linked list.
-   class ListNode {
-      int val;
-      ListNode next;
-      ListNode(int x) {
-          val = x;
-          next = null;
-      }
-  }
- 
- class Solution {
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        int lenA = getLength(headA);
+class P160 {
+    // @lc app=leetcode id=160 lang=java
+    // @lc code=start 
+    public class Solution {
+        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+            if (headA == null || headB == null) return null;
+            
+            // Calculate lengths
+            int lenA = getLength(headA);
             int lenB = getLength(headB);
-System.out.println("lenA:" + lenA);
-            System.out.println("lenB:" + lenB);
-            if(lenA > lenB) {
-                int diff = lenA - lenB;
-                for(int i =0; i< diff; i++) {
-                    headA = headA.next;
+            
+            // Align the starting points
+            ListNode pA = headA;
+            ListNode pB = headB;
+            
+            if (lenA > lenB) {
+                for (int i = 0; i < lenA - lenB; i++) {
+                    pA = (pA.Next != null ? pA.Next : pA.next);
+                }
+            } else if (lenB > lenA) {
+                for (int i = 0; i < lenB - lenA; i++) {
+                    pB = (pB.Next != null ? pB.Next : pB.next);
                 }
             }
-
-            if(lenB> lenA) {
-                int diff = lenB - lenA;
-                for(int i =0; i< diff; i++) {
-                    headB= headB.next;
+            
+            // Find intersection
+            while (pA != null && pB != null) {
+                if (pA == pB) {
+                    return pA;
                 }
+                pA = (pA.Next != null ? pA.Next : pA.next);
+                pB = (pB.Next != null ? pB.Next : pB.next);
             }
-
-            while(headA != headB) {
-
-                headA = headA.next;
-                headB= headB.next;
-                if(headA == null || headB==null) {
-                    return null;
-                }
-                
-            }
-
-            return headA;
-
-
+            
+            return null;
         }
-
-
-        public int getLength(ListNode listNode) {
+        
+        private int getLength(ListNode head) {
             int length = 0;
-            while(listNode!=null) {
-                listNode = listNode.next;
-                length ++;
+            ListNode curr = head;
+            while (curr != null) {
+                length++;
+                curr = (curr.Next != null ? curr.Next : curr.next);
             }
             return length;
         }
-    
+    }
+    // @lc code=end
 }
-// @lc code=end
 
