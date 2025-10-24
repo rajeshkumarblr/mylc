@@ -88,3 +88,39 @@ bool lc_test_20(const json& j);
 // Problem 739: Daily Temperatures
 std::vector<int> dailyTemperatures(std::vector<int> temperatures);
 bool lc_test_739(const json& j);
+
+// Problem 35: Search Insert Position
+int searchInsert(std::vector<int>& nums, int target);
+bool lc_test_35(const json& j);
+
+// Problem 36: Valid Sudoku
+bool isValidSudoku(std::vector<std::vector<char>>& board);
+bool lc_test_36(const json& j);
+
+// Problem 160: Intersection of Two Linked Lists
+ListNode* getIntersectionNode(ListNode* headA, ListNode* headB);
+bool lc_test_160(const json& j);
+
+// Problem 200: Number of Islands
+int numIslands(std::vector<std::vector<char>>& grid);
+bool lc_test_200(const json& j);
+
+// Problem 206: Reverse Linked List
+ListNode* reverseList(ListNode* head);
+bool lc_test_206(const json& j);
+
+// Problem 226: Invert Binary Tree
+TreeNode* invertTree(TreeNode* root);
+bool lc_test_226(const json& j);
+
+// Problem 238: Product of Array Except Self
+std::vector<int> productExceptSelf(std::vector<int>& nums);
+bool lc_test_238(const json& j);
+
+// Problem 560: Subarray Sum Equals K
+int subarraySum(std::vector<int>& nums, int k);
+bool lc_test_560(const json& j);
+
+// Helper functions for tree conversion
+TreeNode* vec_to_tree(const std::vector<int>& data);
+std::vector<int> tree_to_vec(TreeNode* root);
