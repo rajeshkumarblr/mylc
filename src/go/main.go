@@ -11,6 +11,7 @@ var funcRegistry = map[string]interface{}{
 	"3":   lengthOfLongestSubstring,
 	"9":   isPalindrome,
 	"11":  maxArea,
+	"15":  threeSum,
 	"20":  isValid,
 	"21":  mergeTwoLists,
 	"35":  searchInsert,

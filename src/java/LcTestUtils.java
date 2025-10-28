@@ -56,6 +56,7 @@ class Registry {
         m.put("3", cases -> Drivers.driver3_auto(cases));
         m.put("9", cases -> Drivers.driver9(cases));
         m.put("11", cases -> Drivers.driver11(cases));
+        m.put("15", cases -> Drivers.driver15(cases));
         m.put("20", cases -> Drivers.driver20(cases));
         m.put("21", cases -> Drivers.driver21(cases));
         m.put("35", cases -> Drivers.driver35(cases));
@@ -416,6 +417,36 @@ class Drivers {
             JsonObject tc=cases.get(i); int[] h=toIntArray(tc.getAsJsonArray("input")); int want=tc.get("expected").getAsInt();
             int got=new P11().new Solution().maxArea(h);
             if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver15(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); 
+            int[] nums=toIntArray(tc.getAsJsonArray("nums")); 
+            List<List<Integer>> want=toListOfIntList(tc.getAsJsonArray("expected"));
+            List<List<Integer>> got=new P15().threeSum(nums);
+            
+            // Sort both lists for comparison since order may vary
+            got.sort((a, b) -> {
+                for (int j = 0; j < Math.min(a.size(), b.size()); j++) {
+                    int cmp = Integer.compare(a.get(j), b.get(j));
+                    if (cmp != 0) return cmp;
+                }
+                return Integer.compare(a.size(), b.size());
+            });
+            want.sort((a, b) -> {
+                for (int j = 0; j < Math.min(a.size(), b.size()); j++) {
+                    int cmp = Integer.compare(a.get(j), b.get(j));
+                    if (cmp != 0) return cmp;
+                }
+                return Integer.compare(a.size(), b.size());
+            });
+            
+            if (!deepEquals2D(got,want)) okAll=false; 
+            idx.add(i+1);
         }
         return new Result(idx, okAll);
     }

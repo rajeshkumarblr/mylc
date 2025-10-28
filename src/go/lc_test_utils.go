@@ -28,6 +28,7 @@ var problemDescriptions = map[string]string{
 	"3":   "longest substring",
 	"9":   "palindrome number",
 	"11":  "container with most water",
+	"15":  "3sum",
 	"20":  "valid parentheses",
 	"21":  "merge two sorted lists",
 	"35":  "search insert position",
@@ -148,6 +149,9 @@ func sliceInt(tcKey string, tc map[string]interface{}) []int {
 
 func slice2DInt(tcKey string, tc map[string]interface{}) [][]int {
 	src := tc[tcKey].([]interface{})
+	if len(src) == 0 {
+		return [][]int{}
+	}
 	out := make([][]int, len(src))
 	for i, lv := range src {
 		level := lv.([]interface{})
@@ -583,6 +587,49 @@ func driver226_InvertTree(fn interface{}, tests []map[string]interface{}) ([]int
 	return caseIdx, okAll
 }
 
+// 15. 3sum  func([]int) [][]int
+func driver15_ThreeSum(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int) [][]int)
+	for i, tc := range tests {
+		nums := sliceInt("nums", tc)
+		want := slice2DInt("expected", tc)
+		got := f(nums)
+
+		// Sort both slices for comparison
+		sort.Slice(got, func(i, j int) bool {
+			minLen := len(got[i])
+			if len(got[j]) < minLen {
+				minLen = len(got[j])
+			}
+			for k := 0; k < minLen; k++ {
+				if got[i][k] != got[j][k] {
+					return got[i][k] < got[j][k]
+				}
+			}
+			return len(got[i]) < len(got[j])
+		})
+		sort.Slice(want, func(i, j int) bool {
+			minLen := len(want[i])
+			if len(want[j]) < minLen {
+				minLen = len(want[j])
+			}
+			for k := 0; k < minLen; k++ {
+				if want[i][k] != want[j][k] {
+					return want[i][k] < want[j][k]
+				}
+			}
+			return len(want[i]) < len(want[j])
+		})
+
+		if !reflect.DeepEqual(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 // 238. product of array except self  func([]int) []int
 func driver238_ProductExceptSelf(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
 	caseIdx, okAll := make([]int, 0, len(tests)), true
@@ -623,6 +670,7 @@ var drivers = map[string]Driver{
 	"3":   driver3_LongestSubstring,
 	"9":   driver9_PalindromeNumber,
 	"11":  driver11_MaxArea,
+	"15":  driver15_ThreeSum,
 	"21":  driver21_MergeTwoLists,
 	"42":  driver42_Trap,
 	"94":  driver94_InorderTraversal,

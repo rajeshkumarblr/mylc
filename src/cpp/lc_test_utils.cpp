@@ -215,6 +215,28 @@ bool lc_test_21(const json& j) {
     return all;
 }
 
+bool lc_test_15(const json& j) {
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::vector<int> nums = tc.at("nums").get<std::vector<int>>();
+        std::vector<std::vector<int>> expect = tc.at("expected").get<std::vector<std::vector<int>>>();
+        std::vector<std::vector<int>> got = threeSum(nums);
+        
+        // Sort both expected and got to compare properly (since order may vary)
+        std::sort(expect.begin(), expect.end());
+        std::sort(got.begin(), got.end());
+        
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL" << std::endl;
+        } else {
+            ++idx;
+        }
+        all &= ok;
+    }
+    return all;
+}
 
 bool lc_test_42(const json& j) {
     bool all = true;

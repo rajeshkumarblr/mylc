@@ -34,6 +34,10 @@ bool lc_test_3(const json& j);
 int maxArea(std::vector<int>& height);
 bool lc_test_11(const json& j);
 
+// Problem 15: 3Sum
+std::vector<std::vector<int>> threeSum(std::vector<int>& nums);
+bool lc_test_15(const json& j);
+
 // Helper to create a linked list from a vector
 ListNode* vec_to_list(const std::vector<int>& v);
 // Helper to convert a linked list to a vector
