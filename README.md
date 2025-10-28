@@ -2,7 +2,7 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 19  
+**Problems covered:** 27  
 **Languages:** C++, Go, Java
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
@@ -30,15 +30,15 @@ export LC_LANG=cpp   # or: go | java
   testcases.json   # single source of truth for problems & cases
   src/
     cpp/
-      hash/ list/ sliding_window/ misc/ two_pointer/ tree/
+      binary_search/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.cpp  # per-problem sources grouped by category
       main.cpp lc_test_utils.*  Makefile
     go/
-      hash/ list/ sliding_window/ misc/ two_pointer/ tree/
+      binary_search/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.go   # per-problem sources grouped by category
       main.go lc_test_utils.go Makefile
     java/
-      hash/ list/ sliding_window/ misc/ two_pointer/ tree/
+      binary_search/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.java # per-problem sources grouped by category
       Main.java LcTestUtils.java Makefile
   build/           # build artifacts (created on demand)
@@ -55,21 +55,42 @@ export LC_LANG=cpp   # or: go | java
 Expand a category to view its problems.
 
 <details>
-<summary><strong>hash</strong> (1)</summary>
+<summary><strong>binary_search</strong> (1)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy | 2 | C++, Go, Java | [link](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
+| [35](https://leetcode.com/problems/search-insert-position/) | Search Insert Position | Easy | 4 | C++, Go, Java | - |
 
 </details>
 
 <details>
-<summary><strong>list</strong> (2)</summary>
+<summary><strong>graphs</strong> (1)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [200](https://leetcode.com/problems/number-of-islands/) | Number of Islands | Medium | 2 | C++, Go, Java | - |
+
+</details>
+
+<details>
+<summary><strong>hash</strong> (2)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy | 2 | C++, Go, Java | [link](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
+| [36](https://leetcode.com/problems/valid-sudoku/) | Valid Sudoku | Medium | 2 | C++, Go, Java | - |
+
+</details>
+
+<details>
+<summary><strong>list</strong> (4)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
 | [2](https://leetcode.com/problems/add-two-numbers/) | Add Two Numbers | Medium | 1 | C++, Go, Java | [link](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
 | [21](https://leetcode.com/problems/merge-two-sorted-lists/) | Merge Two Sorted Lists | Easy | 7 | C++, Go, Java | [link](https://www.youtube.com/watch?v=XIdigk956u0) |
+| [160](https://leetcode.com/problems/intersection-of-two-linked-lists/) | Intersection of Two Linked Lists | Easy | 3 | C++, Go, Java | - |
+| [206](https://leetcode.com/problems/reverse-linked-list/) | Reverse Linked List | Easy | 3 | C++, Go, Java | - |
 
 </details>
 
@@ -79,6 +100,16 @@ Expand a category to view its problems.
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
 | [9](https://leetcode.com/problems/palindrome-number/) | Palindrome Number | Easy | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=f5qF2OowB5A) |
+
+</details>
+
+<details>
+<summary><strong>prefix_sum</strong> (2)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [238](https://leetcode.com/problems/product-of-array-except-self/) | Product of Array Except Self | Medium | 2 | C++, Go, Java | - |
+| [560](https://leetcode.com/problems/subarray-sum-equals-k/) | Subarray Sum Equals K | Medium | 2 | C++, Go, Java | - |
 
 </details>
 
@@ -99,13 +130,13 @@ Expand a category to view its problems.
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
-| [20](https://leetcode.com/problems/valid-parentheses/) | Valid Parentheses | Easy | 10 | C++ | [link](https://www.youtube.com/watch?v=WTzjTskDFMg) |
+| [20](https://leetcode.com/problems/valid-parentheses/) | Valid Parentheses | Easy | 10 | C++, Go, Java | [link](https://www.youtube.com/watch?v=WTzjTskDFMg) |
 | [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
 
 </details>
 
 <details>
-<summary><strong>tree</strong> (7)</summary>
+<summary><strong>tree</strong> (8)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
@@ -116,6 +147,7 @@ Expand a category to view its problems.
 | [103](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | Binary Tree Zigzag Level Order Traversal | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=s6ATEkipzow) |
 | [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | Maximum Depth of Binary Tree | Easy | 8 | C++, Go, Java | [link](https://www.youtube.com/watch?v=hTM3phVI6YQ) |
 | [110](https://leetcode.com/problems/balanced-binary-tree/) | Balanced Binary Tree | Easy | 8 | C++, Go, Java | [link](https://www.youtube.com/watch?v=QfJsau0ItOY) |
+| [226](https://leetcode.com/problems/invert-binary-tree/) | Invert Binary Tree | Easy | 3 | C++, Go, Java | - |
 
 </details>
 
@@ -131,7 +163,7 @@ Expand a category to view its problems.
 
 > Counts reflect entries in `testcases.json`. If you add/modify cases there, re-run `./run -l` to inspect.
 ### Categories
-Current categories: `hash`, `list`, `sliding_window`, `misc`, `two_pointer`, `tree`.
+Current categories: `binary_search`, `graphs`, `hash`, `list`, `misc`, `prefix_sum`, `sliding_window`, `stack`, `tree`, `two_pointer`.
 
 ### Adding a new problem (quick checklist)
 1. Append its spec & cases to `testcases.json` (unique numeric id, category, description, cases array).
