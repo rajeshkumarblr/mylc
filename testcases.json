@@ -4,7 +4,7 @@
     "description": "Two Sum",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/two-sum/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=KLlXCFG5TnA",
     "cases": [
       { "input": [2,7,11,15], "target": 9, "expected": [0,1] },
       { "input": [3,2,4], "target": 6, "expected": [1,2] }
@@ -15,7 +15,7 @@
     "description": "Add Two Numbers",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/add-two-numbers/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=wgFPrzTjm7s",
     "cases": [
       { "l1": [2,4,3], "l2": [5,6,4], "expected": [7,0,8] }
     ]
@@ -25,7 +25,7 @@
     "description": "Longest Substring Without Repeating Characters",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=wiGpQwVHdE0",
     "cases": [
       { "input": "abcabcbb", "expected": 3 },
       { "input": "bbbbb", "expected": 1 }
@@ -36,7 +36,7 @@
     "description": "Palindrome Number",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/palindrome-number/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=f5qF2OowB5A",
     "cases": [
       { "input": 121, "expected": true },
       { "input": -121, "expected": false },
@@ -51,7 +51,7 @@
     "description": "Container With Most Water",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/container-with-most-water/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=UuiTKBwPgAo",
     "cases": [
       { "input": [8,7,2,2], "expected": 7 },
       { "input": [1,8,6,2,5,4,8,3,7], "expected": 49 },
@@ -69,7 +69,7 @@
     "description": "Merge Two Sorted Lists",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/merge-two-sorted-lists/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=XIdigk956u0",
     "cases": [
       { "l1": [1,2,4], "l2": [1,3,4], "expected": [1,1,2,3,4,4] },
       { "l1": [], "l2": [], "expected": [] },
@@ -85,7 +85,7 @@
     "description": "Trapping Rain Water",
     "difficulty": "hard",
     "url": "https://leetcode.com/problems/trapping-rain-water/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=ZI2z5pq0TqA",
     "cases": [
       { "input": [0,1,0,2,1,0,1,3,2,1,2,1], "expected": 6 },
       { "input": [4,2,0,3,2,5], "expected": 9 },
@@ -100,7 +100,7 @@
     "description": "Binary Tree Inorder Traversal",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=g_S5WuasWUE",
     "cases": [
       { "tree": [1,null,2,3], "expected": [1,3,2] },
       { "tree": [], "expected": [] },
@@ -129,7 +129,7 @@
     "description": "Same Tree",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/same-tree/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=vRbbcKXCxOw",
     "cases": [
       { "p": [], "q": [], "expected": true },
       { "p": [1,2,3], "q": [1,2,3], "expected": true },
@@ -143,7 +143,7 @@
     "description": "Binary Tree Level Order Traversal",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=6ZnyEApgFYg",
     "cases": [
       { "tree": [], "expected": [] },
       { "tree": [1], "expected": [[1]] },
@@ -157,7 +157,7 @@
     "description": "Binary Tree Zigzag Level Order Traversal",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=s6ATEkipzow",
     "cases": [
       { "tree": [], "expected": [] },
       { "tree": [1], "expected": [[1]] },
@@ -171,7 +171,7 @@
     "description": "Maximum Depth of Binary Tree",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=hTM3phVI6YQ",
     "cases": [
       { "tree": [3,9,20,null,null,15,7], "expected": 3 },
       { "tree": [], "expected": 0 },
@@ -188,7 +188,7 @@
     "description": "Balanced Binary Tree",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/balanced-binary-tree/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=QfJsau0ItOY",
     "cases": [
       { "tree": [3,9,20,null,null,15,7], "expected": true },
       { "tree": [], "expected": true },
@@ -205,7 +205,7 @@
     "description": "Longest Repeating Character Replacement",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=gqXU1UyA8pk",
     "cases": [
       { "input": "AABABBA", "k": 1, "expected": 4 },
       { "input": "ABAB", "k": 2, "expected": 4 },
@@ -219,7 +219,7 @@
     "description": "Find All Anagrams in a String",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=G8xtZy0fDKg",
     "cases": [
       { "s": "cbaebabacd", "p": "abc", "expected": [0,6] },
       { "s": "abab", "p": "ab", "expected": [0,1,2] },
@@ -232,7 +232,7 @@
     "description": "Permutation in String",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/permutation-in-string/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=UbyhOgBN834",
     "cases": [
       { "s1": "ab", "s2": "eidbaooo", "expected": true },
       { "s1": "ab", "s2": "eidboaoo", "expected": false },
@@ -246,7 +246,7 @@
     "description": "Valid Parentheses",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/valid-parentheses/",
-    "video": null,
+    "video": "https://www.youtube.com/watch?v=WTzjTskDFMg",
     "cases": [
       { "input": "()", "expected": true },
       { "input": "()[]{}", "expected": true },
@@ -265,7 +265,7 @@
       "description": "Daily Temperatures",
       "difficulty": "medium",
       "url": "https://leetcode.com/problems/daily-temperatures/",
-      "video": null,
+      "video": "https://www.youtube.com/watch?v=cTBiBSnjO3c",
       "cases": [
         { "input": [73,74,75,71,69,72,76,73], "expected": [1,1,4,2,1,1,0,0] },
         { "input": [30,40,50,60], "expected": [1,1,1,0] },
