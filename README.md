@@ -2,7 +2,7 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 27  
+**Problems covered:** 28  
 **Languages:** C++, Go, Java
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
@@ -152,11 +152,12 @@ Expand a category to view its problems.
 </details>
 
 <details>
-<summary><strong>two_pointer</strong> (2)</summary>
+<summary><strong>two_pointer</strong> (3)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
 |---:|---|:---:|---:|---|---|
 | [11](https://leetcode.com/problems/container-with-most-water/) | Container With Most Water | Medium | 9 | C++, Go, Java | [link](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
+| [15](https://leetcode.com/problems/3sum/) | 3Sum | Medium | 4 | C++, Go, Java | - |
 | [42](https://leetcode.com/problems/trapping-rain-water/) | Trapping Rain Water | Hard | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
 
 </details>
