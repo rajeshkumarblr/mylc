@@ -24,6 +24,7 @@ var funcRegistry = map[string]interface{}{
 	"103": zigzagLevelOrder,
 	"104": maxDepth,
 	"110": isBalanced,
+	"139": wordBreak,
 	"160": getIntersectionNode,
 	"200": numIslands,
 	"206": reverseList,

@@ -13,7 +13,7 @@ CENTRAL := $(BIN_DIR)/runner
 BIN_DIR_DBG := $(BIN_DIR)/dbg
 CENTRAL_DBG := $(BIN_DIR)/runner.dbg
 
-CATEGORY_DIRS := hash list sliding_window misc two_pointer tree stack binary_search graphs prefix_sum
+CATEGORY_DIRS := hash list sliding_window misc two_pointer tree stack binary_search graphs prefix_sum dp
 PROBLEM_SRCS := $(filter-out $(SRC_DIR)/main.cpp, \
 	$(wildcard $(SRC_DIR)/*.cpp) \
 	$(foreach d,$(CATEGORY_DIRS),$(wildcard $(SRC_DIR)/$(d)/*.cpp)))

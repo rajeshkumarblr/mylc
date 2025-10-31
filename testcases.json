@@ -392,5 +392,18 @@
       { "nums": [0,0,0], "expected": [[0,0,0]] },
       { "nums": [-2,0,1,1,2], "expected": [[-2,0,2],[-2,1,1]] }
     ]
+  },
+  "139": {
+    "category": "dp",
+    "description": "Word Break",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/word-break/",
+    "video": "https://www.youtube.com/watch?v=Sx9NNgInc3A",
+    "cases": [
+      { "s": "leetcode", "wordDict": ["leet","code"], "expected": true },
+      { "s": "applepenapple", "wordDict": ["apple","pen"], "expected": true },
+      { "s": "catsandog", "wordDict": ["cats","dog","sand","and","cat"], "expected": false },
+      { "s": "aaaaaaa", "wordDict": ["aaaa","aaa"], "expected": true }
+    ]
   }
 }

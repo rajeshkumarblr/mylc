@@ -2,7 +2,7 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 28  
+**Problems covered:** 29  
 **Languages:** C++, Go, Java
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
@@ -30,15 +30,15 @@ export LC_LANG=cpp   # or: go | java
   testcases.json   # single source of truth for problems & cases
   src/
     cpp/
-      binary_search/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
+      binary_search/ dp/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.cpp  # per-problem sources grouped by category
       main.cpp lc_test_utils.*  Makefile
     go/
-      binary_search/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
+      binary_search/ dp/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.go   # per-problem sources grouped by category
       main.go lc_test_utils.go Makefile
     java/
-      binary_search/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
+      binary_search/ dp/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.java # per-problem sources grouped by category
       Main.java LcTestUtils.java Makefile
   build/           # build artifacts (created on demand)
@@ -152,6 +152,15 @@ Expand a category to view its problems.
 </details>
 
 <details>
+<summary><strong>dp</strong> (1)</summary>
+
+| # | Problem | Diff | Test cases | Languages | Video |
+|---:|---|:---:|---:|---|---|
+| [139](https://leetcode.com/problems/word-break/) | Word Break | Medium | 4 | C++, Go, Java | [link](https://www.youtube.com/watch?v=Sx9NNgInc3A) |
+
+</details>
+
+<details>
 <summary><strong>two_pointer</strong> (3)</summary>
 
 | # | Problem | Diff | Test cases | Languages | Video |
@@ -164,7 +173,7 @@ Expand a category to view its problems.
 
 > Counts reflect entries in `testcases.json`. If you add/modify cases there, re-run `./run -l` to inspect.
 ### Categories
-Current categories: `binary_search`, `graphs`, `hash`, `list`, `misc`, `prefix_sum`, `sliding_window`, `stack`, `tree`, `two_pointer`.
+Current categories: `binary_search`, `dp`, `graphs`, `hash`, `list`, `misc`, `prefix_sum`, `sliding_window`, `stack`, `tree`, `two_pointer`.
 
 ### Adding a new problem (quick checklist)
 1. Append its spec & cases to `testcases.json` (unique numeric id, category, description, cases array).

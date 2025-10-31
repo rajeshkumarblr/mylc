@@ -41,7 +41,8 @@ var problemDescriptions = map[string]string{
 	"103": "zigzag level order",
 	"104": "max depth",
 	"110": "is balanced",
-	"160": "intersection of two linked lists",
+	"139": "word break",
+	"160": "intersection linked list",
 	"200": "number of islands",
 	"206": "reverse linked list",
 	"226": "invert binary tree",
@@ -663,6 +664,27 @@ func driver560_SubarraySum(fn interface{}, tests []map[string]interface{}) ([]in
 	return caseIdx, okAll
 }
 
+// 139. word break  func(string, []string) bool
+func driver139_WordBreak(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(string, []string) bool)
+	for i, tc := range tests {
+		s := tc["s"].(string)
+		wordDictInterface := tc["wordDict"].([]interface{})
+		wordDict := make([]string, len(wordDictInterface))
+		for j, word := range wordDictInterface {
+			wordDict[j] = word.(string)
+		}
+		want := tc["expected"].(bool)
+		got := f(s, wordDict)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 // Registry of problem → driver
 var drivers = map[string]Driver{
 	"1":   driver1_TwoSum,
@@ -680,6 +702,7 @@ var drivers = map[string]Driver{
 	"103": driver103_ZigzagLevelOrder,
 	"104": driver104_MaxDepth,
 	"110": driver110_IsBalanced,
+	"139": driver139_WordBreak,
 	"424": driver424_CharacterReplacement,
 	"438": driver438_FindAnagrams,
 	"567": driver567_CheckInclusion,

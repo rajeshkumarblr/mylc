@@ -125,6 +125,10 @@ bool lc_test_238(const json& j);
 int subarraySum(std::vector<int>& nums, int k);
 bool lc_test_560(const json& j);
 
+// Problem 139: Word Break
+bool wordBreak(std::string s, std::vector<std::string>& wordDict);
+bool lc_test_139(const json& j);
+
 // Helper functions for tree conversion
 TreeNode* vec_to_tree(const std::vector<int>& data);
 std::vector<int> tree_to_vec(TreeNode* root);

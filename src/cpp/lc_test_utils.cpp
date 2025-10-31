@@ -762,6 +762,25 @@ std::vector<int> tree_to_vec(TreeNode* root) {
     return result;
 }
 
+bool lc_test_139(const json& j) {
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::string s = tc.at("s").get<std::string>();
+        std::vector<std::string> wordDict = tc.at("wordDict").get<std::vector<std::string>>();
+        bool expect = tc.at("expected").get<bool>();
+        bool got = wordBreak(s, wordDict);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  s=\"" << s << "\" got=" << (got ? "true" : "false") << " expected=" << (expect ? "true" : "false") << "\n";
+        } else {
+            ++idx;
+        }
+        all &= ok;
+    }
+    return all;
+}
+
 std::string get_testcases_json_path() {
     const char* env = std::getenv("REPO_ROOT");
     if (env) {

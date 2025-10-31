@@ -10,7 +10,7 @@ LIB_DIR := lib
 LIBS := $(LIB_DIR)/gson-2.10.1.jar
 
 SRC_ROOT := .
-SRC_DIRS := . hash list misc sliding_window two_pointer tree stack binary_search prefix_sum graphs
+SRC_DIRS := . hash list misc sliding_window two_pointer tree stack binary_search prefix_sum graphs dp
 JAVA_SRCS := $(sort $(wildcard *.java) $(foreach d,$(SRC_DIRS),$(wildcard $(d)/*.java)))
 
 .PHONY: all build clean distclean help
