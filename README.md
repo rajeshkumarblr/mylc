@@ -52,126 +52,55 @@ export LC_LANG=cpp   # or: go | java
 - Java 17+ (OpenJDK recommended). Java support is fully integrated across the solved problems. We use a pinned Gson jar (no Maven/Gradle required).
 
 ## Problems & status
-Expand a category to view its problems.
 
-<details>
-<summary><strong>binary_search</strong> (1)</summary>
+All 29 problems implemented across C++, Go, and Java. Use `./run -l` to list problems, `./run -c <category>` to run by category.
 
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [35](https://leetcode.com/problems/search-insert-position/) | Search Insert Position | Easy | 4 | C++, Go, Java | - |
+| ID | Problem | Category | Difficulty | Cases | C++ | Go | Java | Video |
+|---:|---|---|---|---:|---|---|---|---|
+| [1](src/cpp/hash/1.two-sum.cpp) | Two Sum | hash | Easy | 2 | [✓](src/cpp/hash/1.two-sum.cpp) | [✓](src/go/hash/1.two.sum.go) | [✓](src/java/hash/1.two-sum.java) | [📺](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
+| [2](src/cpp/list/2.add-two-numbers.cpp) | Add Two Numbers | list | Medium | 1 | [✓](src/cpp/list/2.add-two-numbers.cpp) | [✓](src/go/list/2.add-two-numbers.go) | [✓](src/java/list/2.add-two-numbers.java) | [📺](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
+| [3](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp) | Longest Substring Without Repeating Characters | sliding_window | Medium | 2 | [✓](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp) | [✓](src/go/sliding_window/3.longest-substring-without-repeating-characters.go) | [✓](src/java/sliding_window/3.longest-substring-without-repeating-characters.java) | [📺](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
+| [9](src/cpp/misc/9.palindrome-number.cpp) | Palindrome Number | misc | Easy | 6 | [✓](src/cpp/misc/9.palindrome-number.cpp) | [✓](src/go/misc/9.palindrome-number.go) | [✓](src/java/misc/9.palindrome-number.java) | [📺](https://www.youtube.com/watch?v=f5qF2OowB5A) |
+| [11](src/cpp/two_pointer/11.container-with-most-water.cpp) | Container With Most Water | two_pointer | Medium | 9 | [✓](src/cpp/two_pointer/11.container-with-most-water.cpp) | [✓](src/go/two_pointer/11.container-with-most-water.go) | [✓](src/java/two_pointer/11.container-with-most-water.java) | [📺](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
+| [15](src/cpp/two_pointer/15.3-sum.cpp) | 3Sum | two_pointer | Medium | 4 | [✓](src/cpp/two_pointer/15.3-sum.cpp) | [✓](src/go/two_pointer/15.3-sum.go) | [✓](src/java/two_pointer/15.3-sum.java) | - |
+| [20](src/cpp/stack/20.valid-parentheses.cpp) | Valid Parentheses | stack | Easy | 10 | [✓](src/cpp/stack/20.valid-parentheses.cpp) | [✓](src/go/stack/20.valid-parentheses.go) | [✓](src/java/stack/20.valid-parentheses.java) | [📺](https://www.youtube.com/watch?v=WTzjTskDFMg) |
+| [21](src/cpp/list/21.merge-two-sorted-lists.cpp) | Merge Two Sorted Lists | list | Easy | 7 | [✓](src/cpp/list/21.merge-two-sorted-lists.cpp) | [✓](src/go/list/21.merge-two-sorted-lists.go) | [✓](src/java/list/21.merge-two-sorted-lists.java) | [📺](https://www.youtube.com/watch?v=XIdigk956u0) |
+| [35](src/cpp/binary_search/35.search-insert-position.cpp) | Search Insert Position | binary_search | Easy | 4 | [✓](src/cpp/binary_search/35.search-insert-position.cpp) | [✓](src/go/binary_search/35.search-insert-position.go) | [✓](src/java/binary_search/35.search-insert-position.java) | - |
+| [36](src/cpp/hash/36.valid-sudoku.cpp) | Valid Sudoku | hash | Medium | 2 | [✓](src/cpp/hash/36.valid-sudoku.cpp) | [✓](src/go/hash/36.valid-sudoku.go) | [✓](src/java/hash/36.valid-sudoku.java) | - |
+| [42](src/cpp/two_pointer/42.trapping-rain-water.cpp) | Trapping Rain Water | two_pointer | Hard | 6 | [✓](src/cpp/two_pointer/42.trapping-rain-water.cpp) | [✓](src/go/two_pointer/42.trapping-rain-water.go) | [✓](src/java/two_pointer/42.trapping-rain-water.java) | [📺](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
+| [94](src/cpp/tree/94.binary-tree-inorder-traversal.cpp) | Binary Tree Inorder Traversal | tree | Easy | 5 | [✓](src/cpp/tree/94.binary-tree-inorder-traversal.cpp) | [✓](src/go/tree/94.binary-tree-inorder-traversal.go) | [✓](src/java/tree/94.binary-tree-inorder-traversal.java) | [📺](https://www.youtube.com/watch?v=g_S5WuasWUE) |
+| [98](src/cpp/tree/98.validate-binary-search-tree.cpp) | Validate Binary Search Tree | tree | Medium | 6 | [✓](src/cpp/tree/98.validate-binary-search-tree.cpp) | [✓](src/go/tree/98.validate-binary-search-tree.go) | [✓](src/java/tree/98.validate-binary-search-tree.java) | - |
+| [100](src/cpp/tree/100.same-tree.cpp) | Same Tree | tree | Easy | 5 | [✓](src/cpp/tree/100.same-tree.cpp) | [✓](src/go/tree/100.same-tree.go) | [✓](src/java/tree/100.same-tree.java) | [📺](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
+| [102](src/cpp/tree/102.binary-tree-level-order-traversal.cpp) | Binary Tree Level Order Traversal | tree | Medium | 5 | [✓](src/cpp/tree/102.binary-tree-level-order-traversal.cpp) | [✓](src/go/tree/102.binary-tree-level-order-traversal.go) | [✓](src/java/tree/102.binary-tree-level-order-traversal.java) | [📺](https://www.youtube.com/watch?v=6ZnyEApgFYg) |
+| [103](src/cpp/tree/103.binary-tree-zigzag-level-order-traversal.cpp) | Binary Tree Zigzag Level Order Traversal | tree | Medium | 5 | [✓](src/cpp/tree/103.binary-tree-zigzag-level-order-traversal.cpp) | [✓](src/go/tree/103.binary-tree-zigzag-level-order-traversal.go) | [✓](src/java/tree/103.binary-tree-zigzag-level-order-traversal.java) | [📺](https://www.youtube.com/watch?v=s6ATEkipzow) |
+| [104](src/cpp/tree/104.maximum-depth-of-binary-tree.cpp) | Maximum Depth of Binary Tree | tree | Easy | 8 | [✓](src/cpp/tree/104.maximum-depth-of-binary-tree.cpp) | [✓](src/go/tree/104.maximum-depth-of-binary-tree.go) | [✓](src/java/tree/104.maximum-depth-of-binary-tree.java) | [📺](https://www.youtube.com/watch?v=hTM3phVI6YQ) |
+| [110](src/cpp/tree/110.balanced-binary-tree.cpp) | Balanced Binary Tree | tree | Easy | 8 | [✓](src/cpp/tree/110.balanced-binary-tree.cpp) | [✓](src/go/tree/110.balanced-binary-tree.go) | [✓](src/java/tree/110.balanced-binary-tree.java) | [📺](https://www.youtube.com/watch?v=QfJsau0ItOY) |
+| [139](src/cpp/dp/139.word-break.cpp) | Word Break | dp | Medium | 4 | [✓](src/cpp/dp/139.word-break.cpp) | [✓](src/go/dp/139.word-break.go) | [✓](src/java/dp/P139.java) | [📺](https://www.youtube.com/watch?v=Sx9NNgInc3A) |
+| [160](src/cpp/list/160.intersection-of-two-linked-lists.cpp) | Intersection of Two Linked Lists | list | Easy | 3 | [✓](src/cpp/list/160.intersection-of-two-linked-lists.cpp) | [✓](src/go/list/160.intersection-of-two-linked-lists.go) | [✓](src/java/list/160.intersection-of-two-linked-lists.java) | - |
+| [200](src/cpp/graphs/200.number-of-islands.cpp) | Number of Islands | graphs | Medium | 2 | [✓](src/cpp/graphs/200.number-of-islands.cpp) | [✓](src/go/graphs/200.number-of-islands.go) | [✓](src/java/graphs/200.number-of-islands.java) | - |
+| [206](src/cpp/list/206.reverse-linked-list.cpp) | Reverse Linked List | list | Easy | 3 | [✓](src/cpp/list/206.reverse-linked-list.cpp) | [✓](src/go/list/206.reverse-linked-list.go) | [✓](src/java/list/206.reverse-linked-list.java) | - |
+| [226](src/cpp/tree/226.invert-binary-tree.cpp) | Invert Binary Tree | tree | Easy | 3 | [✓](src/cpp/tree/226.invert-binary-tree.cpp) | [✓](src/go/tree/226.invert-binary-tree.go) | [✓](src/java/tree/226.invert-binary-tree.java) | - |
+| [238](src/cpp/prefix_sum/238.product-of-array-except-self.cpp) | Product of Array Except Self | prefix_sum | Medium | 2 | [✓](src/cpp/prefix_sum/238.product-of-array-except-self.cpp) | [✓](src/go/prefix_sum/238.product-of-array-except-self.go) | [✓](src/java/prefix_sum/238.product-of-array-except-self.java) | - |
+| [424](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp) | Longest Repeating Character Replacement | sliding_window | Medium | 5 | [✓](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp) | [✓](src/go/sliding_window/424.longest-repeating-character-replacement.go) | [✓](src/java/sliding_window/424.longest-repeating-character-replacement.java) | [📺](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
+| [438](src/cpp/sliding_window/438.find-all-anagrams-in-a-string.cpp) | Find All Anagrams in a String | sliding_window | Medium | 4 | [✓](src/cpp/sliding_window/438.find-all-anagrams-in-a-string.cpp) | [✓](src/go/sliding_window/438.find-all-anagrams-in-a-string.go) | [✓](src/java/sliding_window/438.find-all-anagrams-in-a-string.java) | [📺](https://www.youtube.com/watch?v=G8xtZy0fDKg) |
+| [560](src/cpp/prefix_sum/560.subarray-sum-equals-k.cpp) | Subarray Sum Equals K | prefix_sum | Medium | 2 | [✓](src/cpp/prefix_sum/560.subarray-sum-equals-k.cpp) | [✓](src/go/prefix_sum/560.subarray-sum-equals-k.go) | [✓](src/java/prefix_sum/560.subarray-sum-equals-k.java) | - |
+| [567](src/cpp/sliding_window/567.permutation-in-string.cpp) | Permutation in String | sliding_window | Medium | 5 | [✓](src/cpp/sliding_window/567.permutation-in-string.cpp) | [✓](src/go/sliding_window/567.permutation-in-string.go) | [✓](src/java/sliding_window/567.permutation-in-string.java) | [📺](https://www.youtube.com/watch?v=UbyhOgBN834) |
+| [739](src/cpp/stack/739.daily-temperatures.cpp) | Daily Temperatures | stack | Medium | 6 | [✓](src/cpp/stack/739.daily-temperatures.cpp) | [✓](src/go/stack/739.daily-temperatures.go) | [✓](src/java/stack/739.daily-temperatures.java) | [📺](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
 
-</details>
+### Filter by Category
+- **binary_search**: [35](#35)
+- **dp**: [139](#139)
+- **graphs**: [200](#200)
+- **hash**: [1](#1), [36](#36)
+- **list**: [2](#2), [21](#21), [160](#160), [206](#206)
+- **misc**: [9](#9)
+- **prefix_sum**: [238](#238), [560](#560)
+- **sliding_window**: [3](#3), [424](#424), [438](#438), [567](#567)
+- **stack**: [20](#20), [739](#739)
+- **tree**: [94](#94), [98](#98), [100](#100), [102](#102), [103](#103), [104](#104), [110](#110), [226](#226)
+- **two_pointer**: [11](#11), [15](#15), [42](#42)
 
-<details>
-<summary><strong>graphs</strong> (1)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [200](https://leetcode.com/problems/number-of-islands/) | Number of Islands | Medium | 2 | C++, Go, Java | - |
-
-</details>
-
-<details>
-<summary><strong>hash</strong> (2)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [1](https://leetcode.com/problems/two-sum/) | Two Sum | Easy | 2 | C++, Go, Java | [link](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
-| [36](https://leetcode.com/problems/valid-sudoku/) | Valid Sudoku | Medium | 2 | C++, Go, Java | - |
-
-</details>
-
-<details>
-<summary><strong>list</strong> (4)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [2](https://leetcode.com/problems/add-two-numbers/) | Add Two Numbers | Medium | 1 | C++, Go, Java | [link](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
-| [21](https://leetcode.com/problems/merge-two-sorted-lists/) | Merge Two Sorted Lists | Easy | 7 | C++, Go, Java | [link](https://www.youtube.com/watch?v=XIdigk956u0) |
-| [160](https://leetcode.com/problems/intersection-of-two-linked-lists/) | Intersection of Two Linked Lists | Easy | 3 | C++, Go, Java | - |
-| [206](https://leetcode.com/problems/reverse-linked-list/) | Reverse Linked List | Easy | 3 | C++, Go, Java | - |
-
-</details>
-
-<details>
-<summary><strong>misc</strong> (1)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [9](https://leetcode.com/problems/palindrome-number/) | Palindrome Number | Easy | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=f5qF2OowB5A) |
-
-</details>
-
-<details>
-<summary><strong>prefix_sum</strong> (2)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [238](https://leetcode.com/problems/product-of-array-except-self/) | Product of Array Except Self | Medium | 2 | C++, Go, Java | - |
-| [560](https://leetcode.com/problems/subarray-sum-equals-k/) | Subarray Sum Equals K | Medium | 2 | C++, Go, Java | - |
-
-</details>
-
-<details>
-<summary><strong>sliding_window</strong> (4)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [3](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Longest Substring Without Repeating Characters | Medium | 2 | C++, Go, Java | [link](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
-| [424](https://leetcode.com/problems/longest-repeating-character-replacement/) | Longest Repeating Character Replacement | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
-| [438](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Find All Anagrams in a String | Medium | 4 | C++, Go, Java | [link](https://www.youtube.com/watch?v=G8xtZy0fDKg) |
-| [567](https://leetcode.com/problems/permutation-in-string/) | Permutation in String | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=UbyhOgBN834) |
-
-</details>
-
-<details>
-<summary><strong>stack</strong> (2)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [20](https://leetcode.com/problems/valid-parentheses/) | Valid Parentheses | Easy | 10 | C++, Go, Java | [link](https://www.youtube.com/watch?v=WTzjTskDFMg) |
-| [739](https://leetcode.com/problems/daily-temperatures/) | Daily Temperatures | Medium | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
-
-</details>
-
-<details>
-<summary><strong>tree</strong> (8)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [94](https://leetcode.com/problems/binary-tree-inorder-traversal/) | Binary Tree Inorder Traversal | Easy | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=g_S5WuasWUE) |
-| [98](https://leetcode.com/problems/validate-binary-search-tree/) | Validate Binary Search Tree | Medium | 6 | C++, Go, Java | - |
-| [100](https://leetcode.com/problems/same-tree/) | Same Tree | Easy | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
-| [102](https://leetcode.com/problems/binary-tree-level-order-traversal/) | Binary Tree Level Order Traversal | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=6ZnyEApgFYg) |
-| [103](https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/) | Binary Tree Zigzag Level Order Traversal | Medium | 5 | C++, Go, Java | [link](https://www.youtube.com/watch?v=s6ATEkipzow) |
-| [104](https://leetcode.com/problems/maximum-depth-of-binary-tree/) | Maximum Depth of Binary Tree | Easy | 8 | C++, Go, Java | [link](https://www.youtube.com/watch?v=hTM3phVI6YQ) |
-| [110](https://leetcode.com/problems/balanced-binary-tree/) | Balanced Binary Tree | Easy | 8 | C++, Go, Java | [link](https://www.youtube.com/watch?v=QfJsau0ItOY) |
-| [226](https://leetcode.com/problems/invert-binary-tree/) | Invert Binary Tree | Easy | 3 | C++, Go, Java | - |
-
-</details>
-
-<details>
-<summary><strong>dp</strong> (1)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [139](https://leetcode.com/problems/word-break/) | Word Break | Medium | 4 | C++, Go, Java | [link](https://www.youtube.com/watch?v=Sx9NNgInc3A) |
-
-</details>
-
-<details>
-<summary><strong>two_pointer</strong> (3)</summary>
-
-| # | Problem | Diff | Test cases | Languages | Video |
-|---:|---|:---:|---:|---|---|
-| [11](https://leetcode.com/problems/container-with-most-water/) | Container With Most Water | Medium | 9 | C++, Go, Java | [link](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
-| [15](https://leetcode.com/problems/3sum/) | 3Sum | Medium | 4 | C++, Go, Java | - |
-| [42](https://leetcode.com/problems/trapping-rain-water/) | Trapping Rain Water | Hard | 6 | C++, Go, Java | [link](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
-
-</details>
-
-> Counts reflect entries in `testcases.json`. If you add/modify cases there, re-run `./run -l` to inspect.
+> Use `./run -c <category>` to test problems by category. Problem counts reflect `testcases.json` entries.
 ### Categories
 Current categories: `binary_search`, `dp`, `graphs`, `hash`, `list`, `misc`, `prefix_sum`, `sliding_window`, `stack`, `tree`, `two_pointer`.
 
