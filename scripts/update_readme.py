@@ -93,9 +93,9 @@ def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, s
         "",
         f"All {len(problems)} problems implemented across C++, Go, and Java. Use `./run -l` to list problems, `./run -c <category>` to run by category.",
         "",
-        "_Click problem ID to view LeetCode problem description. Click ✓ to view source code._",
+        "_Click problem ID to view LeetCode problem description (opens in new tab). Click ✓ to view source code. Click 📺 for NeetCode explanation videos._",
         "",
-        "| ID | Problem | Category | Difficulty | Cases | C++ | Go | Java | Video |",
+        "| ID | Problem | Category | Difficulty | Test Cases | C++ | Go | Java | NeetCode Explanation Video |",
         "|---:|---|---|---|---:|---|---|---|---|"
     ]
     
@@ -113,7 +113,7 @@ def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, s
                     return os.path.relpath(files[0], REPO_ROOT).replace(os.sep, "/")
                 return f"src/{lang.lower()}/{cat}/{pid_str}.{ext}"
         
-        # ID column links to LeetCode problem page
+        # ID column links to LeetCode problem page (opens in new tab)
         if url:
             # Ensure the URL has the /description/ suffix for better UX
             leetcode_url = url
@@ -122,7 +122,7 @@ def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, s
                     leetcode_url += 'description/'
                 else:
                     leetcode_url += '/description/'
-            id_cell = f"[{pid_str}]({leetcode_url})"
+            id_cell = f'<a href="{leetcode_url}" target="_blank">{pid_str}</a>'
         else:
             id_cell = pid_str
         
