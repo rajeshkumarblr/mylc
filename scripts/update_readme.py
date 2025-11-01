@@ -93,6 +93,8 @@ def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, s
         "",
         f"All {len(problems)} problems implemented across C++, Go, and Java. Use `./run -l` to list problems, `./run -c <category>` to run by category.",
         "",
+        "_Click problem ID to view LeetCode problem description. Click ✓ to view source code._",
+        "",
         "| ID | Problem | Category | Difficulty | Cases | C++ | Go | Java | Video |",
         "|---:|---|---|---|---:|---|---|---|---|"
     ]
@@ -111,12 +113,21 @@ def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, s
                     return os.path.relpath(files[0], REPO_ROOT).replace(os.sep, "/")
                 return f"src/{lang.lower()}/{cat}/{pid_str}.{ext}"
         
-        # ID column links to C++ implementation
-        cpp_path = get_impl_path("cpp", "cpp")
-        id_cell = f"[{pid_str}]({cpp_path})"
+        # ID column links to LeetCode problem page
+        if url:
+            # Ensure the URL has the /description/ suffix for better UX
+            leetcode_url = url
+            if not leetcode_url.endswith('/description/'):
+                if leetcode_url.endswith('/'):
+                    leetcode_url += 'description/'
+                else:
+                    leetcode_url += '/description/'
+            id_cell = f"[{pid_str}]({leetcode_url})"
+        else:
+            id_cell = pid_str
         
         # Individual language links
-        cpp_link = f"[✓]({cpp_path})" if "C++" in langs else "-"
+        cpp_link = f"[✓]({get_impl_path('cpp', 'cpp')})" if "C++" in langs else "-"
         go_link = f"[✓]({get_impl_path('go', 'go')})" if "Go" in langs else "-"
         java_link = f"[✓]({get_impl_path('java', 'java')})" if "Java" in langs else "-"
         
