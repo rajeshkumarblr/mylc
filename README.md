@@ -103,6 +103,576 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 - **two_pointer**: [11](#11), [15](#15), [42](#42)
 
 > Use `./run -c <category>` to test problems by category. Problem counts reflect `testcases.json` entries.
+
+---
+
+## 📋 Problem Details
+
+_Click to expand individual problem descriptions, examples, and test cases._
+
+<details>
+<summary><strong>LC1: Two Sum</strong> (Easy) - hash</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/two-sum/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=KLlXCFG5TnA
+
+**💻 Solutions**:
+- [C++](src/cpp/hash/1.two-sum.cpp)
+- [Go](src/go/hash/1.two.sum.go)
+- [Java](src/java/hash/1.two-sum.java)
+
+**🧪 Test Cases** (2 cases):
+1. `{"input": [2, 7, 11, 15], "target": 9, "expected": [0, 1]}`
+2. `{"input": [3, 2, 4], "target": 6, "expected": [1, 2]}`
+
+</details>
+
+<details>
+<summary><strong>LC2: Add Two Numbers</strong> (Medium) - list</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/add-two-numbers/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=wgFPrzTjm7s
+
+**💻 Solutions**:
+- [C++](src/cpp/list/2.add-two-numbers.cpp)
+- [Go](src/go/list/2.add-two-numbers.go)
+- [Java](src/java/list/2.add-two-numbers.java)
+
+**🧪 Test Cases** (1 cases):
+1. `{"l1": [2, 4, 3], "l2": [5, 6, 4], "expected": [7, 0, 8]}`
+
+</details>
+
+<details>
+<summary><strong>LC3: Longest Substring Without Repeating Characters</strong> (Medium) - sliding_window</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=wiGpQwVHdE0
+
+**💻 Solutions**:
+- [C++](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp)
+- [Go](src/go/sliding_window/3.longest-substring-without-repeating-characters.go)
+- [Java](src/java/sliding_window/3.longest-substring-without-repeating-characters.java)
+
+**🧪 Test Cases** (2 cases):
+1. `{"input": "abcabcbb", "expected": 3}`
+2. `{"input": "bbbbb", "expected": 1}`
+
+</details>
+
+<details>
+<summary><strong>LC9: Palindrome Number</strong> (Easy) - misc</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/palindrome-number/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=f5qF2OowB5A
+
+**💻 Solutions**:
+- [C++](src/cpp/misc/9.palindrome-number.cpp)
+- [Go](src/go/misc/9.palindrome-number.go)
+- [Java](src/java/misc/9.palindrome-number.java)
+
+**🧪 Test Cases** (6 cases):
+1. `{"input": 121, "expected": True}`
+2. `{"input": -121, "expected": False}`
+3. `{"input": 10, "expected": False}`
+   ... and 3 more cases
+
+</details>
+
+<details>
+<summary><strong>LC11: Container With Most Water</strong> (Medium) - two_pointer</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/container-with-most-water/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=UuiTKBwPgAo
+
+**💻 Solutions**:
+- [C++](src/cpp/two_pointer/11.container-with-most-water.cpp)
+- [Go](src/go/two_pointer/11.container-with-most-water.go)
+- [Java](src/java/two_pointer/11.container-with-most-water.java)
+
+**🧪 Test Cases** (9 cases):
+1. `{"input": [8, 7, 2, 2], "expected": 7}`
+2. `{"input": [1, 8, 6, 2, 5, 4, 8, 3, 7], "expected": 49}`
+3. `{"input": [1, 1], "expected": 1}`
+   ... and 6 more cases
+
+</details>
+
+<details>
+<summary><strong>LC15: 3Sum</strong> (Medium) - two_pointer</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/3sum/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=jzZsG8n2R9A
+
+**💻 Solutions**:
+- [C++](src/cpp/two_pointer/15.3-sum.cpp)
+- [Go](src/go/two_pointer/15.3-sum.go)
+- [Java](src/java/two_pointer/15.3-sum.java)
+
+**🧪 Test Cases** (4 cases):
+1. `{"nums": [-1, 0, 1, 2, -1, -4], "expected": [[-1, -1, 2], [-1, 0, 1]]}`
+2. `{"nums": [0, 1, 1], "expected": []}`
+3. `{"nums": [0, 0, 0], "expected": [[0, 0, 0]]}`
+   ... and 1 more cases
+
+</details>
+
+<details>
+<summary><strong>LC20: Valid Parentheses</strong> (Easy) - stack</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/valid-parentheses/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=WTzjTskDFMg
+
+**💻 Solutions**:
+- [C++](src/cpp/stack/20.valid-parentheses.cpp)
+- [Go](src/go/stack/20.valid-parentheses.go)
+- [Java](src/java/stack/20.valid-parentheses.java)
+
+**🧪 Test Cases** (10 cases):
+1. `{"input": "()", "expected": True}`
+2. `{"input": "()[]{}", "expected": True}`
+3. `{"input": "(]", "expected": False}`
+   ... and 7 more cases
+
+</details>
+
+<details>
+<summary><strong>LC21: Merge Two Sorted Lists</strong> (Easy) - list</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/merge-two-sorted-lists/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=XIdigk956u0
+
+**💻 Solutions**:
+- [C++](src/cpp/list/21.merge-two-sorted-lists.cpp)
+- [Go](src/go/list/21.merge-two-sorted-lists.go)
+- [Java](src/java/list/21.merge-two-sorted-lists.java)
+
+**🧪 Test Cases** (7 cases):
+1. `{"l1": [1, 2, 4], "l2": [1, 3, 4], "expected": [1, 1, 2, 3, 4, 4]}`
+2. `{"l1": [], "l2": [], "expected": []}`
+3. `{"l1": [], "l2": [0], "expected": [0]}`
+   ... and 4 more cases
+
+</details>
+
+<details>
+<summary><strong>LC35: Search Insert Position</strong> (Easy) - binary_search</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/search-insert-position/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=K-RYzDZkzCI
+
+**💻 Solutions**:
+- [C++](src/cpp/binary_search/35.search-insert-position.cpp)
+- [Go](src/go/binary_search/35.search-insert-position.go)
+- [Java](src/java/binary_search/35.search-insert-position.java)
+
+**🧪 Test Cases** (4 cases):
+1. `{"nums": [1, 3, 5, 6], "target": 5, "expected": 2}`
+2. `{"nums": [1, 3, 5, 6], "target": 2, "expected": 1}`
+3. `{"nums": [1, 3, 5, 6], "target": 7, "expected": 4}`
+   ... and 1 more cases
+
+</details>
+
+<details>
+<summary><strong>LC36: Valid Sudoku</strong> (Medium) - hash</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/valid-sudoku/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=TjFXEUCMqI8
+
+**💻 Solutions**:
+- [C++](src/cpp/hash/36.valid-sudoku.cpp)
+- [Go](src/go/hash/36.valid-sudoku.go)
+- [Java](src/java/hash/36.valid-sudoku.java)
+
+**🧪 Test Cases** (2 cases):
+1. `{"board": [["5", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "...`
+2. `{"board": [["8", "3", ".", ".", "7", ".", ".", ".", "."], ["6", ".", ".", "1", "9", "5", ".", ".", "...`
+
+</details>
+
+<details>
+<summary><strong>LC42: Trapping Rain Water</strong> (Hard) - two_pointer</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/trapping-rain-water/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=ZI2z5pq0TqA
+
+**💻 Solutions**:
+- [C++](src/cpp/two_pointer/42.trapping-rain-water.cpp)
+- [Go](src/go/two_pointer/42.trapping-rain-water.go)
+- [Java](src/java/two_pointer/42.trapping-rain-water.java)
+
+**🧪 Test Cases** (6 cases):
+1. `{"input": [0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1], "expected": 6}`
+2. `{"input": [4, 2, 0, 3, 2, 5], "expected": 9}`
+3. `{"input": [1, 2, 3, 4, 5], "expected": 0}`
+   ... and 3 more cases
+
+</details>
+
+<details>
+<summary><strong>LC94: Binary Tree Inorder Traversal</strong> (Easy) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/binary-tree-inorder-traversal/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=g_S5WuasWUE
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/94.binary-tree-inorder-traversal.cpp)
+- [Go](src/go/tree/94.binary-tree-inorder-traversal.go)
+- [Java](src/java/tree/94.binary-tree-inorder-traversal.java)
+
+**🧪 Test Cases** (5 cases):
+1. `{"tree": [1, None, 2, 3], "expected": [1, 3, 2]}`
+2. `{"tree": [], "expected": []}`
+3. `{"tree": [1], "expected": [1]}`
+   ... and 2 more cases
+
+</details>
+
+<details>
+<summary><strong>LC98: Validate Binary Search Tree</strong> (Medium) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/validate-binary-search-tree/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=s6ATEkipzow
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/98.validate-binary-search-tree.cpp)
+- [Go](src/go/tree/98.validate-binary-search-tree.go)
+- [Java](src/java/tree/98.validate-binary-search-tree.java)
+
+**🧪 Test Cases** (6 cases):
+1. `{"tree": [2, 1, 3], "expected": True}`
+2. `{"tree": [5, 1, 4, None, None, 3, 6], "expected": False}`
+3. `{"tree": [], "expected": True}`
+   ... and 3 more cases
+
+</details>
+
+<details>
+<summary><strong>LC100: Same Tree</strong> (Easy) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/same-tree/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=vRbbcKXCxOw
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/100.same-tree.cpp)
+- [Go](src/go/tree/100.same-tree.go)
+- [Java](src/java/tree/100.same-tree.java)
+
+**🧪 Test Cases** (5 cases):
+1. `{"p": [], "q": [], "expected": True}`
+2. `{"p": [1, 2, 3], "q": [1, 2, 3], "expected": True}`
+3. `{"p": [1, 2], "q": [1, None, 2], "expected": False}`
+   ... and 2 more cases
+
+</details>
+
+<details>
+<summary><strong>LC102: Binary Tree Level Order Traversal</strong> (Medium) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/binary-tree-level-order-traversal/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=6ZnyEApgFYg
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/102.binary-tree-level-order-traversal.cpp)
+- [Go](src/go/tree/102.binary-tree-level-order-traversal.go)
+- [Java](src/java/tree/102.binary-tree-level-order-traversal.java)
+
+**🧪 Test Cases** (5 cases):
+1. `{"tree": [], "expected": []}`
+2. `{"tree": [1], "expected": [[1]]}`
+3. `{"tree": [3, 9, 20, None, None, 15, 7], "expected": [[3], [9, 20], [15, 7]]}`
+   ... and 2 more cases
+
+</details>
+
+<details>
+<summary><strong>LC103: Binary Tree Zigzag Level Order Traversal</strong> (Medium) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=s6ATEkipzow
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/103.binary-tree-zigzag-level-order-traversal.cpp)
+- [Go](src/go/tree/103.binary-tree-zigzag-level-order-traversal.go)
+- [Java](src/java/tree/103.binary-tree-zigzag-level-order-traversal.java)
+
+**🧪 Test Cases** (5 cases):
+1. `{"tree": [], "expected": []}`
+2. `{"tree": [1], "expected": [[1]]}`
+3. `{"tree": [3, 9, 20, None, None, 15, 7], "expected": [[3], [20, 9], [15, 7]]}`
+   ... and 2 more cases
+
+</details>
+
+<details>
+<summary><strong>LC104: Maximum Depth of Binary Tree</strong> (Easy) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/maximum-depth-of-binary-tree/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=hTM3phVI6YQ
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/104.maximum-depth-of-binary-tree.cpp)
+- [Go](src/go/tree/104.maximum-depth-of-binary-tree.go)
+- [Java](src/java/tree/104.maximum-depth-of-binary-tree.java)
+
+**🧪 Test Cases** (8 cases):
+1. `{"tree": [3, 9, 20, None, None, 15, 7], "expected": 3}`
+2. `{"tree": [], "expected": 0}`
+3. `{"tree": [1], "expected": 1}`
+   ... and 5 more cases
+
+</details>
+
+<details>
+<summary><strong>LC110: Balanced Binary Tree</strong> (Easy) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/balanced-binary-tree/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=QfJsau0ItOY
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/110.balanced-binary-tree.cpp)
+- [Go](src/go/tree/110.balanced-binary-tree.go)
+- [Java](src/java/tree/110.balanced-binary-tree.java)
+
+**🧪 Test Cases** (8 cases):
+1. `{"tree": [3, 9, 20, None, None, 15, 7], "expected": True}`
+2. `{"tree": [], "expected": True}`
+3. `{"tree": [1], "expected": True}`
+   ... and 5 more cases
+
+</details>
+
+<details>
+<summary><strong>LC139: Word Break</strong> (Medium) - dp</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/word-break/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=Sx9NNgInc3A
+
+**💻 Solutions**:
+- [C++](src/cpp/dp/139.word-break.cpp)
+- [Go](src/go/dp/139.word-break.go)
+- [Java](src/java/dp/P139.java)
+
+**🧪 Test Cases** (4 cases):
+1. `{"s": "leetcode", "wordDict": ["leet", "code"], "expected": True}`
+2. `{"s": "applepenapple", "wordDict": ["apple", "pen"], "expected": True}`
+3. `{"s": "catsandog", "wordDict": ["cats", "dog", "sand", "and", "cat"], "expected": False}`
+   ... and 1 more cases
+
+</details>
+
+<details>
+<summary><strong>LC160: Intersection of Two Linked Lists</strong> (Easy) - list</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/intersection-of-two-linked-lists/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=D0X0BONOQhI
+
+**💻 Solutions**:
+- [C++](src/cpp/list/160.intersection-of-two-linked-lists.cpp)
+- [Go](src/go/list/160.intersection-of-two-linked-lists.go)
+- [Java](src/java/list/160.intersection-of-two-linked-lists.java)
+
+**🧪 Test Cases** (3 cases):
+1. `{"listA": [4, 1, 8, 4, 5], "listB": [5, 6, 1, 8, 4, 5], "intersectVal": 8, "skipA": 2, "skipB": 3, "...`
+2. `{"listA": [1, 9, 1, 2, 4], "listB": [3, 2, 4], "intersectVal": 2, "skipA": 3, "skipB": 1, "expected"...`
+3. `{"listA": [2, 6, 4], "listB": [1, 5], "intersectVal": 0, "skipA": 3, "skipB": 2, "expected": None}`
+
+</details>
+
+<details>
+<summary><strong>LC200: Number of Islands</strong> (Medium) - graphs</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/number-of-islands/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=pV2kpPD66nE
+
+**💻 Solutions**:
+- [C++](src/cpp/graphs/200.number-of-islands.cpp)
+- [Go](src/go/graphs/200.number-of-islands.go)
+- [Java](src/java/graphs/200.number-of-islands.java)
+
+**🧪 Test Cases** (2 cases):
+1. `{"grid": [["1", "1", "1", "1", "0"], ["1", "1", "0", "1", "0"], ["1", "1", "0", "0", "0"], ["0", "0"...`
+2. `{"grid": [["1", "1", "0", "0", "0"], ["1", "1", "0", "0", "0"], ["0", "0", "1", "0", "0"], ["0", "0"...`
+
+</details>
+
+<details>
+<summary><strong>LC206: Reverse Linked List</strong> (Easy) - list</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/reverse-linked-list/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=G0_I-ZF0S38
+
+**💻 Solutions**:
+- [C++](src/cpp/list/206.reverse-linked-list.cpp)
+- [Go](src/go/list/206.reverse-linked-list.go)
+- [Java](src/java/list/206.reverse-linked-list.java)
+
+**🧪 Test Cases** (3 cases):
+1. `{"head": [1, 2, 3, 4, 5], "expected": [5, 4, 3, 2, 1]}`
+2. `{"head": [1, 2], "expected": [2, 1]}`
+3. `{"head": [], "expected": []}`
+
+</details>
+
+<details>
+<summary><strong>LC226: Invert Binary Tree</strong> (Easy) - tree</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/invert-binary-tree/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=OnSn2XEQ4MY
+
+**💻 Solutions**:
+- [C++](src/cpp/tree/226.invert-binary-tree.cpp)
+- [Go](src/go/tree/226.invert-binary-tree.go)
+- [Java](src/java/tree/226.invert-binary-tree.java)
+
+**🧪 Test Cases** (3 cases):
+1. `{"root": [4, 2, 7, 1, 3, 6, 9], "expected": [4, 7, 2, 9, 6, 3, 1]}`
+2. `{"root": [2, 1, 3], "expected": [2, 3, 1]}`
+3. `{"root": [], "expected": []}`
+
+</details>
+
+<details>
+<summary><strong>LC238: Product of Array Except Self</strong> (Medium) - prefix_sum</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/product-of-array-except-self/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=bNvIQI2wAjk
+
+**💻 Solutions**:
+- [C++](src/cpp/prefix_sum/238.product-of-array-except-self.cpp)
+- [Go](src/go/prefix_sum/238.product-of-array-except-self.go)
+- [Java](src/java/prefix_sum/238.product-of-array-except-self.java)
+
+**🧪 Test Cases** (2 cases):
+1. `{"nums": [1, 2, 3, 4], "expected": [24, 12, 8, 6]}`
+2. `{"nums": [-1, 1, 0, -3, 3], "expected": [0, 0, 9, 0, 0]}`
+
+</details>
+
+<details>
+<summary><strong>LC424: Longest Repeating Character Replacement</strong> (Medium) - sliding_window</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/longest-repeating-character-replacement/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=gqXU1UyA8pk
+
+**💻 Solutions**:
+- [C++](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp)
+- [Go](src/go/sliding_window/424.longest-repeating-character-replacement.go)
+- [Java](src/java/sliding_window/424.longest-repeating-character-replacement.java)
+
+**🧪 Test Cases** (5 cases):
+1. `{"input": "AABABBA", "k": 1, "expected": 4}`
+2. `{"input": "ABAB", "k": 2, "expected": 4}`
+3. `{"input": "AAAA", "k": 2, "expected": 4}`
+   ... and 2 more cases
+
+</details>
+
+<details>
+<summary><strong>LC438: Find All Anagrams in a String</strong> (Medium) - sliding_window</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/find-all-anagrams-in-a-string/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=G8xtZy0fDKg
+
+**💻 Solutions**:
+- [C++](src/cpp/sliding_window/438.find-all-anagrams-in-a-string.cpp)
+- [Go](src/go/sliding_window/438.find-all-anagrams-in-a-string.go)
+- [Java](src/java/sliding_window/438.find-all-anagrams-in-a-string.java)
+
+**🧪 Test Cases** (4 cases):
+1. `{"s": "cbaebabacd", "p": "abc", "expected": [0, 6]}`
+2. `{"s": "abab", "p": "ab", "expected": [0, 1, 2]}`
+3. `{"s": "baa", "p": "aa", "expected": [1]}`
+   ... and 1 more cases
+
+</details>
+
+<details>
+<summary><strong>LC560: Subarray Sum Equals K</strong> (Medium) - prefix_sum</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/subarray-sum-equals-k/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=HbbYPQc-Oo4
+
+**💻 Solutions**:
+- [C++](src/cpp/prefix_sum/560.subarray-sum-equals-k.cpp)
+- [Go](src/go/prefix_sum/560.subarray-sum-equals-k.go)
+- [Java](src/java/prefix_sum/560.subarray-sum-equals-k.java)
+
+**🧪 Test Cases** (2 cases):
+1. `{"nums": [1, 1, 1], "k": 2, "expected": 2}`
+2. `{"nums": [1, 2, 3], "k": 3, "expected": 2}`
+
+</details>
+
+<details>
+<summary><strong>LC567: Permutation in String</strong> (Medium) - sliding_window</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/permutation-in-string/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=UbyhOgBN834
+
+**💻 Solutions**:
+- [C++](src/cpp/sliding_window/567.permutation-in-string.cpp)
+- [Go](src/go/sliding_window/567.permutation-in-string.go)
+- [Java](src/java/sliding_window/567.permutation-in-string.java)
+
+**🧪 Test Cases** (5 cases):
+1. `{"s1": "ab", "s2": "eidbaooo", "expected": True}`
+2. `{"s1": "ab", "s2": "eidboaoo", "expected": False}`
+3. `{"s1": "adc", "s2": "dcda", "expected": True}`
+   ... and 2 more cases
+
+</details>
+
+<details>
+<summary><strong>LC739: Daily Temperatures</strong> (Medium) - stack</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/daily-temperatures/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=cTBiBSnjO3c
+
+**💻 Solutions**:
+- [C++](src/cpp/stack/739.daily-temperatures.cpp)
+- [Go](src/go/stack/739.daily-temperatures.go)
+- [Java](src/java/stack/739.daily-temperatures.java)
+
+**🧪 Test Cases** (6 cases):
+1. `{"input": [73, 74, 75, 71, 69, 72, 76, 73], "expected": [1, 1, 4, 2, 1, 1, 0, 0]}`
+2. `{"input": [30, 40, 50, 60], "expected": [1, 1, 1, 0]}`
+3. `{"input": [30, 60, 90], "expected": [1, 1, 0]}`
+   ... and 3 more cases
+
+</details>
+
+> Use `./run -c <category>` to test problems by category. Problem counts reflect `testcases.json` entries.
 ### Categories
 Current categories: `binary_search`, `dp`, `graphs`, `hash`, `list`, `misc`, `prefix_sum`, `sliding_window`, `stack`, `tree`, `two_pointer`.
 

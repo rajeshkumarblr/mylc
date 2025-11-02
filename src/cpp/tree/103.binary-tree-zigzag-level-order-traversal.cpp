@@ -21,13 +21,32 @@ public:
         while (!q.empty()) {
             int n = q.size();
             vector<int> level(n);
-            for (int i=0; i<n; i++) {
+            
+            // Set up position calculation once based on direction
+            int start, increment;
+            if (leftToRight) {
+                start = 0;
+                increment = 1;
+            } else {
+                start = n - 1;
+                increment = -1;
+            }
+            
+            // Process nodes with pre-calculated direction
+            int pos = start;
+            int count = 0;
+            while (count < n) {
                 TreeNode *node = q.front(); q.pop();
-                int index = leftToRight ? i : (n-1-i);
-                level[index] = node->val;
+                
+                level[pos] = node->val;
+                pos += increment;  // Move to next position
+                
                 if (node->left) q.push(node->left);
                 if (node->right) q.push(node->right);
+                
+                count++;
             }
+            
             res.push_back(std::move(level));
             leftToRight = !leftToRight;
         }

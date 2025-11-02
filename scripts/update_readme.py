@@ -64,6 +64,18 @@ def detect_languages(repo_root: str, category: str, pid: str) -> List[str]:
 
 
 def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, str]) -> str:
+    # Helper function for implementation paths in details
+    def get_impl_path_for_details(lang: str, ext: str, cat: str, pid_str: str) -> str:
+        if lang.lower() == "java" and cat == "dp":
+            return f"src/java/{cat}/P{pid_str}.java"
+        else:
+            # Find the actual file name
+            pattern = f"src/{lang.lower()}/{cat}/{pid_str}.*{ext}"
+            files = glob(os.path.join(REPO_ROOT, pattern))
+            if files:
+                return os.path.relpath(files[0], REPO_ROOT).replace(os.sep, "/")
+            return f"src/{lang.lower()}/{cat}/{pid_str}.{ext}"
+
     # Collect all problems
     problems: List[Tuple[int, str, str, str, int, List[str], str, str, str]] = []
     by_cat: Dict[str, List[int]] = {}  # category -> list of problem IDs for filtering
@@ -145,6 +157,64 @@ def build_single_table_section(cases: Dict[str, dict], neetcode_map: Dict[str, s
     
     lines.extend([
         "",
+        "> Use `./run -c <category>` to test problems by category. Problem counts reflect `testcases.json` entries.",
+        "",
+        "---",
+        "",
+        "## 📋 Problem Details",
+        "",
+        "_Click to expand individual problem descriptions, examples, and test cases._",
+        ""
+    ])
+    
+    # Add collapsible details for each problem
+    for pid, pid_str, title, cat, case_count, langs, difficulty, url, video in problems:
+        spec = cases[pid_str]
+        problem_cases = spec.get("cases", [])
+        
+        lines.append(f'<details>')
+        lines.append(f'<summary><strong>LC{pid}: {title}</strong> ({difficulty.title()}) - {cat}</summary>')
+        lines.append(f'')
+        
+        # Problem link
+        if url:
+            lines.append(f'**🔗 Problem Link**: {url}')
+            lines.append(f'')
+        
+        # Video link
+        if video:
+            lines.append(f'**📺 NeetCode Explanation**: {video}')
+            lines.append(f'')
+        
+        # Implementation links  
+        lines.append(f'**💻 Solutions**:')
+        if "C++" in langs:
+            cpp_path = get_impl_path_for_details('cpp', 'cpp', cat, pid_str)
+            lines.append(f'- [C++]({cpp_path})')
+        if "Go" in langs:
+            go_path = get_impl_path_for_details('go', 'go', cat, pid_str)
+            lines.append(f'- [Go]({go_path})')
+        if "Java" in langs:
+            java_path = get_impl_path_for_details('java', 'java', cat, pid_str)
+            lines.append(f'- [Java]({java_path})')
+        lines.append(f'')
+        
+        # Test cases
+        if problem_cases:
+            lines.append(f'**🧪 Test Cases** ({len(problem_cases)} cases):')
+            for i, case in enumerate(problem_cases[:3], 1):  # Show first 3 cases
+                case_str = str(case).replace("'", '"')[:100]  # Truncate long cases
+                if len(str(case)) > 100:
+                    case_str += "..."
+                lines.append(f'{i}. `{case_str}`')
+            if len(problem_cases) > 3:
+                lines.append(f'   ... and {len(problem_cases) - 3} more cases')
+            lines.append(f'')
+        
+        lines.append(f'</details>')
+        lines.append(f'')
+    
+    lines.extend([
         "> Use `./run -c <category>` to test problems by category. Problem counts reflect `testcases.json` entries."
     ])
     
