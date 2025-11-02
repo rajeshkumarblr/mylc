@@ -1,6 +1,7 @@
 // Needed for TreeNode definition and STL containers
 #include "lc_types.h"
 #include <stack>
+#include <queue>
 #include <utility>
 #include <algorithm>
 using namespace std;
@@ -12,13 +13,13 @@ using namespace std;
  * [104] Maximum Depth of Binary Tree
  */
 
-int maxDepth_recursive(TreeNode* root);
 
 // @lc code=start
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
-        return maxDepth_recursive(root);
+        return maxDepth_bfs(root);
+        //return maxDepth_recursive(root);
         //return maxDepth_dfs(root);
     }
 
@@ -38,13 +39,37 @@ public:
         return depth;
     }
 
+    int maxDepth_bfs(TreeNode* root) {
+        if (!root) return 0;
+        
+        queue<TreeNode*> q;
+        q.push(root);
+        int depth = 0;
+        
+        while (!q.empty()) {
+            int levelSize = q.size();  // Current level's node count
+            depth++;                   // Increment depth for each level
+            
+            // Process all nodes in current level
+            for (int i = 0; i < levelSize; i++) {
+                TreeNode* node = q.front(); 
+                q.pop();
+                
+                // Add children to queue for next level
+                if (node->left) q.push(node->left);
+                if (node->right) q.push(node->right);
+            }
+        }
+        
+        return depth;
+    }
+
     int maxDepth_recursive(TreeNode* root) {
         if (!root) return 0;                       // base: empty subtree has depth 0
         return 1 + max(maxDepth_recursive(root->left),       // child depth
                        maxDepth_recursive(root->right));     // +1 for the current node
     }
 };
-
 // @lc code=end
 
 // Non-LeetCode wrapper for harness
