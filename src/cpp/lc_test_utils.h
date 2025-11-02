@@ -34,6 +34,10 @@ bool lc_test_3(const json& j);
 int maxArea(std::vector<int>& height);
 bool lc_test_11(const json& j);
 
+// Problem 15: 3Sum
+std::vector<std::vector<int>> threeSum(std::vector<int>& nums);
+bool lc_test_15(const json& j);
+
 // Helper to create a linked list from a vector
 ListNode* vec_to_list(const std::vector<int>& v);
 // Helper to convert a linked list to a vector
@@ -120,6 +124,10 @@ bool lc_test_238(const json& j);
 // Problem 560: Subarray Sum Equals K
 int subarraySum(std::vector<int>& nums, int k);
 bool lc_test_560(const json& j);
+
+// Problem 139: Word Break
+bool wordBreak(std::string s, std::vector<std::string>& wordDict);
+bool lc_test_139(const json& j);
 
 // Helper functions for tree conversion
 TreeNode* vec_to_tree(const std::vector<int>& data);

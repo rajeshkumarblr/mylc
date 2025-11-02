@@ -56,6 +56,7 @@ class Registry {
         m.put("3", cases -> Drivers.driver3_auto(cases));
         m.put("9", cases -> Drivers.driver9(cases));
         m.put("11", cases -> Drivers.driver11(cases));
+        m.put("15", cases -> Drivers.driver15(cases));
         m.put("20", cases -> Drivers.driver20(cases));
         m.put("21", cases -> Drivers.driver21(cases));
         m.put("35", cases -> Drivers.driver35(cases));
@@ -67,6 +68,7 @@ class Registry {
         m.put("102", cases -> Drivers.driver102(cases));
         m.put("103", cases -> Drivers.driver103(cases));
         m.put("110", cases -> Drivers.driver110(cases));
+        m.put("139", cases -> Drivers.driver139(cases));
         m.put("160", cases -> Drivers.driver160(cases));
         m.put("200", cases -> Drivers.driver200(cases));
         m.put("206", cases -> Drivers.driver206(cases));
@@ -420,6 +422,36 @@ class Drivers {
         return new Result(idx, okAll);
     }
 
+    static Result driver15(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for (int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); 
+            int[] nums=toIntArray(tc.getAsJsonArray("nums")); 
+            List<List<Integer>> want=toListOfIntList(tc.getAsJsonArray("expected"));
+            List<List<Integer>> got=new P15().threeSum(nums);
+            
+            // Sort both lists for comparison since order may vary
+            got.sort((a, b) -> {
+                for (int j = 0; j < Math.min(a.size(), b.size()); j++) {
+                    int cmp = Integer.compare(a.get(j), b.get(j));
+                    if (cmp != 0) return cmp;
+                }
+                return Integer.compare(a.size(), b.size());
+            });
+            want.sort((a, b) -> {
+                for (int j = 0; j < Math.min(a.size(), b.size()); j++) {
+                    int cmp = Integer.compare(a.get(j), b.get(j));
+                    if (cmp != 0) return cmp;
+                }
+                return Integer.compare(a.size(), b.size());
+            });
+            
+            if (!deepEquals2D(got,want)) okAll=false; 
+            idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
     static Result driver20(List<JsonObject> cases){
         List<Integer> idx=new ArrayList<>(); boolean okAll=true;
         for (int i=0;i<cases.size();i++){
@@ -701,6 +733,24 @@ class Drivers {
             JsonObject tc=cases.get(i); int[] nums=toIntArray(tc.getAsJsonArray("nums")); int k=tc.get("k").getAsInt(); int want=tc.get("expected").getAsInt();
             int got=new P560().new Solution().subarraySum(nums,k);
             if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver139(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i);
+            String s = tc.get("s").getAsString();
+            JsonArray wordDictArray = tc.getAsJsonArray("wordDict");
+            List<String> wordDict = new ArrayList<>();
+            for (int j = 0; j < wordDictArray.size(); j++) {
+                wordDict.add(wordDictArray.get(j).getAsString());
+            }
+            boolean want = tc.get("expected").getAsBoolean();
+            boolean got = new P139().wordBreak(s, wordDict);
+            if (got != want) okAll = false;
+            idx.add(i+1);
         }
         return new Result(idx, okAll);
     }
