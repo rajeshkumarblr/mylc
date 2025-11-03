@@ -781,6 +781,24 @@ bool lc_test_139(const json& j) {
     return all;
 }
 
+bool lc_test_70(const json& j) {
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        int n = tc.at("n").get<int>();
+        int expect = tc.at("expected").get<int>();
+        int got = climbStairs(n);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << " (n=" << n << ")\n";
+        } else {
+            ++idx;
+        }
+        all &= ok;
+    }
+    return all;
+}
+
 std::string get_testcases_json_path() {
     const char* env = std::getenv("REPO_ROOT");
     if (env) {
