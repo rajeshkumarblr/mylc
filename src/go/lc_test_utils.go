@@ -686,6 +686,22 @@ func driver139_WordBreak(fn interface{}, tests []map[string]interface{}) ([]int,
 }
 
 // Registry of problem → driver
+// 198. house robber  func([]int) int
+func driver198_HouseRobber(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int) int)
+	for i, tc := range tests {
+		nums := sliceInt("nums", tc)
+		want := int(tc["expected"].(float64))
+		got := f(nums)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 var drivers = map[string]Driver{
 	"1":   driver1_TwoSum,
 	"2":   driver2_AddTwoNumbers,
@@ -711,6 +727,7 @@ var drivers = map[string]Driver{
 	"35":  driver35_SearchInsert,
 	"36":  driver36_ValidSudoku,
 	"160": driver160_GetIntersectionNode,
+	"198": driver198_HouseRobber,
 	"200": driver200_NumIslands,
 	"206": driver206_ReverseList,
 	"226": driver226_InvertTree,

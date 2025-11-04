@@ -26,6 +26,7 @@ var funcRegistry = map[string]interface{}{
 	"110": isBalanced,
 	"139": wordBreak,
 	"160": getIntersectionNode,
+	"198": rob,
 	"200": numIslands,
 	"206": reverseList,
 	"226": invertTree,

@@ -70,6 +70,7 @@ class Registry {
         m.put("110", cases -> Drivers.driver110(cases));
         m.put("139", cases -> Drivers.driver139(cases));
         m.put("160", cases -> Drivers.driver160(cases));
+        m.put("198", cases -> Drivers.driver198(cases));
         m.put("200", cases -> Drivers.driver200(cases));
         m.put("206", cases -> Drivers.driver206(cases));
         m.put("226", cases -> Drivers.driver226(cases));
@@ -585,6 +586,16 @@ class Drivers {
             JsonObject tc=cases.get(i); int[] t=toIntArray(tc.getAsJsonArray("input")); int[] want=toIntArray(tc.getAsJsonArray("expected"));
             int[] got=new P739().new Solution().dailyTemperatures(t);
             if (!Arrays.equals(got,want)) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver198(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int[] nums=toIntArray(tc.getAsJsonArray("nums")); int want=tc.get("expected").getAsInt();
+            int got=new P198().new Solution().rob(nums);
+            if (got!=want) okAll=false; idx.add(i+1);
         }
         return new Result(idx, okAll);
     }

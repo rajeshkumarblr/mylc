@@ -133,6 +133,10 @@ bool lc_test_139(const json& j);
 int climbStairs(int n);
 bool lc_test_70(const json& j);
 
+// Problem 198: House Robber
+int rob(std::vector<int>& nums);
+bool lc_test_198(const json& j);
+
 // Helper functions for tree conversion
 TreeNode* vec_to_tree(const std::vector<int>& data);
 std::vector<int> tree_to_vec(TreeNode* root);
