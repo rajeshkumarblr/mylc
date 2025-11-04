@@ -53,7 +53,7 @@ export LC_LANG=cpp   # or: go | java
 
 ## Problems & status
 
-All 29 problems implemented across C++, Go, and Java. Use `./run -l` to list problems, `./run -c <category>` to run by category.
+All 31 problems implemented across C++, Go, and Java. Use `./run -l` to list problems, `./run -c <category>` to run by category.
 
 _Click problem ID to view LeetCode problem description (opens in new tab). Click ✓ to view source code. Click 📺 for NeetCode explanation videos._
 
@@ -70,7 +70,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/search-insert-position/description/" target="_blank">35</a> | Search Insert Position | binary_search | Easy | 4 | [✓](src/cpp/binary_search/35.search-insert-position.cpp) | [✓](src/go/binary_search/35.search-insert-position.go) | [✓](src/java/binary_search/35.search-insert-position.java) | [📺](https://www.youtube.com/watch?v=K-RYzDZkzCI) |
 | <a href="https://leetcode.com/problems/valid-sudoku/description/" target="_blank">36</a> | Valid Sudoku | hash | Medium | 2 | [✓](src/cpp/hash/36.valid-sudoku.cpp) | [✓](src/go/hash/36.valid-sudoku.go) | [✓](src/java/hash/36.valid-sudoku.java) | [📺](https://www.youtube.com/watch?v=TjFXEUCMqI8) |
 | <a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank">42</a> | Trapping Rain Water | two_pointer | Hard | 6 | [✓](src/cpp/two_pointer/42.trapping-rain-water.cpp) | [✓](src/go/two_pointer/42.trapping-rain-water.go) | [✓](src/java/two_pointer/42.trapping-rain-water.java) | [📺](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
-| <a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank">70</a> | Climbing Stairs | dp | Easy | 7 | [✓](src/cpp/dp/70.climbing-stairs.cpp) | ❌ | ❌ | [📺](https://www.youtube.com/watch?v=Y0lT9Fck7qI) |
+| <a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank">70</a> | Climbing Stairs | dp | Easy | 7 | [✓](src/cpp/dp/70.climbing-stairs.cpp) | [✓](src/go/dp/70.climbing-stairs.go) | ❌ | [📺](https://www.youtube.com/watch?v=Y0lT9Fck7qI) |
 | <a href="https://leetcode.com/problems/binary-tree-inorder-traversal/description/" target="_blank">94</a> | Binary Tree Inorder Traversal | tree | Easy | 5 | [✓](src/cpp/tree/94.binary-tree-inorder-traversal.cpp) | [✓](src/go/tree/94.binary-tree-inorder-traversal.go) | [✓](src/java/tree/94.binary-tree-inorder-traversal.java) | [📺](https://www.youtube.com/watch?v=g_S5WuasWUE) |
 | <a href="https://leetcode.com/problems/validate-binary-search-tree/description/" target="_blank">98</a> | Validate Binary Search Tree | tree | Medium | 6 | [✓](src/cpp/tree/98.validate-binary-search-tree.cpp) | [✓](src/go/tree/98.validate-binary-search-tree.go) | [✓](src/java/tree/98.validate-binary-search-tree.java) | [📺](https://www.youtube.com/watch?v=s6ATEkipzow) |
 | <a href="https://leetcode.com/problems/same-tree/description/" target="_blank">100</a> | Same Tree | tree | Easy | 5 | [✓](src/cpp/tree/100.same-tree.cpp) | [✓](src/go/tree/100.same-tree.go) | [✓](src/java/tree/100.same-tree.java) | [📺](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
@@ -332,7 +332,7 @@ _Click to expand individual problem descriptions, examples, and test cases._
 
 **💻 Solutions**:
 - [C++](src/cpp/dp/70.climbing-stairs.cpp)
-- Go: ❌
+- [Go](src/go/dp/70.climbing-stairs.go)
 - Java: ❌
 
 **🧪 Test Cases** (7 cases):
