@@ -34,6 +34,7 @@ var problemDescriptions = map[string]string{
 	"35":  "search insert position",
 	"36":  "valid sudoku",
 	"42":  "trapping rain water",
+	"70":  "climbing stairs",
 	"94":  "inorder traversal",
 	"98":  "validate BST",
 	"100": "same tree",
@@ -43,6 +44,7 @@ var problemDescriptions = map[string]string{
 	"110": "is balanced",
 	"139": "word break",
 	"160": "intersection linked list",
+	"198": "house robber",
 	"200": "number of islands",
 	"206": "reverse linked list",
 	"226": "invert binary tree",
@@ -685,6 +687,22 @@ func driver139_WordBreak(fn interface{}, tests []map[string]interface{}) ([]int,
 	return caseIdx, okAll
 }
 
+// 70. climbing stairs func(int) int
+func driver70_ClimbingStairs(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func(int) int)
+	for i, tc := range tests {
+		n := int(tc["n"].(float64))
+		want := int(tc["expected"].(float64))
+		got := f(n)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 // Registry of problem → driver
 // 198. house robber  func([]int) int
 func driver198_HouseRobber(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
@@ -711,6 +729,7 @@ var drivers = map[string]Driver{
 	"15":  driver15_ThreeSum,
 	"21":  driver21_MergeTwoLists,
 	"42":  driver42_Trap,
+	"70":  driver70_ClimbingStairs,
 	"94":  driver94_InorderTraversal,
 	"98":  driver98_ValidateBST,
 	"100": driver100_SameTree,

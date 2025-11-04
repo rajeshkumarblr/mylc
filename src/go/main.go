@@ -17,6 +17,7 @@ var funcRegistry = map[string]interface{}{
 	"35":  searchInsert,
 	"36":  isValidSudoku,
 	"42":  trap,
+	"70":  climbStairs,
 	"94":  inorderTraversal,
 	"98":  isValidBST,
 	"100": isSameTree,
