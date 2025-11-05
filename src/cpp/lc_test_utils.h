@@ -137,6 +137,10 @@ bool lc_test_70(const json& j);
 int rob(std::vector<int>& nums);
 bool lc_test_198(const json& j);
 
+// Problem 213: House Robber II
+int rob2(std::vector<int>& nums);
+bool lc_test_213(const json& j);
+
 // Helper functions for tree conversion
 TreeNode* vec_to_tree(const std::vector<int>& data);
 std::vector<int> tree_to_vec(TreeNode* root);

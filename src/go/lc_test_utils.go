@@ -47,6 +47,7 @@ var problemDescriptions = map[string]string{
 	"198": "house robber",
 	"200": "number of islands",
 	"206": "reverse linked list",
+	"213": "house robber ii",
 	"226": "invert binary tree",
 	"238": "product of array except self",
 	"424": "character replacement",
@@ -720,6 +721,22 @@ func driver198_HouseRobber(fn interface{}, tests []map[string]interface{}) ([]in
 	return caseIdx, okAll
 }
 
+// 213. house robber ii func([]int) int
+func driver213_HouseRobberII(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int) int)
+	for i, tc := range tests {
+		nums := sliceInt("nums", tc)
+		want := int(tc["expected"].(float64))
+		got := f(nums)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 var drivers = map[string]Driver{
 	"1":   driver1_TwoSum,
 	"2":   driver2_AddTwoNumbers,
@@ -749,6 +766,7 @@ var drivers = map[string]Driver{
 	"198": driver198_HouseRobber,
 	"200": driver200_NumIslands,
 	"206": driver206_ReverseList,
+	"213": driver213_HouseRobberII,
 	"226": driver226_InvertTree,
 	"238": driver238_ProductExceptSelf,
 	"560": driver560_SubarraySum,

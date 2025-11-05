@@ -30,6 +30,7 @@ var funcRegistry = map[string]interface{}{
 	"198": rob,
 	"200": numIslands,
 	"206": reverseList,
+	"213": rob2,
 	"226": invertTree,
 	"238": productExceptSelf,
 	"424": characterReplacement,

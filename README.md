@@ -2,8 +2,9 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 31  
-**Languages:** C++, Go, Java
+**Problems covered:** 32  
+**Languages:** C++, Go, Java  
+**Status:** C++ ✅ 32/32 • Go ✅ 32/32 • Java 🔧 30/32 (build issues)
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
@@ -49,11 +50,14 @@ export LC_LANG=cpp   # or: go | java
 - C++20 compiler (`g++` or `clang++`)
 - Go 1.21+ (module mode)
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
-- Java 17+ (OpenJDK recommended). Java support is fully integrated across the solved problems. We use a pinned Gson jar (no Maven/Gradle required).
+- Java 17+ (OpenJDK recommended). We use a pinned Gson jar (no Maven/Gradle required). *Note: Java build has known issues with duplicate class names affecting LC70 and LC213.*
 
 ## Problems & status
 
-All 31 problems implemented across C++, Go, and Java. Use `./run -l` to list problems, `./run -c <category>` to run by category.
+**C++ & Go:** All 32 problems fully implemented and tested ✅  
+**Java:** 30 problems working, 2 blocked by build system issues 🔧  
+
+Use `./run -l` to list problems, `./run -c <category>` to run by category.
 
 _Click problem ID to view LeetCode problem description (opens in new tab). Click ✓ to view source code. Click 📺 for NeetCode explanation videos._
 
@@ -83,6 +87,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/house-robber/description/" target="_blank">198</a> | House Robber | dp | Medium | 8 | [✓](src/cpp/dp/198.house-robber.cpp) | [✓](src/go/dp/198.house-robber.go) | [✓](src/java/dp/198.house-robber.java) | [📺](https://www.youtube.com/watch?v=73r3KWiEvyk) |
 | <a href="https://leetcode.com/problems/number-of-islands/description/" target="_blank">200</a> | Number of Islands | graphs | Medium | 3 | [✓](src/cpp/graphs/200.number-of-islands.cpp) | [✓](src/go/graphs/200.number-of-islands.go) | [✓](src/java/graphs/200.number-of-islands.java) | [📺](https://www.youtube.com/watch?v=pV2kpPD66nE) |
 | <a href="https://leetcode.com/problems/reverse-linked-list/description/" target="_blank">206</a> | Reverse Linked List | list | Easy | 3 | [✓](src/cpp/list/206.reverse-linked-list.cpp) | [✓](src/go/list/206.reverse-linked-list.go) | [✓](src/java/list/206.reverse-linked-list.java) | [📺](https://www.youtube.com/watch?v=G0_I-ZF0S38) |
+| <a href="https://leetcode.com/problems/house-robber-ii/description/" target="_blank">213</a> | House Robber II | dp | Medium | 7 | [✓](src/cpp/dp/213.house-robber-ii.cpp) | [✓](src/go/dp/213.house-robber-ii.go) | ❌ | [📺](https://www.youtube.com/watch?v=rWAJCfYYOvM) |
 | <a href="https://leetcode.com/problems/invert-binary-tree/description/" target="_blank">226</a> | Invert Binary Tree | tree | Easy | 3 | [✓](src/cpp/tree/226.invert-binary-tree.cpp) | [✓](src/go/tree/226.invert-binary-tree.go) | [✓](src/java/tree/226.invert-binary-tree.java) | [📺](https://www.youtube.com/watch?v=OnSn2XEQ4MY) |
 | <a href="https://leetcode.com/problems/product-of-array-except-self/description/" target="_blank">238</a> | Product of Array Except Self | prefix_sum | Medium | 2 | [✓](src/cpp/prefix_sum/238.product-of-array-except-self.cpp) | [✓](src/go/prefix_sum/238.product-of-array-except-self.go) | [✓](src/java/prefix_sum/238.product-of-array-except-self.java) | [📺](https://www.youtube.com/watch?v=bNvIQI2wAjk) |
 | <a href="https://leetcode.com/problems/longest-repeating-character-replacement/description/" target="_blank">424</a> | Longest Repeating Character Replacement | sliding_window | Medium | 5 | [✓](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp) | [✓](src/go/sliding_window/424.longest-repeating-character-replacement.go) | [✓](src/java/sliding_window/424.longest-repeating-character-replacement.java) | [📺](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
@@ -93,7 +98,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 
 ### Filter by Category
 - **binary_search**: [35](#35)
-- **dp**: [139](#139)
+- **dp**: [70](#70), [139](#139), [198](#198), [213](#213)
 - **graphs**: [200](#200)
 - **hash**: [1](#1), [36](#36)
 - **list**: [2](#2), [21](#21), [160](#160), [206](#206)
@@ -576,6 +581,26 @@ _Click to expand individual problem descriptions, examples, and test cases._
 1. `{"head": [1, 2, 3, 4, 5], "expected": [5, 4, 3, 2, 1]}`
 2. `{"head": [1, 2], "expected": [2, 1]}`
 3. `{"head": [], "expected": []}`
+
+</details>
+
+<details>
+<summary><strong>LC213: House Robber II</strong> (Medium) - dp</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/house-robber-ii/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=rWAJCfYYOvM
+
+**💻 Solutions**:
+- [C++](src/cpp/dp/213.house-robber-ii.cpp)
+- [Go](src/go/dp/213.house-robber-ii.go)
+- Java: ❌
+
+**🧪 Test Cases** (7 cases):
+1. `{"nums": [2, 3, 2], "expected": 3}`
+2. `{"nums": [1, 2, 3, 1], "expected": 4}`
+3. `{"nums": [1, 2, 3], "expected": 3}`
+   ... and 4 more cases
 
 </details>
 

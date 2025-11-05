@@ -35,7 +35,7 @@ int main(int, char**) {
     if (const char* c = getenv("LC_CATEGORY")) category = c;
 
     // Supported problems → test functions (drivers are in lc_test_utils.cpp)
-    const vector<int> solved = {1, 2, 3, 9, 11, 15, 20, 21, 35, 36, 42, 70, 94, 98, 100, 102, 103, 104, 110, 139, 160, 198, 200, 206, 226, 238, 424, 438, 560, 567, 739};
+    const vector<int> solved = {1, 2, 3, 9, 11, 15, 20, 21, 35, 36, 42, 70, 94, 98, 100, 102, 103, 104, 110, 139, 160, 198, 200, 206, 213, 226, 238, 424, 438, 560, 567, 739};
     using TestFn = bool(*)(const json&);
     map<int, TestFn> handlers = {
         {1,   lc_test_1},
@@ -62,6 +62,7 @@ int main(int, char**) {
         {198, lc_test_198},
         {200, lc_test_200},
         {206, lc_test_206},
+        {213, lc_test_213},
         {226, lc_test_226},
         {238, lc_test_238},
         {424, lc_test_424},

@@ -438,5 +438,21 @@
       { "s": "catsandog", "wordDict": ["cats","dog","sand","and","cat"], "expected": false },
       { "s": "aaaaaaa", "wordDict": ["aaaa","aaa"], "expected": true }
     ]
+  },
+  "213": {
+    "category": "dp",
+    "description": "House Robber II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/house-robber-ii/",
+    "video": "https://www.youtube.com/watch?v=rWAJCfYYOvM",
+    "cases": [
+      { "nums": [2, 3, 2], "expected": 3 },
+      { "nums": [1, 2, 3, 1], "expected": 4 },
+      { "nums": [1, 2, 3], "expected": 3 },
+      { "nums": [1], "expected": 1 },
+      { "nums": [1, 2], "expected": 2 },
+      { "nums": [2, 7, 9, 3, 1], "expected": 11 },
+      { "nums": [5, 1, 3, 9], "expected": 10 }
+    ]
   }
 }

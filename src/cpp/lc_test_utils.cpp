@@ -841,3 +841,26 @@ std::string get_testcases_json_path() {
     }
     return "testcases.json";
 }
+
+bool lc_test_213(const json& j) {
+    bool all = true;
+    size_t idx = 0;
+    for (const auto& tc : j.at("cases")) {
+        std::vector<int> nums = tc.at("nums").get<std::vector<int>>();
+        int expect = tc.at("expected").get<int>();
+        int got = rob2(nums);
+        bool ok = (got == expect);
+        if (!ok) {
+            std::cout << "  Case " << (++idx) << ": FAIL  got=" << got << " expected=" << expect << " (nums=[";
+            for (size_t i = 0; i < nums.size(); i++) {
+                if (i > 0) std::cout << ",";
+                std::cout << nums[i];
+            }
+            std::cout << "])\n";
+        } else {
+            ++idx;
+        }
+        all &= ok;
+    }
+    return all;
+}
