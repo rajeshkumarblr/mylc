@@ -4,7 +4,7 @@ Central runner + shared test harness. Problems and test data live in **`testcase
 
 **Problems covered:** 32  
 **Languages:** C++, Go, Java  
-**Status:** C++ ✅ 32/32 • Go ✅ 32/32 • Java 🔧 30/32 (build issues)
+**Status:** C++ ✅ 32/32 • Go ✅ 32/32 • Java ✅ 32/32
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
@@ -50,12 +50,11 @@ export LC_LANG=cpp   # or: go | java
 - C++20 compiler (`g++` or `clang++`)
 - Go 1.21+ (module mode)
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
-- Java 17+ (OpenJDK recommended). We use a pinned Gson jar (no Maven/Gradle required). *Note: Java build has known issues with duplicate class names affecting LC70 and LC213.*
+- Java 17+ (OpenJDK recommended). We use a pinned Gson jar (no Maven/Gradle required).
 
 ## Problems & status
 
-**C++ & Go:** All 32 problems fully implemented and tested ✅  
-**Java:** 30 problems working, 2 blocked by build system issues 🔧  
+**All Languages:** All 32 problems fully implemented and tested ✅  
 
 Use `./run -l` to list problems, `./run -c <category>` to run by category.
 
@@ -74,7 +73,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/search-insert-position/description/" target="_blank">35</a> | Search Insert Position | binary_search | Easy | 4 | [✓](src/cpp/binary_search/35.search-insert-position.cpp) | [✓](src/go/binary_search/35.search-insert-position.go) | [✓](src/java/binary_search/35.search-insert-position.java) | [📺](https://www.youtube.com/watch?v=K-RYzDZkzCI) |
 | <a href="https://leetcode.com/problems/valid-sudoku/description/" target="_blank">36</a> | Valid Sudoku | hash | Medium | 2 | [✓](src/cpp/hash/36.valid-sudoku.cpp) | [✓](src/go/hash/36.valid-sudoku.go) | [✓](src/java/hash/36.valid-sudoku.java) | [📺](https://www.youtube.com/watch?v=TjFXEUCMqI8) |
 | <a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank">42</a> | Trapping Rain Water | two_pointer | Hard | 6 | [✓](src/cpp/two_pointer/42.trapping-rain-water.cpp) | [✓](src/go/two_pointer/42.trapping-rain-water.go) | [✓](src/java/two_pointer/42.trapping-rain-water.java) | [📺](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
-| <a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank">70</a> | Climbing Stairs | dp | Easy | 7 | [✓](src/cpp/dp/70.climbing-stairs.cpp) | [✓](src/go/dp/70.climbing-stairs.go) | ❌ | [📺](https://www.youtube.com/watch?v=Y0lT9Fck7qI) |
+| <a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank">70</a> | Climbing Stairs | dp | Easy | 7 | [✓](src/cpp/dp/70.climbing-stairs.cpp) | [✓](src/go/dp/70.climbing-stairs.go) | [✓](src/java/dp/P70.java) | [📺](https://www.youtube.com/watch?v=Y0lT9Fck7qI) |
 | <a href="https://leetcode.com/problems/binary-tree-inorder-traversal/description/" target="_blank">94</a> | Binary Tree Inorder Traversal | tree | Easy | 5 | [✓](src/cpp/tree/94.binary-tree-inorder-traversal.cpp) | [✓](src/go/tree/94.binary-tree-inorder-traversal.go) | [✓](src/java/tree/94.binary-tree-inorder-traversal.java) | [📺](https://www.youtube.com/watch?v=g_S5WuasWUE) |
 | <a href="https://leetcode.com/problems/validate-binary-search-tree/description/" target="_blank">98</a> | Validate Binary Search Tree | tree | Medium | 6 | [✓](src/cpp/tree/98.validate-binary-search-tree.cpp) | [✓](src/go/tree/98.validate-binary-search-tree.go) | [✓](src/java/tree/98.validate-binary-search-tree.java) | [📺](https://www.youtube.com/watch?v=s6ATEkipzow) |
 | <a href="https://leetcode.com/problems/same-tree/description/" target="_blank">100</a> | Same Tree | tree | Easy | 5 | [✓](src/cpp/tree/100.same-tree.cpp) | [✓](src/go/tree/100.same-tree.go) | [✓](src/java/tree/100.same-tree.java) | [📺](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
@@ -87,7 +86,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/house-robber/description/" target="_blank">198</a> | House Robber | dp | Medium | 8 | [✓](src/cpp/dp/198.house-robber.cpp) | [✓](src/go/dp/198.house-robber.go) | [✓](src/java/dp/198.house-robber.java) | [📺](https://www.youtube.com/watch?v=73r3KWiEvyk) |
 | <a href="https://leetcode.com/problems/number-of-islands/description/" target="_blank">200</a> | Number of Islands | graphs | Medium | 3 | [✓](src/cpp/graphs/200.number-of-islands.cpp) | [✓](src/go/graphs/200.number-of-islands.go) | [✓](src/java/graphs/200.number-of-islands.java) | [📺](https://www.youtube.com/watch?v=pV2kpPD66nE) |
 | <a href="https://leetcode.com/problems/reverse-linked-list/description/" target="_blank">206</a> | Reverse Linked List | list | Easy | 3 | [✓](src/cpp/list/206.reverse-linked-list.cpp) | [✓](src/go/list/206.reverse-linked-list.go) | [✓](src/java/list/206.reverse-linked-list.java) | [📺](https://www.youtube.com/watch?v=G0_I-ZF0S38) |
-| <a href="https://leetcode.com/problems/house-robber-ii/description/" target="_blank">213</a> | House Robber II | dp | Medium | 7 | [✓](src/cpp/dp/213.house-robber-ii.cpp) | [✓](src/go/dp/213.house-robber-ii.go) | ❌ | [📺](https://www.youtube.com/watch?v=rWAJCfYYOvM) |
+| <a href="https://leetcode.com/problems/house-robber-ii/description/" target="_blank">213</a> | House Robber II | dp | Medium | 7 | [✓](src/cpp/dp/213.house-robber-ii.cpp) | [✓](src/go/dp/213.house-robber-ii.go) | [✓](src/java/dp/P213.java) | [📺](https://www.youtube.com/watch?v=rWAJCfYYOvM) |
 | <a href="https://leetcode.com/problems/invert-binary-tree/description/" target="_blank">226</a> | Invert Binary Tree | tree | Easy | 3 | [✓](src/cpp/tree/226.invert-binary-tree.cpp) | [✓](src/go/tree/226.invert-binary-tree.go) | [✓](src/java/tree/226.invert-binary-tree.java) | [📺](https://www.youtube.com/watch?v=OnSn2XEQ4MY) |
 | <a href="https://leetcode.com/problems/product-of-array-except-self/description/" target="_blank">238</a> | Product of Array Except Self | prefix_sum | Medium | 2 | [✓](src/cpp/prefix_sum/238.product-of-array-except-self.cpp) | [✓](src/go/prefix_sum/238.product-of-array-except-self.go) | [✓](src/java/prefix_sum/238.product-of-array-except-self.java) | [📺](https://www.youtube.com/watch?v=bNvIQI2wAjk) |
 | <a href="https://leetcode.com/problems/longest-repeating-character-replacement/description/" target="_blank">424</a> | Longest Repeating Character Replacement | sliding_window | Medium | 5 | [✓](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp) | [✓](src/go/sliding_window/424.longest-repeating-character-replacement.go) | [✓](src/java/sliding_window/424.longest-repeating-character-replacement.java) | [📺](https://www.youtube.com/watch?v=gqXU1UyA8pk) |
@@ -338,7 +337,7 @@ _Click to expand individual problem descriptions, examples, and test cases._
 **💻 Solutions**:
 - [C++](src/cpp/dp/70.climbing-stairs.cpp)
 - [Go](src/go/dp/70.climbing-stairs.go)
-- Java: ❌
+- [Java](src/java/dp/P70.java)
 
 **🧪 Test Cases** (7 cases):
 1. `{"input": 1, "expected": 1}`
@@ -594,7 +593,7 @@ _Click to expand individual problem descriptions, examples, and test cases._
 **💻 Solutions**:
 - [C++](src/cpp/dp/213.house-robber-ii.cpp)
 - [Go](src/go/dp/213.house-robber-ii.go)
-- Java: ❌
+- [Java](src/java/dp/P213.java)
 
 **🧪 Test Cases** (7 cases):
 1. `{"nums": [2, 3, 2], "expected": 3}`

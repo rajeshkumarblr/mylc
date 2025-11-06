@@ -62,6 +62,7 @@ class Registry {
         m.put("35", cases -> Drivers.driver35(cases));
         m.put("36", cases -> Drivers.driver36(cases));
         m.put("42", cases -> Drivers.driver42(cases));
+        m.put("70", cases -> Drivers.driver70(cases));
         m.put("94", cases -> Drivers.driver94(cases));
         m.put("98", cases -> Drivers.driver98(cases));
         m.put("100", cases -> Drivers.driver100(cases));
@@ -167,7 +168,7 @@ class Drivers {
             int[] nums = toIntArray(tc.getAsJsonArray("input"));
             int target = tc.get("target").getAsInt();
             int[] want = toIntArray(tc.getAsJsonArray("expected"));
-            int[] got = new P1_TwoSum().twoSum_local(nums, target);
+            int[] got = new P1().twoSum(nums, target);
             if (!Arrays.equals(got, want)) {
                 okAll = false;
             }
@@ -481,6 +482,16 @@ class Drivers {
         for(int i=0;i<cases.size();i++){
             JsonObject tc=cases.get(i); int[] a=toIntArray(tc.getAsJsonArray("input")); int want=tc.get("expected").getAsInt();
             int got=new P42().new Solution().trap(a);
+            if (got!=want) okAll=false; idx.add(i+1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver70(List<JsonObject> cases){
+        List<Integer> idx=new ArrayList<>(); boolean okAll=true;
+        for(int i=0;i<cases.size();i++){
+            JsonObject tc=cases.get(i); int n=tc.get("n").getAsInt(); int want=tc.get("expected").getAsInt();
+            int got=new P70().climbStairs(n);
             if (got!=want) okAll=false; idx.add(i+1);
         }
         return new Result(idx, okAll);
