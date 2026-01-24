@@ -3,15 +3,15 @@
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
 **Problems covered:** 33  
-**Languages:** C++, Go, Java  
-**Status:** C++ ✅ 33/33 • Go ✅ 33/33 • Java ✅ 33/33
+**Languages:** C++, Go, Java, Python  
+**Status:** C++ ✅ 33/33 • Go ✅ 33/33 • Java ✅ 33/33 • Python ⚠️ 1/33
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
 ## Quick start
 ```bash
 # (optional) set a default language for the run helper
-export LC_LANG=cpp   # or: go | java
+export LC_LANG=cpp   # or: go | java | python
 
 # run a single problem (auto-builds runner on first use)
 ./run -p 94
@@ -42,6 +42,10 @@ export LC_LANG=cpp   # or: go | java
       binary_search/ dp/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
         <id>.*.java # per-problem sources grouped by category
       Main.java LcTestUtils.java Makefile
+    python/
+      binary_search/ dp/ graphs/ hash/ list/ misc/ prefix_sum/ sliding_window/ stack/ tree/ two_pointer/
+        <id>.*.py   # per-problem sources grouped by category
+      main.py lc_test_utils.py Makefile
   build/           # build artifacts (created on demand)
 ```
 
@@ -51,6 +55,7 @@ export LC_LANG=cpp   # or: go | java
 - Go 1.21+ (module mode)
 - (Optional) `nlohmann/json` single-header; vendored or system-wide
 - Java 17+ (OpenJDK recommended). We use a pinned Gson jar (no Maven/Gradle required).
+- Python 3.6+
 
 ## Problems & status
 
@@ -60,8 +65,8 @@ Use `./run -l` to list problems, `./run -c <category>` to run by category.
 
 _Click problem ID to view LeetCode problem description (opens in new tab). Click ✓ to view source code. Click 📺 for NeetCode explanation videos._
 
-| ID | Problem | Category | Difficulty | Test Cases | C++ | Go | Java | NeetCode Explanation Video |
-|---:|---|---|---|---:|---|---|---|---|
+| ID | Problem | Category | Difficulty | Test Cases | C++ | Go | Java | Python | NeetCode Explanation Video |
+|---:|---|---|---|---:|---|---|---|---|---|
 | <a href="https://leetcode.com/problems/two-sum/description/" target="_blank">1</a> | Two Sum | hash | Easy | 2 | [✓](src/cpp/hash/1.two-sum.cpp) | [✓](src/go/hash/1.two.sum.go) | [✓](src/java/hash/1.two-sum.java) | [📺](https://www.youtube.com/watch?v=KLlXCFG5TnA) |
 | <a href="https://leetcode.com/problems/add-two-numbers/description/" target="_blank">2</a> | Add Two Numbers | list | Medium | 1 | [✓](src/cpp/list/2.add-two-numbers.cpp) | [✓](src/go/list/2.add-two-numbers.go) | [✓](src/java/list/2.add-two-numbers.java) | [📺](https://www.youtube.com/watch?v=wgFPrzTjm7s) |
 | <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/description/" target="_blank">3</a> | Longest Substring Without Repeating Characters | sliding_window | Medium | 2 | [✓](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp) | [✓](src/go/sliding_window/3.longest-substring-without-repeating-characters.go) | [✓](src/java/sliding_window/3.longest-substring-without-repeating-characters.java) | [📺](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
@@ -128,6 +133,7 @@ _Click to expand individual problem descriptions, examples, and test cases._
 - [C++](src/cpp/hash/1.two-sum.cpp)
 - [Go](src/go/hash/1.two.sum.go)
 - [Java](src/java/hash/1.two-sum.java)
+- [Python](src/python/hash/1.two-sum.py)
 
 **🧪 Test Cases** (2 cases):
 1. `{"input": [2, 7, 11, 15], "target": 9, "expected": [0, 1]}`
@@ -146,6 +152,7 @@ _Click to expand individual problem descriptions, examples, and test cases._
 - [C++](src/cpp/list/2.add-two-numbers.cpp)
 - [Go](src/go/list/2.add-two-numbers.go)
 - [Java](src/java/list/2.add-two-numbers.java)
+- [Python]()
 
 **🧪 Test Cases** (1 cases):
 1. `{"l1": [2, 4, 3], "l2": [5, 6, 4], "expected": [7, 0, 8]}`

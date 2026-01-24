@@ -16,9 +16,9 @@ Usage:
   ./run [options]
 
 Options:
-  -l, --lang [cpp|go|java]  With an argument: set language (default from $LC_LANG via .env, else cpp)
+  -l, --lang [cpp|go|java|python]  With an argument: set language (default from $LC_LANG via .env, else cpp)
                        Without an argument: list categories & problems
-  -t [cpp|go|java]     Set default language in .env (writes LC_LANG) and exit
+  -t [cpp|go|java|python]     Set default language in .env (writes LC_LANG) and exit
   -p, --problem [id]   Run a single problem id (if omitted, uses $LC_PROB_NUM or $LC_PROB_NO)
   -c, --category [cat] Run the given category (if omitted, uses $LC_CATEGORY)
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
@@ -147,6 +147,18 @@ has_impl() {
         "$ROOT/src/java/sliding_window/${id}."*".java" "$ROOT/src/java/misc/${id}."*".java" \
         "$ROOT/src/java/two_pointer/${id}."*".java" "$ROOT/src/java/tree/${id}."*".java" \
         "$ROOT/src/java/stack/${id}."*".java" \
+        "$ROOT/src/java/binary_search/${id}."*".java"
+      )
+      ;;
+    python)
+      m=( \
+        "$ROOT/src/python/${id}."*".py" "$ROOT/src/python/${id}.py" \
+        "$ROOT/src/python/hash/${id}."*".py" "$ROOT/src/python/list/${id}."*".py" \
+        "$ROOT/src/python/sliding_window/${id}."*".py" "$ROOT/src/python/misc/${id}."*".py" \
+        "$ROOT/src/python/two_pointer/${id}."*".py" "$ROOT/src/python/tree/${id}."*".py" \
+        "$ROOT/src/python/stack/${id}."*".py" "$ROOT/src/python/prefix_sum/${id}."*".py" \
+        "$ROOT/src/python/graphs/${id}."*".py" "$ROOT/src/python/dp/${id}."*".py" \
+        "$ROOT/src/python/binary_search/${id}."*".py" \
       )
       ;;
     *)   shopt -u nullglob; return 1;;
@@ -160,6 +172,7 @@ print_lang() {
     cpp) echo "Language set to: C++" ;;
     go)  echo "Language set to: Go"  ;;
     java) echo "Language set to: Java" ;;
+    python) echo "Language set to: Python" ;;
     *)   echo "Language set to: $1"  ;;
   esac
 }
@@ -176,7 +189,7 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     -t)
       # Set default language by updating $ROOT/.env (LC_LANG)
-      if [[ $# -ge 2 && "$2" =~ ^(cpp|go|java)$ ]]; then
+      if [[ $# -ge 2 && "$2" =~ ^(cpp|go|java|python)$ ]]; then
         TARGET_LANG="$2"
         # Create or update .env with LC_LANG entry
         if [[ -f "$ROOT/.env" ]]; then
@@ -197,7 +210,7 @@ while [[ $# -gt 0 ]]; do
       ;;
     -l|--lang)
       # If next token looks like a valid lang, consume it; else treat bare -l as "list"
-      if [[ $# -ge 2 && "$2" =~ ^(cpp|go|java)$ ]]; then
+      if [[ $# -ge 2 && "$2" =~ ^(cpp|go|java|python)$ ]]; then
         LANG="$2"; shift 2
       else
         LIST_ONLY=1; shift
@@ -264,7 +277,7 @@ EOT
   echo "Submitting problem $SUBMIT_ID for language '$LANG_FOR_SUBMIT'..."
   exec python3 "$ROOT/scripts/submit_lc.py" --id "$SUBMIT_ID" --lang "$LANG_FOR_SUBMIT" --src-root "$ROOT/src" --build-root "$ROOT/build"
 fi
-case "$LANG" in cpp|go|java) : ;; *) die "Unsupported language: $LANG (use cpp|go|java)";; esac
+case "$LANG" in cpp|go|java|python) : ;; *) die "Unsupported language: $LANG (use cpp|go|java|python)";; esac
 print_lang "$LANG"
 ensure_runner "$LANG"
 BIN="$(runner_path "$LANG")"
