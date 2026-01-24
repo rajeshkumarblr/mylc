@@ -97,6 +97,10 @@ bool lc_test_739(const json& j);
 int searchInsert(std::vector<int>& nums, int target);
 bool lc_test_35(const json& j);
 
+// Problem 33: Search in Rotated Sorted Array
+int search_33(std::vector<int>& nums, int target);
+bool lc_test_33(const json& j);
+
 // Problem 36: Valid Sudoku
 bool isValidSudoku(std::vector<std::vector<char>>& board);
 bool lc_test_36(const json& j);

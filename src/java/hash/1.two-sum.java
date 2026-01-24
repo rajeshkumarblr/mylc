@@ -2,7 +2,7 @@ import java.util.*;
 
 // @lc app=leetcode id=1 lang=java
 
-public class P1 {
+class P1 {
     // @lc code=start
     static class Solution {
         // Two Sum
@@ -13,7 +13,7 @@ public class P1 {
                 int need = target - nums[i];
                 Integer j = pos.get(need);
                 if (j != null) {
-                    return new int[]{j, i};
+                    return new int[] { j, i };
                 }
                 pos.put(nums[i], i);
             }

@@ -14,6 +14,7 @@ var funcRegistry = map[string]interface{}{
 	"15":  threeSum,
 	"20":  isValid,
 	"21":  mergeTwoLists,
+	"33":  search_33,
 	"35":  searchInsert,
 	"36":  isValidSudoku,
 	"42":  trap,

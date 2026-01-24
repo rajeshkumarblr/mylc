@@ -31,6 +31,7 @@ var problemDescriptions = map[string]string{
 	"15":  "3sum",
 	"20":  "valid parentheses",
 	"21":  "merge two sorted lists",
+	"33":  "search in rotated sorted array",
 	"35":  "search insert position",
 	"36":  "valid sudoku",
 	"42":  "trapping rain water",
@@ -486,6 +487,11 @@ func driver35_SearchInsert(fn interface{}, tests []map[string]interface{}) ([]in
 	return caseIdx, okAll
 }
 
+// 33. search in rotated sorted array  func([]int, int) int
+func driver33_Search(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	return driver35_SearchInsert(fn, tests)
+}
+
 // 36. valid sudoku  func([][]byte) bool
 func driver36_ValidSudoku(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
 	caseIdx, okAll := make([]int, 0, len(tests)), true
@@ -760,6 +766,7 @@ var drivers = map[string]Driver{
 	"567": driver567_CheckInclusion,
 	"739": driver739_DailyTemperatures,
 	"20":  driver20_ValidParentheses,
+	"33":  driver33_Search,
 	"35":  driver35_SearchInsert,
 	"36":  driver36_ValidSudoku,
 	"160": driver160_GetIntersectionNode,

@@ -2,9 +2,9 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 32  
+**Problems covered:** 33  
 **Languages:** C++, Go, Java  
-**Status:** C++ ✅ 32/32 • Go ✅ 32/32 • Java ✅ 32/32
+**Status:** C++ ✅ 33/33 • Go ✅ 33/33 • Java ✅ 33/33
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
@@ -54,7 +54,7 @@ export LC_LANG=cpp   # or: go | java
 
 ## Problems & status
 
-**All Languages:** All 32 problems fully implemented and tested ✅  
+**All Languages:** All 33 problems fully implemented and tested ✅  
 
 Use `./run -l` to list problems, `./run -c <category>` to run by category.
 
@@ -70,6 +70,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/3sum/description/" target="_blank">15</a> | 3Sum | two_pointer | Medium | 4 | [✓](src/cpp/two_pointer/15.3-sum.cpp) | [✓](src/go/two_pointer/15.3-sum.go) | [✓](src/java/two_pointer/15.3-sum.java) | [📺](https://www.youtube.com/watch?v=jzZsG8n2R9A) |
 | <a href="https://leetcode.com/problems/valid-parentheses/description/" target="_blank">20</a> | Valid Parentheses | stack | Easy | 10 | [✓](src/cpp/stack/20.valid-parentheses.cpp) | [✓](src/go/stack/20.valid-parentheses.go) | [✓](src/java/stack/20.valid-parentheses.java) | [📺](https://www.youtube.com/watch?v=WTzjTskDFMg) |
 | <a href="https://leetcode.com/problems/merge-two-sorted-lists/description/" target="_blank">21</a> | Merge Two Sorted Lists | list | Easy | 7 | [✓](src/cpp/list/21.merge-two-sorted-lists.cpp) | [✓](src/go/list/21.merge-two-sorted-lists.go) | [✓](src/java/list/21.merge-two-sorted-lists.java) | [📺](https://www.youtube.com/watch?v=XIdigk956u0) |
+| <a href="https://leetcode.com/problems/search-in-rotated-sorted-array/description/" target="_blank">33</a> | Search in Rotated Sorted Array | binary_search | Medium | 3 | [✓](src/cpp/binary_search/33.search-in-rotated-sorted-array.cpp) | [✓](src/go/binary_search/33.search-in-rotated-sorted-array.go) | [✓](src/java/binary_search/33.search-in-rotated-sorted-array.java) | [📺](https://www.youtube.com/watch?v=U8XENwh8Oy8) |
 | <a href="https://leetcode.com/problems/search-insert-position/description/" target="_blank">35</a> | Search Insert Position | binary_search | Easy | 4 | [✓](src/cpp/binary_search/35.search-insert-position.cpp) | [✓](src/go/binary_search/35.search-insert-position.go) | [✓](src/java/binary_search/35.search-insert-position.java) | [📺](https://www.youtube.com/watch?v=K-RYzDZkzCI) |
 | <a href="https://leetcode.com/problems/valid-sudoku/description/" target="_blank">36</a> | Valid Sudoku | hash | Medium | 2 | [✓](src/cpp/hash/36.valid-sudoku.cpp) | [✓](src/go/hash/36.valid-sudoku.go) | [✓](src/java/hash/36.valid-sudoku.java) | [📺](https://www.youtube.com/watch?v=TjFXEUCMqI8) |
 | <a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank">42</a> | Trapping Rain Water | two_pointer | Hard | 6 | [✓](src/cpp/two_pointer/42.trapping-rain-water.cpp) | [✓](src/go/two_pointer/42.trapping-rain-water.go) | [✓](src/java/two_pointer/42.trapping-rain-water.java) | [📺](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
@@ -96,7 +97,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/daily-temperatures/description/" target="_blank">739</a> | Daily Temperatures | stack | Medium | 6 | [✓](src/cpp/stack/739.daily-temperatures.cpp) | [✓](src/go/stack/739.daily-temperatures.go) | [✓](src/java/stack/739.daily-temperatures.java) | [📺](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
 
 ### Filter by Category
-- **binary_search**: [35](#35)
+- **binary_search**: [33](#33), [35](#35)
 - **dp**: [70](#70), [139](#139), [198](#198), [213](#213)
 - **graphs**: [200](#200)
 - **hash**: [1](#1), [36](#36)
@@ -266,6 +267,25 @@ _Click to expand individual problem descriptions, examples, and test cases._
 2. `{"l1": [], "l2": [], "expected": []}`
 3. `{"l1": [], "l2": [0], "expected": [0]}`
    ... and 4 more cases
+
+</details>
+
+<details>
+<summary><strong>LC33: Search in Rotated Sorted Array</strong> (Medium) - binary_search</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/search-in-rotated-sorted-array/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=U8XENwh8Oy8
+
+**💻 Solutions**:
+- [C++](src/cpp/binary_search/33.search-in-rotated-sorted-array.cpp)
+- [Go](src/go/binary_search/33.search-in-rotated-sorted-array.go)
+- [Java](src/java/binary_search/33.search-in-rotated-sorted-array.java)
+
+**🧪 Test Cases** (3 cases):
+1. `{"nums": [4, 5, 6, 7, 0, 1, 2], "target": 0, "expected": 4}`
+2. `{"nums": [4, 5, 6, 7, 0, 1, 2], "target": 3, "expected": -1}`
+3. `{"nums": [1], "target": 0, "expected": -1}`
 
 </details>
 
