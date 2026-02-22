@@ -513,6 +513,20 @@ def driver739_DailyTemperatures(fn, cases):
         indices.append(i + 1)
     return indices, ok_all
 
+def driver1235_JobScheduling(fn, cases):
+    indices = []
+    ok_all = True
+    for i, tc in enumerate(cases):
+        startTime = tc["startTime"]
+        endTime = tc["endTime"]
+        profit = tc["profit"]
+        expected = tc["expected"]
+        got = fn(startTime, endTime, profit)
+        if got != expected:
+            ok_all = False
+        indices.append(i + 1)
+    return indices, ok_all
+
 # Registry of drivers
 DRIVERS = {
     "1": driver1_TwoSum,
@@ -548,6 +562,7 @@ DRIVERS = {
     "560": driver560_SubarraySum,
     "567": driver567_CheckInclusion,
     "739": driver739_DailyTemperatures,
+    "1235": driver1235_JobScheduling,
 }
 
 # ===== Runner core =====

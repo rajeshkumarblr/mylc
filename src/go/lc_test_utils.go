@@ -23,39 +23,40 @@ type TreeNode struct {
 }
 
 var problemDescriptions = map[string]string{
-	"1":   "two sum",
-	"2":   "add two numbers",
-	"3":   "longest substring",
-	"9":   "palindrome number",
-	"11":  "container with most water",
-	"15":  "3sum",
-	"20":  "valid parentheses",
-	"21":  "merge two sorted lists",
-	"33":  "search in rotated sorted array",
-	"35":  "search insert position",
-	"36":  "valid sudoku",
-	"42":  "trapping rain water",
-	"70":  "climbing stairs",
-	"94":  "inorder traversal",
-	"98":  "validate BST",
-	"100": "same tree",
-	"102": "level order traversal",
-	"103": "zigzag level order",
-	"104": "max depth",
-	"110": "is balanced",
-	"139": "word break",
-	"160": "intersection linked list",
-	"198": "house robber",
-	"200": "number of islands",
-	"206": "reverse linked list",
-	"213": "house robber ii",
-	"226": "invert binary tree",
-	"238": "product of array except self",
-	"424": "character replacement",
-	"438": "find all anagrams",
-	"560": "subarray sum equals k",
-	"567": "permutation in string",
-	"739": "daily temperatures",
+	"1":    "two sum",
+	"2":    "add two numbers",
+	"3":    "longest substring",
+	"9":    "palindrome number",
+	"11":   "container with most water",
+	"15":   "3sum",
+	"20":   "valid parentheses",
+	"21":   "merge two sorted lists",
+	"33":   "search in rotated sorted array",
+	"35":   "search insert position",
+	"36":   "valid sudoku",
+	"42":   "trapping rain water",
+	"70":   "climbing stairs",
+	"94":   "inorder traversal",
+	"98":   "validate BST",
+	"100":  "same tree",
+	"102":  "level order traversal",
+	"103":  "zigzag level order",
+	"104":  "max depth",
+	"110":  "is balanced",
+	"139":  "word break",
+	"160":  "intersection linked list",
+	"198":  "house robber",
+	"200":  "number of islands",
+	"206":  "reverse linked list",
+	"213":  "house robber ii",
+	"226":  "invert binary tree",
+	"238":  "product of array except self",
+	"424":  "character replacement",
+	"438":  "find all anagrams",
+	"560":  "subarray sum equals k",
+	"567":  "permutation in string",
+	"739":  "daily temperatures",
+	"1235": "max profit job scheduling",
 }
 
 type ProblemTest struct {
@@ -743,40 +744,59 @@ func driver213_HouseRobberII(fn interface{}, tests []map[string]interface{}) ([]
 	return caseIdx, okAll
 }
 
+// 1235. maximum profit in job scheduling  func([]int, []int, []int) int
+func driver1235_JobScheduling(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]int, []int, []int) int)
+	for i, tc := range tests {
+		startTime := sliceInt("startTime", tc)
+		endTime := sliceInt("endTime", tc)
+		profit := sliceInt("profit", tc)
+		want := int(tc["expected"].(float64))
+		got := f(startTime, endTime, profit)
+		if got != want {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
+}
+
 var drivers = map[string]Driver{
-	"1":   driver1_TwoSum,
-	"2":   driver2_AddTwoNumbers,
-	"3":   driver3_LongestSubstring,
-	"9":   driver9_PalindromeNumber,
-	"11":  driver11_MaxArea,
-	"15":  driver15_ThreeSum,
-	"21":  driver21_MergeTwoLists,
-	"42":  driver42_Trap,
-	"70":  driver70_ClimbingStairs,
-	"94":  driver94_InorderTraversal,
-	"98":  driver98_ValidateBST,
-	"100": driver100_SameTree,
-	"102": driver102_LevelOrder,
-	"103": driver103_ZigzagLevelOrder,
-	"104": driver104_MaxDepth,
-	"110": driver110_IsBalanced,
-	"139": driver139_WordBreak,
-	"424": driver424_CharacterReplacement,
-	"438": driver438_FindAnagrams,
-	"567": driver567_CheckInclusion,
-	"739": driver739_DailyTemperatures,
-	"20":  driver20_ValidParentheses,
-	"33":  driver33_Search,
-	"35":  driver35_SearchInsert,
-	"36":  driver36_ValidSudoku,
-	"160": driver160_GetIntersectionNode,
-	"198": driver198_HouseRobber,
-	"200": driver200_NumIslands,
-	"206": driver206_ReverseList,
-	"213": driver213_HouseRobberII,
-	"226": driver226_InvertTree,
-	"238": driver238_ProductExceptSelf,
-	"560": driver560_SubarraySum,
+	"1":    driver1_TwoSum,
+	"2":    driver2_AddTwoNumbers,
+	"3":    driver3_LongestSubstring,
+	"9":    driver9_PalindromeNumber,
+	"11":   driver11_MaxArea,
+	"15":   driver15_ThreeSum,
+	"21":   driver21_MergeTwoLists,
+	"42":   driver42_Trap,
+	"70":   driver70_ClimbingStairs,
+	"94":   driver94_InorderTraversal,
+	"98":   driver98_ValidateBST,
+	"100":  driver100_SameTree,
+	"102":  driver102_LevelOrder,
+	"103":  driver103_ZigzagLevelOrder,
+	"104":  driver104_MaxDepth,
+	"110":  driver110_IsBalanced,
+	"139":  driver139_WordBreak,
+	"424":  driver424_CharacterReplacement,
+	"438":  driver438_FindAnagrams,
+	"567":  driver567_CheckInclusion,
+	"739":  driver739_DailyTemperatures,
+	"20":   driver20_ValidParentheses,
+	"33":   driver33_Search,
+	"35":   driver35_SearchInsert,
+	"36":   driver36_ValidSudoku,
+	"160":  driver160_GetIntersectionNode,
+	"198":  driver198_HouseRobber,
+	"200":  driver200_NumIslands,
+	"206":  driver206_ReverseList,
+	"213":  driver213_HouseRobberII,
+	"226":  driver226_InvertTree,
+	"238":  driver238_ProductExceptSelf,
+	"560":  driver560_SubarraySum,
+	"1235": driver1235_JobScheduling,
 }
 
 // ===== Unified runner core =====

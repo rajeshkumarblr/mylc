@@ -65,6 +65,7 @@ def build_registry():
     reg("560", "prefix_sum", "560.subarray-sum-equals-k.py", "subarraySum")
     reg("567", "sliding_window", "567.permutation-in-string.py", "checkInclusion")
     reg("739", "stack", "739.daily-temperatures.py", "dailyTemperatures")
+    reg("1235", "dp", "1235.maximum-profit-in-job-scheduling.py", "jobScheduling")
     
     return registry
 

@@ -6,8 +6,31 @@
     "url": "https://leetcode.com/problems/two-sum/",
     "video": "https://www.youtube.com/watch?v=KLlXCFG5TnA",
     "cases": [
-      { "input": [2,7,11,15], "target": 9, "expected": [0,1] },
-      { "input": [3,2,4], "target": 6, "expected": [1,2] }
+      {
+        "input": [
+          2,
+          7,
+          11,
+          15
+        ],
+        "target": 9,
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "input": [
+          3,
+          2,
+          4
+        ],
+        "target": 6,
+        "expected": [
+          1,
+          2
+        ]
+      }
     ]
   },
   "2": {
@@ -17,7 +40,23 @@
     "url": "https://leetcode.com/problems/add-two-numbers/",
     "video": "https://www.youtube.com/watch?v=wgFPrzTjm7s",
     "cases": [
-      { "l1": [2,4,3], "l2": [5,6,4], "expected": [7,0,8] }
+      {
+        "l1": [
+          2,
+          4,
+          3
+        ],
+        "l2": [
+          5,
+          6,
+          4
+        ],
+        "expected": [
+          7,
+          0,
+          8
+        ]
+      }
     ]
   },
   "3": {
@@ -27,8 +66,14 @@
     "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
     "video": "https://www.youtube.com/watch?v=wiGpQwVHdE0",
     "cases": [
-      { "input": "abcabcbb", "expected": 3 },
-      { "input": "bbbbb", "expected": 1 }
+      {
+        "input": "abcabcbb",
+        "expected": 3
+      },
+      {
+        "input": "bbbbb",
+        "expected": 1
+      }
     ]
   },
   "9": {
@@ -38,12 +83,30 @@
     "url": "https://leetcode.com/problems/palindrome-number/",
     "video": "https://www.youtube.com/watch?v=f5qF2OowB5A",
     "cases": [
-      { "input": 121, "expected": true },
-      { "input": -121, "expected": false },
-      { "input": 10, "expected": false },
-      { "input": 0, "expected": true },
-      { "input": 12321, "expected": true },
-      { "input": 123, "expected": false }
+      {
+        "input": 121,
+        "expected": true
+      },
+      {
+        "input": -121,
+        "expected": false
+      },
+      {
+        "input": 10,
+        "expected": false
+      },
+      {
+        "input": 0,
+        "expected": true
+      },
+      {
+        "input": 12321,
+        "expected": true
+      },
+      {
+        "input": 123,
+        "expected": false
+      }
     ]
   },
   "11": {
@@ -53,15 +116,91 @@
     "url": "https://leetcode.com/problems/container-with-most-water/",
     "video": "https://www.youtube.com/watch?v=UuiTKBwPgAo",
     "cases": [
-      { "input": [8,7,2,2], "expected": 7 },
-      { "input": [1,8,6,2,5,4,8,3,7], "expected": 49 },
-      { "input": [1,1], "expected": 1 },
-      { "input": [4,3,2,1,4], "expected": 16 },
-      { "input": [1,2,1], "expected": 2 },
-      { "input": [1,2,4,3], "expected": 4 },
-      { "input": [2,3,4,5,18,17,6], "expected": 17 },
-      { "input": [1,3,2,5,25,24,5], "expected": 24 },
-      { "input": [], "expected": 0 }
+      {
+        "input": [
+          8,
+          7,
+          2,
+          2
+        ],
+        "expected": 7
+      },
+      {
+        "input": [
+          1,
+          8,
+          6,
+          2,
+          5,
+          4,
+          8,
+          3,
+          7
+        ],
+        "expected": 49
+      },
+      {
+        "input": [
+          1,
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          4,
+          3,
+          2,
+          1,
+          4
+        ],
+        "expected": 16
+      },
+      {
+        "input": [
+          1,
+          2,
+          1
+        ],
+        "expected": 2
+      },
+      {
+        "input": [
+          1,
+          2,
+          4,
+          3
+        ],
+        "expected": 4
+      },
+      {
+        "input": [
+          2,
+          3,
+          4,
+          5,
+          18,
+          17,
+          6
+        ],
+        "expected": 17
+      },
+      {
+        "input": [
+          1,
+          3,
+          2,
+          5,
+          25,
+          24,
+          5
+        ],
+        "expected": 24
+      },
+      {
+        "input": [],
+        "expected": 0
+      }
     ]
   },
   "21": {
@@ -71,13 +210,98 @@
     "url": "https://leetcode.com/problems/merge-two-sorted-lists/",
     "video": "https://www.youtube.com/watch?v=XIdigk956u0",
     "cases": [
-      { "l1": [1,2,4], "l2": [1,3,4], "expected": [1,1,2,3,4,4] },
-      { "l1": [], "l2": [], "expected": [] },
-      { "l1": [], "l2": [0], "expected": [0] },
-      { "l1": [2], "l2": [1], "expected": [1,2] },
-      { "l1": [1,3,5], "l2": [2,4,6], "expected": [1,2,3,4,5,6] },
-      { "l1": [1,2,3], "l2": [], "expected": [1,2,3] },
-      { "l1": [], "l2": [1,2,3], "expected": [1,2,3] }
+      {
+        "l1": [
+          1,
+          2,
+          4
+        ],
+        "l2": [
+          1,
+          3,
+          4
+        ],
+        "expected": [
+          1,
+          1,
+          2,
+          3,
+          4,
+          4
+        ]
+      },
+      {
+        "l1": [],
+        "l2": [],
+        "expected": []
+      },
+      {
+        "l1": [],
+        "l2": [
+          0
+        ],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "l1": [
+          2
+        ],
+        "l2": [
+          1
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "l1": [
+          1,
+          3,
+          5
+        ],
+        "l2": [
+          2,
+          4,
+          6
+        ],
+        "expected": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ]
+      },
+      {
+        "l1": [
+          1,
+          2,
+          3
+        ],
+        "l2": [],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "l1": [],
+        "l2": [
+          1,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          2,
+          3
+        ]
+      }
     ]
   },
   "42": {
@@ -87,26 +311,120 @@
     "url": "https://leetcode.com/problems/trapping-rain-water/",
     "video": "https://www.youtube.com/watch?v=ZI2z5pq0TqA",
     "cases": [
-      { "input": [0,1,0,2,1,0,1,3,2,1,2,1], "expected": 6 },
-      { "input": [4,2,0,3,2,5], "expected": 9 },
-      { "input": [1,2,3,4,5], "expected": 0 },
-      { "input": [5,4,1,2], "expected": 1 },
-      { "input": [2,0,2], "expected": 2 },
-      { "input": [], "expected": 0 }
+      {
+        "input": [
+          0,
+          1,
+          0,
+          2,
+          1,
+          0,
+          1,
+          3,
+          2,
+          1,
+          2,
+          1
+        ],
+        "expected": 6
+      },
+      {
+        "input": [
+          4,
+          2,
+          0,
+          3,
+          2,
+          5
+        ],
+        "expected": 9
+      },
+      {
+        "input": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "expected": 0
+      },
+      {
+        "input": [
+          5,
+          4,
+          1,
+          2
+        ],
+        "expected": 1
+      },
+      {
+        "input": [
+          2,
+          0,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "input": [],
+        "expected": 0
+      }
     ]
   },
-  "94": { 
+  "94": {
     "category": "tree",
     "description": "Binary Tree Inorder Traversal",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
     "video": "https://www.youtube.com/watch?v=g_S5WuasWUE",
     "cases": [
-      { "tree": [1,null,2,3], "expected": [1,3,2] },
-      { "tree": [], "expected": [] },
-      { "tree": [1], "expected": [1] },
-      { "tree": [1,2], "expected": [2,1] },
-      { "tree": [1,null,2], "expected": [1,2] }
+      {
+        "tree": [
+          1,
+          null,
+          2,
+          3
+        ],
+        "expected": [
+          1,
+          3,
+          2
+        ]
+      },
+      {
+        "tree": [],
+        "expected": []
+      },
+      {
+        "tree": [
+          1
+        ],
+        "expected": [
+          1
+        ]
+      },
+      {
+        "tree": [
+          1,
+          2
+        ],
+        "expected": [
+          2,
+          1
+        ]
+      },
+      {
+        "tree": [
+          1,
+          null,
+          2
+        ],
+        "expected": [
+          1,
+          2
+        ]
+      }
     ]
   },
   "98": {
@@ -116,12 +434,54 @@
     "url": "https://leetcode.com/problems/validate-binary-search-tree/",
     "video": "https://www.youtube.com/watch?v=s6ATEkipzow",
     "cases": [
-      { "tree": [2,1,3], "expected": true },
-      { "tree": [5,1,4,null, null,3,6], "expected": false },
-      { "tree": [], "expected": true },
-      { "tree": [1], "expected": true },
-      { "tree": [10,5,15,null,null,6,20], "expected": false },
-      { "tree": [2147483647], "expected": true }
+      {
+        "tree": [
+          2,
+          1,
+          3
+        ],
+        "expected": true
+      },
+      {
+        "tree": [
+          5,
+          1,
+          4,
+          null,
+          null,
+          3,
+          6
+        ],
+        "expected": false
+      },
+      {
+        "tree": [],
+        "expected": true
+      },
+      {
+        "tree": [
+          1
+        ],
+        "expected": true
+      },
+      {
+        "tree": [
+          10,
+          5,
+          15,
+          null,
+          null,
+          6,
+          20
+        ],
+        "expected": false
+      },
+      {
+        "tree": [
+          2147483647
+        ],
+        "expected": true
+      }
     ]
   },
   "100": {
@@ -131,11 +491,56 @@
     "url": "https://leetcode.com/problems/same-tree/",
     "video": "https://www.youtube.com/watch?v=vRbbcKXCxOw",
     "cases": [
-      { "p": [], "q": [], "expected": true },
-      { "p": [1,2,3], "q": [1,2,3], "expected": true },
-      { "p": [1,2], "q": [1,null,2], "expected": false },
-      { "p": [1,2,1], "q": [1,1,2], "expected": false },
-      { "p": [], "q": [1], "expected": false }
+      {
+        "p": [],
+        "q": [],
+        "expected": true
+      },
+      {
+        "p": [
+          1,
+          2,
+          3
+        ],
+        "q": [
+          1,
+          2,
+          3
+        ],
+        "expected": true
+      },
+      {
+        "p": [
+          1,
+          2
+        ],
+        "q": [
+          1,
+          null,
+          2
+        ],
+        "expected": false
+      },
+      {
+        "p": [
+          1,
+          2,
+          1
+        ],
+        "q": [
+          1,
+          1,
+          2
+        ],
+        "expected": false
+      },
+      {
+        "p": [],
+        "q": [
+          1
+        ],
+        "expected": false
+      }
     ]
   },
   "102": {
@@ -145,11 +550,94 @@
     "url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
     "video": "https://www.youtube.com/watch?v=6ZnyEApgFYg",
     "cases": [
-      { "tree": [], "expected": [] },
-      { "tree": [1], "expected": [[1]] },
-      { "tree": [3,9,20,null,null,15,7], "expected": [[3],[9,20],[15,7]] },
-      { "tree": [1,2,3,4,5,null,7], "expected": [[1],[2,3],[4,5,7]] },
-      { "tree": [1,null,2,null,3,null,4], "expected": [[1],[2],[3],[4]] }
+      {
+        "tree": [],
+        "expected": []
+      },
+      {
+        "tree": [
+          1
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "tree": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": [
+          [
+            3
+          ],
+          [
+            9,
+            20
+          ],
+          [
+            15,
+            7
+          ]
+        ]
+      },
+      {
+        "tree": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          7
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            4,
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "tree": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      }
     ]
   },
   "103": {
@@ -159,11 +647,94 @@
     "url": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
     "video": "https://www.youtube.com/watch?v=s6ATEkipzow",
     "cases": [
-      { "tree": [], "expected": [] },
-      { "tree": [1], "expected": [[1]] },
-      { "tree": [3,9,20,null,null,15,7], "expected": [[3],[20,9],[15,7]] },
-      { "tree": [1,2,3,4,5,null,7], "expected": [[1],[3,2],[4,5,7]] },
-      { "tree": [1,null,2,null,3,null,4], "expected": [[1],[2],[3],[4]] }
+      {
+        "tree": [],
+        "expected": []
+      },
+      {
+        "tree": [
+          1
+        ],
+        "expected": [
+          [
+            1
+          ]
+        ]
+      },
+      {
+        "tree": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": [
+          [
+            3
+          ],
+          [
+            20,
+            9
+          ],
+          [
+            15,
+            7
+          ]
+        ]
+      },
+      {
+        "tree": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          7
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            5,
+            7
+          ]
+        ]
+      },
+      {
+        "tree": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4
+        ],
+        "expected": [
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ]
+      }
     ]
   },
   "104": {
@@ -173,14 +744,83 @@
     "url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
     "video": "https://www.youtube.com/watch?v=hTM3phVI6YQ",
     "cases": [
-      { "tree": [3,9,20,null,null,15,7], "expected": 3 },
-      { "tree": [], "expected": 0 },
-      { "tree": [1], "expected": 1 },
-      { "tree": [1,2], "expected": 2 },
-      { "tree": [1,2,3,4,5,null,7], "expected": 3 },
-      { "tree": [1,2,null,3,null,4], "expected": 4 },
-      { "tree": [1,null,2,null,3,null,4], "expected": 4 },
-      { "tree": [1,2,null,3,null,4,null,5], "expected": 5 }
+      {
+        "tree": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": 3
+      },
+      {
+        "tree": [],
+        "expected": 0
+      },
+      {
+        "tree": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "tree": [
+          1,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "tree": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          7
+        ],
+        "expected": 3
+      },
+      {
+        "tree": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4
+        ],
+        "expected": 4
+      },
+      {
+        "tree": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4
+        ],
+        "expected": 4
+      },
+      {
+        "tree": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5
+        ],
+        "expected": 5
+      }
     ]
   },
   "110": {
@@ -190,14 +830,86 @@
     "url": "https://leetcode.com/problems/balanced-binary-tree/",
     "video": "https://www.youtube.com/watch?v=QfJsau0ItOY",
     "cases": [
-      { "tree": [3,9,20,null,null,15,7], "expected": true },
-      { "tree": [], "expected": true },
-      { "tree": [1], "expected": true },
-      { "tree": [1,2], "expected": true },
-      { "tree": [1,2,2,3,3,null,null,4,4], "expected": false },
-      { "tree": [1,2,null,3,null,4,null,5], "expected": false },
-      { "tree": [1,null,2,null,3,null,4], "expected": false },
-      { "tree": [1,2,3,4,5,null,7], "expected": true }
+      {
+        "tree": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected": true
+      },
+      {
+        "tree": [],
+        "expected": true
+      },
+      {
+        "tree": [
+          1
+        ],
+        "expected": true
+      },
+      {
+        "tree": [
+          1,
+          2
+        ],
+        "expected": true
+      },
+      {
+        "tree": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          null,
+          null,
+          4,
+          4
+        ],
+        "expected": false
+      },
+      {
+        "tree": [
+          1,
+          2,
+          null,
+          3,
+          null,
+          4,
+          null,
+          5
+        ],
+        "expected": false
+      },
+      {
+        "tree": [
+          1,
+          null,
+          2,
+          null,
+          3,
+          null,
+          4
+        ],
+        "expected": false
+      },
+      {
+        "tree": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          null,
+          7
+        ],
+        "expected": true
+      }
     ]
   },
   "424": {
@@ -207,11 +919,31 @@
     "url": "https://leetcode.com/problems/longest-repeating-character-replacement/",
     "video": "https://www.youtube.com/watch?v=gqXU1UyA8pk",
     "cases": [
-      { "input": "AABABBA", "k": 1, "expected": 4 },
-      { "input": "ABAB", "k": 2, "expected": 4 },
-      { "input": "AAAA", "k": 2, "expected": 4 },
-      { "input": "ABCDE", "k": 1, "expected": 2 },
-      { "input": "AABABBA", "k": 2, "expected": 5 }
+      {
+        "input": "AABABBA",
+        "k": 1,
+        "expected": 4
+      },
+      {
+        "input": "ABAB",
+        "k": 2,
+        "expected": 4
+      },
+      {
+        "input": "AAAA",
+        "k": 2,
+        "expected": 4
+      },
+      {
+        "input": "ABCDE",
+        "k": 1,
+        "expected": 2
+      },
+      {
+        "input": "AABABBA",
+        "k": 2,
+        "expected": 5
+      }
     ]
   },
   "438": {
@@ -221,10 +953,35 @@
     "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/",
     "video": "https://www.youtube.com/watch?v=G8xtZy0fDKg",
     "cases": [
-      { "s": "cbaebabacd", "p": "abc", "expected": [0,6] },
-      { "s": "abab", "p": "ab", "expected": [0,1,2] },
-      { "s": "baa", "p": "aa", "expected": [1] },
-      { "s": "abc", "p": "def", "expected": [] }
+      {
+        "s": "cbaebabacd",
+        "p": "abc",
+        "expected": [
+          0,
+          6
+        ]
+      },
+      {
+        "s": "abab",
+        "p": "ab",
+        "expected": [
+          0,
+          1,
+          2
+        ]
+      },
+      {
+        "s": "baa",
+        "p": "aa",
+        "expected": [
+          1
+        ]
+      },
+      {
+        "s": "abc",
+        "p": "def",
+        "expected": []
+      }
     ]
   },
   "567": {
@@ -234,11 +991,31 @@
     "url": "https://leetcode.com/problems/permutation-in-string/",
     "video": "https://www.youtube.com/watch?v=UbyhOgBN834",
     "cases": [
-      { "s1": "ab", "s2": "eidbaooo", "expected": true },
-      { "s1": "ab", "s2": "eidboaoo", "expected": false },
-      { "s1": "adc", "s2": "dcda", "expected": true },
-      { "s1": "a", "s2": "a", "expected": true },
-      { "s1": "a", "s2": "b", "expected": false }
+      {
+        "s1": "ab",
+        "s2": "eidbaooo",
+        "expected": true
+      },
+      {
+        "s1": "ab",
+        "s2": "eidboaoo",
+        "expected": false
+      },
+      {
+        "s1": "adc",
+        "s2": "dcda",
+        "expected": true
+      },
+      {
+        "s1": "a",
+        "s2": "a",
+        "expected": true
+      },
+      {
+        "s1": "a",
+        "s2": "b",
+        "expected": false
+      }
     ]
   },
   "20": {
@@ -248,32 +1025,130 @@
     "url": "https://leetcode.com/problems/valid-parentheses/",
     "video": "https://www.youtube.com/watch?v=WTzjTskDFMg",
     "cases": [
-      { "input": "()", "expected": true },
-      { "input": "()[]{}", "expected": true },
-      { "input": "(]", "expected": false },
-      { "input": "([)]", "expected": false },
-      { "input": "{[]}", "expected": true },
-      { "input": "", "expected": true },
-      { "input": "(", "expected": false },
-      { "input": ")", "expected": false },
-      { "input": "((", "expected": false },
-      { "input": "))", "expected": false }
+      {
+        "input": "()",
+        "expected": true
+      },
+      {
+        "input": "()[]{}",
+        "expected": true
+      },
+      {
+        "input": "(]",
+        "expected": false
+      },
+      {
+        "input": "([)]",
+        "expected": false
+      },
+      {
+        "input": "{[]}",
+        "expected": true
+      },
+      {
+        "input": "",
+        "expected": true
+      },
+      {
+        "input": "(",
+        "expected": false
+      },
+      {
+        "input": ")",
+        "expected": false
+      },
+      {
+        "input": "((",
+        "expected": false
+      },
+      {
+        "input": "))",
+        "expected": false
+      }
     ]
   },
   "739": {
-      "category": "stack",
-      "description": "Daily Temperatures",
-      "difficulty": "medium",
-      "url": "https://leetcode.com/problems/daily-temperatures/",
-      "video": "https://www.youtube.com/watch?v=cTBiBSnjO3c",
-      "cases": [
-        { "input": [73,74,75,71,69,72,76,73], "expected": [1,1,4,2,1,1,0,0] },
-        { "input": [30,40,50,60], "expected": [1,1,1,0] },
-        { "input": [30,60,90], "expected": [1,1,0] },
-        { "input": [90,80,70,60], "expected": [0,0,0,0] },
-        { "input": [], "expected": [] },
-        { "input": [42], "expected": [0] }
-      ]
+    "category": "stack",
+    "description": "Daily Temperatures",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/daily-temperatures/",
+    "video": "https://www.youtube.com/watch?v=cTBiBSnjO3c",
+    "cases": [
+      {
+        "input": [
+          73,
+          74,
+          75,
+          71,
+          69,
+          72,
+          76,
+          73
+        ],
+        "expected": [
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      },
+      {
+        "input": [
+          30,
+          40,
+          50,
+          60
+        ],
+        "expected": [
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "input": [
+          30,
+          60,
+          90
+        ],
+        "expected": [
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "input": [
+          90,
+          80,
+          70,
+          60
+        ],
+        "expected": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "input": [],
+        "expected": []
+      },
+      {
+        "input": [
+          42
+        ],
+        "expected": [
+          0
+        ]
+      }
+    ]
   },
   "35": {
     "category": "binary_search",
@@ -282,10 +1157,46 @@
     "url": "https://leetcode.com/problems/search-insert-position/",
     "video": "https://www.youtube.com/watch?v=K-RYzDZkzCI",
     "cases": [
-      { "nums": [1,3,5,6], "target": 5, "expected": 2 },
-      { "nums": [1,3,5,6], "target": 2, "expected": 1 },
-      { "nums": [1,3,5,6], "target": 7, "expected": 4 },
-      { "nums": [1,3,5,6], "target": 0, "expected": 0 }
+      {
+        "nums": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "target": 5,
+        "expected": 2
+      },
+      {
+        "nums": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "target": 2,
+        "expected": 1
+      },
+      {
+        "nums": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "target": 7,
+        "expected": 4
+      },
+      {
+        "nums": [
+          1,
+          3,
+          5,
+          6
+        ],
+        "target": 0,
+        "expected": 0
+      }
     ]
   },
   "36": {
@@ -295,13 +1206,213 @@
     "url": "https://leetcode.com/problems/valid-sudoku/",
     "video": "https://www.youtube.com/watch?v=TjFXEUCMqI8",
     "cases": [
-      { 
-        "board": [["5","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]], 
-        "expected": true 
+      {
+        "board": [
+          [
+            "5",
+            "3",
+            ".",
+            ".",
+            "7",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            "6",
+            ".",
+            ".",
+            "1",
+            "9",
+            "5",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            "9",
+            "8",
+            ".",
+            ".",
+            ".",
+            ".",
+            "6",
+            "."
+          ],
+          [
+            "8",
+            ".",
+            ".",
+            ".",
+            "6",
+            ".",
+            ".",
+            ".",
+            "3"
+          ],
+          [
+            "4",
+            ".",
+            ".",
+            "8",
+            ".",
+            "3",
+            ".",
+            ".",
+            "1"
+          ],
+          [
+            "7",
+            ".",
+            ".",
+            ".",
+            "2",
+            ".",
+            ".",
+            ".",
+            "6"
+          ],
+          [
+            ".",
+            "6",
+            ".",
+            ".",
+            ".",
+            ".",
+            "2",
+            "8",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "4",
+            "1",
+            "9",
+            ".",
+            ".",
+            "5"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            "8",
+            ".",
+            ".",
+            "7",
+            "9"
+          ]
+        ],
+        "expected": true
       },
-      { 
-        "board": [["8","3",".",".","7",".",".",".","."],["6",".",".","1","9","5",".",".","."],[".","9","8",".",".",".",".","6","."],["8",".",".",".","6",".",".",".","3"],["4",".",".","8",".","3",".",".","1"],["7",".",".",".","2",".",".",".","6"],[".","6",".",".",".",".","2","8","."],[".",".",".","4","1","9",".",".","5"],[".",".",".",".","8",".",".","7","9"]], 
-        "expected": false 
+      {
+        "board": [
+          [
+            "8",
+            "3",
+            ".",
+            ".",
+            "7",
+            ".",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            "6",
+            ".",
+            ".",
+            "1",
+            "9",
+            "5",
+            ".",
+            ".",
+            "."
+          ],
+          [
+            ".",
+            "9",
+            "8",
+            ".",
+            ".",
+            ".",
+            ".",
+            "6",
+            "."
+          ],
+          [
+            "8",
+            ".",
+            ".",
+            ".",
+            "6",
+            ".",
+            ".",
+            ".",
+            "3"
+          ],
+          [
+            "4",
+            ".",
+            ".",
+            "8",
+            ".",
+            "3",
+            ".",
+            ".",
+            "1"
+          ],
+          [
+            "7",
+            ".",
+            ".",
+            ".",
+            "2",
+            ".",
+            ".",
+            ".",
+            "6"
+          ],
+          [
+            ".",
+            "6",
+            ".",
+            ".",
+            ".",
+            ".",
+            "2",
+            "8",
+            "."
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            "4",
+            "1",
+            "9",
+            ".",
+            ".",
+            "5"
+          ],
+          [
+            ".",
+            ".",
+            ".",
+            ".",
+            "8",
+            ".",
+            ".",
+            "7",
+            "9"
+          ]
+        ],
+        "expected": false
       }
     ]
   },
@@ -312,9 +1423,60 @@
     "url": "https://leetcode.com/problems/intersection-of-two-linked-lists/",
     "video": "https://www.youtube.com/watch?v=D0X0BONOQhI",
     "cases": [
-      { "listA": [4,1,8,4,5], "listB": [5,6,1,8,4,5], "intersectVal": 8, "skipA": 2, "skipB": 3, "expected": 8 },
-      { "listA": [1,9,1,2,4], "listB": [3,2,4], "intersectVal": 2, "skipA": 3, "skipB": 1, "expected": 2 },
-      { "listA": [2,6,4], "listB": [1,5], "intersectVal": 0, "skipA": 3, "skipB": 2, "expected": null }
+      {
+        "listA": [
+          4,
+          1,
+          8,
+          4,
+          5
+        ],
+        "listB": [
+          5,
+          6,
+          1,
+          8,
+          4,
+          5
+        ],
+        "intersectVal": 8,
+        "skipA": 2,
+        "skipB": 3,
+        "expected": 8
+      },
+      {
+        "listA": [
+          1,
+          9,
+          1,
+          2,
+          4
+        ],
+        "listB": [
+          3,
+          2,
+          4
+        ],
+        "intersectVal": 2,
+        "skipA": 3,
+        "skipB": 1,
+        "expected": 2
+      },
+      {
+        "listA": [
+          2,
+          6,
+          4
+        ],
+        "listB": [
+          1,
+          5
+        ],
+        "intersectVal": 0,
+        "skipA": 3,
+        "skipB": 2,
+        "expected": null
+      }
     ]
   },
   "200": {
@@ -324,13 +1486,71 @@
     "url": "https://leetcode.com/problems/number-of-islands/",
     "video": "https://www.youtube.com/watch?v=pV2kpPD66nE",
     "cases": [
-      { 
-        "grid": [["1","1","1","1","0"],["1","1","0","1","0"],["1","1","0","0","0"],["0","0","0","0","0"]], 
-        "expected": 1 
+      {
+        "grid": [
+          [
+            "1",
+            "1",
+            "1",
+            "1",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "expected": 1
       },
-      { 
-        "grid": [["1","1","0","0","0"],["1","1","0","0","0"],["0","0","1","0","0"],["0","0","0","1","1"]], 
-        "expected": 3 
+      {
+        "grid": [
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1",
+            "1"
+          ]
+        ],
+        "expected": 3
       }
     ]
   },
@@ -341,9 +1561,36 @@
     "url": "https://leetcode.com/problems/reverse-linked-list/",
     "video": "https://www.youtube.com/watch?v=G0_I-ZF0S38",
     "cases": [
-      { "head": [1,2,3,4,5], "expected": [5,4,3,2,1] },
-      { "head": [1,2], "expected": [2,1] },
-      { "head": [], "expected": [] }
+      {
+        "head": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "expected": [
+          5,
+          4,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "head": [
+          1,
+          2
+        ],
+        "expected": [
+          2,
+          1
+        ]
+      },
+      {
+        "head": [],
+        "expected": []
+      }
     ]
   },
   "226": {
@@ -353,9 +1600,42 @@
     "url": "https://leetcode.com/problems/invert-binary-tree/",
     "video": "https://www.youtube.com/watch?v=OnSn2XEQ4MY",
     "cases": [
-      { "root": [4,2,7,1,3,6,9], "expected": [4,7,2,9,6,3,1] },
-      { "root": [2,1,3], "expected": [2,3,1] },
-      { "root": [], "expected": [] }
+      {
+        "root": [
+          4,
+          2,
+          7,
+          1,
+          3,
+          6,
+          9
+        ],
+        "expected": [
+          4,
+          7,
+          2,
+          9,
+          6,
+          3,
+          1
+        ]
+      },
+      {
+        "root": [
+          2,
+          1,
+          3
+        ],
+        "expected": [
+          2,
+          3,
+          1
+        ]
+      },
+      {
+        "root": [],
+        "expected": []
+      }
     ]
   },
   "238": {
@@ -365,8 +1645,36 @@
     "url": "https://leetcode.com/problems/product-of-array-except-self/",
     "video": "https://www.youtube.com/watch?v=bNvIQI2wAjk",
     "cases": [
-      { "nums": [1,2,3,4], "expected": [24,12,8,6] },
-      { "nums": [-1,1,0,-3,3], "expected": [0,0,9,0,0] }
+      {
+        "nums": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected": [
+          24,
+          12,
+          8,
+          6
+        ]
+      },
+      {
+        "nums": [
+          -1,
+          1,
+          0,
+          -3,
+          3
+        ],
+        "expected": [
+          0,
+          0,
+          9,
+          0,
+          0
+        ]
+      }
     ]
   },
   "560": {
@@ -376,8 +1684,24 @@
     "url": "https://leetcode.com/problems/subarray-sum-equals-k/",
     "video": "https://www.youtube.com/watch?v=HbbYPQc-Oo4",
     "cases": [
-      { "nums": [1,1,1], "k": 2, "expected": 2 },
-      { "nums": [1,2,3], "k": 3, "expected": 2 }
+      {
+        "nums": [
+          1,
+          1,
+          1
+        ],
+        "k": 2,
+        "expected": 2
+      },
+      {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "k": 3,
+        "expected": 2
+      }
     ]
   },
   "70": {
@@ -387,13 +1711,34 @@
     "url": "https://leetcode.com/problems/climbing-stairs/",
     "video": "https://www.youtube.com/watch?v=Y0lT9Fck7qI",
     "cases": [
-      { "n": 2, "expected": 2 },
-      { "n": 3, "expected": 3 },
-      { "n": 1, "expected": 1 },
-      { "n": 4, "expected": 5 },
-      { "n": 5, "expected": 8 },
-      { "n": 10, "expected": 89 },
-      { "n": 20, "expected": 10946 }
+      {
+        "n": 2,
+        "expected": 2
+      },
+      {
+        "n": 3,
+        "expected": 3
+      },
+      {
+        "n": 1,
+        "expected": 1
+      },
+      {
+        "n": 4,
+        "expected": 5
+      },
+      {
+        "n": 5,
+        "expected": 8
+      },
+      {
+        "n": 10,
+        "expected": 89
+      },
+      {
+        "n": 20,
+        "expected": 10946
+      }
     ]
   },
   "198": {
@@ -403,14 +1748,74 @@
     "url": "https://leetcode.com/problems/house-robber/",
     "video": "https://www.youtube.com/watch?v=73r3KWiEvyk",
     "cases": [
-      { "nums": [1], "expected": 1 },
-      { "nums": [2, 1], "expected": 2 },
-      { "nums": [1, 2], "expected": 2 },
-      { "nums": [2, 7, 9, 3, 1], "expected": 12 },
-      { "nums": [1, 2, 3, 1], "expected": 4 },
-      { "nums": [5, 1, 3, 9], "expected": 14 },
-      { "nums": [2, 1, 1, 2], "expected": 4 },
-      { "nums": [5, 5, 10, 100, 10, 5], "expected": 110 }
+      {
+        "nums": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "nums": [
+          2,
+          1
+        ],
+        "expected": 2
+      },
+      {
+        "nums": [
+          1,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "expected": 12
+      },
+      {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "expected": 4
+      },
+      {
+        "nums": [
+          5,
+          1,
+          3,
+          9
+        ],
+        "expected": 14
+      },
+      {
+        "nums": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "expected": 4
+      },
+      {
+        "nums": [
+          5,
+          5,
+          10,
+          100,
+          10,
+          5
+        ],
+        "expected": 110
+      }
     ]
   },
   "15": {
@@ -420,10 +1825,71 @@
     "url": "https://leetcode.com/problems/3sum/",
     "video": "https://www.youtube.com/watch?v=jzZsG8n2R9A",
     "cases": [
-      { "nums": [-1,0,1,2,-1,-4], "expected": [[-1,-1,2],[-1,0,1]] },
-      { "nums": [0,1,1], "expected": [] },
-      { "nums": [0,0,0], "expected": [[0,0,0]] },
-      { "nums": [-2,0,1,1,2], "expected": [[-2,0,2],[-2,1,1]] }
+      {
+        "nums": [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ],
+        "expected": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ]
+      },
+      {
+        "nums": [
+          0,
+          1,
+          1
+        ],
+        "expected": []
+      },
+      {
+        "nums": [
+          0,
+          0,
+          0
+        ],
+        "expected": [
+          [
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      {
+        "nums": [
+          -2,
+          0,
+          1,
+          1,
+          2
+        ],
+        "expected": [
+          [
+            -2,
+            0,
+            2
+          ],
+          [
+            -2,
+            1,
+            1
+          ]
+        ]
+      }
     ]
   },
   "139": {
@@ -433,10 +1899,41 @@
     "url": "https://leetcode.com/problems/word-break/",
     "video": "https://www.youtube.com/watch?v=Sx9NNgInc3A",
     "cases": [
-      { "s": "leetcode", "wordDict": ["leet","code"], "expected": true },
-      { "s": "applepenapple", "wordDict": ["apple","pen"], "expected": true },
-      { "s": "catsandog", "wordDict": ["cats","dog","sand","and","cat"], "expected": false },
-      { "s": "aaaaaaa", "wordDict": ["aaaa","aaa"], "expected": true }
+      {
+        "s": "leetcode",
+        "wordDict": [
+          "leet",
+          "code"
+        ],
+        "expected": true
+      },
+      {
+        "s": "applepenapple",
+        "wordDict": [
+          "apple",
+          "pen"
+        ],
+        "expected": true
+      },
+      {
+        "s": "catsandog",
+        "wordDict": [
+          "cats",
+          "dog",
+          "sand",
+          "and",
+          "cat"
+        ],
+        "expected": false
+      },
+      {
+        "s": "aaaaaaa",
+        "wordDict": [
+          "aaaa",
+          "aaa"
+        ],
+        "expected": true
+      }
     ]
   },
   "213": {
@@ -446,13 +1943,63 @@
     "url": "https://leetcode.com/problems/house-robber-ii/",
     "video": "https://www.youtube.com/watch?v=rWAJCfYYOvM",
     "cases": [
-      { "nums": [2, 3, 2], "expected": 3 },
-      { "nums": [1, 2, 3, 1], "expected": 4 },
-      { "nums": [1, 2, 3], "expected": 3 },
-      { "nums": [1], "expected": 1 },
-      { "nums": [1, 2], "expected": 2 },
-      { "nums": [2, 7, 9, 3, 1], "expected": 11 },
-      { "nums": [5, 1, 3, 9], "expected": 10 }
+      {
+        "nums": [
+          2,
+          3,
+          2
+        ],
+        "expected": 3
+      },
+      {
+        "nums": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "expected": 4
+      },
+      {
+        "nums": [
+          1,
+          2,
+          3
+        ],
+        "expected": 3
+      },
+      {
+        "nums": [
+          1
+        ],
+        "expected": 1
+      },
+      {
+        "nums": [
+          1,
+          2
+        ],
+        "expected": 2
+      },
+      {
+        "nums": [
+          2,
+          7,
+          9,
+          3,
+          1
+        ],
+        "expected": 11
+      },
+      {
+        "nums": [
+          5,
+          1,
+          3,
+          9
+        ],
+        "expected": 10
+      }
     ]
   },
   "33": {
@@ -462,9 +2009,121 @@
     "url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
     "video": "https://www.youtube.com/watch?v=U8XENwh8Oy8",
     "cases": [
-      { "nums": [4,5,6,7,0,1,2], "target": 0, "expected": 4 },
-      { "nums": [4,5,6,7,0,1,2], "target": 3, "expected": -1 },
-      { "nums": [1], "target": 0, "expected": -1 }
+      {
+        "nums": [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ],
+        "target": 0,
+        "expected": 4
+      },
+      {
+        "nums": [
+          4,
+          5,
+          6,
+          7,
+          0,
+          1,
+          2
+        ],
+        "target": 3,
+        "expected": -1
+      },
+      {
+        "nums": [
+          1
+        ],
+        "target": 0,
+        "expected": -1
+      }
+    ]
+  },
+  "347": {
+    "category": "hash",
+    "description": "Top K Frequent Elements",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/top-k-frequent-elements/",
+    "video": "https://www.youtube.com/watch?v=YPTqKIgVk-k",
+    "cases": [
+      {
+        "nums": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          3
+        ],
+        "k": 2,
+        "expected": [
+          1,
+          2
+        ]
+      },
+      {
+        "nums": [
+          1
+        ],
+        "k": 1,
+        "expected": [
+          1
+        ]
+      },
+      {
+        "nums": [
+          4,
+          1,
+          -1,
+          2,
+          -1,
+          2,
+          3
+        ],
+        "k": 2,
+        "expected": [
+          -1,
+          2
+        ]
+      }
+    ]
+  },
+  "1235": {
+    "category": "dp",
+    "description": "Maximum Profit in Job Scheduling",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/maximum-profit-in-job-scheduling/",
+    "video": "https://www.youtube.com/watch?v=JLoWc3v0SiE",
+    "cases": [
+      {
+        "startTime": [1, 2, 3, 3],
+        "endTime": [3, 4, 5, 6],
+        "profit": [50, 10, 40, 70],
+        "expected": 120
+      },
+      {
+        "startTime": [1, 2, 3, 4, 6],
+        "endTime": [3, 5, 10, 6, 9],
+        "profit": [20, 20, 100, 70, 60],
+        "expected": 150
+      },
+      {
+        "startTime": [1, 1, 1],
+        "endTime": [2, 3, 4],
+        "profit": [5, 6, 4],
+        "expected": 6
+      },
+      {
+        "startTime": [4, 2, 4, 8, 2],
+        "endTime": [5, 5, 5, 10, 8],
+        "profit": [1, 2, 8, 10, 4],
+        "expected": 18
+      }
     ]
   }
 }

@@ -100,10 +100,11 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/subarray-sum-equals-k/description/" target="_blank">560</a> | Subarray Sum Equals K | prefix_sum | Medium | 2 | [✓](src/cpp/prefix_sum/560.subarray-sum-equals-k.cpp) | [✓](src/go/prefix_sum/560.subarray-sum-equals-k.go) | [✓](src/java/prefix_sum/560.subarray-sum-equals-k.java) | [📺](https://www.youtube.com/watch?v=HbbYPQc-Oo4) |
 | <a href="https://leetcode.com/problems/permutation-in-string/description/" target="_blank">567</a> | Permutation in String | sliding_window | Medium | 5 | [✓](src/cpp/sliding_window/567.permutation-in-string.cpp) | [✓](src/go/sliding_window/567.permutation-in-string.go) | [✓](src/java/sliding_window/567.permutation-in-string.java) | [📺](https://www.youtube.com/watch?v=UbyhOgBN834) |
 | <a href="https://leetcode.com/problems/daily-temperatures/description/" target="_blank">739</a> | Daily Temperatures | stack | Medium | 6 | [✓](src/cpp/stack/739.daily-temperatures.cpp) | [✓](src/go/stack/739.daily-temperatures.go) | [✓](src/java/stack/739.daily-temperatures.java) | [📺](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
+| <a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/" target="_blank">1235</a> | Maximum Profit in Job Scheduling | dp | Hard | 4 | [✓](src/cpp/dp/1235.maximum-profit-in-job-scheduling.cpp) | [✓](src/go/dp/1235.maximum-profit-in-job-scheduling.go) | [✓](src/java/dp/P1235.java) | [📺](https://www.youtube.com/watch?v=JLoWc3v0SiE) |
 
 ### Filter by Category
 - **binary_search**: [33](#33), [35](#35)
-- **dp**: [70](#70), [139](#139), [198](#198), [213](#213)
+- **dp**: [70](#70), [139](#139), [198](#198), [213](#213), [1235](#1235)
 - **graphs**: [200](#200)
 - **hash**: [1](#1), [36](#36)
 - **list**: [2](#2), [21](#21), [160](#160), [206](#206)
@@ -762,6 +763,27 @@ _Click to expand individual problem descriptions, examples, and test cases._
 2. `{"input": [30, 40, 50, 60], "expected": [1, 1, 1, 0]}`
 3. `{"input": [30, 60, 90], "expected": [1, 1, 0]}`
    ... and 3 more cases
+
+</details>
+
+<details>
+<summary><strong>LC1235: Maximum Profit in Job Scheduling</strong> (Hard) - dp</summary>
+
+**🔗 Problem Link**: https://leetcode.com/problems/maximum-profit-in-job-scheduling/
+
+**📺 NeetCode Explanation**: https://www.youtube.com/watch?v=JLoWc3v0SiE
+
+**💻 Solutions**:
+- [C++](src/cpp/dp/1235.maximum-profit-in-job-scheduling.cpp)
+- [Go](src/go/dp/1235.maximum-profit-in-job-scheduling.go)
+- [Java](src/java/dp/P1235.java)
+- [Python](src/python/dp/1235.maximum-profit-in-job-scheduling.py)
+
+**🧪 Test Cases** (4 cases):
+1. `{"startTime": [1,2,3,3], "endTime": [3,4,5,6], "profit": [50,10,40,70], "expected": 120}`
+2. `{"startTime": [1,2,3,4,6], "endTime": [3,5,10,6,9], "profit": [20,20,100,70,60], "expected": 150}`
+3. `{"startTime": [1,1,1], "endTime": [2,3,4], "profit": [5,6,4], "expected": 6}`
+   ... and 1 more case
 
 </details>
 

@@ -108,6 +108,7 @@ class Registry {
         m.put("560", cases -> Drivers.driver560(cases));
         m.put("567", cases -> Drivers.driver567(cases));
         m.put("739", cases -> Drivers.driver739(cases));
+        m.put("1235", cases -> Drivers.driver1235(cases));
         return m;
     }
 }
@@ -1011,6 +1012,23 @@ class Drivers {
             }
             boolean want = tc.get("expected").getAsBoolean();
             boolean got = new P139().wordBreak(s, wordDict);
+            if (got != want)
+                okAll = false;
+            idx.add(i + 1);
+        }
+        return new Result(idx, okAll);
+    }
+
+    static Result driver1235(List<JsonObject> cases) {
+        List<Integer> idx = new ArrayList<>();
+        boolean okAll = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            int[] startTime = toIntArray(tc.getAsJsonArray("startTime"));
+            int[] endTime = toIntArray(tc.getAsJsonArray("endTime"));
+            int[] profit = toIntArray(tc.getAsJsonArray("profit"));
+            int want = tc.get("expected").getAsInt();
+            int got = new P1235().jobScheduling(startTime, endTime, profit);
             if (got != want)
                 okAll = false;
             idx.add(i + 1);
