@@ -154,3 +154,8 @@ std::vector<int> tree_to_vec(TreeNode *root);
 int jobScheduling(std::vector<int> &startTime, std::vector<int> &endTime,
                   std::vector<int> &profit);
 bool lc_test_1235(const json &j);
+
+// Problem 981: Time Based Key-Value Store
+bool lc_test_981(const json &j);
+std::vector<std::string> runTimeMap(const std::vector<std::string> &cmds,
+                                    const json &args);

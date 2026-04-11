@@ -1,4 +1,5 @@
 package hash;
+
 import common.*;
 import java.util.*;
 
@@ -15,7 +16,6 @@ import java.util.*;
  *
  * Example 1:
  * Input: s = "anagram", t = "nagaram"
- * [2,0,0,....1.,,1,1]
  * Output: true
  *
  * Example 2:

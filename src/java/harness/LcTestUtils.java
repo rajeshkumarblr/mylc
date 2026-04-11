@@ -99,6 +99,8 @@ class Registry {
         m.put("242", cases -> Drivers.driver242(cases));
         m.put("205", cases -> Drivers.driver205(cases));
         m.put("268", cases -> Drivers.driver268(cases));
+        m.put("49", cases -> Drivers.driver49(cases));
+        m.put("347", cases -> Drivers.driver347(cases));
         return m;
     }
 }
@@ -1105,6 +1107,58 @@ class Drivers {
             if (got != want) {
                 System.out.printf("  Case %d: FAIL\n    Input: nums=%s\n    Expected: %d, Got: %d\n", 
                     i + 1, tc.get("nums"), want, got);
+                okAll = false;
+            }
+            indices.add(i + 1);
+        }
+        return new Result(indices, okAll);
+    }
+
+    static Result driver49(List<JsonObject> cases) {
+        List<Integer> indices = new ArrayList<>();
+        boolean okAll = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            String[] strs = new Gson().fromJson(tc.get("strs"), String[].class);
+            List<List<String>> want = new ArrayList<>();
+            for (JsonElement e : tc.getAsJsonArray("expected")) {
+                List<String> group = new ArrayList<>();
+                for (JsonElement w : e.getAsJsonArray()) group.add(w.getAsString());
+                Collections.sort(group);
+                want.add(group);
+            }
+            want.sort(Comparator.comparing(Object::toString));
+
+            List<List<String>> got = new P49().groupAnagrams(strs);
+            for (List<String> g : got) Collections.sort(g);
+            got.sort(Comparator.comparing(Object::toString));
+
+            if (!got.equals(want)) {
+                System.out.printf("  Case %d: FAIL\n    Input: strs=%s\n    Expected: %s, Got: %s\n", 
+                    i + 1, tc.get("strs"), want, got);
+                okAll = false;
+            }
+            indices.add(i + 1);
+        }
+        return new Result(indices, okAll);
+    }
+
+    static Result driver347(List<JsonObject> cases) {
+        List<Integer> indices = new ArrayList<>();
+        boolean okAll = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            int[] nums = toIntArray(tc.getAsJsonArray("nums"));
+            int k = tc.get("k").getAsInt();
+            int[] want = toIntArray(tc.getAsJsonArray("expected"));
+            int[] got = new P347().topKFrequent(nums, k);
+            
+            Arrays.sort(want);
+            Arrays.sort(got);
+            
+            if (!Arrays.equals(got, want)) {
+                System.out.printf("  Case %d: FAIL\n    Input: nums=%s, k=%d\n    Expected: %s, Got: %s\n", 
+                    i + 1, tc.get("nums"), k, Arrays.toString(want), Arrays.toString(got));
                 okAll = false;
             }
             indices.add(i + 1);

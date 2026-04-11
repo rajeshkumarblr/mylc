@@ -1,5 +1,4 @@
 package hash;
-import common.*;
 import java.util.*;
 
 /*

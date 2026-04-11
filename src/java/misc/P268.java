@@ -7,8 +7,8 @@ public class P268 {
     // @lc code=start
     public class Solution {
         public int missingNumber(int[] nums) {
-            int len = nums.length;
-            int expectedSum = (len * (len + 1)) / 2;
+            int lastNumber = nums.length;
+            int expectedSum = (lastNumber * (lastNumber + 1)) / 2;
             int sum = 0;
             for (int num : nums) {
                 sum += num;

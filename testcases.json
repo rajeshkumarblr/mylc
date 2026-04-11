@@ -2384,5 +2384,56 @@
         "expected": 8
       }
     ]
+  },
+  "49": {
+    "category": "hash",
+    "description": "Group Anagrams",
+    "difficulty": "medium",
+    "cases": [
+      {
+        "strs": [
+          "eat",
+          "tea",
+          "tan",
+          "ate",
+          "nat",
+          "bat"
+        ],
+        "expected": [
+          [
+            "bat"
+          ],
+          [
+            "nat",
+            "tan"
+          ],
+          [
+            "ate",
+            "eat",
+            "tea"
+          ]
+        ]
+      },
+      {
+        "strs": [
+          ""
+        ],
+        "expected": [
+          [
+            ""
+          ]
+        ]
+      },
+      {
+        "strs": [
+          "a"
+        ],
+        "expected": [
+          [
+            "a"
+          ]
+        ]
+      }
+    ]
   }
 }

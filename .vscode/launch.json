@@ -5,7 +5,7 @@
       "type": "java",
       "name": "Java: Debug runner (single problem)",
       "request": "launch",
-      "mainClass": "Main",
+      "mainClass": "harness.Main",
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "build-java",
       "env": {

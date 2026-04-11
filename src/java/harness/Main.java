@@ -1,8 +1,6 @@
 package harness;
 
-import java.io.*;
 import java.util.*;
-import common.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {

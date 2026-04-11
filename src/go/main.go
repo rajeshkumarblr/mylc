@@ -39,6 +39,7 @@ var funcRegistry = map[string]interface{}{
 	"560":  subarraySum,
 	"567":  checkInclusion,
 	"739":  dailyTemperatures,
+	"981":  runTimeMap,
 	"1235": jobScheduling,
 }
 

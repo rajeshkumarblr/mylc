@@ -59,6 +59,13 @@ public class P13 {
     // @lc app=leetcode id=13 lang=java
     // @lc code=start
     public static class Solution {
+        /**
+         * Logic:
+         * 1. Create a mapping for each Roman numeral.
+         * 2. Traverse the string from left to right.
+         * 3. If the current value is less than the next value (e.g., IV), subtract 
+         *    the current value from the total. Otherwise, add it.
+         */
         public int romanToInt(String s) {
             // Your code here
             return 0;

@@ -796,7 +796,40 @@ var drivers = map[string]Driver{
 	"226":  driver226_InvertTree,
 	"238":  driver238_ProductExceptSelf,
 	"560":  driver560_SubarraySum,
+	"981":  driver981_TimeMap,
 	"1235": driver1235_JobScheduling,
+}
+
+// 981. time based key-value store  func([]string, [][]interface{}) []interface{}
+func driver981_TimeMap(fn interface{}, tests []map[string]interface{}) ([]int, bool) {
+	caseIdx, okAll := make([]int, 0, len(tests)), true
+	f := fn.(func([]string, [][]interface{}) []interface{})
+	for i, tc := range tests {
+		commandsIf := tc["commands"].([]interface{})
+		commands := make([]string, len(commandsIf))
+		for ci, c := range commandsIf {
+			commands[ci] = c.(string)
+		}
+
+		argsIf := tc["args"].([]interface{})
+		args := make([][]interface{}, len(argsIf))
+		for ai, a := range argsIf {
+			args[ai] = a.([]interface{})
+		}
+
+		wantIf := tc["expected"].([]interface{})
+		want := make([]interface{}, len(wantIf))
+		for wi, w := range wantIf {
+			want[wi] = w
+		}
+
+		got := f(commands, args)
+		if !reflect.DeepEqual(got, want) {
+			okAll = false
+		}
+		caseIdx = append(caseIdx, i+1)
+	}
+	return caseIdx, okAll
 }
 
 // ===== Unified runner core =====

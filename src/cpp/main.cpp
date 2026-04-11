@@ -44,21 +44,21 @@ int main(int, char **) {
   const vector<int> solved = {1,   2,   3,   9,   11,  15,  20,  21,  33,
                               35,  36,  42,  70,  94,  98,  100, 102, 103,
                               104, 110, 139, 160, 198, 200, 206, 213, 226,
-                              238, 347, 424, 438, 560, 567, 739, 1235};
+                              238, 347, 424, 438, 560, 567, 739, 981, 1235};
   using TestFn = bool (*)(const json &);
   map<int, TestFn> handlers = {
-      {1, lc_test_1},     {2, lc_test_2},      {3, lc_test_3},
-      {9, lc_test_9},     {11, lc_test_11},    {15, lc_test_15},
-      {20, lc_test_20},   {21, lc_test_21},    {33, lc_test_33},
-      {35, lc_test_35},   {36, lc_test_36},    {42, lc_test_42},
-      {70, lc_test_70},   {94, lc_test_94},    {98, lc_test_98},
-      {100, lc_test_100}, {102, lc_test_102},  {103, lc_test_103},
-      {104, lc_test_104}, {110, lc_test_110},  {139, lc_test_139},
-      {160, lc_test_160}, {198, lc_test_198},  {200, lc_test_200},
-      {206, lc_test_206}, {213, lc_test_213},  {226, lc_test_226},
-      {238, lc_test_238}, {424, lc_test_424},  {438, lc_test_438},
-      {560, lc_test_560}, {567, lc_test_567},  {739, lc_test_739},
-      {347, lc_test_347}, {1235, lc_test_1235}};
+      {1, lc_test_1},     {2, lc_test_2},     {3, lc_test_3},
+      {9, lc_test_9},     {11, lc_test_11},   {15, lc_test_15},
+      {20, lc_test_20},   {21, lc_test_21},   {33, lc_test_33},
+      {35, lc_test_35},   {36, lc_test_36},   {42, lc_test_42},
+      {70, lc_test_70},   {94, lc_test_94},   {98, lc_test_98},
+      {100, lc_test_100}, {102, lc_test_102}, {103, lc_test_103},
+      {104, lc_test_104}, {110, lc_test_110}, {139, lc_test_139},
+      {160, lc_test_160}, {198, lc_test_198}, {200, lc_test_200},
+      {206, lc_test_206}, {213, lc_test_213}, {226, lc_test_226},
+      {238, lc_test_238}, {424, lc_test_424}, {438, lc_test_438},
+      {560, lc_test_560}, {567, lc_test_567}, {739, lc_test_739},
+      {347, lc_test_347}, {981, lc_test_981}, {1235, lc_test_1235}};
 
   auto print_header = []() {
     cout << left << setw(5) << "No" << setw(28) << "Description" << setw(16)
