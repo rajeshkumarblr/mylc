@@ -98,6 +98,7 @@ class Registry {
         m.put("350", cases -> Drivers.driver350(cases));
         m.put("242", cases -> Drivers.driver242(cases));
         m.put("205", cases -> Drivers.driver205(cases));
+        m.put("268", cases -> Drivers.driver268(cases));
         return m;
     }
 }
@@ -1086,6 +1087,24 @@ class Drivers {
             if (got != want) {
                 System.out.printf("  Case %d: FAIL\n    Input: s=\"%s\", t=\"%s\"\n    Expected: %b, Got: %b\n", 
                     i + 1, s, t, want, got);
+                okAll = false;
+            }
+            indices.add(i + 1);
+        }
+        return new Result(indices, okAll);
+    }
+
+    static Result driver268(List<JsonObject> cases) {
+        List<Integer> indices = new ArrayList<>();
+        boolean okAll = true;
+        for (int i = 0; i < cases.size(); i++) {
+            JsonObject tc = cases.get(i);
+            int[] nums = toIntArray(tc.getAsJsonArray("nums"));
+            int want = tc.get("expected").getAsInt();
+            int got = P268.run(nums);
+            if (got != want) {
+                System.out.printf("  Case %d: FAIL\n    Input: nums=%s\n    Expected: %d, Got: %d\n", 
+                    i + 1, tc.get("nums"), want, got);
                 okAll = false;
             }
             indices.add(i + 1);
