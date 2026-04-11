@@ -1,7 +1,11 @@
+package dp;
+import common.*;
+
+
 import java.util.*;
 
 public class P1235 {
-    static class Solution {
+    public static class Solution {
         // Returns count of jobs (in sorted jobs[0..hi)) with end <= start.
         private int latestNonOverlapping(int[][] jobs, int hi, int start) {
             int lo = 0;

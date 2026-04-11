@@ -10,7 +10,7 @@ LIB_DIR := lib
 LIBS := $(LIB_DIR)/gson-2.10.1.jar
 
 SRC_ROOT := .
-SRC_DIRS := . hash list misc sliding_window two_pointer tree stack binary_search prefix_sum graphs dp
+SRC_DIRS := . harness common hash list misc sliding_window two_pointer tree stack binary_search prefix_sum graphs dp
 JAVA_SRCS := $(sort $(wildcard *.java) $(foreach d,$(SRC_DIRS),$(wildcard $(d)/*.java)))
 
 .PHONY: all build clean distclean help
@@ -31,7 +31,7 @@ $(RUNNER): $(CLASSES_DIR)
 	@echo '#!/usr/bin/env bash' > $(RUNNER)
 	@echo 'set -Eeuo pipefail' >> $(RUNNER)
 	@echo 'DIR="$$(cd "$$(dirname "$$0")" && pwd)"' >> $(RUNNER)
-	@echo 'exec java -cp "$$DIR/bin:$$DIR/lib/gson-2.10.1.jar" Main' >> $(RUNNER)
+	@echo 'exec java -cp "$$DIR/bin:$$DIR/lib/gson-2.10.1.jar" harness.Main' >> $(RUNNER)
 	@chmod +x $(RUNNER)
 	@echo "Build: done."
 

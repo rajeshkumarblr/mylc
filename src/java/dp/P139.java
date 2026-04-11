@@ -1,7 +1,11 @@
+package dp;
+import common.*;
+
+
 import java.util.*;
 
 public class P139 {
-    static class Solution {
+    public static class Solution {
         public boolean wordBreak(String s, List<String> wordDict) {
             int n = s.length();
             boolean[] dp = new boolean[n + 1];

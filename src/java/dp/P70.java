@@ -1,3 +1,7 @@
+package dp;
+import common.*;
+
+
 /*
  * @lc app=leetcode id=70 lang=java
  *
@@ -6,7 +10,7 @@
 
 public class P70 {
     // @lc code=start
-    static class Solution {
+    public static class Solution {
         public int climbStairs(int n) {
             // Base cases:
             // 1 step -> 1 way (just climb 1)

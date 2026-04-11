@@ -1,3 +1,7 @@
+package dp;
+import common.*;
+
+
 /*
  * @lc app=leetcode id=213 lang=java
  *
@@ -6,7 +10,7 @@
 
 public class P213 {
     // @lc code=start
-    static class Solution {
+    public static class Solution {
         public int rob(int[] nums) {
             int n = nums.length;
             
