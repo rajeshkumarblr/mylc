@@ -103,9 +103,15 @@
     "makefile.configureOnOpen": false,
     "editor.inlineSuggest.enabled": false,
     "editor.quickSuggestions": {
-        "other": false,
+        "other": true,
         "comments": false,
         "strings": false
     },
-    "editor.suggestOnTriggerCharacters": false
+    "editor.suggestOnTriggerCharacters": true,
+    "java.project.referencedLibraries": [
+        "src/java/lib/gson-2.10.1.jar"
+    ],
+    "java.project.sourcePaths": [
+        "src/java"
+    ]
 }

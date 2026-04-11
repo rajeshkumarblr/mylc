@@ -37,8 +37,21 @@ public class P205 {
     // @lc code=start
     public static class Solution {
         public boolean isIsomorphic(String s, String t) {
-            // Your code here
-            return false;
+            int lastSeenPositions1[] = new int[256];
+            int lastSeenPositions2[] = new int[256];
+            Arrays.fill(lastSeenPositions1, -1);
+            Arrays.fill(lastSeenPositions2, -1);
+            for (int i = 0; i < s.length(); i++) {
+                char ch1 = s.charAt(i);
+                char ch2 = t.charAt(i);
+                if (lastSeenPositions1[ch1] != lastSeenPositions2[ch2]) {
+                    return false;
+                }
+                lastSeenPositions1[ch1] = i;
+                lastSeenPositions2[ch2] = i;
+            }
+
+            return true;
         }
     }
     // @lc code=end

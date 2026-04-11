@@ -20,7 +20,7 @@ all: $(RUNNER)
 $(CLASSES_DIR):
 	@mkdir -p $(CLASSES_DIR)
 
-$(RUNNER): $(CLASSES_DIR)
+$(RUNNER): $(CLASSES_DIR) $(JAVA_SRCS)
 	@echo "==> Compiling Java sources to $(CLASSES_DIR)";
 	@$(JAVAC) -g -cp $(LIBS) -d $(CLASSES_DIR) $(JAVA_SRCS)
 	@mkdir -p $(BIN_DIR)

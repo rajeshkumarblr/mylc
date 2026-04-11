@@ -60,12 +60,9 @@ runner_path() { echo "$ROOT/build/$1/runner"; }
 
 ensure_runner() {
   local lang="$1" bin; bin="$(runner_path "$lang")"
-  if [[ ! -x "$bin" ]]; then
-    echo "Runner missing: $bin"
-    echo "→ Building via: make -C src/$lang all"
-    make -C "$ROOT/src/$lang" all || die "Build failed for language '$lang'"
-    [[ -x "$bin" ]] || die "Build succeeded but runner still missing: $bin"
-  fi
+  echo "Checking/Building runner for $lang..."
+  make -C "$ROOT/src/$lang" all || die "Build failed for language '$lang'"
+  [[ -x "$bin" ]] || die "Runner still missing after build: $bin"
 }
 
 list_from_testcases() {

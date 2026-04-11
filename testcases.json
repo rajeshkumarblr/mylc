@@ -1,4 +1,83 @@
 {
+  "13": {
+    "category": "misc",
+    "description": "Roman to Integer",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/roman-to-integer/",
+    "cases": [
+      {
+        "s": "III",
+        "expected": 3
+      },
+      {
+        "s": "LVIII",
+        "expected": 58
+      },
+      {
+        "s": "MCMXCIV",
+        "expected": 1994
+      }
+    ]
+  },
+  "205": {
+    "category": "hash",
+    "description": "Isomorphic Strings",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/isomorphic-strings/",
+    "cases": [
+      {
+        "s": "egg",
+        "t": "add",
+        "expected": true
+      },
+      {
+        "s": "foo",
+        "t": "bar",
+        "expected": false
+      },
+      {
+        "s": "paper",
+        "t": "title",
+        "expected": true
+      }
+    ]
+  },
+  "242": {
+    "category": "hash",
+    "description": "Valid Anagram",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/valid-anagram/",
+    "cases": [
+      {
+        "s": "anagram",
+        "t": "nagaram",
+        "expected": true
+      },
+      {
+        "s": "rat",
+        "t": "car",
+        "expected": false
+      }
+    ]
+  },
+  "350": {
+    "category": "hash",
+    "description": "Intersection of Two Arrays II",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/intersection-of-two-arrays-ii/",
+    "cases": [
+      {
+        "nums1": [1, 2, 2, 1],
+        "nums2": [2, 2],
+        "expected": [2, 2]
+      },
+      {
+        "nums1": [4, 9, 5],
+        "nums2": [9, 4, 9, 8, 4],
+        "expected": [4, 9]
+      }
+    ]
+  },
   "1": {
     "category": "hash",
     "description": "Two Sum",
@@ -2101,28 +2180,149 @@
     "video": "https://www.youtube.com/watch?v=JLoWc3v0SiE",
     "cases": [
       {
-        "startTime": [1, 2, 3, 3],
-        "endTime": [3, 4, 5, 6],
-        "profit": [50, 10, 40, 70],
+        "startTime": [
+          1,
+          2,
+          3,
+          3
+        ],
+        "endTime": [
+          3,
+          4,
+          5,
+          6
+        ],
+        "profit": [
+          50,
+          10,
+          40,
+          70
+        ],
         "expected": 120
       },
       {
-        "startTime": [1, 2, 3, 4, 6],
-        "endTime": [3, 5, 10, 6, 9],
-        "profit": [20, 20, 100, 70, 60],
+        "startTime": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "endTime": [
+          3,
+          5,
+          10,
+          6,
+          9
+        ],
+        "profit": [
+          20,
+          20,
+          100,
+          70,
+          60
+        ],
         "expected": 150
       },
       {
-        "startTime": [1, 1, 1],
-        "endTime": [2, 3, 4],
-        "profit": [5, 6, 4],
+        "startTime": [
+          1,
+          1,
+          1
+        ],
+        "endTime": [
+          2,
+          3,
+          4
+        ],
+        "profit": [
+          5,
+          6,
+          4
+        ],
         "expected": 6
       },
       {
-        "startTime": [4, 2, 4, 8, 2],
-        "endTime": [5, 5, 5, 10, 8],
-        "profit": [1, 2, 8, 10, 4],
+        "startTime": [
+          4,
+          2,
+          4,
+          8,
+          2
+        ],
+        "endTime": [
+          5,
+          5,
+          5,
+          10,
+          8
+        ],
+        "profit": [
+          1,
+          2,
+          8,
+          10,
+          4
+        ],
         "expected": 18
+      }
+    ]
+  },
+  "981": {
+    "category": "binary_search",
+    "description": "Time Based Key-Value Store",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/time-based-key-value-store/",
+    "video": "https://www.youtube.com/watch?v=fu2cD_6E8Hw",
+    "cases": [
+      {
+        "commands": [
+          "TimeMap",
+          "set",
+          "get",
+          "get",
+          "set",
+          "get",
+          "get"
+        ],
+        "args": [
+          [],
+          [
+            "foo",
+            "bar",
+            1
+          ],
+          [
+            "foo",
+            1
+          ],
+          [
+            "foo",
+            3
+          ],
+          [
+            "foo",
+            "bar2",
+            4
+          ],
+          [
+            "foo",
+            4
+          ],
+          [
+            "foo",
+            5
+          ]
+        ],
+        "expected": [
+          null,
+          null,
+          "bar",
+          "bar",
+          null,
+          "bar2",
+          "bar2"
+        ]
       }
     ]
   }
