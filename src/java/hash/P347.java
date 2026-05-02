@@ -7,7 +7,7 @@ import java.util.*;
  * Difficulty: Medium
  * 
  * Problem:
- * Given an integer array `nums` and an integer `k`, return the `k` most 
+ * Given an integer array `nums` and an integer `k`, return the `k` most
  * frequent elements. You may return the answer in any order.
  * 
  * Example 1:
@@ -32,11 +32,55 @@ public class P347 {
          * Strategy:
          * 1. Count frequencies using a HashMap.
          * 2. Use a PriorityQueue (Min-Heap) to keep track of the top K elements.
-         *    OR use Bucket Sort for an O(n) solution.
+         * OR use Bucket Sort for an O(n) solution.
          */
         public int[] topKFrequent(int[] nums, int k) {
-            // Your code here
-            return new int[0];
+            Map<Integer, Integer> countMap = new HashMap<>();
+            PriorityQueue<Integer> pq = new PriorityQueue<>((a, b) -> countMap.get(b) - countMap.get(a));
+            for (int i = 0; i < nums.length; i++) {
+                countMap.put(nums[i], countMap.getOrDefault(nums[i], 0) + 1);
+            }
+            for (int num : countMap.keySet()) {
+                pq.add(num);
+            }
+            int topk[] = new int[k];
+            for (int i = 0; i < k; i++) {
+                topk[i] = pq.poll();
+            }
+            return topk;
+        }
+
+        /**
+         * Bucket Sort Approach (O(n) Time):
+         */
+        public int[] topKFrequentBucket(int[] nums, int k) {
+            Map<Integer, Integer> countMap = new HashMap<>();
+            for (int num : nums) {
+                countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+            }
+
+            // Create buckets where index is the frequency
+            List<Integer>[] buckets = new List[nums.length + 1];
+            for (int num : countMap.keySet()) {
+                int freq = countMap.get(num);
+                if (buckets[freq] == null) {
+                    buckets[freq] = new ArrayList<>();
+                }
+                buckets[freq].add(num);
+            }
+
+            // Collect results from highest frequency to lowest
+            int[] result = new int[k];
+            int index = 0;
+            for (int i = buckets.length - 1; i >= 0 && index < k; i--) {
+                if (buckets[i] != null) {
+                    for (int num : buckets[i]) {
+                        result[index++] = num;
+                        if (index == k) break;
+                    }
+                }
+            }
+            return result;
         }
     }
     // @lc code=end

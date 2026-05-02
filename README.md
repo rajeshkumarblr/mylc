@@ -2,9 +2,9 @@
 
 Central runner + shared test harness. Problems and test data live in **`testcases.json`** and are executed by language-specific drivers.
 
-**Problems covered:** 33  
+**Problems covered:** 47  
 **Languages:** C++, Go, Java, Python  
-**Status:** C++ ✅ 33/33 • Go ✅ 33/33 • Java ✅ 33/33 • Python ⚠️ 1/33
+**Status:** C++ ✅ 37/47 • Go ✅ 35/47 • Java ✅ 47/47 • Python ⚠️ 34/47
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
@@ -72,6 +72,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/longest-substring-without-repeating-characters/description/" target="_blank">3</a> | Longest Substring Without Repeating Characters | sliding_window | Medium | 2 | [✓](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp) | [✓](src/go/sliding_window/3.longest-substring-without-repeating-characters.go) | [✓](src/java/sliding_window/3.longest-substring-without-repeating-characters.java) | [📺](https://www.youtube.com/watch?v=wiGpQwVHdE0) |
 | <a href="https://leetcode.com/problems/palindrome-number/description/" target="_blank">9</a> | Palindrome Number | misc | Easy | 6 | [✓](src/cpp/misc/9.palindrome-number.cpp) | [✓](src/go/misc/9.palindrome-number.go) | [✓](src/java/misc/9.palindrome-number.java) | [📺](https://www.youtube.com/watch?v=f5qF2OowB5A) |
 | <a href="https://leetcode.com/problems/container-with-most-water/description/" target="_blank">11</a> | Container With Most Water | two_pointer | Medium | 9 | [✓](src/cpp/two_pointer/11.container-with-most-water.cpp) | [✓](src/go/two_pointer/11.container-with-most-water.go) | [✓](src/java/two_pointer/11.container-with-most-water.java) | [📺](https://www.youtube.com/watch?v=UuiTKBwPgAo) |
+| <a href="https://leetcode.com/problems/roman-to-integer/description/" target="_blank">13</a> | Roman to Integer | misc | Easy | 3 | | | [✓](src/java/misc/P13.java) | |
 | <a href="https://leetcode.com/problems/3sum/description/" target="_blank">15</a> | 3Sum | two_pointer | Medium | 4 | [✓](src/cpp/two_pointer/15.3-sum.cpp) | [✓](src/go/two_pointer/15.3-sum.go) | [✓](src/java/two_pointer/15.3-sum.java) | [📺](https://www.youtube.com/watch?v=jzZsG8n2R9A) |
 | <a href="https://leetcode.com/problems/valid-parentheses/description/" target="_blank">20</a> | Valid Parentheses | stack | Easy | 10 | [✓](src/cpp/stack/20.valid-parentheses.cpp) | [✓](src/go/stack/20.valid-parentheses.go) | [✓](src/java/stack/20.valid-parentheses.java) | [📺](https://www.youtube.com/watch?v=WTzjTskDFMg) |
 | <a href="https://leetcode.com/problems/merge-two-sorted-lists/description/" target="_blank">21</a> | Merge Two Sorted Lists | list | Easy | 7 | [✓](src/cpp/list/21.merge-two-sorted-lists.cpp) | [✓](src/go/list/21.merge-two-sorted-lists.go) | [✓](src/java/list/21.merge-two-sorted-lists.java) | [📺](https://www.youtube.com/watch?v=XIdigk956u0) |
@@ -80,6 +81,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/valid-sudoku/description/" target="_blank">36</a> | Valid Sudoku | hash | Medium | 2 | [✓](src/cpp/hash/36.valid-sudoku.cpp) | [✓](src/go/hash/36.valid-sudoku.go) | [✓](src/java/hash/36.valid-sudoku.java) | [📺](https://www.youtube.com/watch?v=TjFXEUCMqI8) |
 | <a href="https://leetcode.com/problems/trapping-rain-water/description/" target="_blank">42</a> | Trapping Rain Water | two_pointer | Hard | 6 | [✓](src/cpp/two_pointer/42.trapping-rain-water.cpp) | [✓](src/go/two_pointer/42.trapping-rain-water.go) | [✓](src/java/two_pointer/42.trapping-rain-water.java) | [📺](https://www.youtube.com/watch?v=ZI2z5pq0TqA) |
 | <a href="https://leetcode.com/problems/climbing-stairs/description/" target="_blank">70</a> | Climbing Stairs | dp | Easy | 7 | [✓](src/cpp/dp/70.climbing-stairs.cpp) | [✓](src/go/dp/70.climbing-stairs.go) | [✓](src/java/dp/P70.java) | [📺](https://www.youtube.com/watch?v=Y0lT9Fck7qI) |
+| <a href="https://leetcode.com/problems/minimum-window-substring/description/" target="_blank">76</a> | Minimum Window Substring | sliding_window | Hard | 3 | [✓](src/cpp/sliding_window/76.minimum-window-substring.cpp) | | [✓](src/java/sliding_window/P76.java) | |
 | <a href="https://leetcode.com/problems/binary-tree-inorder-traversal/description/" target="_blank">94</a> | Binary Tree Inorder Traversal | tree | Easy | 5 | [✓](src/cpp/tree/94.binary-tree-inorder-traversal.cpp) | [✓](src/go/tree/94.binary-tree-inorder-traversal.go) | [✓](src/java/tree/94.binary-tree-inorder-traversal.java) | [📺](https://www.youtube.com/watch?v=g_S5WuasWUE) |
 | <a href="https://leetcode.com/problems/validate-binary-search-tree/description/" target="_blank">98</a> | Validate Binary Search Tree | tree | Medium | 6 | [✓](src/cpp/tree/98.validate-binary-search-tree.cpp) | [✓](src/go/tree/98.validate-binary-search-tree.go) | [✓](src/java/tree/98.validate-binary-search-tree.java) | [📺](https://www.youtube.com/watch?v=s6ATEkipzow) |
 | <a href="https://leetcode.com/problems/same-tree/description/" target="_blank">100</a> | Same Tree | tree | Easy | 5 | [✓](src/cpp/tree/100.same-tree.cpp) | [✓](src/go/tree/100.same-tree.go) | [✓](src/java/tree/100.same-tree.java) | [📺](https://www.youtube.com/watch?v=vRbbcKXCxOw) |
@@ -100,6 +102,7 @@ _Click problem ID to view LeetCode problem description (opens in new tab). Click
 | <a href="https://leetcode.com/problems/subarray-sum-equals-k/description/" target="_blank">560</a> | Subarray Sum Equals K | prefix_sum | Medium | 2 | [✓](src/cpp/prefix_sum/560.subarray-sum-equals-k.cpp) | [✓](src/go/prefix_sum/560.subarray-sum-equals-k.go) | [✓](src/java/prefix_sum/560.subarray-sum-equals-k.java) | [📺](https://www.youtube.com/watch?v=HbbYPQc-Oo4) |
 | <a href="https://leetcode.com/problems/permutation-in-string/description/" target="_blank">567</a> | Permutation in String | sliding_window | Medium | 5 | [✓](src/cpp/sliding_window/567.permutation-in-string.cpp) | [✓](src/go/sliding_window/567.permutation-in-string.go) | [✓](src/java/sliding_window/567.permutation-in-string.java) | [📺](https://www.youtube.com/watch?v=UbyhOgBN834) |
 | <a href="https://leetcode.com/problems/daily-temperatures/description/" target="_blank">739</a> | Daily Temperatures | stack | Medium | 6 | [✓](src/cpp/stack/739.daily-temperatures.cpp) | [✓](src/go/stack/739.daily-temperatures.go) | [✓](src/java/stack/739.daily-temperatures.java) | [📺](https://www.youtube.com/watch?v=cTBiBSnjO3c) |
+| <a href="https://leetcode.com/problems/top-k-frequent-elements/description/" target="_blank">347</a> | Top K Frequent Elements | hash | Medium | 3 | [✓](src/cpp/hash/347.top-k-frequent-elements.cpp) | | [✓](src/java/hash/P347.java) | [📺](https://www.youtube.com/watch?v=YPTqKIgVk-k) |
 | <a href="https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/" target="_blank">1235</a> | Maximum Profit in Job Scheduling | dp | Hard | 4 | [✓](src/cpp/dp/1235.maximum-profit-in-job-scheduling.cpp) | [✓](src/go/dp/1235.maximum-profit-in-job-scheduling.go) | [✓](src/java/dp/P1235.java) | [📺](https://www.youtube.com/watch?v=JLoWc3v0SiE) |
 
 ### Filter by Category

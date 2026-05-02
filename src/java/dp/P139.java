@@ -9,7 +9,7 @@ import java.util.*;
  * Difficulty: Medium
  * 
  * Problem:
- * Given a string s and a dictionary of strings wordDict, return true if s can 
+ * Given a string s and a dictionary of strings wordDict, return true if s can
  * be segmented into a space-separated sequence of dictionary words.
  * 
  * Example 1:
@@ -18,7 +18,8 @@ import java.util.*;
  * 
  * Example 2:
  * s = "applepenapple", wordDict = ["apple", "pen"]
- * Output: true (because "applepenapple" can be split into "apple", "pen", "apple")
+ * Output: true (because "applepenapple" can be split into "apple", "pen",
+ * "apple")
  * 
  * Example 3:
  * s = "catsandog", wordDict = ["cats", "dog", "sand", "and", "cat"]
@@ -30,19 +31,20 @@ public class P139 {
     public static class Solution {
         /**
          * DP Approach:
-         * We use a boolean array dp[] where dp[i] is true if the prefix s[0...i-1] 
+         * We use a boolean array dp[] where dp[i] is true if the prefix s[0...i-1]
          * can be segmented into words from the dictionary.
          * 
-         * Time Complexity: O(n^3) - Two nested loops O(n^2) and substring operation O(n).
+         * Time Complexity: O(n^3) - Two nested loops O(n^2) and substring operation
+         * O(n).
          * Space Complexity: O(n) - For the dp array and HashSet.
          */
         public boolean wordBreak(String s, List<String> wordDict) {
             int n = s.length();
             // dp[i] means s.substring(0, i) can be segmented
             boolean[] dp = new boolean[n + 1];
-            
+
             // Base case: empty string is always valid
-            dp[0] = true; 
+            dp[0] = true;
 
             // Convert wordDict to HashSet for O(1) average lookup
             Set<String> wordSet = new HashSet<>(wordDict);

@@ -72,6 +72,10 @@ bool lc_test_438(const json &j);
 bool checkInclusion(std::string s1, std::string s2);
 bool lc_test_567(const json &j);
 
+// Problem 76: Minimum Window Substring
+std::string minWindow(std::string s, std::string t);
+bool lc_test_76(const json &j);
+
 std::vector<std::vector<int>> levelOrder(TreeNode *root);
 bool lc_test_102(const json &j);
 

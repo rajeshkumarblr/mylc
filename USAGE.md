@@ -1,8 +1,8 @@
-# Build & Test Guide (C++, Go, and Python)
+# Build & Test Guide (C++, Go, Java, and Python)
 
-This repo contains C++, Go, and Python solutions executed via central runners and a shared test harness driven by `testcases.json`. Use the `run` helper for day-to-day work; Makefiles are build-only.
+This repo contains C++, Go, Java, and Python solutions executed via central runners and a shared test harness driven by `testcases.json`. Use the `run` helper for day-to-day work; Makefiles are build-only.
 
-- Single env var for language: `LC_LANG` (cpp|go|python)
+- Single env var for language: `LC_LANG` (cpp|go|java|python)
 - Problem selection via `-p` or env `LC_PROB_NUM`/`LC_PROB_NO`
 - Category selection via `-c` or env `LC_CATEGORY`
 
@@ -50,7 +50,7 @@ This repo contains C++, Go, and Python solutions executed via central runners an
 - Exports `LC_PROB_NUM`/`LC_CATEGORY` for the runner
 
 Flags:
-- `-l, --lang [cpp|go|python]` choose language (default from `$LC_LANG`, else `cpp`); without argument lists problems/categories
+- `-l, --lang [cpp|go|java|python]` choose language (default from `$LC_LANG`, else `cpp`); without argument lists problems/categories
 - `-p, --problem [id]` run a single problem; if omitted, uses `$LC_PROB_NUM` or `$LC_PROB_NO`
 - `-c, --category [cat]` run a category; if omitted, uses `$LC_CATEGORY`
 - `-a, --all` run all problems
@@ -73,13 +73,18 @@ The Makefile compiles:
 Build strategy:
 - Sources are copied to `build/go/_merged` with a temp module to build a single binary
 
+## Java build (src/java)
+- `make` or `make all` builds the runner at `build/java/runner`
+- Uses Google Gson for JSON parsing
+- `make clean` removes artifacts
+
 ## Python setup (src/python)
 - `make` sets up the `build/python/runner` wrapper script.
 - No compilation step; the runner executes `src/python/main.py`.
 - `PYTHONPATH` is automatically set to include `src/python`.
 
 ## Environment variables
-- `LC_LANG`: default language for run (cpp|go|python)
+- `LC_LANG`: default language for run (cpp|go|java|python)
 - `LC_PROB_NUM` / `LC_PROB_NO`: single problem id when using `./run -p` without an argument
 - `LC_CATEGORY`: category for `./run -c` without an argument
 - `LC_VERBOSE`: reserved for future per-test verbosity
