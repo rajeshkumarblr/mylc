@@ -608,6 +608,26 @@ bool lc_test_567(const json &j) {
   return all;
 }
 
+bool lc_test_76(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::string s = tc.at("s").get<std::string>();
+    std::string t = tc.at("t").get<std::string>();
+    std::string expect = tc.at("expected").get<std::string>();
+    std::string got = minWindow(s, t);
+    bool ok = (got == expect);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL  got=\"" << got
+                << "\" expected=\"" << expect << "\"\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
 bool lc_test_20(const json &j) {
   bool all = true;
   size_t idx = 0;

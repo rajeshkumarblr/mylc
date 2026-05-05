@@ -18,7 +18,8 @@ import java.util.*;
  * Example 1:
  * Input: s = "egg", t = "add"
  * Output: true
- *
+ * 
+ * 
  * Example 2:
  * Input: s = "foo", t = "bar"
  * Output: false

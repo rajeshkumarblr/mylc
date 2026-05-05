@@ -12,7 +12,7 @@
         "REPO_ROOT": "${workspaceFolder}",
         "LC_PROB_NUM": "${input:lcProbNum}"
       },
-      "console": "integratedTerminal"
+      "console": "internalConsole"
     },
     {
       "name": "Go: Debug runner (single problem)",
@@ -31,6 +31,7 @@
       "name": "C++: Debug runner (single problem)",
       "type": "cppdbg",
       "request": "launch",
+      "preLaunchTask": "build-cpp-dbg",
       "program": "${workspaceFolder}/build/cpp/runner.dbg",
       "args": [],
       "stopAtEntry": false,

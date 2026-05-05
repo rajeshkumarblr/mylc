@@ -42,7 +42,7 @@ int main(int, char **) {
 
   // Supported problems → test functions (drivers are in lc_test_utils.cpp)
   const vector<int> solved = {1,   2,   3,   9,   11,  15,  20,  21,  33,
-                              35,  36,  42,  70,  94,  98,  100, 102, 103,
+                              35,  36,  42,  70,  76,  94,  98,  100, 102, 103,
                               104, 110, 139, 160, 198, 200, 206, 213, 226,
                               238, 347, 424, 438, 560, 567, 739, 981, 1235};
   using TestFn = bool (*)(const json &);
@@ -51,7 +51,7 @@ int main(int, char **) {
       {9, lc_test_9},     {11, lc_test_11},   {15, lc_test_15},
       {20, lc_test_20},   {21, lc_test_21},   {33, lc_test_33},
       {35, lc_test_35},   {36, lc_test_36},   {42, lc_test_42},
-      {70, lc_test_70},   {94, lc_test_94},   {98, lc_test_98},
+      {70, lc_test_70},   {76, lc_test_76},   {94, lc_test_94},   {98, lc_test_98},
       {100, lc_test_100}, {102, lc_test_102}, {103, lc_test_103},
       {104, lc_test_104}, {110, lc_test_110}, {139, lc_test_139},
       {160, lc_test_160}, {198, lc_test_198}, {200, lc_test_200},
