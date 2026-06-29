@@ -192,3 +192,7 @@ std::vector<std::string> runHitCounter(const std::vector<std::string> &cmds,
 // Problem 215: Kth Largest Element in an Array
 int findKthLargest(std::vector<int>& nums, int k);
 bool lc_test_215(const json &j);
+
+// Problem 216: Kth Smallest Element in an Array
+int findKthSmallest(std::vector<int>& nums, int k);
+bool lc_test_216(const json &j);
