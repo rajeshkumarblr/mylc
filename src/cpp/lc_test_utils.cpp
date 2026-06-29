@@ -1122,3 +1122,141 @@ bool lc_test_981(const json &j) {
   }
   return all;
 }
+
+bool lc_test_1188(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    int capacity = tc.at("capacity").get<int>();
+
+    std::vector<std::vector<int>> producers;
+    for (const auto &p : tc.at("producers")) {
+      producers.push_back(p.get<std::vector<int>>());
+    }
+
+    std::vector<int> consumers_calls =
+        tc.at("consumers_calls").get<std::vector<int>>();
+
+    // Gather all enqueued elements for verification
+    std::vector<int> expect;
+    for (const auto &p : producers) {
+      expect.insert(expect.end(), p.begin(), p.end());
+    }
+    std::sort(expect.begin(), expect.end());
+
+    std::vector<int> got =
+        runBoundedBlockingQueue(capacity, producers, consumers_calls);
+    std::sort(got.begin(), got.end());
+
+    bool ok = (got == expect);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n    got=";
+      for (int x : got)
+        std::cout << x << " ";
+      std::cout << "\n    exp=";
+      for (int x : expect)
+        std::cout << x << " ";
+      std::cout << "\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+static bool isValidH2OSequence(const std::string &s) {
+  if (s.length() % 3 != 0)
+    return false;
+  for (size_t i = 0; i < s.length(); i += 3) {
+    int h_count = 0;
+    int o_count = 0;
+    for (int j = 0; j < 3; ++j) {
+      if (s[i + j] == 'H')
+        h_count++;
+      else if (s[i + j] == 'O')
+        o_count++;
+    }
+    if (h_count != 2 || o_count != 1)
+      return false;
+  }
+  return true;
+}
+
+bool lc_test_1117(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::string input = tc.at("input").get<std::string>();
+    std::string got = runH2O(input);
+    bool ok = isValidH2OSequence(got);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n    input=\"" << input
+                << "\"\n    got=\"" << got << "\"\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+bool lc_test_1242(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::vector<std::string> urls = tc.at("urls").get<std::vector<std::string>>();
+    std::vector<std::vector<int>> edges = tc.at("edges").get<std::vector<std::vector<int>>>();
+    std::string startUrl = tc.at("startUrl").get<std::string>();
+    std::vector<std::string> expected = tc.at("expected").get<std::vector<std::string>>();
+    
+    std::vector<std::string> got = runWebCrawler(urls, edges, startUrl);
+    
+    std::sort(got.begin(), got.end());
+    std::sort(expected.begin(), expected.end());
+    
+    bool ok = (got == expected);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n"
+                << "    startUrl=\"" << startUrl << "\"\n"
+                << "    expected=[";
+      for (const auto &u : expected) std::cout << "\"" << u << "\", ";
+      std::cout << "]\n    got=[";
+      for (const auto &u : got) std::cout << "\"" << u << "\", ";
+      std::cout << "]\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+bool lc_test_56(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::vector<std::vector<int>> input = tc.at("input").get<std::vector<std::vector<int>>>();
+    std::vector<std::vector<int>> expected = tc.at("expected").get<std::vector<std::vector<int>>>();
+    
+    std::vector<std::vector<int>> got = mergeIntervals(input);
+    
+    bool ok = (got == expected);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n"
+                << "    expected=[";
+      for (const auto &iv : expected) {
+        if (iv.size() >= 2) std::cout << "[" << iv[0] << "," << iv[1] << "], ";
+      }
+      std::cout << "]\n    got=[";
+      for (const auto &iv : got) {
+        if (iv.size() >= 2) std::cout << "[" << iv[0] << "," << iv[1] << "], ";
+      }
+      std::cout << "]\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}

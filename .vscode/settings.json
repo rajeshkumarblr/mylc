@@ -108,10 +108,20 @@
         "strings": false
     },
     "editor.suggestOnTriggerCharacters": true,
+    "editor.parameterHints.enabled": true,
+    "github.copilot.inlineSuggest.enable": false,
+    "github.copilot.enable": false,
+    "antigravity.inlineSuggest.enabled": false,
+    "antigravity.inlineSuggestions.enabled": false,
+    "antigravity.suggestions.enabled": false,
+    "antigravity.codeCompletion.enabled": false,
+    "antigravity.enable": false,
     "java.project.referencedLibraries": [
         "src/java/lib/gson-2.10.1.jar"
     ],
     "java.project.sourcePaths": [
         "src/java"
-    ]
+    ],
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c17"
 }

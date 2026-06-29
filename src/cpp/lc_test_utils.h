@@ -163,3 +163,23 @@ bool lc_test_1235(const json &j);
 bool lc_test_981(const json &j);
 std::vector<std::string> runTimeMap(const std::vector<std::string> &cmds,
                                     const json &args);
+
+// Problem 1188: Design Bounded Blocking Queue
+bool lc_test_1188(const json &j);
+std::vector<int> runBoundedBlockingQueue(int capacity,
+                                         const std::vector<std::vector<int>> &producers,
+                                         const std::vector<int> &consumers_calls);
+
+// Problem 1117: Building H2O
+bool lc_test_1117(const json &j);
+std::string runH2O(const std::string &input);
+
+// Problem 1242: Web Crawler Multithreaded
+bool lc_test_1242(const json &j);
+std::vector<std::string> runWebCrawler(const std::vector<std::string> &urls,
+                                       const std::vector<std::vector<int>> &edges,
+                                       const std::string &startUrl);
+
+// Problem 56: Merge Intervals
+std::vector<std::vector<int>> mergeIntervals(std::vector<std::vector<int>>& intervals);
+bool lc_test_56(const json &j);
