@@ -1260,3 +1260,48 @@ bool lc_test_56(const json &j) {
   }
   return all;
 }
+
+bool lc_test_362(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    const auto &commandsIf = tc.at("commands");
+    const auto &argsIf = tc.at("args");
+    const auto &expectedIf = tc.at("expected");
+
+    std::vector<std::string> commands;
+    for (const auto &cmd : commandsIf) {
+      commands.push_back(cmd.get<std::string>());
+    }
+
+    std::vector<std::string> got = runHitCounter(commands, argsIf);
+
+    std::vector<std::string> expect;
+    for (const auto &e : expectedIf) {
+      if (e.is_null()) {
+        expect.push_back("null");
+      } else if (e.is_number()) {
+        expect.push_back(std::to_string(e.get<int>()));
+      } else if (e.is_boolean()) {
+        expect.push_back(e.get<bool>() ? "true" : "false");
+      } else {
+        expect.push_back(e.get<std::string>());
+      }
+    }
+
+    bool ok = (got == expect);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n    got=";
+      for (const auto &s : got)
+        std::cout << s << ",";
+      std::cout << "\n    exp=";
+      for (const auto &s : expect)
+        std::cout << s << ",";
+      std::cout << "\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}

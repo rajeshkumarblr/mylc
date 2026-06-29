@@ -44,7 +44,7 @@ int main(int, char **) {
   const vector<int> solved = {1,   2,   3,   9,   11,  15,  20,  21,  33,
                               35,  36,  42,  56,  70,  76,  94,  98,  100, 102, 103,
                               104, 110, 139, 160, 198, 200, 206, 213, 226,
-                              238, 347, 424, 438, 560, 567, 739, 981, 1117, 1188, 1235, 1242};
+                              238, 347, 362, 424, 438, 560, 567, 739, 981, 1117, 1188, 1235, 1242};
   using TestFn = bool (*)(const json &);
   map<int, TestFn> handlers = {
       {1, lc_test_1},     {2, lc_test_2},     {3, lc_test_3},
@@ -59,7 +59,7 @@ int main(int, char **) {
       {206, lc_test_206}, {213, lc_test_213}, {226, lc_test_226},
       {238, lc_test_238}, {424, lc_test_424}, {438, lc_test_438},
       {560, lc_test_560}, {567, lc_test_567}, {739, lc_test_739},
-      {347, lc_test_347}, {981, lc_test_981}, {1117, lc_test_1117}, {1188, lc_test_1188}, {1235, lc_test_1235}, {1242, lc_test_1242}};
+      {347, lc_test_347}, {362, lc_test_362}, {981, lc_test_981}, {1117, lc_test_1117}, {1188, lc_test_1188}, {1235, lc_test_1235}, {1242, lc_test_1242}};
 
   auto print_header = []() {
     cout << left << setw(5) << "No" << setw(28) << "Description" << setw(16)

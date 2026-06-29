@@ -183,3 +183,8 @@ std::vector<std::string> runWebCrawler(const std::vector<std::string> &urls,
 // Problem 56: Merge Intervals
 std::vector<std::vector<int>> mergeIntervals(std::vector<std::vector<int>>& intervals);
 bool lc_test_56(const json &j);
+
+// Problem 362: Design Hit Counter
+bool lc_test_362(const json &j);
+std::vector<std::string> runHitCounter(const std::vector<std::string> &cmds,
+                                       const json &args);
