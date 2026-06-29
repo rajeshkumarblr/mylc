@@ -1305,3 +1305,26 @@ bool lc_test_362(const json &j) {
   }
   return all;
 }
+
+bool lc_test_215(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::vector<int> nums = tc.at("nums").get<std::vector<int>>();
+    int k = tc.at("k").get<int>();
+    int expected = tc.at("expected").get<int>();
+    
+    int got = findKthLargest(nums, k);
+    
+    bool ok = (got == expected);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n"
+                << "    expected=" << expected << "\n"
+                << "    got=" << got << "\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}

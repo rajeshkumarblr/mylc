@@ -188,3 +188,7 @@ bool lc_test_56(const json &j);
 bool lc_test_362(const json &j);
 std::vector<std::string> runHitCounter(const std::vector<std::string> &cmds,
                                        const json &args);
+
+// Problem 215: Kth Largest Element in an Array
+int findKthLargest(std::vector<int>& nums, int k);
+bool lc_test_215(const json &j);
