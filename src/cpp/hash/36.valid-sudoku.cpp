@@ -62,33 +62,35 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-    bool isValidSudoku(vector<vector<char>>& board) {
-        // Use bitsets for maximum efficiency
-        // Each int represents 9 digits as bits
-        int rows[9] = {0};
-        int cols[9] = {0}; 
-        int boxes[9] = {0};
+     bool isValidSudoku(vector<vector<char>>& board) { 
+        vector<unordered_set<char>> col(9);
+        vector<unordered_set<char>> row(9);
+        vector<unordered_set<char>> square(9);
 
-        for (int i = 0; i < 9; ++i) {
-            for (int j = 0; j < 9; ++j) {
+        for(int i=0;i<9;i++){
+            for(int j=0;j<9;j++){
+
                 char c = board[i][j];
-                if (c == '.') continue;
 
-                int bit = 1 << (c - '1'); // Create bit mask for digit
-                int box = (i / 3) * 3 + (j / 3);
+                if (c == '.'){
+                    continue;
+                }
 
-                // Check if bit is already set (duplicate found)
-                if ((rows[i] & bit) || (cols[j] & bit) || (boxes[box] & bit))
-                    return false;
+                int square_indx = (i/3)*3+j/3;
 
-                // Set the bit
-                rows[i] |= bit;
-                cols[j] |= bit;
-                boxes[box] |= bit;
-            }
+                if (row[i].count(c)  || col[j].count(c) || square[square_indx].count(c)){
+                        return false;
+                    }
+                row[i].insert(c);
+                col[j].insert(c);
+                square[square_indx].insert(c);
+
+                }
         }
         return true;
-    }
+
+            
+    }    
 };
 // @lc code=end
 

@@ -40,20 +40,23 @@ using namespace std;
 // @lc code=start
 class Solution {
 public:
-  vector<int> twoSum(vector<int> &nums, int target) {
-    vector<int> vec;
-    unordered_map<int, int> complements;
-    for (int i = 0; i < nums.size(); i++) {
-      if (const auto it = complements.find(nums[i]); it != complements.end()) {
-        vec = {it->second, i};
-        break;
-      } else {
-        complements[target - nums[i]] = i;
-      }
+    vector<int> twoSum(vector<int>& nums, int target) {
+        unordered_map<int, int> nummap;
+        
+        for (int i = 0; i < nums.size(); i++) {
+            int complement = target - nums[i];
+            
+            // Check if the complement exists in the map
+            if (nummap.find(complement) != nummap.end()) {
+                return {nummap[complement], i};
+            }
+            
+            // Store the current number and its index
+            nummap[nums[i]] = i;
+        }
+        return {};
     }
-    return vec;
-  }
-};
+    };
 // @lc code=end
 
 // Non-LeetCode wrapper for harness
