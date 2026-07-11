@@ -3058,7 +3058,7 @@
     ]
   },
   "362": {
-    "category": "hash",
+    "category": "concurrency",
     "description": "Design Hit Counter",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/design-hit-counter/",
