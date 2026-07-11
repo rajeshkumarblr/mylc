@@ -20,6 +20,7 @@ Options:
                        Without an argument: list categories & problems
   -t [cpp|go|java|python]     Set default language in .env (writes LC_LANG) and exit
   -p, --problem [id]   Run a single problem id (if omitted, uses $LC_PROB_NUM or $LC_PROB_NO)
+  -e, --example [num]  Run STL example (1=vector, 2=list, ..., 10=priority_queue)
   -c, --category [cat] Run the given category (if omitted, uses $LC_CATEGORY)
   -a, --all            Run all problems (sets LC_PROB_NUM=all)
   -L                   List categories & problems (same as bare -l)
@@ -34,6 +35,7 @@ Notes:
 
 Examples:
   ./run -p 94
+  ./run -e 1       # Run STL example 01_vector.cpp
   ./run -l go -p 94
   ./run -t go      # persist default language
   ./run -c sliding_window
@@ -181,6 +183,7 @@ CATEGORY=""
 RUN_ALL=0
 LIST_ONLY=0
 SUBMIT_ID=""
+EXAMPLE_NUM=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -215,6 +218,12 @@ while [[ $# -gt 0 ]]; do
       ;;
     -L)
       LIST_ONLY=1; shift ;;
+    -e|--example)
+      if [[ $# -ge 2 && ! "$2" =~ ^- ]]; then
+        EXAMPLE_NUM="$2"; shift 2
+      else
+        die "--example requires a number (1-10)"
+      fi ;;
     -p|--problem)
       if [[ $# -ge 2 && ! "$2" =~ ^- ]]; then
         PROB="$2"; shift 2
@@ -246,8 +255,30 @@ while [[ $# -gt 0 ]]; do
 done
 
 # No options/args => print usage
-if [[ -z "$PROB" && -z "$CATEGORY" && $RUN_ALL -eq 0 && $LIST_ONLY -eq 0 && -z "$SUBMIT_ID" ]]; then
+if [[ -z "$PROB" && -z "$CATEGORY" && $RUN_ALL -eq 0 && $LIST_ONLY -eq 0 && -z "$SUBMIT_ID" && -z "$EXAMPLE_NUM" ]]; then
   usage; exit 0
+fi
+
+# Example runner mode
+if [[ -n "$EXAMPLE_NUM" ]]; then
+  # Format number with leading zero (e.g. 1 -> 01)
+  PREFIX=$(printf "%02d" "$EXAMPLE_NUM")
+  shopt -s nullglob
+  FILES=("$ROOT/src/cpp/stl/${PREFIX}_"*.cpp)
+  shopt -u nullglob
+  
+  if [[ ${#FILES[@]} -eq 0 ]]; then
+    die "STL example ${EXAMPLE_NUM} not found in src/cpp/stl/"
+  fi
+  
+  TARGET_FILE="${FILES[0]}"
+  OUT_BIN="$ROOT/build/cpp/example"
+  echo "Compiling ${TARGET_FILE}..."
+  g++ -O2 -std=c++20 "$TARGET_FILE" -o "$OUT_BIN" || die "Compilation failed for example ${EXAMPLE_NUM}"
+  
+  echo "Running STL Example ${EXAMPLE_NUM}: $(basename "$TARGET_FILE")"
+  echo "----------------------------------------"
+  exec "$OUT_BIN"
 fi
 
 # Listing mode doesn't require building

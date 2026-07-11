@@ -21,6 +21,9 @@ export LC_LANG=cpp   # or: go | java | python
 
 # list categories & problems from testcases.json
 ./run -l
+
+# run an STL reference example (1=vector, 2=list, ..., 10=priority_queue)
+./run -e 1
 ```
 
 ## Repository layout
