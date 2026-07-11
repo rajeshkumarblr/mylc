@@ -206,3 +206,9 @@ Track your interview preparation progress here.
 - [x] **[LC 11](src/cpp/two_pointer/11.container-with-most-water.cpp)**: [Container With Most Water](https://leetcode.com/problems/container-with-most-water/) 🟡
 - [x] **[LC 42](src/cpp/two_pointer/42.trapping-rain-water.cpp)**: [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) 🔴
 
+## Bonus: Concurrency (Not NeetCode 150)
+
+- [x] **[LC 362](src/cpp/concurrency/362.design-hit-counter.cpp)**: [Design Hit Counter](https://leetcode.com/problems/design-hit-counter/) 🟡
+- [x] **[LC 1188](src/cpp/concurrency/1188.bounded-blocking-queue.cpp)**: [Design Bounded Blocking Queue](https://leetcode.com/problems/bounded-blocking-queue/) 🟡
+- [x] **[LC 1117](src/cpp/concurrency/1117.building-h2o.cpp)**: [Building H2O](https://leetcode.com/problems/building-h2o/) 🟡
+- [x] **[LC 1242](src/cpp/concurrency/1242.web-crawler-multithreaded.cpp)**: [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded/) 🟡
