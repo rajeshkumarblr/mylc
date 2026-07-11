@@ -23,6 +23,22 @@ def main():
     content = "# NeetCode 150 Overview\n\n"
     content += "Track your interview preparation progress here.\n\n"
     
+    # STL Reference Section
+    content += "## 📚 STL Quick References\n\n"
+    content += "I have generated 10 heavily-commented, comprehensive C++ STL reference examples in the `src/cpp/stl/` folder to help you with standard library syntax during your practice.\n\n"
+    content += "You can compile and run any of them on the fly using the `./run -e <number>` command:\n"
+    content += "- `./run -e 1` : **vector** (Dynamic Array)\n"
+    content += "- `./run -e 2` : **list** (Doubly Linked List)\n"
+    content += "- `./run -e 3` : **deque** (Double-Ended Queue)\n"
+    content += "- `./run -e 4` : **queue** (FIFO)\n"
+    content += "- `./run -e 5` : **stack** (LIFO)\n"
+    content += "- `./run -e 6` : **set** (Ordered Set / Red-Black Tree)\n"
+    content += "- `./run -e 7` : **map** (Ordered Map)\n"
+    content += "- `./run -e 8` : **unordered_set** (Hash Set)\n"
+    content += "- `./run -e 9` : **unordered_map** (Hash Map - LeetCode MVP)\n"
+    content += "- `./run -e 10` : **priority_queue** (Min/Max Heap)\n\n"
+    content += "---\n\n"
+    
     for cat in sorted(grouped.keys()):
         content += f"## {cat}\n\n"
         for p in grouped[cat]:

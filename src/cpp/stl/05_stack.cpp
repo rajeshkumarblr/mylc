@@ -3,21 +3,30 @@
 
 using namespace std;
 
-// Note: std::stack is a LIFO (Last In First Out) data structure.
-// Heavily used for DFS (Depth First Search), Valid Parentheses, Monotonic Stack problems.
+// Note: std::stack is a Container Adaptor (LIFO)
+// - Uses std::deque by default.
+// - MVP for Depth-First Search (DFS), Valid Parentheses, Monotonic Stacks.
 int main() {
     stack<int> s;
     
-    // Push
-    s.push(1);
-    s.push(2);
-    s.push(3);
+    // 1. Push
+    s.push(10);
+    s.emplace(20);
+    s.push(30);
     
-    // Process top-down
+    // 2. Access
+    // Note: Stacks do NOT have a .front() or .back(). They only have .top()
+    cout << "Top: " << s.top() << endl; // 30
+    
+    // 3. Status
+    cout << "Size: " << s.size() << endl;
+    cout << "Is Empty? " << (s.empty() ? "Yes" : "No") << endl;
+    
+    // 4. Pop and Process (Classic Pattern)
     while (!s.empty()) {
-        int top_element = s.top(); // Get top
-        cout << "Popping: " << top_element << endl;
-        s.pop(); // Remove it
+        int curr = s.top();
+        cout << "Popping: " << curr << endl;
+        s.pop(); // Removes the top element (O(1))
     }
     
     return 0;

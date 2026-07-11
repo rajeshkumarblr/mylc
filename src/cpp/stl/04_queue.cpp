@@ -3,21 +3,30 @@
 
 using namespace std;
 
-// Note: std::queue is a FIFO (First In First Out) data structure.
-// Primarily used for BFS (Breadth First Search) in Graphs/Trees.
+// Note: std::queue is a Container Adaptor (FIFO)
+// - Under the hood, it uses std::deque by default.
+// - MVP for Breadth-First Search (BFS) in Trees & Graphs.
 int main() {
     queue<int> q;
     
-    // Enqueue
-    q.push(1);
-    q.push(2);
-    q.push(3);
+    // 1. Enqueue (Push)
+    q.push(10);
+    q.emplace(20); // Faster in-place construction
+    q.push(30);
     
-    // Dequeue and process (BFS pattern)
+    // 2. Access
+    cout << "Front: " << q.front() << endl; // 10
+    cout << "Back: "  << q.back() << endl;  // 30
+    
+    // 3. Status
+    cout << "Size: " << q.size() << endl;
+    cout << "Is Empty? " << (q.empty() ? "Yes" : "No") << endl;
+    
+    // 4. Dequeue and Process (Classic BFS Pattern)
     while (!q.empty()) {
-        int front_element = q.front();
-        cout << "Processing: " << front_element << endl;
-        q.pop(); // Remove it
+        int curr = q.front();
+        cout << "Processing: " << curr << endl;
+        q.pop(); // Removes the front element (O(1))
     }
     
     return 0;

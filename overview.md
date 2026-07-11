@@ -2,6 +2,24 @@
 
 Track your interview preparation progress here.
 
+## 📚 STL Quick References
+
+I have generated 10 heavily-commented, comprehensive C++ STL reference examples in the `src/cpp/stl/` folder to help you with standard library syntax during your practice.
+
+You can compile and run any of them on the fly using the `./run -e <number>` command:
+- `./run -e 1` : **vector** (Dynamic Array)
+- `./run -e 2` : **list** (Doubly Linked List)
+- `./run -e 3` : **deque** (Double-Ended Queue)
+- `./run -e 4` : **queue** (FIFO)
+- `./run -e 5` : **stack** (LIFO)
+- `./run -e 6` : **set** (Ordered Set / Red-Black Tree)
+- `./run -e 7` : **map** (Ordered Map)
+- `./run -e 8` : **unordered_set** (Hash Set)
+- `./run -e 9` : **unordered_map** (Hash Map - LeetCode MVP)
+- `./run -e 10` : **priority_queue** (Min/Max Heap)
+
+---
+
 ## 1-D Dynamic Programming
 
 - [x] **[LC 70](src/cpp/dp/70.climbing-stairs.cpp)**: [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) 🟢
