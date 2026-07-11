@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 217,
+    "name": "Contains Duplicate",
+    "slug": "contains-duplicate",
+    "category": "Arrays & Hashing",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 242,
+    "name": "Valid Anagram",
+    "slug": "valid-anagram",
+    "category": "Arrays & Hashing",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 1,
+    "name": "Two Sum",
+    "slug": "two-sum",
+    "category": "Arrays & Hashing",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/hash/1.two-sum.cpp"
+  },
+  {
+    "id": 49,
+    "name": "Group Anagrams",
+    "slug": "group-anagrams",
+    "category": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 347,
+    "name": "Top K Frequent Elements",
+    "slug": "top-k-frequent-elements",
+    "category": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/hash/347.top-k-frequent-elements.cpp"
+  },
+  {
+    "id": 271,
+    "name": "Encode and Decode Strings",
+    "slug": "encode-and-decode-strings",
+    "category": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 238,
+    "name": "Product of Array Except Self",
+    "slug": "product-of-array-except-self",
+    "category": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/prefix_sum/238.product-of-array-except-self.cpp"
+  },
+  {
+    "id": 36,
+    "name": "Valid Sudoku",
+    "slug": "valid-sudoku",
+    "category": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/hash/36.valid-sudoku.cpp"
+  },
+  {
+    "id": 128,
+    "name": "Longest Consecutive Sequence",
+    "slug": "longest-consecutive-sequence",
+    "category": "Arrays & Hashing",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 125,
+    "name": "Valid Palindrome",
+    "slug": "valid-palindrome",
+    "category": "Two Pointers",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 167,
+    "name": "Two Sum II Input Array Is Sorted",
+    "slug": "two-sum-ii-input-array-is-sorted",
+    "category": "Two Pointers",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 15,
+    "name": "3Sum",
+    "slug": "3sum",
+    "category": "Two Pointers",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/two_pointer/15.3-sum.cpp"
+  },
+  {
+    "id": 11,
+    "name": "Container With Most Water",
+    "slug": "container-with-most-water",
+    "category": "Two Pointers",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/two_pointer/11.container-with-most-water.cpp"
+  },
+  {
+    "id": 42,
+    "name": "Trapping Rain Water",
+    "slug": "trapping-rain-water",
+    "category": "Two Pointers",
+    "difficulty": "Hard",
+    "existing_path": "src/cpp/two_pointer/42.trapping-rain-water.cpp"
+  },
+  {
+    "id": 121,
+    "name": "Best Time to Buy And Sell Stock",
+    "slug": "best-time-to-buy-and-sell-stock",
+    "category": "Sliding Window",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 3,
+    "name": "Longest Substring Without Repeating Characters",
+    "slug": "longest-substring-without-repeating-characters",
+    "category": "Sliding Window",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp"
+  },
+  {
+    "id": 424,
+    "name": "Longest Repeating Character Replacement",
+    "slug": "longest-repeating-character-replacement",
+    "category": "Sliding Window",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp"
+  },
+  {
+    "id": 567,
+    "name": "Permutation In String",
+    "slug": "permutation-in-string",
+    "category": "Sliding Window",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/sliding_window/567.permutation-in-string.cpp"
+  },
+  {
+    "id": 76,
+    "name": "Minimum Window Substring",
+    "slug": "minimum-window-substring",
+    "category": "Sliding Window",
+    "difficulty": "Hard",
+    "existing_path": "src/cpp/sliding_window/76.minimum-window-substring.cpp"
+  },
+  {
+    "id": 239,
+    "name": "Sliding Window Maximum",
+    "slug": "sliding-window-maximum",
+    "category": "Sliding Window",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 20,
+    "name": "Valid Parentheses",
+    "slug": "valid-parentheses",
+    "category": "Stack",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/stack/20.valid-parentheses.cpp"
+  },
+  {
+    "id": 155,
+    "name": "Min Stack",
+    "slug": "min-stack",
+    "category": "Stack",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 150,
+    "name": "Evaluate Reverse Polish Notation",
+    "slug": "evaluate-reverse-polish-notation",
+    "category": "Stack",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 739,
+    "name": "Daily Temperatures",
+    "slug": "daily-temperatures",
+    "category": "Stack",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/stack/739.daily-temperatures.cpp"
+  },
+  {
+    "id": 853,
+    "name": "Car Fleet",
+    "slug": "car-fleet",
+    "category": "Stack",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 84,
+    "name": "Largest Rectangle In Histogram",
+    "slug": "largest-rectangle-in-histogram",
+    "category": "Stack",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 704,
+    "name": "Binary Search",
+    "slug": "binary-search",
+    "category": "Binary Search",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 74,
+    "name": "Search a 2D Matrix",
+    "slug": "search-a-2d-matrix",
+    "category": "Binary Search",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 875,
+    "name": "Koko Eating Bananas",
+    "slug": "koko-eating-bananas",
+    "category": "Binary Search",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 153,
+    "name": "Find Minimum In Rotated Sorted Array",
+    "slug": "find-minimum-in-rotated-sorted-array",
+    "category": "Binary Search",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 33,
+    "name": "Search In Rotated Sorted Array",
+    "slug": "search-in-rotated-sorted-array",
+    "category": "Binary Search",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/binary_search/33.search-in-rotated-sorted-array.cpp"
+  },
+  {
+    "id": 981,
+    "name": "Time Based Key Value Store",
+    "slug": "time-based-key-value-store",
+    "category": "Binary Search",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/binary_search/981.time-based-key-value-store.cpp"
+  },
+  {
+    "id": 4,
+    "name": "Median of Two Sorted Arrays",
+    "slug": "median-of-two-sorted-arrays",
+    "category": "Binary Search",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 206,
+    "name": "Reverse Linked List",
+    "slug": "reverse-linked-list",
+    "category": "Linked List",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/list/206.reverse-linked-list.cpp"
+  },
+  {
+    "id": 21,
+    "name": "Merge Two Sorted Lists",
+    "slug": "merge-two-sorted-lists",
+    "category": "Linked List",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/list/21.merge-two-sorted-lists.cpp"
+  },
+  {
+    "id": 141,
+    "name": "Linked List Cycle",
+    "slug": "linked-list-cycle",
+    "category": "Linked List",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 143,
+    "name": "Reorder List",
+    "slug": "reorder-list",
+    "category": "Linked List",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 19,
+    "name": "Remove Nth Node From End of List",
+    "slug": "remove-nth-node-from-end-of-list",
+    "category": "Linked List",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 138,
+    "name": "Copy List With Random Pointer",
+    "slug": "copy-list-with-random-pointer",
+    "category": "Linked List",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 2,
+    "name": "Add Two Numbers",
+    "slug": "add-two-numbers",
+    "category": "Linked List",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/list/2.add-two-numbers.cpp"
+  },
+  {
+    "id": 287,
+    "name": "Find The Duplicate Number",
+    "slug": "find-the-duplicate-number",
+    "category": "Linked List",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 146,
+    "name": "LRU Cache",
+    "slug": "lru-cache",
+    "category": "Linked List",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/misc/146.lru-cache.cpp"
+  },
+  {
+    "id": 23,
+    "name": "Merge K Sorted Lists",
+    "slug": "merge-k-sorted-lists",
+    "category": "Linked List",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 25,
+    "name": "Reverse Nodes In K Group",
+    "slug": "reverse-nodes-in-k-group",
+    "category": "Linked List",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 226,
+    "name": "Invert Binary Tree",
+    "slug": "invert-binary-tree",
+    "category": "Trees",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/tree/226.invert-binary-tree.cpp"
+  },
+  {
+    "id": 104,
+    "name": "Maximum Depth of Binary Tree",
+    "slug": "maximum-depth-of-binary-tree",
+    "category": "Trees",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/tree/104.maximum-depth-of-binary-tree.cpp"
+  },
+  {
+    "id": 543,
+    "name": "Diameter of Binary Tree",
+    "slug": "diameter-of-binary-tree",
+    "category": "Trees",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 110,
+    "name": "Balanced Binary Tree",
+    "slug": "balanced-binary-tree",
+    "category": "Trees",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/tree/110.balanced-binary-tree.cpp"
+  },
+  {
+    "id": 100,
+    "name": "Same Tree",
+    "slug": "same-tree",
+    "category": "Trees",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/tree/100.same-tree.cpp"
+  },
+  {
+    "id": 572,
+    "name": "Subtree of Another Tree",
+    "slug": "subtree-of-another-tree",
+    "category": "Trees",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 235,
+    "name": "Lowest Common Ancestor of a Binary Search Tree",
+    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 102,
+    "name": "Binary Tree Level Order Traversal",
+    "slug": "binary-tree-level-order-traversal",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/tree/102.binary-tree-level-order-traversal.cpp"
+  },
+  {
+    "id": 199,
+    "name": "Binary Tree Right Side View",
+    "slug": "binary-tree-right-side-view",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 1448,
+    "name": "Count Good Nodes In Binary Tree",
+    "slug": "count-good-nodes-in-binary-tree",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 98,
+    "name": "Validate Binary Search Tree",
+    "slug": "validate-binary-search-tree",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/tree/98.validate-binary-search-tree.cpp"
+  },
+  {
+    "id": 230,
+    "name": "Kth Smallest Element In a Bst",
+    "slug": "kth-smallest-element-in-a-bst",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 105,
+    "name": "Construct Binary Tree From Preorder And Inorder Traversal",
+    "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+    "category": "Trees",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 124,
+    "name": "Binary Tree Maximum Path Sum",
+    "slug": "binary-tree-maximum-path-sum",
+    "category": "Trees",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 297,
+    "name": "Serialize And Deserialize Binary Tree",
+    "slug": "serialize-and-deserialize-binary-tree",
+    "category": "Trees",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 703,
+    "name": "Kth Largest Element In a Stream",
+    "slug": "kth-largest-element-in-a-stream",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 1046,
+    "name": "Last Stone Weight",
+    "slug": "last-stone-weight",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 973,
+    "name": "K Closest Points to Origin",
+    "slug": "k-closest-points-to-origin",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/misc/973.k-closest-points-to-origin.cpp"
+  },
+  {
+    "id": 215,
+    "name": "Kth Largest Element In An Array",
+    "slug": "kth-largest-element-in-an-array",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/misc/215.kth-largest-element-in-an-array.cpp"
+  },
+  {
+    "id": 621,
+    "name": "Task Scheduler",
+    "slug": "task-scheduler",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 355,
+    "name": "Design Twitter",
+    "slug": "design-twitter",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 295,
+    "name": "Find Median From Data Stream",
+    "slug": "find-median-from-data-stream",
+    "category": "Heap / Priority Queue",
+    "difficulty": "Hard",
+    "existing_path": "src/cpp/misc/295.find-median-from-data-stream.cpp"
+  },
+  {
+    "id": 78,
+    "name": "Subsets",
+    "slug": "subsets",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 39,
+    "name": "Combination Sum",
+    "slug": "combination-sum",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 40,
+    "name": "Combination Sum II",
+    "slug": "combination-sum-ii",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 46,
+    "name": "Permutations",
+    "slug": "permutations",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 90,
+    "name": "Subsets II",
+    "slug": "subsets-ii",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 22,
+    "name": "Generate Parentheses",
+    "slug": "generate-parentheses",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 79,
+    "name": "Word Search",
+    "slug": "word-search",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 131,
+    "name": "Palindrome Partitioning",
+    "slug": "palindrome-partitioning",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 17,
+    "name": "Letter Combinations of a Phone Number",
+    "slug": "letter-combinations-of-a-phone-number",
+    "category": "Backtracking",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 51,
+    "name": "N Queens",
+    "slug": "n-queens",
+    "category": "Backtracking",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 208,
+    "name": "Implement Trie Prefix Tree",
+    "slug": "implement-trie-prefix-tree",
+    "category": "Tries",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 211,
+    "name": "Design Add And Search Words Data Structure",
+    "slug": "design-add-and-search-words-data-structure",
+    "category": "Tries",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 212,
+    "name": "Word Search II",
+    "slug": "word-search-ii",
+    "category": "Tries",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 200,
+    "name": "Number of Islands",
+    "slug": "number-of-islands",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/graphs/200.number-of-islands.cpp"
+  },
+  {
+    "id": 695,
+    "name": "Max Area of Island",
+    "slug": "max-area-of-island",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 133,
+    "name": "Clone Graph",
+    "slug": "clone-graph",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 286,
+    "name": "Walls And Gates",
+    "slug": "walls-and-gates",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 994,
+    "name": "Rotting Oranges",
+    "slug": "rotting-oranges",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 417,
+    "name": "Pacific Atlantic Water Flow",
+    "slug": "pacific-atlantic-water-flow",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 130,
+    "name": "Surrounded Regions",
+    "slug": "surrounded-regions",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 207,
+    "name": "Course Schedule",
+    "slug": "course-schedule",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/graphs/207.course-schedule.cpp"
+  },
+  {
+    "id": 210,
+    "name": "Course Schedule II",
+    "slug": "course-schedule-ii",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/graphs/210.course-schedule-ii.cpp"
+  },
+  {
+    "id": 261,
+    "name": "Graph Valid Tree",
+    "slug": "graph-valid-tree",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 323,
+    "name": "Number of Connected Components In An Undirected Graph",
+    "slug": "number-of-connected-components-in-an-undirected-graph",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 684,
+    "name": "Redundant Connection",
+    "slug": "redundant-connection",
+    "category": "Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 127,
+    "name": "Word Ladder",
+    "slug": "word-ladder",
+    "category": "Graphs",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 743,
+    "name": "Network Delay Time",
+    "slug": "network-delay-time",
+    "category": "Advanced Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 332,
+    "name": "Reconstruct Itinerary",
+    "slug": "reconstruct-itinerary",
+    "category": "Advanced Graphs",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 1584,
+    "name": "Min Cost to Connect All Points",
+    "slug": "min-cost-to-connect-all-points",
+    "category": "Advanced Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 778,
+    "name": "Swim In Rising Water",
+    "slug": "swim-in-rising-water",
+    "category": "Advanced Graphs",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 269,
+    "name": "Alien Dictionary",
+    "slug": "alien-dictionary",
+    "category": "Advanced Graphs",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 787,
+    "name": "Cheapest Flights Within K Stops",
+    "slug": "cheapest-flights-within-k-stops",
+    "category": "Advanced Graphs",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 70,
+    "name": "Climbing Stairs",
+    "slug": "climbing-stairs",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Easy",
+    "existing_path": "src/cpp/dp/70.climbing-stairs.cpp"
+  },
+  {
+    "id": 746,
+    "name": "Min Cost Climbing Stairs",
+    "slug": "min-cost-climbing-stairs",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 198,
+    "name": "House Robber",
+    "slug": "house-robber",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/dp/198.house-robber.cpp"
+  },
+  {
+    "id": 213,
+    "name": "House Robber II",
+    "slug": "house-robber-ii",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/213.house-robber-ii.cpp"
+  },
+  {
+    "id": 5,
+    "name": "Longest Palindromic Substring",
+    "slug": "longest-palindromic-substring",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 647,
+    "name": "Palindromic Substrings",
+    "slug": "palindromic-substrings",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 91,
+    "name": "Decode Ways",
+    "slug": "decode-ways",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 322,
+    "name": "Coin Change",
+    "slug": "coin-change",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 152,
+    "name": "Maximum Product Subarray",
+    "slug": "maximum-product-subarray",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 139,
+    "name": "Word Break",
+    "slug": "word-break",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/dp/139.word-break.cpp"
+  },
+  {
+    "id": 300,
+    "name": "Longest Increasing Subsequence",
+    "slug": "longest-increasing-subsequence",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 416,
+    "name": "Partition Equal Subset Sum",
+    "slug": "partition-equal-subset-sum",
+    "category": "1-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 62,
+    "name": "Unique Paths",
+    "slug": "unique-paths",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 1143,
+    "name": "Longest Common Subsequence",
+    "slug": "longest-common-subsequence",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 309,
+    "name": "Best Time to Buy And Sell Stock With Cooldown",
+    "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 518,
+    "name": "Coin Change II",
+    "slug": "coin-change-ii",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 494,
+    "name": "Target Sum",
+    "slug": "target-sum",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 97,
+    "name": "Interleaving String",
+    "slug": "interleaving-string",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 329,
+    "name": "Longest Increasing Path In a Matrix",
+    "slug": "longest-increasing-path-in-a-matrix",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 115,
+    "name": "Distinct Subsequences",
+    "slug": "distinct-subsequences",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 72,
+    "name": "Edit Distance",
+    "slug": "edit-distance",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 312,
+    "name": "Burst Balloons",
+    "slug": "burst-balloons",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 10,
+    "name": "Regular Expression Matching",
+    "slug": "regular-expression-matching",
+    "category": "2-D Dynamic Programming",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 53,
+    "name": "Maximum Subarray",
+    "slug": "maximum-subarray",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 55,
+    "name": "Jump Game",
+    "slug": "jump-game",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 45,
+    "name": "Jump Game II",
+    "slug": "jump-game-ii",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 134,
+    "name": "Gas Station",
+    "slug": "gas-station",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 846,
+    "name": "Hand of Straights",
+    "slug": "hand-of-straights",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 1899,
+    "name": "Merge Triplets to Form Target Triplet",
+    "slug": "merge-triplets-to-form-target-triplet",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 763,
+    "name": "Partition Labels",
+    "slug": "partition-labels",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 678,
+    "name": "Valid Parenthesis String",
+    "slug": "valid-parenthesis-string",
+    "category": "Greedy",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 57,
+    "name": "Insert Interval",
+    "slug": "insert-interval",
+    "category": "Intervals",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 56,
+    "name": "Merge Intervals",
+    "slug": "merge-intervals",
+    "category": "Intervals",
+    "difficulty": "Medium",
+    "existing_path": "src/cpp/misc/56.merge-intervals.cpp"
+  },
+  {
+    "id": 435,
+    "name": "Non Overlapping Intervals",
+    "slug": "non-overlapping-intervals",
+    "category": "Intervals",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 252,
+    "name": "Meeting Rooms",
+    "slug": "meeting-rooms",
+    "category": "Intervals",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 253,
+    "name": "Meeting Rooms II",
+    "slug": "meeting-rooms-ii",
+    "category": "Intervals",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 1851,
+    "name": "Minimum Interval to Include Each Query",
+    "slug": "minimum-interval-to-include-each-query",
+    "category": "Intervals",
+    "difficulty": "Hard",
+    "existing_path": null
+  },
+  {
+    "id": 48,
+    "name": "Rotate Image",
+    "slug": "rotate-image",
+    "category": "Math & Geometry",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 54,
+    "name": "Spiral Matrix",
+    "slug": "spiral-matrix",
+    "category": "Math & Geometry",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 73,
+    "name": "Set Matrix Zeroes",
+    "slug": "set-matrix-zeroes",
+    "category": "Math & Geometry",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 202,
+    "name": "Happy Number",
+    "slug": "happy-number",
+    "category": "Math & Geometry",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 66,
+    "name": "Plus One",
+    "slug": "plus-one",
+    "category": "Math & Geometry",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 50,
+    "name": "Pow(x, n)",
+    "slug": "powx-n",
+    "category": "Math & Geometry",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 43,
+    "name": "Multiply Strings",
+    "slug": "multiply-strings",
+    "category": "Math & Geometry",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 2013,
+    "name": "Detect Squares",
+    "slug": "detect-squares",
+    "category": "Math & Geometry",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 136,
+    "name": "Single Number",
+    "slug": "single-number",
+    "category": "Bit Manipulation",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 191,
+    "name": "Number of 1 Bits",
+    "slug": "number-of-1-bits",
+    "category": "Bit Manipulation",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 338,
+    "name": "Counting Bits",
+    "slug": "counting-bits",
+    "category": "Bit Manipulation",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 190,
+    "name": "Reverse Bits",
+    "slug": "reverse-bits",
+    "category": "Bit Manipulation",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 268,
+    "name": "Missing Number",
+    "slug": "missing-number",
+    "category": "Bit Manipulation",
+    "difficulty": "Easy",
+    "existing_path": null
+  },
+  {
+    "id": 371,
+    "name": "Sum of Two Integers",
+    "slug": "sum-of-two-integers",
+    "category": "Bit Manipulation",
+    "difficulty": "Medium",
+    "existing_path": null
+  },
+  {
+    "id": 7,
+    "name": "Reverse Integer",
+    "slug": "reverse-integer",
+    "category": "Bit Manipulation",
+    "difficulty": "Medium",
+    "existing_path": null
+  }
+]

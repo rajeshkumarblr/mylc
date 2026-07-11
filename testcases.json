@@ -60,6 +60,129 @@
       }
     ]
   },
+  "295": {
+    "category": "heap",
+    "description": "Find Median from Data Stream",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/find-median-from-data-stream/",
+    "cases": [
+      {
+        "commands": [
+          "MedianFinder",
+          "addNum",
+          "addNum",
+          "findMedian",
+          "addNum",
+          "findMedian"
+        ],
+        "arguments": [
+          [],
+          [
+            1
+          ],
+          [
+            2
+          ],
+          [],
+          [
+            3
+          ],
+          []
+        ],
+        "expected": [
+          null,
+          null,
+          null,
+          1.5,
+          null,
+          2.0
+        ]
+      }
+    ]
+  },
+  "307": {
+    "category": "misc",
+    "description": "Range Sum Query - Mutable",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/range-sum-query-mutable/",
+    "cases": [
+      {
+        "commands": [
+          "NumArray",
+          "sumRange",
+          "update",
+          "sumRange"
+        ],
+        "arguments": [
+          [
+            [
+              1,
+              3,
+              5
+            ]
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "expected": [
+          null,
+          9,
+          null,
+          8
+        ]
+      }
+    ]
+  },
+  "315": {
+    "category": "misc",
+    "description": "Count of Smaller Numbers After Self",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+    "cases": [
+      {
+        "nums": [
+          5,
+          2,
+          6,
+          1
+        ],
+        "expected": [
+          2,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "nums": [
+          -1
+        ],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "nums": [
+          -1,
+          -1
+        ],
+        "expected": [
+          0,
+          0
+        ]
+      }
+    ]
+  },
   "350": {
     "category": "hash",
     "description": "Intersection of Two Arrays II",
@@ -1087,6 +1210,81 @@
       }
     ]
   },
+  "460": {
+    "category": "misc",
+    "description": "LFU Cache",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/lfu-cache/",
+    "cases": [
+      {
+        "commands": [
+          "LFUCache",
+          "put",
+          "put",
+          "get",
+          "put",
+          "get",
+          "get",
+          "put",
+          "get",
+          "get",
+          "get"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "expected": [
+          null,
+          null,
+          null,
+          1,
+          null,
+          -1,
+          3,
+          null,
+          -1,
+          3,
+          4
+        ]
+      }
+    ]
+  },
   "567": {
     "category": "sliding_window",
     "description": "Permutation in String",
@@ -1696,6 +1894,133 @@
       }
     ]
   },
+  "207": {
+    "category": "graphs",
+    "description": "Course Schedule",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/course-schedule/",
+    "cases": [
+      {
+        "numCourses": 5,
+        "prerequisites": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            4,
+            3
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "expected": true
+      },
+      {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": false
+      }
+    ]
+  },
+  "210": {
+    "category": "graphs",
+    "description": "Course Schedule II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/course-schedule-ii/",
+    "cases": [
+      {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ]
+        ],
+        "expected": [
+          0,
+          1
+        ]
+      },
+      {
+        "numCourses": 4,
+        "prerequisites": [
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            2
+          ]
+        ],
+        "expected": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      {
+        "numCourses": 1,
+        "prerequisites": [],
+        "expected": [
+          0
+        ]
+      },
+      {
+        "numCourses": 2,
+        "prerequisites": [
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "expected": []
+      }
+    ]
+  },
   "226": {
     "category": "tree",
     "description": "Invert Binary Tree",
@@ -1742,7 +2067,7 @@
     ]
   },
   "238": {
-    "category": "prefix_sum",
+    "category": "hash",
     "description": "Product of Array Except Self",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/product-of-array-except-self/",
@@ -2039,6 +2364,123 @@
       }
     ]
   },
+  "146": {
+    "category": "list",
+    "description": "LRU Cache",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/lru-cache/",
+    "cases": [
+      {
+        "commands": [
+          "LRUCache",
+          "put",
+          "put",
+          "get",
+          "put",
+          "get",
+          "put",
+          "get",
+          "get",
+          "get"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            2
+          ],
+          [
+            4,
+            4
+          ],
+          [
+            1
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ]
+        ],
+        "expected": [
+          null,
+          null,
+          null,
+          1,
+          null,
+          -1,
+          null,
+          -1,
+          3,
+          4
+        ]
+      },
+      {
+        "commands": [
+          "LRUCache",
+          "put",
+          "put",
+          "get",
+          "put",
+          "put",
+          "get"
+        ],
+        "arguments": [
+          [
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            2
+          ]
+        ],
+        "expected": [
+          null,
+          null,
+          null,
+          2,
+          null,
+          null,
+          -1
+        ]
+      }
+    ]
+  },
   "213": {
     "category": "dp",
     "description": "House Robber II",
@@ -2106,18 +2548,35 @@
     ]
   },
   "215": {
-    "category": "misc",
+    "category": "heap",
     "description": "Kth Largest Element in an Array",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/",
     "cases": [
       {
-        "nums": [3, 2, 1, 5, 6, 4],
+        "nums": [
+          3,
+          2,
+          1,
+          5,
+          6,
+          4
+        ],
         "k": 2,
         "expected": 5
       },
       {
-        "nums": [3, 2, 3, 1, 2, 4, 5, 5, 6],
+        "nums": [
+          3,
+          2,
+          3,
+          1,
+          2,
+          4,
+          5,
+          5,
+          6
+        ],
         "k": 4,
         "expected": 4
       }
@@ -2130,12 +2589,29 @@
     "url": "https://leetcode.com/problems/kth-smallest-element-in-an-array/",
     "cases": [
       {
-        "nums": [3, 2, 1, 5, 6, 4],
+        "nums": [
+          3,
+          2,
+          1,
+          5,
+          6,
+          4
+        ],
         "k": 2,
         "expected": 2
       },
       {
-        "nums": [3, 2, 3, 1, 2, 4, 5, 5, 6],
+        "nums": [
+          3,
+          2,
+          3,
+          1,
+          2,
+          4,
+          5,
+          5,
+          6
+        ],
         "k": 4,
         "expected": 3
       }
@@ -2328,6 +2804,60 @@
       }
     ]
   },
+  "973": {
+    "category": "heap",
+    "description": "K Closest Points to Origin",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/k-closest-points-to-origin/",
+    "cases": [
+      {
+        "points": [
+          [
+            1,
+            3
+          ],
+          [
+            -2,
+            2
+          ]
+        ],
+        "k": 1,
+        "expected": [
+          [
+            -2,
+            2
+          ]
+        ]
+      },
+      {
+        "points": [
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            -1
+          ],
+          [
+            -2,
+            4
+          ]
+        ],
+        "k": 2,
+        "expected": [
+          [
+            -2,
+            4
+          ],
+          [
+            3,
+            3
+          ]
+        ]
+      }
+    ]
+  },
   "981": {
     "category": "binary_search",
     "description": "Time Based Key-Value Store",
@@ -2387,7 +2917,7 @@
     ]
   },
   "268": {
-    "category": "misc",
+    "category": "bit_manipulation",
     "description": "Missing Number",
     "cases": [
       {
@@ -2582,7 +3112,7 @@
     ]
   },
   "56": {
-    "category": "misc",
+    "category": "intervals",
     "description": "Merge Intervals",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/merge-intervals/",
@@ -2723,6 +3253,48 @@
       }
     ]
   },
+  "1146": {
+    "category": "misc",
+    "description": "Snapshot Array",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/snapshot-array/",
+    "cases": [
+      {
+        "commands": [
+          "SnapshotArray",
+          "set",
+          "snap",
+          "set",
+          "get"
+        ],
+        "arguments": [
+          [
+            3
+          ],
+          [
+            0,
+            5
+          ],
+          [],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        "expected": [
+          null,
+          null,
+          0,
+          null,
+          5
+        ]
+      }
+    ]
+  },
   "1188": {
     "category": "concurrency",
     "description": "Design Bounded Blocking Queue",
@@ -2806,6 +3378,92 @@
       }
     ]
   },
+  "1203": {
+    "category": "graphs",
+    "description": "Sort Items by Groups Respecting Dependencies",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/",
+    "cases": [
+      {
+        "n": 8,
+        "m": 2,
+        "group": [
+          -1,
+          -1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          -1
+        ],
+        "beforeItems": [
+          [],
+          [
+            6
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            3,
+            6
+          ],
+          [],
+          [],
+          []
+        ],
+        "expected": [
+          6,
+          3,
+          4,
+          1,
+          5,
+          2,
+          0,
+          7
+        ]
+      },
+      {
+        "n": 8,
+        "m": 2,
+        "group": [
+          -1,
+          -1,
+          1,
+          0,
+          0,
+          1,
+          0,
+          -1
+        ],
+        "beforeItems": [
+          [],
+          [
+            6
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            3
+          ],
+          [],
+          [
+            4
+          ],
+          []
+        ],
+        "expected": []
+      }
+    ]
+  },
   "1242": {
     "category": "concurrency",
     "description": "Web Crawler Multithreaded",
@@ -2851,5 +3509,848 @@
         ]
       }
     ]
+  },
+  "10000": {
+    "category": "graphs",
+    "description": "Shortest Cycle of a Target Node",
+    "difficulty": "medium",
+    "url": "",
+    "cases": [
+      {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "target": 0,
+        "expected": 3
+      },
+      {
+        "n": 4,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "target": 0,
+        "expected": -1
+      },
+      {
+        "n": 3,
+        "edges": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "target": 1,
+        "expected": 2
+      }
+    ]
+  },
+  "217": {
+    "category": "hash",
+    "description": "Contains Duplicate",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/contains-duplicate/",
+    "cases": []
+  },
+  "271": {
+    "category": "hash",
+    "description": "Encode and Decode Strings",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/encode-and-decode-strings/",
+    "cases": []
+  },
+  "128": {
+    "category": "hash",
+    "description": "Longest Consecutive Sequence",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/longest-consecutive-sequence/",
+    "cases": []
+  },
+  "125": {
+    "category": "two_pointer",
+    "description": "Valid Palindrome",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/valid-palindrome/",
+    "cases": []
+  },
+  "167": {
+    "category": "two_pointer",
+    "description": "Two Sum II Input Array Is Sorted",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/",
+    "cases": []
+  },
+  "121": {
+    "category": "sliding_window",
+    "description": "Best Time to Buy And Sell Stock",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+    "cases": []
+  },
+  "239": {
+    "category": "sliding_window",
+    "description": "Sliding Window Maximum",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/sliding-window-maximum/",
+    "cases": []
+  },
+  "155": {
+    "category": "stack",
+    "description": "Min Stack",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/min-stack/",
+    "cases": []
+  },
+  "150": {
+    "category": "stack",
+    "description": "Evaluate Reverse Polish Notation",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/",
+    "cases": []
+  },
+  "853": {
+    "category": "stack",
+    "description": "Car Fleet",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/car-fleet/",
+    "cases": []
+  },
+  "84": {
+    "category": "stack",
+    "description": "Largest Rectangle In Histogram",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+    "cases": []
+  },
+  "704": {
+    "category": "binary_search",
+    "description": "Binary Search",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/binary-search/",
+    "cases": []
+  },
+  "74": {
+    "category": "binary_search",
+    "description": "Search a 2D Matrix",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/search-a-2d-matrix/",
+    "cases": []
+  },
+  "875": {
+    "category": "binary_search",
+    "description": "Koko Eating Bananas",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/koko-eating-bananas/",
+    "cases": []
+  },
+  "153": {
+    "category": "binary_search",
+    "description": "Find Minimum In Rotated Sorted Array",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+    "cases": []
+  },
+  "4": {
+    "category": "binary_search",
+    "description": "Median of Two Sorted Arrays",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/median-of-two-sorted-arrays/",
+    "cases": []
+  },
+  "141": {
+    "category": "list",
+    "description": "Linked List Cycle",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/linked-list-cycle/",
+    "cases": []
+  },
+  "143": {
+    "category": "list",
+    "description": "Reorder List",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/reorder-list/",
+    "cases": []
+  },
+  "19": {
+    "category": "list",
+    "description": "Remove Nth Node From End of List",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/",
+    "cases": []
+  },
+  "138": {
+    "category": "list",
+    "description": "Copy List With Random Pointer",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/copy-list-with-random-pointer/",
+    "cases": []
+  },
+  "287": {
+    "category": "list",
+    "description": "Find The Duplicate Number",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/find-the-duplicate-number/",
+    "cases": []
+  },
+  "23": {
+    "category": "list",
+    "description": "Merge K Sorted Lists",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+    "cases": []
+  },
+  "25": {
+    "category": "list",
+    "description": "Reverse Nodes In K Group",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/",
+    "cases": []
+  },
+  "543": {
+    "category": "tree",
+    "description": "Diameter of Binary Tree",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/diameter-of-binary-tree/",
+    "cases": []
+  },
+  "572": {
+    "category": "tree",
+    "description": "Subtree of Another Tree",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/subtree-of-another-tree/",
+    "cases": []
+  },
+  "235": {
+    "category": "tree",
+    "description": "Lowest Common Ancestor of a Binary Search Tree",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+    "cases": []
+  },
+  "1448": {
+    "category": "tree",
+    "description": "Count Good Nodes In Binary Tree",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/count-good-nodes-in-binary-tree/",
+    "cases": []
+  },
+  "230": {
+    "category": "tree",
+    "description": "Kth Smallest Element In a Bst",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+    "cases": []
+  },
+  "105": {
+    "category": "tree",
+    "description": "Construct Binary Tree From Preorder And Inorder Traversal",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+    "cases": []
+  },
+  "124": {
+    "category": "tree",
+    "description": "Binary Tree Maximum Path Sum",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+    "cases": []
+  },
+  "297": {
+    "category": "tree",
+    "description": "Serialize And Deserialize Binary Tree",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+    "cases": []
+  },
+  "703": {
+    "category": "heap",
+    "description": "Kth Largest Element In a Stream",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/",
+    "cases": []
+  },
+  "1046": {
+    "category": "heap",
+    "description": "Last Stone Weight",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/last-stone-weight/",
+    "cases": []
+  },
+  "621": {
+    "category": "heap",
+    "description": "Task Scheduler",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/task-scheduler/",
+    "cases": []
+  },
+  "355": {
+    "category": "heap",
+    "description": "Design Twitter",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/design-twitter/",
+    "cases": []
+  },
+  "78": {
+    "category": "backtracking",
+    "description": "Subsets",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/subsets/",
+    "cases": []
+  },
+  "39": {
+    "category": "backtracking",
+    "description": "Combination Sum",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/combination-sum/",
+    "cases": []
+  },
+  "40": {
+    "category": "backtracking",
+    "description": "Combination Sum II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/combination-sum-ii/",
+    "cases": []
+  },
+  "46": {
+    "category": "backtracking",
+    "description": "Permutations",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/permutations/",
+    "cases": []
+  },
+  "90": {
+    "category": "backtracking",
+    "description": "Subsets II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/subsets-ii/",
+    "cases": []
+  },
+  "22": {
+    "category": "backtracking",
+    "description": "Generate Parentheses",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/generate-parentheses/",
+    "cases": []
+  },
+  "79": {
+    "category": "backtracking",
+    "description": "Word Search",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/word-search/",
+    "cases": []
+  },
+  "131": {
+    "category": "backtracking",
+    "description": "Palindrome Partitioning",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/palindrome-partitioning/",
+    "cases": []
+  },
+  "17": {
+    "category": "backtracking",
+    "description": "Letter Combinations of a Phone Number",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/",
+    "cases": []
+  },
+  "51": {
+    "category": "backtracking",
+    "description": "N Queens",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/n-queens/",
+    "cases": []
+  },
+  "208": {
+    "category": "trie",
+    "description": "Implement Trie Prefix Tree",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/implement-trie-prefix-tree/",
+    "cases": []
+  },
+  "211": {
+    "category": "trie",
+    "description": "Design Add And Search Words Data Structure",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/design-add-and-search-words-data-structure/",
+    "cases": []
+  },
+  "212": {
+    "category": "trie",
+    "description": "Word Search II",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/word-search-ii/",
+    "cases": []
+  },
+  "695": {
+    "category": "graphs",
+    "description": "Max Area of Island",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/max-area-of-island/",
+    "cases": []
+  },
+  "133": {
+    "category": "graphs",
+    "description": "Clone Graph",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/clone-graph/",
+    "cases": []
+  },
+  "286": {
+    "category": "graphs",
+    "description": "Walls And Gates",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/walls-and-gates/",
+    "cases": []
+  },
+  "994": {
+    "category": "graphs",
+    "description": "Rotting Oranges",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/rotting-oranges/",
+    "cases": []
+  },
+  "417": {
+    "category": "graphs",
+    "description": "Pacific Atlantic Water Flow",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+    "cases": []
+  },
+  "130": {
+    "category": "graphs",
+    "description": "Surrounded Regions",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/surrounded-regions/",
+    "cases": []
+  },
+  "261": {
+    "category": "graphs",
+    "description": "Graph Valid Tree",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/graph-valid-tree/",
+    "cases": []
+  },
+  "323": {
+    "category": "graphs",
+    "description": "Number of Connected Components In An Undirected Graph",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+    "cases": []
+  },
+  "684": {
+    "category": "graphs",
+    "description": "Redundant Connection",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/redundant-connection/",
+    "cases": []
+  },
+  "127": {
+    "category": "graphs",
+    "description": "Word Ladder",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/word-ladder/",
+    "cases": []
+  },
+  "743": {
+    "category": "graphs",
+    "description": "Network Delay Time",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/network-delay-time/",
+    "cases": []
+  },
+  "332": {
+    "category": "graphs",
+    "description": "Reconstruct Itinerary",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/reconstruct-itinerary/",
+    "cases": []
+  },
+  "1584": {
+    "category": "graphs",
+    "description": "Min Cost to Connect All Points",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+    "cases": []
+  },
+  "778": {
+    "category": "graphs",
+    "description": "Swim In Rising Water",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/swim-in-rising-water/",
+    "cases": []
+  },
+  "269": {
+    "category": "graphs",
+    "description": "Alien Dictionary",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/alien-dictionary/",
+    "cases": []
+  },
+  "787": {
+    "category": "graphs",
+    "description": "Cheapest Flights Within K Stops",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
+    "cases": []
+  },
+  "746": {
+    "category": "dp",
+    "description": "Min Cost Climbing Stairs",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/min-cost-climbing-stairs/",
+    "cases": []
+  },
+  "5": {
+    "category": "dp",
+    "description": "Longest Palindromic Substring",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/longest-palindromic-substring/",
+    "cases": []
+  },
+  "647": {
+    "category": "dp",
+    "description": "Palindromic Substrings",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/palindromic-substrings/",
+    "cases": []
+  },
+  "91": {
+    "category": "dp",
+    "description": "Decode Ways",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/decode-ways/",
+    "cases": []
+  },
+  "322": {
+    "category": "dp",
+    "description": "Coin Change",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/coin-change/",
+    "cases": []
+  },
+  "152": {
+    "category": "dp",
+    "description": "Maximum Product Subarray",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/maximum-product-subarray/",
+    "cases": []
+  },
+  "300": {
+    "category": "dp",
+    "description": "Longest Increasing Subsequence",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+    "cases": []
+  },
+  "416": {
+    "category": "dp",
+    "description": "Partition Equal Subset Sum",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/partition-equal-subset-sum/",
+    "cases": []
+  },
+  "62": {
+    "category": "dp",
+    "description": "Unique Paths",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/unique-paths/",
+    "cases": []
+  },
+  "1143": {
+    "category": "dp",
+    "description": "Longest Common Subsequence",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/longest-common-subsequence/",
+    "cases": []
+  },
+  "309": {
+    "category": "dp",
+    "description": "Best Time to Buy And Sell Stock With Cooldown",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/",
+    "cases": []
+  },
+  "518": {
+    "category": "dp",
+    "description": "Coin Change II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/coin-change-ii/",
+    "cases": []
+  },
+  "494": {
+    "category": "dp",
+    "description": "Target Sum",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/target-sum/",
+    "cases": []
+  },
+  "97": {
+    "category": "dp",
+    "description": "Interleaving String",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/interleaving-string/",
+    "cases": []
+  },
+  "329": {
+    "category": "dp",
+    "description": "Longest Increasing Path In a Matrix",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",
+    "cases": []
+  },
+  "115": {
+    "category": "dp",
+    "description": "Distinct Subsequences",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/distinct-subsequences/",
+    "cases": []
+  },
+  "72": {
+    "category": "dp",
+    "description": "Edit Distance",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/edit-distance/",
+    "cases": []
+  },
+  "312": {
+    "category": "dp",
+    "description": "Burst Balloons",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/burst-balloons/",
+    "cases": []
+  },
+  "10": {
+    "category": "dp",
+    "description": "Regular Expression Matching",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/regular-expression-matching/",
+    "cases": []
+  },
+  "53": {
+    "category": "greedy",
+    "description": "Maximum Subarray",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/maximum-subarray/",
+    "cases": []
+  },
+  "55": {
+    "category": "greedy",
+    "description": "Jump Game",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/jump-game/",
+    "cases": []
+  },
+  "45": {
+    "category": "greedy",
+    "description": "Jump Game II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/jump-game-ii/",
+    "cases": []
+  },
+  "134": {
+    "category": "greedy",
+    "description": "Gas Station",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/gas-station/",
+    "cases": []
+  },
+  "846": {
+    "category": "greedy",
+    "description": "Hand of Straights",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/hand-of-straights/",
+    "cases": []
+  },
+  "1899": {
+    "category": "greedy",
+    "description": "Merge Triplets to Form Target Triplet",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/merge-triplets-to-form-target-triplet/",
+    "cases": []
+  },
+  "763": {
+    "category": "greedy",
+    "description": "Partition Labels",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/partition-labels/",
+    "cases": []
+  },
+  "678": {
+    "category": "greedy",
+    "description": "Valid Parenthesis String",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/valid-parenthesis-string/",
+    "cases": []
+  },
+  "57": {
+    "category": "intervals",
+    "description": "Insert Interval",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/insert-interval/",
+    "cases": []
+  },
+  "435": {
+    "category": "intervals",
+    "description": "Non Overlapping Intervals",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/non-overlapping-intervals/",
+    "cases": []
+  },
+  "252": {
+    "category": "intervals",
+    "description": "Meeting Rooms",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/meeting-rooms/",
+    "cases": []
+  },
+  "253": {
+    "category": "intervals",
+    "description": "Meeting Rooms II",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/meeting-rooms-ii/",
+    "cases": []
+  },
+  "1851": {
+    "category": "intervals",
+    "description": "Minimum Interval to Include Each Query",
+    "difficulty": "hard",
+    "url": "https://leetcode.com/problems/minimum-interval-to-include-each-query/",
+    "cases": []
+  },
+  "48": {
+    "category": "math",
+    "description": "Rotate Image",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/rotate-image/",
+    "cases": []
+  },
+  "54": {
+    "category": "math",
+    "description": "Spiral Matrix",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/spiral-matrix/",
+    "cases": []
+  },
+  "73": {
+    "category": "math",
+    "description": "Set Matrix Zeroes",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/set-matrix-zeroes/",
+    "cases": []
+  },
+  "202": {
+    "category": "math",
+    "description": "Happy Number",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/happy-number/",
+    "cases": []
+  },
+  "66": {
+    "category": "math",
+    "description": "Plus One",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/plus-one/",
+    "cases": []
+  },
+  "50": {
+    "category": "math",
+    "description": "Pow(x, n)",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/powx-n/",
+    "cases": []
+  },
+  "43": {
+    "category": "math",
+    "description": "Multiply Strings",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/multiply-strings/",
+    "cases": []
+  },
+  "2013": {
+    "category": "math",
+    "description": "Detect Squares",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/detect-squares/",
+    "cases": []
+  },
+  "136": {
+    "category": "bit_manipulation",
+    "description": "Single Number",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/single-number/",
+    "cases": []
+  },
+  "191": {
+    "category": "bit_manipulation",
+    "description": "Number of 1 Bits",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/number-of-1-bits/",
+    "cases": []
+  },
+  "338": {
+    "category": "bit_manipulation",
+    "description": "Counting Bits",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/counting-bits/",
+    "cases": []
+  },
+  "190": {
+    "category": "bit_manipulation",
+    "description": "Reverse Bits",
+    "difficulty": "easy",
+    "url": "https://leetcode.com/problems/reverse-bits/",
+    "cases": []
+  },
+  "371": {
+    "category": "bit_manipulation",
+    "description": "Sum of Two Integers",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/sum-of-two-integers/",
+    "cases": []
+  },
+  "7": {
+    "category": "bit_manipulation",
+    "description": "Reverse Integer",
+    "difficulty": "medium",
+    "url": "https://leetcode.com/problems/reverse-integer/",
+    "cases": []
   }
 }
