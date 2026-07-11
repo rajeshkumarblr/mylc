@@ -5,7 +5,7 @@
     "slug": "contains-duplicate",
     "category": "Arrays & Hashing",
     "difficulty": "Easy",
-    "existing_path": null
+    "existing_path": true
   },
   {
     "id": 242,
@@ -13,7 +13,7 @@
     "slug": "valid-anagram",
     "category": "Arrays & Hashing",
     "difficulty": "Easy",
-    "existing_path": null
+    "existing_path": true
   },
   {
     "id": 1,

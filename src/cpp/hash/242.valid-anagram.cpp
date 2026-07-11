@@ -24,22 +24,59 @@
  */
 
 #include "../lc_test_utils.h"
-#include <vector>
 #include <string>
 #include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
 // @lc code=start
 class Solution {
 public:
-    bool isAnagram(string s, string t) {
-        
+  bool isAnagram(string s, string t) {
+    if (s.length() != t.length()) {
+      return false;
     }
+    
+    // Since we only have lowercase English letters, a fixed array of size 26 is much 
+    // faster and uses way less memory than an unordered_map (zero dynamic allocations!).
+    int counts[26] = {0};
+    
+    // We can even do this in a single pass!
+    for (int i = 0; i < s.length(); i++) {
+      counts[s[i] - 'a']++;
+      counts[t[i] - 'a']--;
+    }
+    
+    // If they are anagrams, every bucket should be perfectly balanced back to 0
+    for (int count : counts) {
+      if (count != 0) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
 };
 // @lc code=end
+
+// Backup approach for Unicode characters (as discussed in follow-up)
+class Solution_Map {
+public:
+  bool isAnagram(string s, string t) {
+    unordered_map<char, int> counts;
+    if (s.length() != t.length()) {
+      return false;
+    }
+    for (const auto ch : s) {
+      counts[ch]++;
+    }
+    for (const auto ch : t) {
+      counts[ch]--;
+      if (counts[ch] < 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+};

@@ -42,8 +42,8 @@ Track your interview preparation progress here.
 
 ## Arrays & Hashing
 
-- [ ] **[LC 217](src/cpp/hash/217.contains-duplicate.cpp)**: [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) 🟢
-- [ ] **[LC 242](src/cpp/hash/242.valid-anagram.cpp)**: [Valid Anagram](https://leetcode.com/problems/valid-anagram/) 🟢
+- [x] **[LC 217](src/cpp/hash/217.contains-duplicate.cpp)**: [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) 🟢
+- [x] **[LC 242](src/cpp/hash/242.valid-anagram.cpp)**: [Valid Anagram](https://leetcode.com/problems/valid-anagram/) 🟢
 - [x] **[LC 1](src/cpp/hash/1.two-sum.cpp)**: [Two Sum](https://leetcode.com/problems/two-sum/) 🟢
 - [ ] **[LC 49](src/cpp/hash/49.group-anagrams.cpp)**: [Group Anagrams](https://leetcode.com/problems/group-anagrams/) 🟡
 - [x] **[LC 347](src/cpp/hash/347.top-k-frequent-elements.cpp)**: [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) 🟡
