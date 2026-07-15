@@ -98,6 +98,12 @@ bool lc_test_739(const json &j);
 int searchInsert(std::vector<int> &nums, int target);
 bool lc_test_35(const json &j);
 
+// Problem 704: Binary Search
+bool lc_test_704(const json &j);
+
+// Problem 74: Search a 2D Matrix
+bool lc_test_74(const json &j);
+
 // Problem 33: Search in Rotated Sorted Array
 int search_33(std::vector<int> &nums, int target);
 bool lc_test_33(const json &j);

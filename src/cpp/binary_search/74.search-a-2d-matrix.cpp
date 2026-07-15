@@ -30,22 +30,47 @@
  */
 
 #include "../lc_test_utils.h"
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
 // @lc code=start
 class Solution {
 public:
-    bool searchMatrix(vector<vector<int>>& matrix, int target) {
-        
+  bool searchMatrix(vector<vector<int>> &matrix, int target) {
+    int l = 0;
+    int m = matrix.size();
+    int n = matrix[0].size();
+    int r = m * n - 1;
+    while (l < r) {
+      int mid = (l + r) / 2;
+      int midRow = mid / n;
+      int midCol = mid % n;
+      if (target < matrix[midRow][midCol]) {
+        r = mid - 1;
+      } else if (matrix[midRow][midCol] < target) {
+        l = mid + 1;
+      } else {
+        return true;
+      }
     }
+    if (matrix[l / n][l % n] == target) {
+      return true;
+    }
+    return false;
+  }
 };
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+bool searchMatrix(std::vector<std::vector<int>> &matrix, int target) {
+  Solution sol;
+  return sol.searchMatrix(matrix, target);
+}

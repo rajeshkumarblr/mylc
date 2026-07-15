@@ -28,22 +28,40 @@
  */
 
 #include "../lc_test_utils.h"
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
 
 // @lc code=start
 class Solution {
 public:
-    int search(vector<int>& nums, int target) {
-        
+  int search(vector<int> &nums, int target) {
+    int l = 0;
+    int r = nums.size() - 1;
+    while (l <= r) {
+      int m = l + (r - l) / 2;
+      if (target < nums[m]) {
+        r = m - 1;
+      } else if (target > nums[m]) {
+        l = m + 1;
+      } else {
+        return m;
+      }
     }
+    return -1;
+  }
 };
 // @lc code=end
+
+// Non-LeetCode wrapper for harness
+int search(std::vector<int> &nums, int target) {
+  Solution sol;
+  return sol.search(nums, target);
+}

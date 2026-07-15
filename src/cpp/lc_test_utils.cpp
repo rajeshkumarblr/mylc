@@ -1351,3 +1351,53 @@ bool lc_test_216(const json &j) {
   }
   return all;
 }
+
+// Problem 704
+int search(std::vector<int> &nums, int target); // forward declaration
+bool lc_test_704(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::vector<int> nums = tc.at("nums").get<std::vector<int>>();
+    int target = tc.at("target").get<int>();
+    int expected = tc.at("expected").get<int>();
+    
+    int got = search(nums, target);
+    
+    bool ok = (got == expected);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n"
+                << "    expected=" << expected << "\n"
+                << "    got=" << got << "\n";
+    } else {
+      std::cout << "  Case " << (++idx) << ": PASS\n";
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+// Problem 74
+bool searchMatrix(std::vector<std::vector<int>>& matrix, int target); // forward declaration
+bool lc_test_74(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::vector<std::vector<int>> matrix = tc.at("matrix").get<std::vector<std::vector<int>>>();
+    int target = tc.at("target").get<int>();
+    bool expected = tc.at("expected").get<bool>();
+    
+    bool got = searchMatrix(matrix, target);
+    
+    bool ok = (got == expected);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n"
+                << "    expected=" << (expected ? "true" : "false") << "\n"
+                << "    got=" << (got ? "true" : "false") << "\n";
+    } else {
+      std::cout << "  Case " << (++idx) << ": PASS\n";
+    }
+    all &= ok;
+  }
+  return all;
+}

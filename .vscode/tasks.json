@@ -32,6 +32,20 @@
             "args": ["-C", "${workspaceFolder}/src/cpp", "dbg"],
             "group": { "kind": "build" },
             "problemMatcher": ["$gcc"]
+        },
+        {
+            "label": "build-active-cpp-standalone",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "-std=c++20",
+                "${file}",
+                "-o",
+                "${workspaceFolder}/build/cpp/standalone.dbg"
+            ],
+            "group": { "kind": "build" },
+            "problemMatcher": ["$gcc"]
         }
     ]
 }

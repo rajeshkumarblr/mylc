@@ -3665,14 +3665,88 @@
     "description": "Binary Search",
     "difficulty": "easy",
     "url": "https://leetcode.com/problems/binary-search/",
-    "cases": []
+    "cases": [
+      {
+        "nums": [
+          -1,
+          0,
+          3,
+          5,
+          9,
+          12
+        ],
+        "target": 9,
+        "expected": 4
+      },
+      {
+        "nums": [
+          -1,
+          0,
+          3,
+          5,
+          9,
+          12
+        ],
+        "target": 2,
+        "expected": -1
+      }
+    ]
   },
   "74": {
     "category": "binary_search",
     "description": "Search a 2D Matrix",
     "difficulty": "medium",
     "url": "https://leetcode.com/problems/search-a-2d-matrix/",
-    "cases": []
+    "cases": [
+      {
+        "matrix": [
+          [
+            1,
+            3,
+            5,
+            7
+          ],
+          [
+            10,
+            11,
+            16,
+            20
+          ],
+          [
+            23,
+            30,
+            34,
+            60
+          ]
+        ],
+        "target": 3,
+        "expected": true
+      },
+      {
+        "matrix": [
+          [
+            1,
+            3,
+            5,
+            7
+          ],
+          [
+            10,
+            11,
+            16,
+            20
+          ],
+          [
+            23,
+            30,
+            34,
+            60
+          ]
+        ],
+        "target": 13,
+        "expected": false
+      }
+    ]
   },
   "875": {
     "category": "binary_search",

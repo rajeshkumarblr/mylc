@@ -41,22 +41,35 @@
  */
 
 #include "../lc_test_utils.h"
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 
 using namespace std;
+
+// 8 9 10 1 2 3 4 5
 
 // @lc code=start
 class Solution {
 public:
-    int findMin(vector<int>& nums) {
-        
+  int findMin(vector<int> &nums) {
+    int l = 0;
+    int r = nums.size() - 1;
+    while (l < r) {
+      int m = l + (r - l) / 2;
+      if (nums[m] > nums[r]) {
+        l = m + 1;
+      } else {
+        r = m;
+      }
     }
+
+    return nums[l];
+  }
 };
 // @lc code=end
