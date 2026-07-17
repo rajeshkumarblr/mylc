@@ -1,13 +1,9 @@
 #include "../lc_types.h"
-#include "../lc_types.h"
-#include "../lc_types.h"
-#include "../lc_types.h"
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
-#include "../lc_types.h"
 /*
  * @lc app=leetcode id=141 lang=cpp
  *
@@ -47,16 +43,15 @@
  *   Follow up:  Can you solve it using  O(1)  (i.e. constant) memory?
  */
 
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 using namespace std;
-
 
 // @lc code=start
 /**
@@ -69,15 +64,64 @@ using namespace std;
  */
 class Solution {
 public:
-    bool hasCycle(ListNode *head) {
-        return {};
+  bool hasCycle(ListNode *head) {
+    ListNode *slow = head, *fast = head;
+
+    while (fast && fast->next) {
+      slow = slow->next;
+      fast = fast->next->next;
+      if (slow == fast) {
+        return true;
+      }
     }
+    return false;
+  }
 };
 // @lc code=end
 
-
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
-    return 1;
+  Solution sol;
+  int failed = 0;
+
+  // Case 1: head = [3,2,0,-4], pos = 1 (cycle at index 1)
+  {
+    ListNode *head = new ListNode(3);
+    head->next = new ListNode(2);
+    head->next->next = new ListNode(0);
+    head->next->next->next = new ListNode(-4);
+    head->next->next->next->next = head->next; // Creates cycle to '2'
+
+    if (sol.hasCycle(head) != true) {
+      cerr << "FAIL: Case 1" << endl;
+      failed++;
+    }
+  }
+
+  // Case 2: head = [1,2], pos = 0 (cycle at index 0)
+  {
+    ListNode *head = new ListNode(1);
+    head->next = new ListNode(2);
+    head->next->next = head; // Creates cycle to '1'
+
+    if (sol.hasCycle(head) != true) {
+      cerr << "FAIL: Case 2" << endl;
+      failed++;
+    }
+  }
+
+  // Case 3: head = [1], pos = -1 (no cycle)
+  {
+    ListNode *head = new ListNode(1);
+
+    if (sol.hasCycle(head) != false) {
+      cerr << "FAIL: Case 3" << endl;
+      failed++;
+    }
+  }
+
+  if (failed == 0) {
+    cout << "PASS" << endl;
+    return 0;
+  }
+  return 1;
 }
