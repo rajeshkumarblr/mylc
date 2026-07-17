@@ -1,3 +1,17 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+using namespace std;
 /*
  * @lc app=leetcode id=9 lang=cpp
  *
@@ -44,8 +58,83 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-bool isPalindrome(int x) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.isPalindrome(x);
+    // Case 1
+    {
+        int input = 121;
+        auto got = sol.isPalindrome(input);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        int input = -121;
+        auto got = sol.isPalindrome(input);
+        if (got != false) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        int input = 10;
+        auto got = sol.isPalindrome(input);
+        if (got != false) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        int input = 0;
+        auto got = sol.isPalindrome(input);
+        if (got != true) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        int input = 12321;
+        auto got = sol.isPalindrome(input);
+        if (got != true) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        int input = 123;
+        auto got = sol.isPalindrome(input);
+        if (got != false) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

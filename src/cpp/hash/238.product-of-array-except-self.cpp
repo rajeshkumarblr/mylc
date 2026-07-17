@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=238 lang=cpp
  *
@@ -31,7 +36,6 @@
  * analysis.)
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -40,14 +44,39 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> nums = {1, 2, 3, 4};
+        auto got = sol.productExceptSelf(nums);
+        if (got != vector<int>{24, 12, 8, 6}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {-1, 1, 0, -3, 3};
+        auto got = sol.productExceptSelf(nums);
+        if (got != vector<int>{0, 0, 9, 0, 0}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

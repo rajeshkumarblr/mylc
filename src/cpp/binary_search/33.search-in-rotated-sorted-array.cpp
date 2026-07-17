@@ -1,5 +1,32 @@
-#include "../lc_test_utils.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 #include <vector>
+using namespace std;
+
+int search_33(std::vector<int> &nums, int target);
+
+
+int search_33(std::vector<int> &nums, int target);
+
+
+int search_33(std::vector<int> &nums, int target);
+
+
+int search_33(std::vector<int> &nums, int target);
+
+
+int search_33(std::vector<int> &nums, int target);
+
 
 /*
  * @lc app=leetcode id=33 lang=cpp
@@ -70,11 +97,27 @@
  *           -10 4  <= target <= 10 4
  */
 
-using namespace std;
 class Solution {
 public:
   int search(vector<int> &nums, int target) { return search_33(nums, target); }
 };
+// @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 int search_33(std::vector<int> &nums, int target) {
   int l = 0;
@@ -105,30 +148,43 @@ int search_33(std::vector<int> &nums, int target) {
   return -1;
 }
 
-bool lc_test_33(const json &j) {
-  std::cout << "Running LC33: Search in Rotated Sorted Array ...\n";
 
-  std::vector<int> cases_to_run;
-  if (j.contains("cases")) {
-    for (size_t i = 0; i < j.at("cases").size(); ++i)
-      cases_to_run.push_back(i);
-  }
 
-  bool all_passed = true;
-  for (int i : cases_to_run) {
-    const auto &tc = j.at("cases").at(i);
-    std::vector<int> nums = tc.at("nums").get<std::vector<int>>();
-    int target = tc.at("target").get<int>();
-    int expected = tc.at("expected").get<int>();
 
-    int result = search_33(nums, target);
 
-    if (result != expected) {
-      std::cout << "  Case " << i + 1 << " Failed. Expected: " << expected
-                << ", Got: " << result << "\n";
-      all_passed = false;
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
+        int target = 0;
+        auto got = sol.search(nums, target);
+        if (got != 4) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
     }
-  }
-
-  return all_passed;
+    // Case 2
+    {
+        vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
+        int target = 3;
+        auto got = sol.search(nums, target);
+        if (got != -1) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> nums = {1};
+        int target = 0;
+        auto got = sol.search(nums, target);
+        if (got != -1) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

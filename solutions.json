@@ -1,0 +1,694 @@
+{
+  "13": {
+    "description": "Roman to Integer",
+    "category": "misc"
+  },
+  "205": {
+    "description": "Isomorphic Strings",
+    "category": "hash"
+  },
+  "242": {
+    "description": "Valid Anagram",
+    "category": "hash"
+  },
+  "295": {
+    "description": "Find Median from Data Stream",
+    "category": "heap"
+  },
+  "307": {
+    "description": "Range Sum Query - Mutable",
+    "category": "misc"
+  },
+  "315": {
+    "description": "Count of Smaller Numbers After Self",
+    "category": "misc"
+  },
+  "350": {
+    "description": "Intersection of Two Arrays II",
+    "category": "hash"
+  },
+  "1": {
+    "description": "Two Sum",
+    "category": "hash"
+  },
+  "2": {
+    "description": "Add Two Numbers",
+    "category": "list"
+  },
+  "3": {
+    "description": "Longest Substring Without Repeating Characters",
+    "category": "sliding_window"
+  },
+  "9": {
+    "description": "Palindrome Number",
+    "category": "misc"
+  },
+  "11": {
+    "description": "Container With Most Water",
+    "category": "two_pointer"
+  },
+  "21": {
+    "description": "Merge Two Sorted Lists",
+    "category": "list"
+  },
+  "42": {
+    "description": "Trapping Rain Water",
+    "category": "two_pointer"
+  },
+  "94": {
+    "description": "Binary Tree Inorder Traversal",
+    "category": "tree"
+  },
+  "98": {
+    "description": "Validate Binary Search Tree",
+    "category": "tree"
+  },
+  "100": {
+    "description": "Same Tree",
+    "category": "tree"
+  },
+  "102": {
+    "description": "Binary Tree Level Order Traversal",
+    "category": "tree"
+  },
+  "103": {
+    "description": "Binary Tree Zigzag Level Order Traversal",
+    "category": "tree"
+  },
+  "104": {
+    "description": "Maximum Depth of Binary Tree",
+    "category": "tree"
+  },
+  "110": {
+    "description": "Balanced Binary Tree",
+    "category": "tree"
+  },
+  "424": {
+    "description": "Longest Repeating Character Replacement",
+    "category": "sliding_window"
+  },
+  "438": {
+    "description": "Find All Anagrams in a String",
+    "category": "sliding_window"
+  },
+  "460": {
+    "description": "LFU Cache",
+    "category": "misc"
+  },
+  "567": {
+    "description": "Permutation in String",
+    "category": "sliding_window"
+  },
+  "20": {
+    "description": "Valid Parentheses",
+    "category": "stack"
+  },
+  "739": {
+    "description": "Daily Temperatures",
+    "category": "stack"
+  },
+  "35": {
+    "description": "Search Insert Position",
+    "category": "binary_search"
+  },
+  "36": {
+    "description": "Valid Sudoku",
+    "category": "hash"
+  },
+  "160": {
+    "description": "Intersection of Two Linked Lists",
+    "category": "list"
+  },
+  "200": {
+    "description": "Number of Islands",
+    "category": "graphs"
+  },
+  "206": {
+    "description": "Reverse Linked List",
+    "category": "list"
+  },
+  "207": {
+    "description": "Course Schedule",
+    "category": "graphs"
+  },
+  "210": {
+    "description": "Course Schedule II",
+    "category": "graphs"
+  },
+  "226": {
+    "description": "Invert Binary Tree",
+    "category": "tree"
+  },
+  "238": {
+    "description": "Product of Array Except Self",
+    "category": "hash"
+  },
+  "560": {
+    "description": "Subarray Sum Equals K",
+    "category": "prefix_sum"
+  },
+  "70": {
+    "description": "Climbing Stairs",
+    "category": "dp"
+  },
+  "198": {
+    "description": "House Robber",
+    "category": "dp"
+  },
+  "15": {
+    "description": "3Sum",
+    "category": "two_pointer"
+  },
+  "139": {
+    "description": "Word Break",
+    "category": "dp"
+  },
+  "146": {
+    "description": "LRU Cache",
+    "category": "list"
+  },
+  "213": {
+    "description": "House Robber II",
+    "category": "dp"
+  },
+  "215": {
+    "description": "Kth Largest Element in an Array",
+    "category": "heap"
+  },
+  "216": {
+    "description": "Kth Smallest Element in an Array",
+    "category": "misc"
+  },
+  "33": {
+    "description": "Search in Rotated Sorted Array",
+    "category": "binary_search"
+  },
+  "347": {
+    "description": "Top K Frequent Elements",
+    "category": "hash"
+  },
+  "1235": {
+    "description": "Maximum Profit in Job Scheduling",
+    "category": "dp"
+  },
+  "973": {
+    "description": "K Closest Points to Origin",
+    "category": "heap"
+  },
+  "981": {
+    "description": "Time Based Key-Value Store",
+    "category": "binary_search"
+  },
+  "268": {
+    "description": "Missing Number",
+    "category": "bit_manipulation"
+  },
+  "49": {
+    "description": "Group Anagrams",
+    "category": "hash"
+  },
+  "359": {
+    "description": "Logger Rate Limiter",
+    "category": "hash"
+  },
+  "362": {
+    "description": "Design Hit Counter",
+    "category": "concurrency"
+  },
+  "56": {
+    "description": "Merge Intervals",
+    "category": "intervals"
+  },
+  "199": {
+    "description": "Binary Tree Right Side View",
+    "category": "tree"
+  },
+  "76": {
+    "description": "Minimum Window Substring",
+    "category": "sliding_window"
+  },
+  "1146": {
+    "description": "Snapshot Array",
+    "category": "misc"
+  },
+  "1188": {
+    "description": "Design Bounded Blocking Queue",
+    "category": "concurrency"
+  },
+  "1117": {
+    "description": "Building H2O",
+    "category": "concurrency"
+  },
+  "1203": {
+    "description": "Sort Items by Groups Respecting Dependencies",
+    "category": "graphs"
+  },
+  "1242": {
+    "description": "Web Crawler Multithreaded",
+    "category": "concurrency"
+  },
+  "10000": {
+    "description": "Shortest Cycle of a Target Node",
+    "category": "graphs"
+  },
+  "217": {
+    "description": "Contains Duplicate",
+    "category": "hash"
+  },
+  "271": {
+    "description": "Encode and Decode Strings",
+    "category": "hash"
+  },
+  "128": {
+    "description": "Longest Consecutive Sequence",
+    "category": "hash"
+  },
+  "125": {
+    "description": "Valid Palindrome",
+    "category": "two_pointer"
+  },
+  "167": {
+    "description": "Two Sum II Input Array Is Sorted",
+    "category": "two_pointer"
+  },
+  "121": {
+    "description": "Best Time to Buy And Sell Stock",
+    "category": "sliding_window"
+  },
+  "239": {
+    "description": "Sliding Window Maximum",
+    "category": "sliding_window"
+  },
+  "155": {
+    "description": "Min Stack",
+    "category": "stack"
+  },
+  "150": {
+    "description": "Evaluate Reverse Polish Notation",
+    "category": "stack"
+  },
+  "853": {
+    "description": "Car Fleet",
+    "category": "stack"
+  },
+  "84": {
+    "description": "Largest Rectangle In Histogram",
+    "category": "stack"
+  },
+  "704": {
+    "description": "Binary Search",
+    "category": "binary_search"
+  },
+  "74": {
+    "description": "Search a 2D Matrix",
+    "category": "binary_search"
+  },
+  "875": {
+    "description": "Koko Eating Bananas",
+    "category": "binary_search"
+  },
+  "153": {
+    "description": "Find Minimum In Rotated Sorted Array",
+    "category": "binary_search"
+  },
+  "4": {
+    "description": "Median of Two Sorted Arrays",
+    "category": "binary_search"
+  },
+  "141": {
+    "description": "Linked List Cycle",
+    "category": "list"
+  },
+  "143": {
+    "description": "Reorder List",
+    "category": "list"
+  },
+  "19": {
+    "description": "Remove Nth Node From End of List",
+    "category": "list"
+  },
+  "138": {
+    "description": "Copy List With Random Pointer",
+    "category": "list"
+  },
+  "287": {
+    "description": "Find The Duplicate Number",
+    "category": "list"
+  },
+  "23": {
+    "description": "Merge K Sorted Lists",
+    "category": "list"
+  },
+  "25": {
+    "description": "Reverse Nodes In K Group",
+    "category": "list"
+  },
+  "543": {
+    "description": "Diameter of Binary Tree",
+    "category": "tree"
+  },
+  "572": {
+    "description": "Subtree of Another Tree",
+    "category": "tree"
+  },
+  "235": {
+    "description": "Lowest Common Ancestor of a Binary Search Tree",
+    "category": "tree"
+  },
+  "1448": {
+    "description": "Count Good Nodes In Binary Tree",
+    "category": "tree"
+  },
+  "230": {
+    "description": "Kth Smallest Element In a Bst",
+    "category": "tree"
+  },
+  "105": {
+    "description": "Construct Binary Tree From Preorder And Inorder Traversal",
+    "category": "tree"
+  },
+  "124": {
+    "description": "Binary Tree Maximum Path Sum",
+    "category": "tree"
+  },
+  "297": {
+    "description": "Serialize And Deserialize Binary Tree",
+    "category": "tree"
+  },
+  "703": {
+    "description": "Kth Largest Element In a Stream",
+    "category": "heap"
+  },
+  "1046": {
+    "description": "Last Stone Weight",
+    "category": "heap"
+  },
+  "621": {
+    "description": "Task Scheduler",
+    "category": "heap"
+  },
+  "355": {
+    "description": "Design Twitter",
+    "category": "heap"
+  },
+  "78": {
+    "description": "Subsets",
+    "category": "backtracking"
+  },
+  "39": {
+    "description": "Combination Sum",
+    "category": "backtracking"
+  },
+  "40": {
+    "description": "Combination Sum II",
+    "category": "backtracking"
+  },
+  "46": {
+    "description": "Permutations",
+    "category": "backtracking"
+  },
+  "90": {
+    "description": "Subsets II",
+    "category": "backtracking"
+  },
+  "22": {
+    "description": "Generate Parentheses",
+    "category": "backtracking"
+  },
+  "79": {
+    "description": "Word Search",
+    "category": "backtracking"
+  },
+  "131": {
+    "description": "Palindrome Partitioning",
+    "category": "backtracking"
+  },
+  "17": {
+    "description": "Letter Combinations of a Phone Number",
+    "category": "backtracking"
+  },
+  "51": {
+    "description": "N Queens",
+    "category": "backtracking"
+  },
+  "208": {
+    "description": "Implement Trie Prefix Tree",
+    "category": "trie"
+  },
+  "211": {
+    "description": "Design Add And Search Words Data Structure",
+    "category": "trie"
+  },
+  "212": {
+    "description": "Word Search II",
+    "category": "trie"
+  },
+  "695": {
+    "description": "Max Area of Island",
+    "category": "graphs"
+  },
+  "133": {
+    "description": "Clone Graph",
+    "category": "graphs"
+  },
+  "286": {
+    "description": "Walls And Gates",
+    "category": "graphs"
+  },
+  "994": {
+    "description": "Rotting Oranges",
+    "category": "graphs"
+  },
+  "417": {
+    "description": "Pacific Atlantic Water Flow",
+    "category": "graphs"
+  },
+  "130": {
+    "description": "Surrounded Regions",
+    "category": "graphs"
+  },
+  "261": {
+    "description": "Graph Valid Tree",
+    "category": "graphs"
+  },
+  "323": {
+    "description": "Number of Connected Components In An Undirected Graph",
+    "category": "graphs"
+  },
+  "684": {
+    "description": "Redundant Connection",
+    "category": "graphs"
+  },
+  "127": {
+    "description": "Word Ladder",
+    "category": "graphs"
+  },
+  "743": {
+    "description": "Network Delay Time",
+    "category": "graphs"
+  },
+  "332": {
+    "description": "Reconstruct Itinerary",
+    "category": "graphs"
+  },
+  "1584": {
+    "description": "Min Cost to Connect All Points",
+    "category": "graphs"
+  },
+  "778": {
+    "description": "Swim In Rising Water",
+    "category": "graphs"
+  },
+  "269": {
+    "description": "Alien Dictionary",
+    "category": "graphs"
+  },
+  "787": {
+    "description": "Cheapest Flights Within K Stops",
+    "category": "graphs"
+  },
+  "746": {
+    "description": "Min Cost Climbing Stairs",
+    "category": "dp"
+  },
+  "5": {
+    "description": "Longest Palindromic Substring",
+    "category": "dp"
+  },
+  "647": {
+    "description": "Palindromic Substrings",
+    "category": "dp"
+  },
+  "91": {
+    "description": "Decode Ways",
+    "category": "dp"
+  },
+  "322": {
+    "description": "Coin Change",
+    "category": "dp"
+  },
+  "152": {
+    "description": "Maximum Product Subarray",
+    "category": "dp"
+  },
+  "300": {
+    "description": "Longest Increasing Subsequence",
+    "category": "dp"
+  },
+  "416": {
+    "description": "Partition Equal Subset Sum",
+    "category": "dp"
+  },
+  "62": {
+    "description": "Unique Paths",
+    "category": "dp"
+  },
+  "1143": {
+    "description": "Longest Common Subsequence",
+    "category": "dp"
+  },
+  "309": {
+    "description": "Best Time to Buy And Sell Stock With Cooldown",
+    "category": "dp"
+  },
+  "518": {
+    "description": "Coin Change II",
+    "category": "dp"
+  },
+  "494": {
+    "description": "Target Sum",
+    "category": "dp"
+  },
+  "97": {
+    "description": "Interleaving String",
+    "category": "dp"
+  },
+  "329": {
+    "description": "Longest Increasing Path In a Matrix",
+    "category": "dp"
+  },
+  "115": {
+    "description": "Distinct Subsequences",
+    "category": "dp"
+  },
+  "72": {
+    "description": "Edit Distance",
+    "category": "dp"
+  },
+  "312": {
+    "description": "Burst Balloons",
+    "category": "dp"
+  },
+  "10": {
+    "description": "Regular Expression Matching",
+    "category": "dp"
+  },
+  "53": {
+    "description": "Maximum Subarray",
+    "category": "greedy"
+  },
+  "55": {
+    "description": "Jump Game",
+    "category": "greedy"
+  },
+  "45": {
+    "description": "Jump Game II",
+    "category": "greedy"
+  },
+  "134": {
+    "description": "Gas Station",
+    "category": "greedy"
+  },
+  "846": {
+    "description": "Hand of Straights",
+    "category": "greedy"
+  },
+  "1899": {
+    "description": "Merge Triplets to Form Target Triplet",
+    "category": "greedy"
+  },
+  "763": {
+    "description": "Partition Labels",
+    "category": "greedy"
+  },
+  "678": {
+    "description": "Valid Parenthesis String",
+    "category": "greedy"
+  },
+  "57": {
+    "description": "Insert Interval",
+    "category": "intervals"
+  },
+  "435": {
+    "description": "Non Overlapping Intervals",
+    "category": "intervals"
+  },
+  "252": {
+    "description": "Meeting Rooms",
+    "category": "intervals"
+  },
+  "253": {
+    "description": "Meeting Rooms II",
+    "category": "intervals"
+  },
+  "1851": {
+    "description": "Minimum Interval to Include Each Query",
+    "category": "intervals"
+  },
+  "48": {
+    "description": "Rotate Image",
+    "category": "math"
+  },
+  "54": {
+    "description": "Spiral Matrix",
+    "category": "math"
+  },
+  "73": {
+    "description": "Set Matrix Zeroes",
+    "category": "math"
+  },
+  "202": {
+    "description": "Happy Number",
+    "category": "math"
+  },
+  "66": {
+    "description": "Plus One",
+    "category": "math"
+  },
+  "50": {
+    "description": "Pow(x, n)",
+    "category": "math"
+  },
+  "43": {
+    "description": "Multiply Strings",
+    "category": "math"
+  },
+  "2013": {
+    "description": "Detect Squares",
+    "category": "math"
+  },
+  "136": {
+    "description": "Single Number",
+    "category": "bit_manipulation"
+  },
+  "191": {
+    "description": "Number of 1 Bits",
+    "category": "bit_manipulation"
+  },
+  "338": {
+    "description": "Counting Bits",
+    "category": "bit_manipulation"
+  },
+  "190": {
+    "description": "Reverse Bits",
+    "category": "bit_manipulation"
+  },
+  "371": {
+    "description": "Sum of Two Integers",
+    "category": "bit_manipulation"
+  },
+  "7": {
+    "description": "Reverse Integer",
+    "category": "bit_manipulation"
+  }
+}

@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=11 lang=cpp
  *
@@ -31,7 +43,7 @@
 
  #include <vector>
  #include <cstdlib>
- using namespace std;
+using namespace std;
 
 /*
  * @lc app=leetcode id=11 lang=cpp
@@ -83,10 +95,112 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int maxArea(vector<int>& height) {
+
+
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.maxArea(height);
+    // Case 1
+    {
+        vector<int> input = {8, 7, 2, 2};
+        auto got = sol.maxArea(input);
+        if (got != 7) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> input = {1, 8, 6, 2, 5, 4, 8, 3, 7};
+        auto got = sol.maxArea(input);
+        if (got != 49) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> input = {1, 1};
+        auto got = sol.maxArea(input);
+        if (got != 1) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> input = {4, 3, 2, 1, 4};
+        auto got = sol.maxArea(input);
+        if (got != 16) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> input = {1, 2, 1};
+        auto got = sol.maxArea(input);
+        if (got != 2) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> input = {1, 2, 4, 3};
+        auto got = sol.maxArea(input);
+        if (got != 4) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    // Case 7
+    {
+        vector<int> input = {2, 3, 4, 5, 18, 17, 6};
+        auto got = sol.maxArea(input);
+        if (got != 17) {
+            cerr << "FAIL case 7" << endl;
+            return 1;
+        }
+    }
+    // Case 8
+    {
+        vector<int> input = {1, 3, 2, 5, 25, 24, 5};
+        auto got = sol.maxArea(input);
+        if (got != 24) {
+            cerr << "FAIL case 8" << endl;
+            return 1;
+        }
+    }
+    // Case 9
+    {
+        vector<int> input = {};
+        auto got = sol.maxArea(input);
+        if (got != 0) {
+            cerr << "FAIL case 9" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }
-
-

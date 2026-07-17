@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=210 lang=cpp
  *
@@ -42,7 +47,6 @@
  *          All the pairs  [a i , b i ]  are  distinct .
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -51,14 +55,61 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        int numCourses = 2;
+        vector<vector<int>> prerequisites = {{1, 0}};
+        auto got = sol.findOrder(numCourses, prerequisites);
+        if (got != vector<int>{0, 1}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        int numCourses = 4;
+        vector<vector<int>> prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
+        auto got = sol.findOrder(numCourses, prerequisites);
+        if (got != vector<int>{0, 1, 2, 3}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        int numCourses = 1;
+        vector<vector<int>> prerequisites = {};
+        auto got = sol.findOrder(numCourses, prerequisites);
+        if (got != vector<int>{0}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        int numCourses = 2;
+        vector<vector<int>> prerequisites = {{1, 0}, {0, 1}};
+        auto got = sol.findOrder(numCourses, prerequisites);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

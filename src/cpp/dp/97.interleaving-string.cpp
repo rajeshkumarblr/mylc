@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=97 lang=cpp
  *
@@ -42,7 +47,6 @@
  * memory space?
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -51,14 +55,21 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     bool isInterleave(string s1, string s2, string s3) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

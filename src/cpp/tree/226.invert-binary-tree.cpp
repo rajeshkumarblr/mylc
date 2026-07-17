@@ -1,3 +1,20 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 #include <vector>
 #include "lc_types.h"
 using namespace std;
@@ -63,8 +80,62 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-TreeNode* invertTree(TreeNode* root) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.invertTree(root);
+    // Case 1
+    {
+        vector<int> root_arr{4, 2, 7, 1, 3, 6, 9};
+        TreeNode* root = vec_to_tree(root_arr);
+        TreeNode* got_node = sol.invertTree(root);
+        vector<int> got = tree_to_vec(got_node);
+        if (got != vector<int>{4, 7, 2, 9, 6, 3, 1}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> root_arr{2, 1, 3};
+        TreeNode* root = vec_to_tree(root_arr);
+        TreeNode* got_node = sol.invertTree(root);
+        vector<int> got = tree_to_vec(got_node);
+        if (got != vector<int>{2, 3, 1}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> root_arr{};
+        TreeNode* root = vec_to_tree(root_arr);
+        TreeNode* got_node = sol.invertTree(root);
+        vector<int> got = tree_to_vec(got_node);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

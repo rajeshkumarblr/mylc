@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <iostream>
+#include <utility>
 #include <stack>
 #include <string>
 using namespace std;
@@ -88,7 +99,99 @@ public:
 };
 // @lc code=end
 
-bool isValid(std::string s) {
-  Solution sol;
-  return sol.isValid(s);
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        string input = "()";
+        auto got = sol.isValid(input);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string input = "()[]{}";
+        auto got = sol.isValid(input);
+        if (got != true) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        string input = "(]";
+        auto got = sol.isValid(input);
+        if (got != false) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        string input = "([)]";
+        auto got = sol.isValid(input);
+        if (got != false) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        string input = "{[]}";
+        auto got = sol.isValid(input);
+        if (got != true) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        string input = "";
+        auto got = sol.isValid(input);
+        if (got != true) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    // Case 7
+    {
+        string input = "(";
+        auto got = sol.isValid(input);
+        if (got != false) {
+            cerr << "FAIL case 7" << endl;
+            return 1;
+        }
+    }
+    // Case 8
+    {
+        string input = ")";
+        auto got = sol.isValid(input);
+        if (got != false) {
+            cerr << "FAIL case 8" << endl;
+            return 1;
+        }
+    }
+    // Case 9
+    {
+        string input = "((";
+        auto got = sol.isValid(input);
+        if (got != false) {
+            cerr << "FAIL case 9" << endl;
+            return 1;
+        }
+    }
+    // Case 10
+    {
+        string input = "))";
+        auto got = sol.isValid(input);
+        if (got != false) {
+            cerr << "FAIL case 10" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

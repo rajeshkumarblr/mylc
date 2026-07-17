@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=438 lang=cpp
  *
@@ -76,9 +86,70 @@ public:
 };
 // @lc code=end
 
-// Non-LeetCode wrapper for harness
-std::vector<int> findAnagrams(std::string s, std::string p) {
-    Solution sol;
-    return sol.findAnagrams(std::move(s), std::move(p));
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        string s = "cbaebabacd";
+        string p = "abc";
+        auto got = sol.findAnagrams(s, p);
+        if (got != vector<int>{0, 6}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string s = "abab";
+        string p = "ab";
+        auto got = sol.findAnagrams(s, p);
+        if (got != vector<int>{0, 1, 2}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        string s = "baa";
+        string p = "aa";
+        auto got = sol.findAnagrams(s, p);
+        if (got != vector<int>{1}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        string s = "abc";
+        string p = "def";
+        auto got = sol.findAnagrams(s, p);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

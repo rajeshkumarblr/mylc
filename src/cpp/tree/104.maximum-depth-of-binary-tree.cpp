@@ -1,3 +1,17 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <string>
+#include <iostream>
+#include "../lc_types.h"
 // Needed for TreeNode definition and STL containers
 #include "lc_types.h"
 #include <stack>
@@ -105,8 +119,109 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int maxDepth(TreeNode* root) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.maxDepth(root);
+    // Case 1
+    {
+        vector<int> tree_arr{3, 9, 20, None, None, 15, 7};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 3) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> tree_arr{};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 0) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> tree_arr{1};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 1) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> tree_arr{1, 2};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 2) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> tree_arr{1, 2, 3, 4, 5, None, 7};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 3) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> tree_arr{1, 2, None, 3, None, 4};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 4) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    // Case 7
+    {
+        vector<int> tree_arr{1, None, 2, None, 3, None, 4};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 4) {
+            cerr << "FAIL case 7" << endl;
+            return 1;
+        }
+    }
+    // Case 8
+    {
+        vector<int> tree_arr{1, 2, None, 3, None, 4, None, 5};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.maxDepth(tree);
+        if (got != 5) {
+            cerr << "FAIL case 8" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

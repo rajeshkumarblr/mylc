@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=1146 lang=cpp
  *
@@ -36,11 +48,30 @@
  * - At most 50,000 calls will be made to set, snap, and get.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
-
 using namespace std;
+using json = nlohmann::json;
+
+vector<string> runSnapshotArray(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runSnapshotArray(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runSnapshotArray(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runSnapshotArray(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runSnapshotArray(const vector<string> &cmds, const json &args);
+
+
 
 // @lc code=start
 class SnapshotArray {
@@ -65,6 +96,21 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 vector<string> runSnapshotArray(const vector<string> &cmds, const json &args) {
     SnapshotArray *sa = nullptr;
     vector<string> res;
@@ -88,4 +134,84 @@ vector<string> runSnapshotArray(const vector<string> &cmds, const json &args) {
     }
     delete sa;
     return res;
+}
+
+
+
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": [
+        "SnapshotArray",
+        "set",
+        "snap",
+        "set",
+        "get"
+      ],
+      "arguments": [
+        [
+          3
+        ],
+        [
+          0,
+          5
+        ],
+        [],
+        [
+          0,
+          6
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "expected": [
+        null,
+        null,
+        0,
+        null,
+        5
+      ]
+    }
+  ]
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            SnapshotArray* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "SnapshotArray") {
+                    if (obj) delete obj;
+                    obj = new SnapshotArray(args[i][0].get<int>());
+                } else if (cmd == "set") {
+                    obj->set(args[i][0].get<int>(), args[i][1].get<int>());
+                } else if (cmd == "snap") {
+                    int got = obj->snap();
+                    if (!expected[i].is_null()) {
+                        int exp = expected[i].get<int>();
+                        if (got != exp) { cerr << "FAIL snap" << endl; return 1; }
+                    }
+                } else if (cmd == "get") {
+                    int got = obj->get(args[i][0].get<int>(), args[i][1].get<int>());
+                    if (!expected[i].is_null()) {
+                        int exp = expected[i].get<int>();
+                        if (got != exp) { cerr << "FAIL get" << endl; return 1; }
+                    }
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

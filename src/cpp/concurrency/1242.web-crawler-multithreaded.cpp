@@ -1,4 +1,12 @@
-#include "../lc_test_utils.h"
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -7,8 +15,28 @@
 #include <thread>
 #include <queue>
 #include <condition_variable>
-
 using namespace std;
+using json = nlohmann::json;
+
+bool lc_test_1242(const json &j);
+
+using json = nlohmann::json;
+
+bool lc_test_1242(const json &j);
+
+using json = nlohmann::json;
+
+bool lc_test_1242(const json &j);
+
+using json = nlohmann::json;
+
+bool lc_test_1242(const json &j);
+
+using json = nlohmann::json;
+
+vector<string> runWebCrawler(const vector<string>& urls, const vector<vector<int>>& edges, const string& startUrl);
+
+
 
 // @lc code=start
 // This is the HtmlParser's API interface.
@@ -112,6 +140,54 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool lc_test_1242(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::vector<std::string> urls = tc.at("urls").get<std::vector<std::string>>();
+    std::vector<std::vector<int>> edges = tc.at("edges").get<std::vector<std::vector<int>>>();
+    std::string startUrl = tc.at("startUrl").get<std::string>();
+    std::vector<std::string> expected = tc.at("expected").get<std::vector<std::string>>();
+    
+    std::vector<std::string> got = runWebCrawler(urls, edges, startUrl);
+    
+    std::sort(got.begin(), got.end());
+    std::sort(expected.begin(), expected.end());
+    
+    bool ok = (got == expected);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n"
+                << "    startUrl=\"" << startUrl << "\"\n"
+                << "    expected=[";
+      for (const auto &u : expected) std::cout << "\"" << u << "\", ";
+      std::cout << "]\n    got=[";
+      for (const auto &u : got) std::cout << "\"" << u << "\", ";
+      std::cout << "]\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+
+
 vector<string> runWebCrawler(const vector<string>& urls,
                              const vector<vector<int>>& edges,
                              const string& startUrl) {
@@ -129,4 +205,59 @@ vector<string> runWebCrawler(const vector<string>& urls,
   HtmlParser parser(graph);
   Solution sol;
   return sol.crawl(startUrl, parser);
+}
+
+
+
+
+
+int main() {
+    try {
+        nlohmann::json j = nlohmann::json::parse(R"raw({
+  "cases": [
+    {
+      "urls": [
+        "http://news.yahoo.com",
+        "http://news.yahoo.com/news",
+        "http://news.yahoo.com/news/topics/",
+        "http://news.google.com",
+        "http://news.yahoo.com/us"
+      ],
+      "edges": [
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          0,
+          4
+        ]
+      ],
+      "startUrl": "http://news.yahoo.com/news/topics/",
+      "expected": [
+        "http://news.yahoo.com",
+        "http://news.yahoo.com/news",
+        "http://news.yahoo.com/news/topics/",
+        "http://news.yahoo.com/us"
+      ]
+    }
+  ]
+})raw");
+        return lc_test_1242(j) ? 0 : 1;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

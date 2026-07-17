@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=1235 lang=cpp
  *
@@ -81,8 +92,77 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 int jobScheduling(vector<int> &startTime, vector<int> &endTime,
                   vector<int> &profit) {
   Solution sol;
   return sol.jobScheduling(startTime, endTime, profit);
+}
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> startTime = {1, 2, 3, 3};
+        vector<int> endTime = {3, 4, 5, 6};
+        vector<int> profit = {50, 10, 40, 70};
+        auto got = sol.jobScheduling(startTime, endTime, profit);
+        if (got != 120) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> startTime = {1, 2, 3, 4, 6};
+        vector<int> endTime = {3, 5, 10, 6, 9};
+        vector<int> profit = {20, 20, 100, 70, 60};
+        auto got = sol.jobScheduling(startTime, endTime, profit);
+        if (got != 150) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> startTime = {1, 1, 1};
+        vector<int> endTime = {2, 3, 4};
+        vector<int> profit = {5, 6, 4};
+        auto got = sol.jobScheduling(startTime, endTime, profit);
+        if (got != 6) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> startTime = {4, 2, 4, 8, 2};
+        vector<int> endTime = {5, 5, 5, 10, 8};
+        vector<int> profit = {1, 2, 8, 10, 4};
+        auto got = sol.jobScheduling(startTime, endTime, profit);
+        if (got != 18) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

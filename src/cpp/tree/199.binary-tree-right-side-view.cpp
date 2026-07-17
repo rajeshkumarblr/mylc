@@ -1,3 +1,13 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 /*
  * @lc app=leetcode id=199 lang=cpp
  *
@@ -30,7 +40,6 @@
  *           -100 <= Node.val <= 100
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -39,8 +48,8 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 /**
@@ -57,7 +66,44 @@ using namespace std;
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> tree_arr{1, 2, 3, None, 5, None, 4};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.rightSideView(tree);
+        if (got != vector<int>{1, 3, 4}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> tree_arr{1, None, 3};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.rightSideView(tree);
+        if (got != vector<int>{1, 3}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> tree_arr{};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.rightSideView(tree);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

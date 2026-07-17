@@ -1,3 +1,13 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 /*
  * @lc app=leetcode id=543 lang=cpp
  *
@@ -27,7 +37,6 @@
  *           -100 <= Node.val <= 100
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -36,8 +45,8 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 /**
@@ -54,7 +63,14 @@ using namespace std;
 class Solution {
 public:
     int diameterOfBinaryTree(TreeNode* root) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

@@ -1,3 +1,12 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <cmath>
+#include <cstddef>
+#include <iostream>
+#include <map>
+#include <set>
+#include <utility>
 /*
  * @lc app=leetcode id=19 lang=cpp
  *
@@ -27,17 +36,21 @@
  *   Follow up:  Could you do this in one pass?
  */
 
-#include "../lc_test_utils.h"
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
-
+#include <vector>
 using namespace std;
+
+void printList(ListNode *head);
+
+
+void printList(ListNode *head);
+
 
 // @lc code=start
 /**
@@ -52,8 +65,68 @@ using namespace std;
  */
 class Solution {
 public:
-    ListNode* removeNthFromEnd(ListNode* head, int n) {
-        
+  ListNode *removeNthFromEnd(ListNode *head, int n) {
+    int i = 0;
+    if (head == nullptr)
+      return nullptr;
+    ListNode dummy;
+    dummy.val = 0;
+    dummy.next = head;
+
+    ListNode *front = &dummy;
+    while (front != nullptr && i <= n) {
+      front = front->next;
+      i++;
     }
+    ListNode *nd = &dummy;
+    while (front != nullptr) {
+      front = front->next;
+      nd = nd->next;
+    }
+
+    nd->next = (nd->next) ? nd->next->next : nullptr;
+
+    return dummy.next;
+  }
 };
 // @lc code=end
+
+
+
+
+
+
+
+// Helper function to create a linked list from a vector
+ListNode *createList(const vector<int> &vals) {
+  if (vals.empty())
+    return nullptr;
+  ListNode *head = new ListNode(vals[0]);
+  ListNode *current = head;
+  for (size_t i = 1; i < vals.size(); ++i) {
+    current->next = new ListNode(vals[i]);
+    current = current->next;
+  }
+  return head;
+}
+
+// Helper function to print a linked list in LeetCode format
+void printList(ListNode *head) {
+  cout << "[";
+  while (head != nullptr) {
+    cout << head->val;
+    if (head->next != nullptr) {
+      cout << ",";
+    }
+    head = head->next;
+  }
+  cout << "]" << endl;
+}
+
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

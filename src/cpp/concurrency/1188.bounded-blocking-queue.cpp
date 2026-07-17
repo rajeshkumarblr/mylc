@@ -1,11 +1,42 @@
-#include "../lc_test_utils.h"
+#include <unordered_set>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <string>
+#include <iostream>
+#include <utility>
 #include <condition_variable>
 #include <mutex>
 #include <queue>
 #include <thread>
 #include <vector>
-
 using namespace std;
+using json = nlohmann::json;
+
+bool lc_test_1188(const json &j);
+
+using json = nlohmann::json;
+
+bool lc_test_1188(const json &j);
+
+using json = nlohmann::json;
+
+bool lc_test_1188(const json &j);
+
+using json = nlohmann::json;
+
+bool lc_test_1188(const json &j);
+
+using json = nlohmann::json;
+
+vector<int> runBoundedBlockingQueue(int capacity, const vector<vector<int>> &producers, const vector<int> &consumers_calls);
+
+
 
 /*
  * @lc app=leetcode id=1188 lang=cpp
@@ -69,6 +100,65 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bool lc_test_1188(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    int capacity = tc.at("capacity").get<int>();
+
+    std::vector<std::vector<int>> producers;
+    for (const auto &p : tc.at("producers")) {
+      producers.push_back(p.get<std::vector<int>>());
+    }
+
+    std::vector<int> consumers_calls =
+        tc.at("consumers_calls").get<std::vector<int>>();
+
+    // Gather all enqueued elements for verification
+    std::vector<int> expect;
+    for (const auto &p : producers) {
+      expect.insert(expect.end(), p.begin(), p.end());
+    }
+    std::sort(expect.begin(), expect.end());
+
+    std::vector<int> got =
+        runBoundedBlockingQueue(capacity, producers, consumers_calls);
+    std::sort(got.begin(), got.end());
+
+    bool ok = (got == expect);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n    got=";
+      for (int x : got)
+        std::cout << x << " ";
+      std::cout << "\n    exp=";
+      for (int x : expect)
+        std::cout << x << " ";
+      std::cout << "\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+
+
 // Test harness wrapper function
 vector<int> runBoundedBlockingQueue(int capacity,
                                     const vector<vector<int>> &producers,
@@ -109,4 +199,70 @@ vector<int> runBoundedBlockingQueue(int capacity,
   }
 
   return dequeued_elements;
+}
+
+
+
+
+
+int main() {
+    try {
+        nlohmann::json j = nlohmann::json::parse(R"raw({
+  "cases": [
+    {
+      "capacity": 2,
+      "producers": [
+        [
+          1,
+          2,
+          3
+        ]
+      ],
+      "consumers_calls": [
+        3
+      ]
+    },
+    {
+      "capacity": 3,
+      "producers": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      "consumers_calls": [
+        2,
+        2
+      ]
+    },
+    {
+      "capacity": 1,
+      "producers": [
+        [
+          10
+        ],
+        [
+          20
+        ],
+        [
+          30
+        ]
+      ],
+      "consumers_calls": [
+        1,
+        1,
+        1
+      ]
+    }
+  ]
+})raw");
+        return lc_test_1188(j) ? 0 : 1;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

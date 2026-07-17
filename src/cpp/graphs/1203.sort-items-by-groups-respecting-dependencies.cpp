@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=1203 lang=cpp
  *
@@ -37,10 +49,9 @@
  * - beforeItems[i] contains no duplicates.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -52,7 +63,33 @@ public:
 };
 // @lc code=end
 
-vector<int> sortItems(int n, int m, vector<int> &group, vector<vector<int>> &beforeItems) {
-  Solution sol;
-  return sol.sortItems(n, m, group, beforeItems);
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        int n = 8;
+        int m = 2;
+        vector<int> group = {-1, -1, 1, 0, 0, 1, 0, -1};
+        vector<vector<int>> beforeItems = {{}, {6}, {5}, {6}, {3, 6}, {}, {}, {}};
+        auto got = sol.sortItems(n, m, group, beforeItems);
+        if (got != vector<int>{6, 3, 4, 1, 5, 2, 0, 7}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        int n = 8;
+        int m = 2;
+        vector<int> group = {-1, -1, 1, 0, 0, 1, 0, -1};
+        vector<vector<int>> beforeItems = {{}, {6}, {5}, {6}, {3}, {}, {4}, {}};
+        auto got = sol.sortItems(n, m, group, beforeItems);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=153 lang=cpp
  *
@@ -40,7 +45,6 @@
  *           nums  is sorted and rotated between  1  and  n  times.
  */
 
-#include "../lc_test_utils.h"
 #include <algorithm>
 #include <list>
 #include <queue>
@@ -49,8 +53,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-
 using namespace std;
+
 
 // 8 9 10 1 2 3 4 5
 
@@ -73,3 +77,10 @@ public:
   }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

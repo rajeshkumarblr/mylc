@@ -1,3 +1,14 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 /*
  * @lc app=leetcode id=146 lang=cpp
  *
@@ -45,7 +56,6 @@
  *          At most  2 * 10 5   calls will be made to  get  and  put .
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -54,8 +64,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class LRUCache {
@@ -65,7 +80,7 @@ public:
     }
     
     int get(int key) {
-        
+        return -1;
     }
     
     void put(int key, int value) {
@@ -80,3 +95,147 @@ public:
  * obj->put(key,value);
  */
 // @lc code=end
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": [
+        "LRUCache",
+        "put",
+        "put",
+        "get",
+        "put",
+        "get",
+        "put",
+        "get",
+        "get",
+        "get"
+      ],
+      "arguments": [
+        [
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          1
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        1,
+        null,
+        -1,
+        null,
+        -1,
+        3,
+        4
+      ]
+    },
+    {
+      "commands": [
+        "LRUCache",
+        "put",
+        "put",
+        "get",
+        "put",
+        "put",
+        "get"
+      ],
+      "arguments": [
+        [
+          2
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          2
+        ]
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        2,
+        null,
+        null,
+        -1
+      ]
+    }
+  ]
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            LRUCache* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "LRUCache") {
+                    if (obj) delete obj;
+                    obj = new LRUCache(args[i][0].get<int>());
+                } else if (cmd == "get") {
+                    int got = obj->get(args[i][0].get<int>());
+                    int exp = expected[i].get<int>();
+                    if (got != exp) { cerr << "FAIL get" << endl; return 1; }
+                } else if (cmd == "put") {
+                    obj->put(args[i][0].get<int>(), args[i][1].get<int>());
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
+}

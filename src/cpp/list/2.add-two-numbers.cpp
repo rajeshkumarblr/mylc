@@ -1,3 +1,21 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 
 /*
  * @lc app=leetcode id=2 lang=cpp
@@ -57,6 +75,7 @@
  * have leading zeros.
  */
 #include "lc_types.h"
+using namespace std;
 
 // @lc code=start
 class Solution {
@@ -78,8 +97,42 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.addTwoNumbers(l1, l2);
+    // Case 1
+    {
+        vector<int> l1_arr{2, 4, 3};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{5, 6, 4};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.addTwoNumbers(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{7, 0, 8}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

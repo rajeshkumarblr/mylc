@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <string>
+#include <iostream>
+#include <utility>
 #include <vector>
 #include <stack>
 using namespace std;
@@ -45,9 +56,84 @@ public:
 };
 // @lc code=end
 
-// Non-LeetCode wrapper for harness
-std::vector<int> dailyTemperatures(std::vector<int> temperatures) {
-    Solution sol;
-    return sol.dailyTemperatures(temperatures);
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> input = {73, 74, 75, 71, 69, 72, 76, 73};
+        auto got = sol.dailyTemperatures(input);
+        if (got != vector<int>{1, 1, 4, 2, 1, 1, 0, 0}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> input = {30, 40, 50, 60};
+        auto got = sol.dailyTemperatures(input);
+        if (got != vector<int>{1, 1, 1, 0}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> input = {30, 60, 90};
+        auto got = sol.dailyTemperatures(input);
+        if (got != vector<int>{1, 1, 0}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> input = {90, 80, 70, 60};
+        auto got = sol.dailyTemperatures(input);
+        if (got != vector<int>{0, 0, 0, 0}) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> input = {};
+        auto got = sol.dailyTemperatures(input);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> input = {42};
+        auto got = sol.dailyTemperatures(input);
+        if (got != vector<int>{0}) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

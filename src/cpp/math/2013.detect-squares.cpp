@@ -1,3 +1,9 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=2013 lang=cpp
  *
@@ -50,7 +56,6 @@
  *          At most  3000  calls  in total  will be made to  add  and  count .
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -59,8 +64,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class DetectSquares {
@@ -74,7 +84,7 @@ public:
     }
     
     int count(vector<int> point) {
-        
+        return 0;
     }
 };
 
@@ -85,3 +95,9 @@ public:
  * int param_2 = obj->count(point);
  */
 // @lc code=end
+
+
+int main() {
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

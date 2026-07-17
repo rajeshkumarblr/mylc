@@ -1,3 +1,20 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 #include <vector>
 #include "lc_types.h"
 using namespace std;
@@ -45,8 +62,62 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-ListNode* reverseList(ListNode* head) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.reverseList(head);
+    // Case 1
+    {
+        vector<int> head_arr{1, 2, 3, 4, 5};
+        ListNode* head = vec_to_list(head_arr);
+        ListNode* got_node = sol.reverseList(head);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{5, 4, 3, 2, 1}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> head_arr{1, 2};
+        ListNode* head = vec_to_list(head_arr);
+        ListNode* got_node = sol.reverseList(head);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{2, 1}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> head_arr{};
+        ListNode* head = vec_to_list(head_arr);
+        ListNode* got_node = sol.reverseList(head);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

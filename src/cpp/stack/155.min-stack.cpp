@@ -1,3 +1,9 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=155 lang=cpp
  *
@@ -41,7 +47,6 @@
  * and  getMin .
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -50,8 +55,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class MinStack {
@@ -86,3 +96,9 @@ public:
  * int param_4 = obj->getMin();
  */
 // @lc code=end
+
+
+int main() {
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

@@ -1,3 +1,14 @@
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=217 lang=cpp
  *
@@ -28,12 +39,11 @@
  *           -10 9  <= nums[i] <= 10 9
  */
 
-#include "../lc_test_utils.h"
 #include <type_traits>
 #include <unordered_set>
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -53,3 +63,10 @@ public:
   }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

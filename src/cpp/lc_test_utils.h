@@ -1,204 +1,22 @@
+// lc_test_utils.h — Shared utility declarations for list/tree operations.
+#pragma once
+
 #include "lc_types.h"
-#include <fstream>
 #include <iostream>
-#include <nlohmann/json.hpp>
 #include <optional>
-#include <stack>
 #include <vector>
 
-using json = nlohmann::json;
-
-// Problem 9: Palindrome Number
-bool isPalindrome(int x);
-bool lc_test_9(const json &j);
-
-// ===== Print helpers (minimal) =====
+// ===== Print helpers =====
 template <class T>
 std::ostream &operator<<(std::ostream &os, const std::vector<T> &v);
 
-// Problem 1: Two Sum
-std::vector<int> twoSum(std::vector<int> &nums, int target);
-bool lc_test_1(const json &j);
-
-// Problem 2: Add Two Numbers
-ListNode *addTwoNumbers(ListNode *l1, ListNode *l2);
-bool lc_test_2(const json &j);
-
-// Problem 3: Longest Substring Without Repeating Characters
-int lengthOfLongestSubstring(std::string s);
-bool lc_test_3(const json &j);
-
-int maxArea(std::vector<int> &height);
-bool lc_test_11(const json &j);
-
-// Problem 15: 3Sum
-std::vector<std::vector<int>> threeSum(std::vector<int> &nums);
-bool lc_test_15(const json &j);
-
-// Helper to create a linked list from a vector
+// ===== List helpers =====
 ListNode *vec_to_list(const std::vector<int> &v);
-// Helper to convert a linked list to a vector
 std::vector<int> list_to_vec(ListNode *head);
-// Helper to free a linked list
 void free_list(ListNode *head);
 
-// Problem 21: Merge Two Sorted Lists
-ListNode *mergeTwoLists(ListNode *l1, ListNode *l2);
-bool lc_test_21(const json &j);
-
-int trap(std::vector<int> &height);
-bool lc_test_42(const json &j);
-
-std::vector<int> inorderTraversal(TreeNode *root);
-bool lc_test_94(const json &j);
-// Problem 11: Container With Most Water
-
-// Problem 98: Validate BST
-bool isValidBST(TreeNode *root);
-bool lc_test_98(const json &j);
-
-int maxDepth(TreeNode *root);
-bool lc_test_104(const json &j);
-
-bool isBalanced(TreeNode *root);
-bool lc_test_110(const json &j);
-
-int characterReplacement(std::string s, int k);
-bool lc_test_424(const json &j);
-
-std::vector<int> findAnagrams(std::string s, std::string p);
-bool lc_test_438(const json &j);
-
-bool checkInclusion(std::string s1, std::string s2);
-bool lc_test_567(const json &j);
-
-// Problem 76: Minimum Window Substring
-std::string minWindow(std::string s, std::string t);
-bool lc_test_76(const json &j);
-
-std::vector<std::vector<int>> levelOrder(TreeNode *root);
-bool lc_test_102(const json &j);
-
-std::vector<std::vector<int>> zigzagLevelOrder(TreeNode *root);
-bool lc_test_103(const json &j);
-// Problem 100: Same Tree
-bool isSameTree(TreeNode *p, TreeNode *q);
-bool lc_test_100(const json &j);
-std::string get_testcases_json_path();
-
-// Problem 20: Valid Parentheses
-bool isValid(std::string s);
-bool lc_test_20(const json &j);
-
-// Problem 739: Daily Temperatures
-std::vector<int> dailyTemperatures(std::vector<int> temperatures);
-bool lc_test_739(const json &j);
-
-// Problem 35: Search Insert Position
-int searchInsert(std::vector<int> &nums, int target);
-bool lc_test_35(const json &j);
-
-// Problem 704: Binary Search
-bool lc_test_704(const json &j);
-
-// Problem 74: Search a 2D Matrix
-bool lc_test_74(const json &j);
-
-// Problem 33: Search in Rotated Sorted Array
-int search_33(std::vector<int> &nums, int target);
-bool lc_test_33(const json &j);
-
-// Problem 36: Valid Sudoku
-bool isValidSudoku(std::vector<std::vector<char>> &board);
-bool lc_test_36(const json &j);
-
-// Problem 160: Intersection of Two Linked Lists
-ListNode *getIntersectionNode(ListNode *headA, ListNode *headB);
-bool lc_test_160(const json &j);
-
-// Problem 200: Number of Islands
-int numIslands(std::vector<std::vector<char>> &grid);
-bool lc_test_200(const json &j);
-
-// Problem 206: Reverse Linked List
-ListNode *reverseList(ListNode *head);
-bool lc_test_206(const json &j);
-
-// Problem 226: Invert Binary Tree
-TreeNode *invertTree(TreeNode *root);
-bool lc_test_226(const json &j);
-
-// Problem 238: Product of Array Except Self
-std::vector<int> productExceptSelf(std::vector<int> &nums);
-bool lc_test_238(const json &j);
-
-// Problem 560: Subarray Sum Equals K
-int subarraySum(std::vector<int> &nums, int k);
-bool lc_test_560(const json &j);
-
-// Problem 139: Word Break
-bool wordBreak(std::string s, std::vector<std::string> &wordDict);
-bool lc_test_139(const json &j);
-
-// Problem 70: Climbing Stairs
-int climbStairs(int n);
-bool lc_test_70(const json &j);
-
-// Problem 198: House Robber
-int rob(std::vector<int> &nums);
-bool lc_test_198(const json &j);
-
-// Problem 213: House Robber II
-int rob2(std::vector<int> &nums);
-bool lc_test_213(const json &j);
-
-// Problem 347: Top K Frequent Elements
-std::vector<int> topKFrequent(std::vector<int> &nums, int k);
-bool lc_test_347(const json &j);
-
-// Helper functions for tree conversion
+// ===== Tree helpers =====
+TreeNode *build_tree_from_level_order(const std::vector<std::optional<int>> &data);
 TreeNode *vec_to_tree(const std::vector<int> &data);
 std::vector<int> tree_to_vec(TreeNode *root);
-
-// Problem 1235: Maximum Profit in Job Scheduling
-int jobScheduling(std::vector<int> &startTime, std::vector<int> &endTime,
-                  std::vector<int> &profit);
-bool lc_test_1235(const json &j);
-
-// Problem 981: Time Based Key-Value Store
-bool lc_test_981(const json &j);
-std::vector<std::string> runTimeMap(const std::vector<std::string> &cmds,
-                                    const json &args);
-
-// Problem 1188: Design Bounded Blocking Queue
-bool lc_test_1188(const json &j);
-std::vector<int> runBoundedBlockingQueue(int capacity,
-                                         const std::vector<std::vector<int>> &producers,
-                                         const std::vector<int> &consumers_calls);
-
-// Problem 1117: Building H2O
-bool lc_test_1117(const json &j);
-std::string runH2O(const std::string &input);
-
-// Problem 1242: Web Crawler Multithreaded
-bool lc_test_1242(const json &j);
-std::vector<std::string> runWebCrawler(const std::vector<std::string> &urls,
-                                       const std::vector<std::vector<int>> &edges,
-                                       const std::string &startUrl);
-
-// Problem 56: Merge Intervals
-std::vector<std::vector<int>> mergeIntervals(std::vector<std::vector<int>>& intervals);
-bool lc_test_56(const json &j);
-
-// Problem 362: Design Hit Counter
-bool lc_test_362(const json &j);
-std::vector<std::string> runHitCounter(const std::vector<std::string> &cmds,
-                                       const json &args);
-
-// Problem 215: Kth Largest Element in an Array
-int findKthLargest(std::vector<int>& nums, int k);
-bool lc_test_215(const json &j);
-
-// Problem 216: Kth Smallest Element in an Array
-int findKthSmallest(std::vector<int>& nums, int k);
-bool lc_test_216(const json &j);
+void free_tree(TreeNode *root);

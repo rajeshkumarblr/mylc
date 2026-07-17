@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=460 lang=cpp
  *
@@ -42,13 +52,32 @@
  * - At most 2 * 10^5 calls will be made to get and put.
  */
 
-#include "../lc_test_utils.h"
 #include <list>
 #include <string>
 #include <unordered_map>
 #include <vector>
-
 using namespace std;
+using json = nlohmann::json;
+
+vector<string> runLFUCache(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runLFUCache(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runLFUCache(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runLFUCache(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runLFUCache(const vector<string> &cmds, const json &args);
+
+
 
 // @lc code=start
 struct Node {
@@ -115,6 +144,21 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 vector<string> runLFUCache(const vector<string> &cmds, const json &args) {
   LFUCache *cache = nullptr;
   vector<string> res;
@@ -135,4 +179,109 @@ vector<string> runLFUCache(const vector<string> &cmds, const json &args) {
   }
   delete cache;
   return res;
+}
+
+
+
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": [
+        "LFUCache",
+        "put",
+        "put",
+        "get",
+        "put",
+        "get",
+        "get",
+        "put",
+        "get",
+        "get",
+        "get"
+      ],
+      "arguments": [
+        [
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          2
+        ],
+        [
+          3
+        ],
+        [
+          4,
+          4
+        ],
+        [
+          1
+        ],
+        [
+          3
+        ],
+        [
+          4
+        ]
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        1,
+        null,
+        -1,
+        3,
+        null,
+        -1,
+        3,
+        4
+      ]
+    }
+  ]
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            LFUCache* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "LFUCache") {
+                    if (obj) delete obj;
+                    obj = new LFUCache(args[i][0].get<int>());
+                } else if (cmd == "get") {
+                    int got = obj->get(args[i][0].get<int>());
+                    int exp = expected[i].get<int>();
+                    if (got != exp) { cerr << "FAIL get" << endl; return 1; }
+                } else if (cmd == "put") {
+                    obj->put(args[i][0].get<int>(), args[i][1].get<int>());
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

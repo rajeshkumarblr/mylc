@@ -1,3 +1,21 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 #include <limits>
 #include <climits>
 #include "lc_types.h"
@@ -73,8 +91,89 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-bool isValidBST(TreeNode* root) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.isValidBST(root);
+    // Case 1
+    {
+        vector<int> tree_arr{2, 1, 3};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.isValidBST(tree);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> tree_arr{5, 1, 4, None, None, 3, 6};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.isValidBST(tree);
+        if (got != false) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> tree_arr{};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.isValidBST(tree);
+        if (got != true) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> tree_arr{1};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.isValidBST(tree);
+        if (got != true) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> tree_arr{10, 5, 15, None, None, 6, 20};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.isValidBST(tree);
+        if (got != false) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> tree_arr{2147483647};
+        TreeNode* tree = vec_to_tree(tree_arr);
+        auto got = sol.isValidBST(tree);
+        if (got != true) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

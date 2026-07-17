@@ -1,12 +1,43 @@
-#include "../lc_test_utils.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 #include <condition_variable>
 #include <functional>
 #include <mutex>
 #include <string>
 #include <thread>
 #include <vector>
-
 using namespace std;
+using json = nlohmann::json;
+
+static bool isValidH2OSequence(const std::string &s);
+
+using json = nlohmann::json;
+
+static bool isValidH2OSequence(const std::string &s);
+
+using json = nlohmann::json;
+
+static bool isValidH2OSequence(const std::string &s);
+
+using json = nlohmann::json;
+
+static bool isValidH2OSequence(const std::string &s);
+
+using json = nlohmann::json;
+
+string runH2O(const string &input);
+
+
 
 /*
  * @lc app=leetcode id=1117 lang=cpp
@@ -112,6 +143,59 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+static bool isValidH2OSequence(const std::string &s) {
+  if (s.length() % 3 != 0)
+    return false;
+  for (size_t i = 0; i < s.length(); i += 3) {
+    int h_count = 0;
+    int o_count = 0;
+    for (int j = 0; j < 3; ++j) {
+      if (s[i + j] == 'H')
+        h_count++;
+      else if (s[i + j] == 'O')
+        o_count++;
+    }
+    if (h_count != 2 || o_count != 1)
+      return false;
+  }
+  return true;
+}
+
+bool lc_test_1117(const json &j) {
+  bool all = true;
+  size_t idx = 0;
+  for (const auto &tc : j.at("cases")) {
+    std::string input = tc.at("input").get<std::string>();
+    std::string got = runH2O(input);
+    bool ok = isValidH2OSequence(got);
+    if (!ok) {
+      std::cout << "  Case " << (++idx) << ": FAIL\n    input=\"" << input
+                << "\"\n    got=\"" << got << "\"\n";
+    } else {
+      ++idx;
+    }
+    all &= ok;
+  }
+  return all;
+}
+
+
+
 // Test harness wrapper function
 string runH2O(const string &input) {
   H2O h2o;
@@ -146,4 +230,39 @@ string runH2O(const string &input) {
   cout << "output: " << output << endl;
 
   return output;
+}
+
+
+
+
+
+int main() {
+    try {
+        nlohmann::json j = nlohmann::json::parse(R"raw({
+  "cases": [
+    {
+      "input": "OOHHHH"
+    },
+    {
+      "input": "HOH"
+    },
+    {
+      "input": "HOHHOH"
+    },
+    {
+      "input": "HHHHHHHHHHOOOOO"
+    },
+    {
+      "input": "OHH"
+    },
+    {
+      "input": "HOHOHHOHOHHH"
+    }
+  ]
+})raw");
+        return lc_test_1117(j) ? 0 : 1;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

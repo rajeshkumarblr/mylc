@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 #include <vector>
 using namespace std;
 
@@ -56,8 +68,69 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int searchInsert(std::vector<int>& nums, int target) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.searchInsert(nums, target);
+    // Case 1
+    {
+        vector<int> nums = {1, 3, 5, 6};
+        int target = 5;
+        auto got = sol.searchInsert(nums, target);
+        if (got != 2) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {1, 3, 5, 6};
+        int target = 2;
+        auto got = sol.searchInsert(nums, target);
+        if (got != 1) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> nums = {1, 3, 5, 6};
+        int target = 7;
+        auto got = sol.searchInsert(nums, target);
+        if (got != 4) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> nums = {1, 3, 5, 6};
+        int target = 0;
+        auto got = sol.searchInsert(nums, target);
+        if (got != 0) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

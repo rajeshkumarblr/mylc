@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 #include <vector>
 #include <unordered_map>
 using namespace std;
@@ -53,8 +64,49 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int subarraySum(std::vector<int>& nums, int k) {
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.subarraySum(nums, k);
+    // Case 1
+    {
+        vector<int> nums = {1, 1, 1};
+        int k = 2;
+        auto got = sol.subarraySum(nums, k);
+        if (got != 2) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {1, 2, 3};
+        int k = 3;
+        auto got = sol.subarraySum(nums, k);
+        if (got != 2) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

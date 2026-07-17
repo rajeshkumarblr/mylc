@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=76 lang=cpp
  *
@@ -117,8 +127,59 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-string minWindow(string s, string t) {
-  Solution sol;
-  return sol.minWindow(s, t);
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        string s = "ADOBECODEBANC";
+        string t = "ABC";
+        auto got = sol.minWindow(s, t);
+        if (got != "BANC") {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string s = "a";
+        string t = "a";
+        auto got = sol.minWindow(s, t);
+        if (got != "a") {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        string s = "a";
+        string t = "aa";
+        auto got = sol.minWindow(s, t);
+        if (got != "") {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

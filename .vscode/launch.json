@@ -32,17 +32,24 @@
       "type": "cppdbg",
       "request": "launch",
       "preLaunchTask": "build-cpp-dbg",
-      "program": "${workspaceFolder}/build/cpp/runner.dbg",
+      "program": "${workspaceFolder}/build/cpp/debug_target",
       "args": [],
       "stopAtEntry": false,
       "cwd": "${workspaceFolder}",
       "environment": [
         { "name": "LC_LANG", "value": "cpp" },
-        { "name": "LC_PROB_NUM", "value": "${input:lcProbNum}" }
+        { "name": "LC_PROB_NUM", "value": "${input:lcProbNum}" },
+        { "name": "DEBUGINFOD_URLS", "value": "" }
       ],
       "externalConsole": false,
       "MIMode": "gdb",
+      "miDebuggerArgs": "-iex \"set debuginfod enabled off\"",
       "setupCommands": [
+        {
+          "description": "Disable debuginfod",
+          "text": "-gdb-set debuginfod enabled off",
+          "ignoreFailures": true
+        },
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",
@@ -60,14 +67,22 @@
       "type": "cppdbg",
       "request": "launch",
       "preLaunchTask": "build-active-cpp-standalone",
-      "program": "${workspaceFolder}/build/cpp/standalone.dbg",
+      "program": "${workspaceFolder}/build/cpp/debug_target",
       "args": [],
       "stopAtEntry": false,
-      "cwd": "${fileDirname}",
-      "environment": [],
+      "cwd": "${workspaceFolder}",
+      "environment": [
+        { "name": "DEBUGINFOD_URLS", "value": "" }
+      ],
       "externalConsole": false,
       "MIMode": "gdb",
+      "miDebuggerArgs": "-iex \"set debuginfod enabled off\"",
       "setupCommands": [
+        {
+          "description": "Disable debuginfod",
+          "text": "-gdb-set debuginfod enabled off",
+          "ignoreFailures": true
+        },
         {
           "description": "Enable pretty-printing for gdb",
           "text": "-enable-pretty-printing",

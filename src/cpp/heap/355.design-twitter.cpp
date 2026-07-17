@@ -1,3 +1,9 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=355 lang=cpp
  *
@@ -53,7 +59,6 @@
  *          A user cannot follow himself.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -62,8 +67,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class Twitter {
@@ -98,3 +108,41 @@ public:
  * obj->unfollow(followerId,followeeId);
  */
 // @lc code=end
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": []
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            Twitter* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "Twitter") {
+                    if (obj) delete obj;
+                    obj = new Twitter();
+                } else if (cmd == "postTweet") {
+                    obj->postTweet(args[i][0].get<int>(), args[i][1].get<int>());
+                } else if (cmd == "getNewsFeed") {
+                    vector<int> got = obj->getNewsFeed(args[i][0].get<int>());
+                    vector<int> exp = expected[i].get<vector<int>>();
+                    if (got != exp) { cerr << "FAIL getNewsFeed" << endl; return 1; }
+                } else if (cmd == "follow") {
+                    obj->follow(args[i][0].get<int>(), args[i][1].get<int>());
+                } else if (cmd == "unfollow") {
+                    obj->unfollow(args[i][0].get<int>(), args[i][1].get<int>());
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
+}

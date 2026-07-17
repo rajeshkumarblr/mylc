@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=1143 lang=cpp
  *
@@ -33,7 +38,6 @@
  *           text1  and  text2  consist of only lowercase English characters.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -42,14 +46,21 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     int longestCommonSubsequence(string text1, string text2) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

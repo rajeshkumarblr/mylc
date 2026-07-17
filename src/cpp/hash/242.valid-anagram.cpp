@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=242 lang=cpp
  *
@@ -23,12 +33,11 @@
  * adapt your solution to such a case?
  */
 
-#include "../lc_test_utils.h"
 #include <string>
 #include <unordered_map>
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -60,23 +69,52 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Backup approach for Unicode characters (as discussed in follow-up)
 class Solution_Map {
 public:
-  bool isAnagram(string s, string t) {
-    unordered_map<char, int> counts;
-    if (s.length() != t.length()) {
-      return false;
-    }
-    for (const auto ch : s) {
-      counts[ch]++;
-    }
-    for (const auto ch : t) {
-      counts[ch]--;
-      if (counts[ch] < 0) {
-        return false;
-      }
-    }
-    return true;
-  }
 };
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        string s = "anagram";
+        string t = "nagaram";
+        auto got = sol.isAnagram(s, t);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string s = "rat";
+        string t = "car";
+        auto got = sol.isAnagram(s, t);
+        if (got != false) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

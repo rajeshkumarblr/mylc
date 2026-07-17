@@ -1,3 +1,13 @@
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=139 lang=cpp
  *
@@ -92,7 +102,49 @@ public:
 };
 // @lc code=end
 
-bool wordBreak(string s, vector<string>& wordDict) {
+
+int main() {
     Solution sol;
-    return sol.wordBreak(s, wordDict);
+    // Case 1
+    {
+        string s = "leetcode";
+        vector<string> wordDict = {"leet", "code"};
+        auto got = sol.wordBreak(s, wordDict);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string s = "applepenapple";
+        vector<string> wordDict = {"apple", "pen"};
+        auto got = sol.wordBreak(s, wordDict);
+        if (got != true) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        string s = "catsandog";
+        vector<string> wordDict = {"cats", "dog", "sand", "and", "cat"};
+        auto got = sol.wordBreak(s, wordDict);
+        if (got != false) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        string s = "aaaaaaa";
+        vector<string> wordDict = {"aaaa", "aaa"};
+        auto got = sol.wordBreak(s, wordDict);
+        if (got != true) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <utility>
 /*
  * @lc app=leetcode id=42 lang=cpp
  *
@@ -45,8 +56,8 @@
 #include <vector>
 #include <iostream>
 #include "lc_test_utils.h"
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -117,9 +128,84 @@ public:
 // @lc code=end
 
 
-// Non-LeetCode wrapper for harness
-int trap(std::vector<int>& height) {
-    Solution sol;
-    return sol.trap(height);
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> input = {0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
+        auto got = sol.trap(input);
+        if (got != 6) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> input = {4, 2, 0, 3, 2, 5};
+        auto got = sol.trap(input);
+        if (got != 9) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> input = {1, 2, 3, 4, 5};
+        auto got = sol.trap(input);
+        if (got != 0) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> input = {5, 4, 1, 2};
+        auto got = sol.trap(input);
+        if (got != 1) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> input = {2, 0, 2};
+        auto got = sol.trap(input);
+        if (got != 2) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> input = {};
+        auto got = sol.trap(input);
+        if (got != 0) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=424 lang=cpp
  *
@@ -116,10 +126,81 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int characterReplacement(string s, int k) {
+
+
+
+
+
+
+
+int main() {
     Solution sol;
-    return sol.characterReplacement(std::move(s), k);
+    // Case 1
+    {
+        string input = "AABABBA";
+        int k = 1;
+        auto got = sol.characterReplacement(input, k);
+        if (got != 4) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string input = "ABAB";
+        int k = 2;
+        auto got = sol.characterReplacement(input, k);
+        if (got != 4) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        string input = "AAAA";
+        int k = 2;
+        auto got = sol.characterReplacement(input, k);
+        if (got != 4) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        string input = "ABCDE";
+        int k = 1;
+        auto got = sol.characterReplacement(input, k);
+        if (got != 2) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        string input = "AABABBA";
+        int k = 2;
+        auto got = sol.characterReplacement(input, k);
+        if (got != 5) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }
-
-

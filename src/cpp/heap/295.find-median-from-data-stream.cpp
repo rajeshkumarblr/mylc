@@ -1,3 +1,9 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=295 lang=cpp
  *
@@ -45,7 +51,6 @@
  * [0, 100] , how would you optimize your solution?
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -54,8 +59,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class MedianFinder {
@@ -80,3 +90,70 @@ public:
  * double param_2 = obj->findMedian();
  */
 // @lc code=end
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": [
+        "MedianFinder",
+        "addNum",
+        "addNum",
+        "findMedian",
+        "addNum",
+        "findMedian"
+      ],
+      "arguments": [
+        [],
+        [
+          1
+        ],
+        [
+          2
+        ],
+        [],
+        [
+          3
+        ],
+        []
+      ],
+      "expected": [
+        null,
+        null,
+        null,
+        1.5,
+        null,
+        2.0
+      ]
+    }
+  ]
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            MedianFinder* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "MedianFinder") {
+                    if (obj) delete obj;
+                    obj = new MedianFinder();
+                } else if (cmd == "addNum") {
+                    obj->addNum(args[i][0].get<int>());
+                } else if (cmd == "findMedian") {
+                    double got = obj->findMedian();
+                    double exp = expected[i].get<double>();
+                    if (fabs(got - exp) > 1e-9) { cerr << "FAIL findMedian" << endl; return 1; }
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
+}

@@ -1,8 +1,24 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 #include <vector>
 #include <queue>
 #include "lc_types.h"
-
 using namespace std;
+
 /*
  * @lc app=leetcode id=100 lang=cpp
  *
@@ -66,9 +82,90 @@ public:
 };
 // @lc code=end
 
-// Non-LeetCode wrapper for harness
-bool isSameTree(TreeNode* p, TreeNode* q) {
-    Solution sol;
-    return sol.isSameTree(p, q);
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> p_arr{};
+        TreeNode* p = vec_to_tree(p_arr);
+        vector<int> q_arr{};
+        TreeNode* q = vec_to_tree(q_arr);
+        auto got = sol.isSameTree(p, q);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> p_arr{1, 2, 3};
+        TreeNode* p = vec_to_tree(p_arr);
+        vector<int> q_arr{1, 2, 3};
+        TreeNode* q = vec_to_tree(q_arr);
+        auto got = sol.isSameTree(p, q);
+        if (got != true) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> p_arr{1, 2};
+        TreeNode* p = vec_to_tree(p_arr);
+        vector<int> q_arr{1, None, 2};
+        TreeNode* q = vec_to_tree(q_arr);
+        auto got = sol.isSameTree(p, q);
+        if (got != false) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> p_arr{1, 2, 1};
+        TreeNode* p = vec_to_tree(p_arr);
+        vector<int> q_arr{1, 1, 2};
+        TreeNode* q = vec_to_tree(q_arr);
+        auto got = sol.isSameTree(p, q);
+        if (got != false) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> p_arr{};
+        TreeNode* p = vec_to_tree(p_arr);
+        vector<int> q_arr{1};
+        TreeNode* q = vec_to_tree(q_arr);
+        auto got = sol.isSameTree(p, q);
+        if (got != false) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

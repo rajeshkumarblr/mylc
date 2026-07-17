@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=307 lang=cpp
  *
@@ -37,11 +49,30 @@
  * - At most 3 * 10^4 calls will be made to update and sumRange.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
-
 using namespace std;
+using json = nlohmann::json;
+
+vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args);
+
+
 
 // @lc code=start
 class NumArray {
@@ -60,6 +91,21 @@ public:
     }
 };
 // @lc code=end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args) {
     NumArray *na = nullptr;
@@ -82,4 +128,78 @@ vector<string> runRangeSumQuery(const vector<string> &cmds, const json &args) {
     }
     delete na;
     return res;
+}
+
+
+
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": [
+        "NumArray",
+        "sumRange",
+        "update",
+        "sumRange"
+      ],
+      "arguments": [
+        [
+          [
+            1,
+            3,
+            5
+          ]
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "expected": [
+        null,
+        9,
+        null,
+        8
+      ]
+    }
+  ]
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            NumArray* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "NumArray") {
+                    if (obj) delete obj;
+                    auto temp_nums = args[i][0].get<vector<int>>();
+                    obj = new NumArray(temp_nums);
+                } else if (cmd == "update") {
+                    obj->update(args[i][0].get<int>(), args[i][1].get<int>());
+                } else if (cmd == "sumRange") {
+                    int got = obj->sumRange(args[i][0].get<int>(), args[i][1].get<int>());
+                    int exp = expected[i].get<int>();
+                    if (got != exp) { cerr << "FAIL sumRange" << endl; return 1; }
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

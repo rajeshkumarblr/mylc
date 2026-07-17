@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=268 lang=cpp
  *
@@ -37,7 +42,6 @@
  * complexity and  O(n)  runtime complexity?
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -46,14 +50,48 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     int missingNumber(vector<int>& nums) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> nums = {3, 0, 1};
+        auto got = sol.missingNumber(nums);
+        if (got != 2) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {0, 1};
+        auto got = sol.missingNumber(nums);
+        if (got != 2) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> nums = {9, 6, 4, 2, 3, 5, 7, 0, 1};
+        auto got = sol.missingNumber(nums);
+        if (got != 8) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

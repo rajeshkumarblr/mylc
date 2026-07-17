@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 #include <unordered_map>
 #include <vector>
 using namespace std;
@@ -78,8 +89,49 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-std::vector<int> twoSum(std::vector<int> &nums, int target) {
-  Solution sol;
-  return sol.twoSum(nums, target);
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> input = {2, 7, 11, 15};
+        int target = 9;
+        auto got = sol.twoSum(input, target);
+        if (got != vector<int>{0, 1}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> input = {3, 2, 4};
+        int target = 6;
+        auto got = sol.twoSum(input, target);
+        if (got != vector<int>{1, 2}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

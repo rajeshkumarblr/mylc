@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <list>
+#include <cmath>
+#include <map>
+#include <vector>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=3 lang=cpp
  *
@@ -79,8 +89,47 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int lengthOfLongestSubstring(string s) {
-  Solution sol;
-  return sol.lengthOfLongestSubstring(std::move(s));
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        string input = "abcabcbb";
+        auto got = sol.lengthOfLongestSubstring(input);
+        if (got != 3) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string input = "bbbbb";
+        auto got = sol.lengthOfLongestSubstring(input);
+        if (got != 1) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

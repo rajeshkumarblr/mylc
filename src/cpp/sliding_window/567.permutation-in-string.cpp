@@ -1,3 +1,13 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <stack>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=567 lang=cpp
  *
@@ -104,9 +114,80 @@ public:
 };
 // @lc code=end
 
-// Non-LeetCode wrapper for harness
-bool checkInclusion(string s1, string s2) {
-    Solution sol;
-    return sol.checkInclusion(std::move(s1), std::move(s2));
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        string s1 = "ab";
+        string s2 = "eidbaooo";
+        auto got = sol.checkInclusion(s1, s2);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        string s1 = "ab";
+        string s2 = "eidboaoo";
+        auto got = sol.checkInclusion(s1, s2);
+        if (got != false) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        string s1 = "adc";
+        string s2 = "dcda";
+        auto got = sol.checkInclusion(s1, s2);
+        if (got != true) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        string s1 = "a";
+        string s2 = "a";
+        auto got = sol.checkInclusion(s1, s2);
+        if (got != true) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        string s1 = "a";
+        string s2 = "b";
+        auto got = sol.checkInclusion(s1, s2);
+        if (got != false) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

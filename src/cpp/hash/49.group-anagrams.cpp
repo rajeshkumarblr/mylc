@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=49 lang=cpp
  *
@@ -31,7 +36,6 @@
  *           strs[i]  consists of lowercase English letters.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -40,14 +44,48 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     vector<vector<string>> groupAnagrams(vector<string>& strs) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<string> strs = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        auto got = sol.groupAnagrams(strs);
+        if (got != vector<vector<string>>{{"bat"}, {"nat", "tan"}, {"ate", "eat", "tea"}}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<string> strs = {""};
+        auto got = sol.groupAnagrams(strs);
+        if (got != vector<vector<string>>{{""}}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<string> strs = {"a"};
+        auto got = sol.groupAnagrams(strs);
+        if (got != vector<vector<string>>{{"a"}}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

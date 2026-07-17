@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=198 lang=cpp
  *
@@ -58,7 +70,7 @@
  */
 #include "string.h"
 #include <vector>
-using namespace std; 
+using namespace std;
 
 // @lc code=start
 class Solution {
@@ -86,9 +98,102 @@ public:
 };
 // @lc code=end
 
-// Non-LeetCode wrapper for harness
-int rob(std::vector<int>& nums) {
-    Solution sol;
-    return sol.rob(nums);
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> nums = {1};
+        auto got = sol.rob(nums);
+        if (got != 1) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {2, 1};
+        auto got = sol.rob(nums);
+        if (got != 2) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> nums = {1, 2};
+        auto got = sol.rob(nums);
+        if (got != 2) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> nums = {2, 7, 9, 3, 1};
+        auto got = sol.rob(nums);
+        if (got != 12) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> nums = {1, 2, 3, 1};
+        auto got = sol.rob(nums);
+        if (got != 4) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> nums = {5, 1, 3, 9};
+        auto got = sol.rob(nums);
+        if (got != 14) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    // Case 7
+    {
+        vector<int> nums = {2, 1, 1, 2};
+        auto got = sol.rob(nums);
+        if (got != 4) {
+            cerr << "FAIL case 7" << endl;
+            return 1;
+        }
+    }
+    // Case 8
+    {
+        vector<int> nums = {5, 5, 10, 100, 10, 5};
+        auto got = sol.rob(nums);
+        if (got != 110) {
+            cerr << "FAIL case 8" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

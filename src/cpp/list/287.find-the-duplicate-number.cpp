@@ -1,3 +1,13 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 /*
  * @lc app=leetcode id=287 lang=cpp
  *
@@ -35,7 +45,6 @@
  *          Can you solve the problem in linear runtime complexity?
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -44,14 +53,21 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

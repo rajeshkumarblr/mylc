@@ -307,28 +307,144 @@ EOT
 fi
 case "$LANG" in cpp|go|java|python) : ;; *) die "Unsupported language: $LANG (use cpp|go|java|python)";; esac
 print_lang "$LANG"
-ensure_runner "$LANG"
-BIN="$(runner_path "$LANG")"
 
-# Prepare env for runner: set only what's requested, keep existing defaults from .env
-if [[ -n "$CATEGORY" ]]; then
-  export LC_CATEGORY="$CATEGORY"
-  unset LC_PROB_NUM || true
-  echo "Mode: category='$LC_CATEGORY'"
-  echo "→ $BIN"
-  exec "$BIN"
-elif [[ $RUN_ALL -eq 1 ]]; then
-  export LC_PROB_NUM="all"
-  unset LC_CATEGORY || true
-  echo "Mode: run all (LC_PROB_NUM=$LC_PROB_NUM)"
-  echo "→ $BIN"
-  exec "$BIN"
-elif [[ -n "$PROB" ]]; then
-  problem_exists_in_tests "$PROB" || die "Problem $PROB not found in testcases.json"
-  has_impl "$LANG" "$PROB" || die "Problem $PROB is not implemented for language '$LANG'"
-  export LC_PROB_NUM="$PROB"
-  unset LC_CATEGORY || true
-  echo "Mode: single problem $LC_PROB_NUM"
-  echo "→ $BIN"
-  exec "$BIN"
+if [[ "$LANG" == "cpp" ]]; then
+  if [[ -n "$PROB" ]]; then
+    problem_exists_in_tests "$PROB" || die "Problem $PROB not found in testcases.json"
+    has_impl "cpp" "$PROB" || die "Problem $PROB is not implemented for language 'cpp'"
+    
+    SRC_FILE=""
+    for d in backtracking binary_search bit_manipulation concurrency dp graphs greedy hash heap intervals list math misc prefix_sum sliding_window stack tree trie two_pointer; do
+      shopt -s nullglob
+      MATCHES=("$ROOT/src/cpp/$d/${PROB}."*.cpp)
+      shopt -u nullglob
+      if [[ ${#MATCHES[@]} -gt 0 ]]; then
+        SRC_FILE="${MATCHES[0]}"
+        break
+      fi
+    done
+    if [[ -z "$SRC_FILE" ]]; then
+      die "Problem $PROB C++ source file not found under src/cpp/"
+    fi
+    
+    REL_SRC="${SRC_FILE#$ROOT/src/cpp/}"
+    P_VAL="${REL_SRC%.cpp}"
+    
+    echo "Building standalone C++ binary for problem $PROB..."
+    make -C "$ROOT/src/cpp" "build-one" "P=$P_VAL" || die "Build failed for C++ problem $PROB"
+    
+    BIN="$ROOT/build/cpp/$P_VAL"
+    echo "Running standalone binary: $BIN"
+    exec "$BIN"
+  elif [[ $RUN_ALL -eq 1 ]]; then
+    echo "Building all C++ standalone binaries..."
+    make -C "$ROOT/src/cpp" build-all || die "Build all failed"
+    echo "Running all C++ solutions:"
+    SUCCESS=0
+    TOTAL=0
+    FAILED_PROBS=()
+    
+    shopt -s nullglob
+    for d in backtracking binary_search bit_manipulation concurrency dp graphs greedy hash heap intervals list math misc prefix_sum sliding_window stack tree trie two_pointer; do
+      for bin in "$ROOT/build/cpp/$d/"*; do
+        if [[ -f "$bin" && -x "$bin" && ! "$bin" =~ \.o$ ]]; then
+          TOTAL=$((TOTAL+1))
+          PROB_NAME=$(basename "$bin")
+          echo -n "Running $d/$PROB_NAME... "
+          if "$bin" >/dev/null 2>&1; then
+            echo "PASS"
+            SUCCESS=$((SUCCESS+1))
+          else
+            echo "FAIL"
+            FAILED_PROBS+=("$d/$PROB_NAME")
+          fi
+        fi
+      done
+    done
+    shopt -u nullglob
+    
+    echo "----------------------------------------"
+    echo "Result: $SUCCESS/$TOTAL passed"
+    if [[ ${#FAILED_PROBS[@]} -gt 0 ]]; then
+      echo "Failed problems:"
+      for p in "${FAILED_PROBS[@]}"; do
+        echo "  - $p"
+      done
+      exit 1
+    fi
+    exit 0
+  elif [[ -n "$CATEGORY" ]]; then
+    echo "Building C++ standalone binaries for category '$CATEGORY'..."
+    shopt -s nullglob
+    SRCS=("$ROOT/src/cpp/$CATEGORY/"*.cpp)
+    shopt -u nullglob
+    if [[ ${#SRCS[@]} -eq 0 ]]; then
+      die "No C++ problems found in category '$CATEGORY'"
+    fi
+    
+    for src in "${SRCS[@]}"; do
+      REL_SRC="${src#$ROOT/src/cpp/}"
+      P_VAL="${REL_SRC%.cpp}"
+      make -C "$ROOT/src/cpp" "build-one" "P=$P_VAL" || die "Build failed for $P_VAL"
+    done
+    
+    echo "Running C++ solutions in category '$CATEGORY':"
+    SUCCESS=0
+    TOTAL=0
+    FAILED_PROBS=()
+    shopt -s nullglob
+    for bin in "$ROOT/build/cpp/$CATEGORY/"*; do
+      if [[ -f "$bin" && -x "$bin" && ! "$bin" =~ \.o$ ]]; then
+        TOTAL=$((TOTAL+1))
+        PROB_NAME=$(basename "$bin")
+        echo -n "Running $PROB_NAME... "
+        if "$bin" >/dev/null 2>&1; then
+          echo "PASS"
+          SUCCESS=$((SUCCESS+1))
+        else
+          echo "FAIL"
+          FAILED_PROBS+=("$PROB_NAME")
+        fi
+      fi
+    done
+    shopt -u nullglob
+    
+    echo "----------------------------------------"
+    echo "Result: $SUCCESS/$TOTAL passed"
+    if [[ ${#FAILED_PROBS[@]} -gt 0 ]]; then
+      echo "Failed problems:"
+      for p in "${FAILED_PROBS[@]}"; do
+        echo "  - $p"
+      done
+      exit 1
+    fi
+    exit 0
+  fi
+else
+  # Non-C++ language behavior
+  ensure_runner "$LANG"
+  BIN="$(runner_path "$LANG")"
+
+  # Prepare env for runner: set only what's requested, keep existing defaults from .env
+  if [[ -n "$CATEGORY" ]]; then
+    export LC_CATEGORY="$CATEGORY"
+    unset LC_PROB_NUM || true
+    echo "Mode: category='$LC_CATEGORY'"
+    echo "→ $BIN"
+    exec "$BIN"
+  elif [[ $RUN_ALL -eq 1 ]]; then
+    export LC_PROB_NUM="all"
+    unset LC_CATEGORY || true
+    echo "Mode: run all (LC_PROB_NUM=$LC_PROB_NUM)"
+    echo "→ $BIN"
+    exec "$BIN"
+  elif [[ -n "$PROB" ]]; then
+    problem_exists_in_tests "$PROB" || die "Problem $PROB not found in testcases.json"
+    has_impl "$LANG" "$PROB" || die "Problem $PROB is not implemented for language '$LANG'"
+    export LC_PROB_NUM="$PROB"
+    unset LC_CATEGORY || true
+    echo "Mode: single problem $LC_PROB_NUM"
+    echo "→ $BIN"
+    exec "$BIN"
+  fi
 fi

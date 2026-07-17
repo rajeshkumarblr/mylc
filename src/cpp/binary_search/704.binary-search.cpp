@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=704 lang=cpp
  *
@@ -27,7 +32,6 @@
  *           nums  is sorted in ascending order.
  */
 
-#include "../lc_test_utils.h"
 #include <algorithm>
 #include <list>
 #include <queue>
@@ -36,8 +40,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -60,8 +64,49 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-int search(std::vector<int> &nums, int target) {
-  Solution sol;
-  return sol.search(nums, target);
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> nums = {-1, 0, 3, 5, 9, 12};
+        int target = 9;
+        auto got = sol.search(nums, target);
+        if (got != 4) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {-1, 0, 3, 5, 9, 12};
+        int target = 2;
+        auto got = sol.search(nums, target);
+        if (got != -1) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

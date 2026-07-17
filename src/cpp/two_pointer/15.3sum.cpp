@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=15 lang=cpp
  *
@@ -35,7 +40,6 @@
  *           -10 5  <= nums[i] <= 10 5
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -44,14 +48,57 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> nums = {-1, 0, 1, 2, -1, -4};
+        auto got = sol.threeSum(nums);
+        if (got != vector<vector<int>>{{-1, -1, 2}, {-1, 0, 1}}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {0, 1, 1};
+        auto got = sol.threeSum(nums);
+        if (got != vector<vector<int>>{}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> nums = {0, 0, 0};
+        auto got = sol.threeSum(nums);
+        if (got != vector<vector<int>>{{0, 0, 0}}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> nums = {-2, 0, 1, 1, 2};
+        auto got = sol.threeSum(nums);
+        if (got != vector<vector<int>>{{-2, 0, 2}, {-2, 1, 1}}) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

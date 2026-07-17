@@ -1,3 +1,9 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=211 lang=cpp
  *
@@ -41,7 +47,6 @@
  *          At most  10 4   calls will be made to  addWord  and  search .
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -50,8 +55,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class WordDictionary {
@@ -76,3 +86,37 @@ public:
  * bool param_2 = obj->search(word);
  */
 // @lc code=end
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": []
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            WordDictionary* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "WordDictionary") {
+                    if (obj) delete obj;
+                    obj = new WordDictionary();
+                } else if (cmd == "addWord") {
+                    obj->addWord(args[i][0].get<string>());
+                } else if (cmd == "search") {
+                    bool got = obj->search(args[i][0].get<string>());
+                    bool exp = expected[i].get<bool>();
+                    if (got != exp) { cerr << "FAIL search" << endl; return 1; }
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
+}

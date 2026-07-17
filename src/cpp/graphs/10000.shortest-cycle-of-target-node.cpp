@@ -1,3 +1,14 @@
+#include <unordered_set>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=10000 lang=cpp
  *
@@ -24,11 +35,10 @@
  * - 0 <= target < n
  */
 
-#include "../lc_test_utils.h"
 #include <queue>
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -74,7 +84,54 @@ public:
 };
 // @lc code=end
 
-int findShortestCycle(vector<vector<int>> &adj, int target) {
-  Solution sol;
-  return sol.findShortestCycle(adj, target);
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        int n = 4;
+        vector<vector<int>> edges = {{0, 1}, {1, 2}, {2, 0}, {2, 3}};
+        int target = 0;
+        vector<vector<int>> adj(n);
+        for (const auto &e : edges) {
+            adj[e[0]].push_back(e[1]);
+        }
+        auto got = sol.findShortestCycle(adj, target);
+        if (got != 3) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        int n = 4;
+        vector<vector<int>> edges = {{0, 1}, {1, 2}, {2, 3}};
+        int target = 0;
+        vector<vector<int>> adj(n);
+        for (const auto &e : edges) {
+            adj[e[0]].push_back(e[1]);
+        }
+        auto got = sol.findShortestCycle(adj, target);
+        if (got != -1) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        int n = 3;
+        vector<vector<int>> edges = {{0, 1}, {1, 0}, {1, 2}, {2, 1}};
+        int target = 1;
+        vector<vector<int>> adj(n);
+        for (const auto &e : edges) {
+            adj[e[0]].push_back(e[1]);
+        }
+        auto got = sol.findShortestCycle(adj, target);
+        if (got != 2) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

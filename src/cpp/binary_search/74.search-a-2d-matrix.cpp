@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=74 lang=cpp
  *
@@ -29,7 +34,6 @@
  *           -10 4  <= matrix[i][j], target <= 10 4
  */
 
-#include "../lc_test_utils.h"
 #include <algorithm>
 #include <list>
 #include <queue>
@@ -38,8 +42,8 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -69,8 +73,49 @@ public:
 };
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Non-LeetCode wrapper for harness
-bool searchMatrix(std::vector<std::vector<int>> &matrix, int target) {
-  Solution sol;
-  return sol.searchMatrix(matrix, target);
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<vector<int>> matrix = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
+        int target = 3;
+        auto got = sol.searchMatrix(matrix, target);
+        if (got != true) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<vector<int>> matrix = {{1, 3, 5, 7}, {10, 11, 16, 20}, {23, 30, 34, 60}};
+        int target = 13;
+        auto got = sol.searchMatrix(matrix, target);
+        if (got != false) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }

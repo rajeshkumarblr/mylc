@@ -1,3 +1,9 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=703 lang=cpp
  *
@@ -54,7 +60,6 @@
  *          At most  10 4   calls will be made to  add .
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -63,8 +68,13 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+using json = nlohmann::json;
+
 
 // @lc code=start
 class KthLargest {
@@ -84,3 +94,9 @@ public:
  * int param_1 = obj->add(val);
  */
 // @lc code=end
+
+
+int main() {
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

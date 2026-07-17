@@ -1,3 +1,8 @@
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=56 lang=cpp
  *
@@ -30,7 +35,6 @@
  *           0 <= start i  <= end i  <= 10 4
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -39,14 +43,48 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<vector<int>> input = {{1, 3}, {2, 6}, {8, 10}, {15, 18}};
+        auto got = sol.merge(input);
+        if (got != vector<vector<int>>{{1, 6}, {8, 10}, {15, 18}}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<vector<int>> input = {{1, 4}, {4, 5}};
+        auto got = sol.merge(input);
+        if (got != vector<vector<int>>{{1, 5}}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<vector<int>> input = {{1, 4}, {5, 6}};
+        auto got = sol.merge(input);
+        if (got != vector<vector<int>>{{1, 4}, {5, 6}}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

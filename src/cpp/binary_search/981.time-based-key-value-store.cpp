@@ -1,8 +1,38 @@
-#include "../lc_test_utils.h"
+#include <unordered_set>
+#include <queue>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <nlohmann/json.hpp>
+#include <iostream>
+#include <utility>
 #include <string>
 #include <unordered_map>
 #include <vector>
 using namespace std;
+using json = nlohmann::json;
+
+vector<string> runTimeMap(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runTimeMap(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runTimeMap(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runTimeMap(const vector<string> &cmds, const json &args);
+
+using json = nlohmann::json;
+
+vector<string> runTimeMap(const vector<string> &cmds, const json &args);
+
 
 /*
  * @lc app=leetcode id=981 lang=cpp
@@ -99,6 +129,21 @@ public:
  */
 // @lc code=end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Wrapper for test harness
 vector<string> runTimeMap(const vector<string> &cmds, const json &args) {
   TimeMap *tm = nullptr;
@@ -122,4 +167,91 @@ vector<string> runTimeMap(const vector<string> &cmds, const json &args) {
   }
   delete tm;
   return res;
+}
+
+
+
+
+
+int main() {
+    try {
+        json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": [
+        "TimeMap",
+        "set",
+        "get",
+        "get",
+        "set",
+        "get",
+        "get"
+      ],
+      "args": [
+        [],
+        [
+          "foo",
+          "bar",
+          1
+        ],
+        [
+          "foo",
+          1
+        ],
+        [
+          "foo",
+          3
+        ],
+        [
+          "foo",
+          "bar2",
+          4
+        ],
+        [
+          "foo",
+          4
+        ],
+        [
+          "foo",
+          5
+        ]
+      ],
+      "expected": [
+        null,
+        null,
+        "bar",
+        "bar",
+        null,
+        "bar2",
+        "bar2"
+      ]
+    }
+  ]
+})raw");
+        for (const auto &tc : j.at("cases")) {
+            const auto &commands = tc.at("commands");
+            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+            const auto &expected = tc.at("expected");
+            TimeMap* obj = nullptr;
+            for (size_t i = 0; i < commands.size(); ++i) {
+                string cmd = commands[i].get<string>();
+                if (cmd == "TimeMap") {
+                    if (obj) delete obj;
+                    obj = new TimeMap();
+                } else if (cmd == "set") {
+                    obj->set(args[i][0].get<string>(), args[i][1].get<string>(), args[i][2].get<int>());
+                } else if (cmd == "get") {
+                    string got = obj->get(args[i][0].get<string>(), args[i][1].get<int>());
+                    string exp = expected[i].get<string>();
+                    if (got != exp) { cerr << "FAIL get" << endl; return 1; }
+                }
+            }
+            if (obj) delete obj;
+        }
+        cout << "PASS" << endl;
+        return 0;
+    } catch (const std::exception &e) {
+        std::cerr << "Exception: " << e.what() << "\n";
+        return 4;
+    }
 }

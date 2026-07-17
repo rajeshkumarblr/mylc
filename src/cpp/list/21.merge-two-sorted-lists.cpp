@@ -1,3 +1,20 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 // Test harness for Merge Two Sorted Lists
 #include <vector>
 #include "lc_types.h"
@@ -83,9 +100,121 @@ public:
 };
 // @lc code=end
 
-// Non-LeetCode wrapper for harness
-ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-    Solution sol;
-    return sol.mergeTwoLists(l1, l2);
-}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Non-LeetCode wrapper for harness
+
+
+
+
+
+
+int main() {
+    Solution sol;
+    // Case 1
+    {
+        vector<int> l1_arr{1, 2, 4};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{1, 3, 4};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{1, 1, 2, 3, 4, 4}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> l1_arr{};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> l1_arr{};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{0};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{0}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    // Case 4
+    {
+        vector<int> l1_arr{2};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{1};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{1, 2}) {
+            cerr << "FAIL case 4" << endl;
+            return 1;
+        }
+    }
+    // Case 5
+    {
+        vector<int> l1_arr{1, 3, 5};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{2, 4, 6};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{1, 2, 3, 4, 5, 6}) {
+            cerr << "FAIL case 5" << endl;
+            return 1;
+        }
+    }
+    // Case 6
+    {
+        vector<int> l1_arr{1, 2, 3};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{1, 2, 3}) {
+            cerr << "FAIL case 6" << endl;
+            return 1;
+        }
+    }
+    // Case 7
+    {
+        vector<int> l1_arr{};
+        ListNode* l1 = vec_to_list(l1_arr);
+        vector<int> l2_arr{1, 2, 3};
+        ListNode* l2 = vec_to_list(l2_arr);
+        ListNode* got_node = sol.mergeTwoLists(l1, l2);
+        vector<int> got = list_to_vec(got_node);
+        if (got != vector<int>{1, 2, 3}) {
+            cerr << "FAIL case 7" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
+}

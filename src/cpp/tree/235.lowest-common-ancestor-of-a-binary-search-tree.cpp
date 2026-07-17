@@ -1,3 +1,13 @@
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include "../lc_types.h"
+#include <set>
+#include <cmath>
+#include <map>
+#include <iostream>
+#include <utility>
+#include "../lc_types.h"
 /*
  * @lc app=leetcode id=235 lang=cpp
  *
@@ -34,7 +44,6 @@
  *           p  and  q  will exist in the BST.
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
 #include <string>
 #include <unordered_map>
@@ -43,8 +52,8 @@
 #include <stack>
 #include <list>
 #include <algorithm>
-
 using namespace std;
+
 
 // @lc code=start
 /**
@@ -60,7 +69,14 @@ using namespace std;
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        
+        return {};
     }
 };
 // @lc code=end
+
+
+int main() {
+    Solution sol;
+    cerr << "FAIL (No test cases)" << endl;
+    return 1;
+}

@@ -1,3 +1,15 @@
+#include <unordered_set>
+#include <queue>
+#include <unordered_map>
+#include <set>
+#include <list>
+#include <algorithm>
+#include <cmath>
+#include <map>
+#include <stack>
+#include <string>
+#include <iostream>
+#include <utility>
 /*
  * @lc app=leetcode id=315 lang=cpp
  *
@@ -27,10 +39,9 @@
  * - -10^4 <= nums[i] <= 10^4
  */
 
-#include "../lc_test_utils.h"
 #include <vector>
-
 using namespace std;
+
 
 // @lc code=start
 class Solution {
@@ -42,7 +53,36 @@ public:
 };
 // @lc code=end
 
-vector<int> countSmaller(vector<int>& nums) {
+
+int main() {
     Solution sol;
-    return sol.countSmaller(nums);
+    // Case 1
+    {
+        vector<int> nums = {5, 2, 6, 1};
+        auto got = sol.countSmaller(nums);
+        if (got != vector<int>{2, 1, 1, 0}) {
+            cerr << "FAIL case 1" << endl;
+            return 1;
+        }
+    }
+    // Case 2
+    {
+        vector<int> nums = {-1};
+        auto got = sol.countSmaller(nums);
+        if (got != vector<int>{0}) {
+            cerr << "FAIL case 2" << endl;
+            return 1;
+        }
+    }
+    // Case 3
+    {
+        vector<int> nums = {-1, -1};
+        auto got = sol.countSmaller(nums);
+        if (got != vector<int>{0, 0}) {
+            cerr << "FAIL case 3" << endl;
+            return 1;
+        }
+    }
+    cout << "PASS" << endl;
+    return 0;
 }
