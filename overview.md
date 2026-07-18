@@ -55,7 +55,25 @@ You can compile and run any of them on the fly using the `./run -e <number>` com
   };
   ```
   </details>
-- [ ] **[LC 746](src/cpp/dp/746.min-cost-climbing-stairs.cpp)**: [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) 🟢
+- [x] **[LC 746](src/cpp/dp/746.min-cost-climbing-stairs.cpp)**: [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) 🟢
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    int minCostClimbingStairs(vector<int> &cost) {
+      int n = cost.size();
+      vector<int> dp(n + 1);
+      dp[0] = 0;
+      dp[1] = 0;
+      for (int i = 2; i <= n; i++) {
+        dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
+      }
+      return dp[n];
+    }
+  };
+  ```
+  </details>
 - [x] **[LC 198](src/cpp/dp/198.house-robber.cpp)**: [House Robber](https://leetcode.com/problems/house-robber/) 🟡
   <details><summary>View Solution</summary>
   
@@ -144,7 +162,45 @@ You can compile and run any of them on the fly using the `./run -e <number>` com
 - [ ] **[LC 97](src/cpp/dp/97.interleaving-string.cpp)**: [Interleaving String](https://leetcode.com/problems/interleaving-string/) 🟡
 - [ ] **[LC 329](src/cpp/dp/329.longest-increasing-path-in-a-matrix.cpp)**: [Longest Increasing Path In a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/) 🔴
 - [ ] **[LC 115](src/cpp/dp/115.distinct-subsequences.cpp)**: [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/) 🔴
-- [ ] **[LC 72](src/cpp/dp/72.edit-distance.cpp)**: [Edit Distance](https://leetcode.com/problems/edit-distance/) 🟡
+- [x] **[LC 72](src/cpp/dp/72.edit-distance.cpp)**: [Edit Distance](https://leetcode.com/problems/edit-distance/) 🟡
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    int minDistance(string word1, string word2) {
+      int m = word1.size();
+      int n = word2.size();
+      
+      // Create a 2D vector for DP
+      vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+      
+      // Base cases
+      for (int i = 0; i <= m; i++) dp[i][0] = i; // Deleting characters to match empty string
+      for (int j = 0; j <= n; j++) dp[0][j] = j; // Inserting characters to match word2
+      
+      // Fill the grid
+      for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+          if (word1[i - 1] == word2[j - 1]) {
+            // Characters match, no operation needed. Copy diagonal.
+            dp[i][j] = dp[i - 1][j - 1];
+          } else {
+            // Characters don't match, take minimum of 3 operations + 1
+            dp[i][j] = min({
+              dp[i - 1][j - 1], // Replace (diagonal)
+              dp[i - 1][j],     // Delete (up)
+              dp[i][j - 1]      // Insert (left)
+            }) + 1;
+          }
+        }
+      }
+      
+      return dp[m][n];
+    }
+  };
+  ```
+  </details>
 - [ ] **[LC 312](src/cpp/dp/312.burst-balloons.cpp)**: [Burst Balloons](https://leetcode.com/problems/burst-balloons/) 🔴
 - [ ] **[LC 10](src/cpp/dp/10.regular-expression-matching.cpp)**: [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/) 🔴
 

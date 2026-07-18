@@ -1,7 +1,7 @@
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=746 lang=cpp
@@ -41,29 +41,59 @@
  *           0 <= cost[i] <= 999
  */
 
-#include <vector>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
 #include <algorithm>
+#include <vector>
 using namespace std;
-
 
 // @lc code=start
 class Solution {
 public:
-    int minCostClimbingStairs(vector<int>& cost) {
-        return {};
+  int minCostClimbingStairs(vector<int> &cost) {
+    int n = cost.size();
+    vector<int> dp(n + 1);
+    dp[0] = 0;
+    dp[1] = 0;
+    for (int i = 2; i <= n; i++) {
+      dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
     }
+    return dp[n];
+  }
 };
 // @lc code=end
 
+#include <iostream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
+  try {
+    json j = json::parse(R"raw({
+      "cases": [
+        {
+          "cost": [10, 15, 20],
+          "expected": 15
+        },
+        {
+          "cost": [1, 100, 1, 1, 1, 100, 1, 1, 100, 1],
+          "expected": 6
+        }
+      ]
+    })raw");
+    for (auto &tc : j.at("cases")) {
+      vector<int> cost = tc.at("cost").get<vector<int>>();
+      int expected = tc.at("expected").get<int>();
+      Solution sol;
+      int got = sol.minCostClimbingStairs(cost);
+      if (got != expected) {
+        cerr << "FAIL: got " << got << ", expected " << expected << endl;
+        return 1;
+      }
+    }
+    cout << "PASS" << endl;
+    return 0;
+  } catch (const exception &e) {
+    cerr << "Exception: " << e.what() << endl;
     return 1;
+  }
 }
