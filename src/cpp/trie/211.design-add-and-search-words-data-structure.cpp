@@ -1,8 +1,8 @@
-#include <set>
 #include <cmath>
+#include <iostream>
 #include <map>
 #include <nlohmann/json.hpp>
-#include <iostream>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=211 lang=cpp
@@ -11,7 +11,8 @@
  *
  * Difficulty: Medium
  * Category: trie
- * URL: https://leetcode.com/problems/design-add-and-search-words-data-structure/
+ * URL:
+ * https://leetcode.com/problems/design-add-and-search-words-data-structure/
  *
  * Description:
  * Design a data structure that supports adding new words and finding if a
@@ -47,36 +48,71 @@
  *          At most  10 4   calls will be made to  addWord  and  search .
  */
 
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 using namespace std;
 using json = nlohmann::json;
-using json = nlohmann::json;
-using json = nlohmann::json;
-using json = nlohmann::json;
-using json = nlohmann::json;
-
 
 // @lc code=start
 class WordDictionary {
+  struct TrieNode {
+    TrieNode *children[26];
+    bool isWord;
+    TrieNode() {
+      isWord = false;
+      for (int i = 0; i < 26; i++) {
+        children[i] = nullptr;
+      }
+    }
+  };
+
+  TrieNode *root;
+
 public:
-    WordDictionary() {
-        
+  WordDictionary() { root = new TrieNode(); }
+
+  void addWord(string word) {
+    TrieNode *curr = root;
+    for (char c : word) {
+      int idx = c - 'a';
+      if (curr->children[idx] == nullptr) {
+        curr->children[idx] = new TrieNode();
+      }
+      curr = curr->children[idx];
     }
-    
-    void addWord(string word) {
-        
+    curr->isWord = true;
+  }
+
+  bool searchHelper(string &word, int index, TrieNode *curr) {
+    if (index == word.size()) {
+      return curr->isWord;
     }
-    
-    bool search(string word) {
-        
+    char ch = word[index];
+
+    if (ch == '.') {
+      for (int i = 0; i < 26; i++) {
+        if (curr->children[i] != nullptr) {
+          if (searchHelper(word, index + 1, curr->children[i])) {
+            return true;
+          }
+        }
+      }
+    } else {
+      int ind = ch - 'a';
+      if (curr->children[ind] != nullptr) {
+        return searchHelper(word, index + 1, curr->children[ind]);
+      }
     }
+    return false;
+  }
+
+  bool search(string word) { return searchHelper(word, 0, root); }
 };
 
 /**
@@ -87,36 +123,48 @@ public:
  */
 // @lc code=end
 
-
 int main() {
-    try {
-        json j = json::parse(R"raw({
-  "cases": []
-})raw");
-        for (const auto &tc : j.at("cases")) {
-            const auto &commands = tc.at("commands");
-            const auto &args = tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
-            const auto &expected = tc.at("expected");
-            WordDictionary* obj = nullptr;
-            for (size_t i = 0; i < commands.size(); ++i) {
-                string cmd = commands[i].get<string>();
-                if (cmd == "WordDictionary") {
-                    if (obj) delete obj;
-                    obj = new WordDictionary();
-                } else if (cmd == "addWord") {
-                    obj->addWord(args[i][0].get<string>());
-                } else if (cmd == "search") {
-                    bool got = obj->search(args[i][0].get<string>());
-                    bool exp = expected[i].get<bool>();
-                    if (got != exp) { cerr << "FAIL search" << endl; return 1; }
-                }
-            }
-            if (obj) delete obj;
-        }
-        cout << "PASS" << endl;
-        return 0;
-    } catch (const std::exception &e) {
-        std::cerr << "Exception: " << e.what() << "\n";
-        return 4;
+  try {
+    json j = json::parse(R"raw({
+  "cases": [
+    {
+      "commands": ["WordDictionary","addWord","addWord","addWord","search","search","search","search"],
+      "arguments": [[],["bad"],["dad"],["mad"],["pad"],["bad"],[".ad"],["b.."]],
+      "expected": [null,null,null,null,false,true,true,true]
     }
+  ]
+})raw");
+    for (const auto &tc : j.at("cases")) {
+      const auto &commands = tc.at("commands");
+      const auto &args =
+          tc.contains("arguments") ? tc.at("arguments") : tc.at("args");
+      const auto &expected = tc.at("expected");
+      WordDictionary *obj = nullptr;
+      for (size_t i = 0; i < commands.size(); ++i) {
+        string cmd = commands[i].get<string>();
+        if (cmd == "WordDictionary") {
+          if (obj)
+            delete obj;
+          obj = new WordDictionary();
+        } else if (cmd == "addWord") {
+          obj->addWord(args[i][0].get<string>());
+        } else if (cmd == "search") {
+          bool got = obj->search(args[i][0].get<string>());
+          bool exp = expected[i].get<bool>();
+          if (got != exp) {
+            cerr << "search str: " << args[i][0] << endl;
+            cerr << "FAIL search, got:" << got << ", expected: " << exp << endl;
+            return 1;
+          }
+        }
+      }
+      if (obj)
+        delete obj;
+    }
+    cout << "PASS" << endl;
+    return 0;
+  } catch (const std::exception &e) {
+    std::cerr << "Exception: " << e.what() << "\n";
+    return 4;
+  }
 }

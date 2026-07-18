@@ -43,6 +43,7 @@
       ],
       "externalConsole": false,
       "MIMode": "gdb",
+      "miDebuggerPath": "/home/rajesh/gdb_wrapper.sh",
       "miDebuggerArgs": "-iex \"set debuginfod enabled off\"",
       "setupCommands": [
         {
@@ -76,6 +77,7 @@
       ],
       "externalConsole": false,
       "MIMode": "gdb",
+      "miDebuggerPath": "/home/rajesh/gdb_wrapper.sh",
       "miDebuggerArgs": "-iex \"set debuginfod enabled off\"",
       "setupCommands": [
         {

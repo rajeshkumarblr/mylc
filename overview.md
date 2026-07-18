@@ -1134,7 +1134,73 @@ You can compile and run any of them on the fly using the `./run -e <number>` com
 ## Tries
 
 - [ ] **[LC 208](src/cpp/trie/208.implement-trie-prefix-tree.cpp)**: [Implement Trie Prefix Tree](https://leetcode.com/problems/implement-trie-prefix-tree/) 🟡
-- [ ] **[LC 211](src/cpp/trie/211.design-add-and-search-words-data-structure.cpp)**: [Design Add And Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) 🟡
+- [x] **[LC 211](src/cpp/trie/211.design-add-and-search-words-data-structure.cpp)**: [Design Add And Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/) 🟡
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class WordDictionary {
+    struct TrieNode {
+      TrieNode *children[26];
+      bool isWord;
+      TrieNode() {
+        isWord = false;
+        for (int i = 0; i < 26; i++) {
+          children[i] = nullptr;
+        }
+      }
+    };
+  
+    TrieNode *root;
+  
+  public:
+    WordDictionary() { root = new TrieNode(); }
+  
+    void addWord(string word) {
+      TrieNode *curr = root;
+      for (char c : word) {
+        int idx = c - 'a';
+        if (curr->children[idx] == nullptr) {
+          curr->children[idx] = new TrieNode();
+        }
+        curr = curr->children[idx];
+      }
+      curr->isWord = true;
+    }
+  
+    bool searchHelper(string &word, int index, TrieNode *curr) {
+      if (index == word.size()) {
+        return curr->isWord;
+      }
+      char ch = word[index];
+  
+      if (ch == '.') {
+        for (int i = 0; i < 26; i++) {
+          if (curr->children[i] != nullptr) {
+            if (searchHelper(word, index + 1, curr->children[i])) {
+              return true;
+            }
+          }
+        }
+      } else {
+        int ind = ch - 'a';
+        if (curr->children[ind] != nullptr) {
+          return searchHelper(word, index + 1, curr->children[ind]);
+        }
+      }
+      return false;
+    }
+  
+    bool search(string word) { return searchHelper(word, 0, root); }
+  };
+  
+  /**
+   * Your WordDictionary object will be instantiated and called as such:
+   * WordDictionary* obj = new WordDictionary();
+   * obj->addWord(word);
+   * bool param_2 = obj->search(word);
+   */
+  ```
+  </details>
 - [ ] **[LC 212](src/cpp/trie/212.word-search-ii.cpp)**: [Word Search II](https://leetcode.com/problems/word-search-ii/) 🔴
 
 ## Two Pointers
