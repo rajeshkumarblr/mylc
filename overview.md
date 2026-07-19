@@ -9,7 +9,7 @@ Track your interview preparation progress here.
 | [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 41% |
 | [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9% |
 | [Advanced Graphs](#advanced-graphs) | 6 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Arrays & Hashing](#arrays--hashing) | 9 | 8 | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 88% |
+| [Arrays & Hashing](#arrays--hashing) | 9 | 9 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
 | [Backtracking](#backtracking) | 10 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Binary Search](#binary-search) | 7 | 2 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 28% |
 | [Bit Manipulation](#bit-manipulation) | 7 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
@@ -25,7 +25,7 @@ Track your interview preparation progress here.
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Two Pointers](#two-pointers) | 5 | 3 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 60% |
 | [Bonus: Concurrency (Not NeetCode 150)](#bonus-concurrency-not-neetcode-150) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **48** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 31%** |
+| **Total** | **154** | **49** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 31%** |
 
 
 
@@ -368,7 +368,40 @@ Track your interview preparation progress here.
   </details>
 - 🟡 [x] **[LC 347](src/cpp/hash/347.top-k-frequent-elements.cpp)**: [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=YPTqKIgVk-k)
-- 🟡 [ ] **[LC 271](src/cpp/hash/271.encode-and-decode-strings.cpp)**: [Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/)  
+- 🟡 [x] **[LC 271](src/cpp/hash/271.encode-and-decode-strings.cpp)**: [Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/)  
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    string encode(vector<string> &strs) {
+      string res = "";
+      for (const string &s : strs) {
+        int len = s.size();
+        res += to_string(len) + "#" + s;
+      }
+      return res;
+    }
+  
+    vector<string> decode(string s) {
+      vector<string> res;
+      int ind = 0;
+      for (int i = 0; i < s.size();) {
+        int st = i;
+        while (i < s.size() && s[i] != '#') {
+          i++;
+        }
+        string lenheader = s.substr(st, i - st);
+        int len = stoi(lenheader);
+        string word = s.substr(i + 1, len);
+        res.push_back(word);
+        i = i + 1 + len;
+      }
+      return res;
+    }
+  };
+  ```
+  </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=B1k_sxOSgv8)
 - 🟡 [x] **[LC 238](src/cpp/hash/238.product-of-array-except-self.cpp)**: [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=bNvIQI2wAjk)
