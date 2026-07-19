@@ -23,9 +23,9 @@ Track your interview preparation progress here.
 | [Stack](#stack) | 6 | 2 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Trees](#trees) | 15 | 6 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% |
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
-| [Two Pointers](#two-pointers) | 5 | 3 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 60% |
+| [Two Pointers](#two-pointers) | 5 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 80% |
 | [Bonus: Concurrency (Not NeetCode 150)](#bonus-concurrency-not-neetcode-150) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **49** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 31%** |
+| **Total** | **154** | **50** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 32%** |
 
 
 
@@ -1481,7 +1481,34 @@ Track your interview preparation progress here.
 
 ## Two Pointers
 
-- 🟢 [ ] **[LC 125](src/cpp/two_pointer/125.valid-palindrome.cpp)**: [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)  
+- 🟢 [x] **[LC 125](src/cpp/two_pointer/125.valid-palindrome.cpp)**: [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)  
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    bool isPalindrome(const string& s) {
+      int l = 0;
+      int r = s.size() - 1;
+      while (l < r) {
+        while (l < r && !isalnum(s[l])) {
+          l++;
+        }
+        while (l < r && !isalnum(s[r])) {
+          r--;
+        }
+        if (tolower(s[l]) == tolower(s[r])) {
+          l++;
+          r--;
+        } else {
+          break;
+        }
+      }
+      return l >= r;
+    }
+  };
+  ```
+  </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=jJXJ16kPFWg)
 - 🟡 [ ] **[LC 167](src/cpp/two_pointer/167.two-sum-ii-input-array-is-sorted.cpp)**: [Two Sum II Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=cQ1Oz4ckceM)
