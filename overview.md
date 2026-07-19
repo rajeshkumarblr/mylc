@@ -322,8 +322,41 @@ You can compile and run any of them on the fly using the `./run -e <number>` com
   };
   ```
   </details>
-- [ ] **[LC 49](src/cpp/hash/49.group-anagrams.cpp)**: [Group Anagrams](https://leetcode.com/problems/group-anagrams/) 🟡
+- [x] **[LC 49](src/cpp/hash/49.group-anagrams.cpp)**: [Group Anagrams](https://leetcode.com/problems/group-anagrams/) 🟡
   [🎬 Video](https://www.youtube.com/watch?v=vzdNOK2oB2E)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    vector<vector<string>> groupAnagrams(vector<string> &strs) {
+      unordered_map<string, vector<string>> countsMap;
+      for (auto &s : strs) {
+        int counts[26] = {0};
+        for (char ch : s) {
+          counts[ch - 'a']++;
+        }
+        string key = "";
+        for (int i = 0; i < 26; i++) {
+          if (counts[i]) {
+            char ch = 'a' + i;
+            key += ch;
+            key += counts[i];
+          }
+        }
+        countsMap[key].push_back(std::move(s));
+      }
+
+      vector<vector<string>> res;
+      res.reserve(countsMap.size());
+      for (auto &pair : countsMap) {
+        res.push_back(std::move(pair.second));
+      }
+      return res;
+    }
+  };
+  ```
+  </details>
 - [x] **[LC 347](src/cpp/hash/347.top-k-frequent-elements.cpp)**: [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) 🟡
   [🎬 Video](https://www.youtube.com/watch?v=YPTqKIgVk-k)
 - [ ] **[LC 271](src/cpp/hash/271.encode-and-decode-strings.cpp)**: [Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/) 🟡
