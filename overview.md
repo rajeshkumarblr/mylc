@@ -9,7 +9,7 @@ Track your interview preparation progress here.
 | [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 41% |
 | [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9% |
 | [Advanced Graphs](#advanced-graphs) | 6 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Arrays & Hashing](#arrays--hashing) | 9 | 7 | 🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜ 77% |
+| [Arrays & Hashing](#arrays--hashing) | 9 | 8 | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 88% |
 | [Backtracking](#backtracking) | 10 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Binary Search](#binary-search) | 7 | 2 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 28% |
 | [Bit Manipulation](#bit-manipulation) | 7 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
@@ -25,7 +25,7 @@ Track your interview preparation progress here.
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Two Pointers](#two-pointers) | 5 | 3 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 60% |
 | [Bonus: Concurrency (Not NeetCode 150)](#bonus-concurrency-not-neetcode-150) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **47** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30%** |
+| **Total** | **154** | **48** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 31%** |
 
 
 
