@@ -2,6 +2,31 @@
 
 Track your interview preparation progress here.
 
+## 📊 Progress Summary
+
+| Category | Solved | Total | Progress |
+|----------|--------|-------|----------|
+| 1-D Dynamic Programming | 5 | 12 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 41% |
+| 2-D Dynamic Programming | 1 | 11 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9% |
+| Advanced Graphs | 0 | 6 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
+| Arrays & Hashing | 7 | 9 | 🟩🟩🟩🟩🟩🟩🟩⬜⬜⬜ 77% |
+| Backtracking | 0 | 10 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
+| Binary Search | 2 | 7 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 28% |
+| Bit Manipulation | 0 | 7 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
+| Graphs | 3 | 13 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 23% |
+| Greedy | 0 | 8 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
+| Heap / Priority Queue | 3 | 7 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 42% |
+| Intervals | 1 | 6 | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16% |
+| Linked List | 5 | 11 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 45% |
+| Math & Geometry | 0 | 8 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
+| Sliding Window | 4 | 6 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 66% |
+| Stack | 2 | 6 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
+| Trees | 6 | 15 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% |
+| Tries | 1 | 3 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
+| Two Pointers | 3 | 5 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 60% |
+| Bonus: Concurrency (Not NeetCode 150) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
+| **Total** | **47** | **154** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30%** |
+
 ## 📚 STL Quick References
 
 I have generated 10 heavily-commented, comprehensive C++ STL reference examples in the `src/cpp/stl/` folder to help you with standard library syntax during your practice.
