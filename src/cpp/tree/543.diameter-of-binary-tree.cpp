@@ -1,13 +1,9 @@
 #include "../lc_types.h"
-#include "../lc_types.h"
-#include "../lc_types.h"
-#include "../lc_types.h"
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
-#include "../lc_types.h"
 /*
  * @lc app=leetcode id=543 lang=cpp
  *
@@ -37,16 +33,15 @@
  *           -100 <= Node.val <= 100
  */
 
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 using namespace std;
-
 
 // @lc code=start
 /**
@@ -57,20 +52,79 @@ using namespace std;
  *     TreeNode *right;
  *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
  *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
- *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),
+ * right(right) {}
  * };
  */
 class Solution {
 public:
-    int diameterOfBinaryTree(TreeNode* root) {
-        return {};
+  int maxdepth(TreeNode *node, int &diameter) {
+    if (node == nullptr) {
+      return 0;
     }
+    int maxdepthleft = maxdepth(node->left, diameter);
+    int maxdepthright = maxdepth(node->right, diameter);
+
+    diameter = max(diameter, maxdepthleft + maxdepthright);
+    return max(maxdepthleft, maxdepthright) + 1;
+  }
+
+  int diameterOfBinaryTree(TreeNode *root) {
+    int res = 0;
+    maxdepth(root, res);
+    return res;
+  }
 };
 // @lc code=end
 
+#include "../lc_test_utils.h"
+#include <iostream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
+  try {
+    json j = json::parse(R"raw({
+      "cases": [
+        {
+          "root": [1, 2, 3, 4, 5],
+          "expected": 3
+        },
+        {
+          "root": [1, 2],
+          "expected": 1
+        }
+      ]
+    })raw");
+
+    for (auto &tc : j.at("cases")) {
+      vector<optional<int>> root_data;
+      for (auto &elem : tc.at("root")) {
+        if (elem.is_null()) {
+          root_data.push_back(nullopt);
+        } else {
+          root_data.push_back(elem.get<int>());
+        }
+      }
+      TreeNode *root = build_tree_from_level_order(root_data);
+      int expected = tc.at("expected").get<int>();
+
+      Solution sol;
+      int result = sol.diameterOfBinaryTree(root);
+
+      if (result != expected) {
+        cerr << "FAIL for input: " << tc.at("root") << endl;
+        cerr << "Expected: " << expected << ", Got: " << result << endl;
+        free_tree(root);
+        return 1;
+      }
+      free_tree(root);
+    }
+    cout << "PASS" << endl;
+    return 0;
+  } catch (const exception &e) {
+    cerr << "Exception: " << e.what() << endl;
     return 1;
+  }
 }

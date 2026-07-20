@@ -13,7 +13,7 @@ Track your interview preparation progress here.
 | [Backtracking](#backtracking) | 10 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Binary Search](#binary-search) | 7 | 2 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 28% |
 | [Bit Manipulation](#bit-manipulation) | 7 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Graphs](#graphs) | 13 | 3 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 23% |
+| [Graphs](#graphs) | 13 | 4 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30% |
 | [Greedy](#greedy) | 8 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 42% |
 | [Intervals](#intervals) | 6 | 1 | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16% |
@@ -25,7 +25,7 @@ Track your interview preparation progress here.
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Two Pointers](#two-pointers) | 5 | 5 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
 | [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **52** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33%** |
+| **Total** | **154** | **53** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 34%** |
 
 
 
@@ -629,7 +629,35 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 695](src/cpp/graphs/695.max-area-of-island.cpp)**: [Max Area of Island](https://leetcode.com/problems/max-area-of-island/)  
+- 🟡 [x] **[LC 695](src/cpp/graphs/695.max-area-of-island.cpp)**: [Max Area of Island](https://leetcode.com/problems/max-area-of-island/)  
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    int dfs(vector<vector<int>> &grid, int r, int c) {
+      if (r < 0 || r >= grid.size() || c < 0 || c >= grid[r].size() || grid[r][c] == 0) {
+        return 0;
+      }
+      grid[r][c] = 0;
+      return 1 + dfs(grid, r - 1, c) + dfs(grid, r, c - 1) + 
+                 dfs(grid, r + 1, c) + dfs(grid, r, c + 1);
+    }
+  
+    int maxAreaOfIsland(vector<vector<int>> &grid) {
+      int maxArea = 0;
+      for (int r = 0; r < grid.size(); r++) {
+        for (int c = 0; c < grid[r].size(); c++) {
+          if (grid[r][c] == 1) {
+            maxArea = max(maxArea, dfs(grid, r, c));
+          }
+        }
+      }
+      return maxArea;
+    }
+  };
+  ```
+  </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=iJGr1OtmH0c)
 - 🟡 [ ] **[LC 133](src/cpp/graphs/133.clone-graph.cpp)**: [Clone Graph](https://leetcode.com/problems/clone-graph/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=mQeF6bN8hMk)
