@@ -101,8 +101,133 @@ public:
 // @lc code=end
 
 
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
+Node* buildGraph(const vector<vector<int>>& adjList) {
+    if (adjList.empty()) return nullptr;
+    unordered_map<int, Node*> nodes;
+    for (int i = 0; i < adjList.size(); i++) {
+        nodes[i + 1] = new Node(i + 1);
+    }
+    for (int i = 0; i < adjList.size(); i++) {
+        for (int neighbor : adjList[i]) {
+            nodes[i + 1]->neighbors.push_back(nodes[neighbor]);
+        }
+    }
+    return nodes[1];
+}
+
+vector<vector<int>> graphToAdjList(Node* node) {
+    if (!node) return {};
+    unordered_map<int, Node*> visited;
+    queue<Node*> q;
+    q.push(node);
+    visited[node->val] = node;
+    int maxVal = 0;
+    while (!q.empty()) {
+        Node* curr = q.front();
+        q.pop();
+        maxVal = max(maxVal, curr->val);
+        for (Node* neighbor : curr->neighbors) {
+            if (visited.find(neighbor->val) == visited.end()) {
+                visited[neighbor->val] = neighbor;
+                q.push(neighbor);
+            }
+        }
+    }
+    vector<vector<int>> adjList(maxVal);
+    for (int i = 1; i <= maxVal; i++) {
+        if (visited.count(i)) {
+            for (Node* neighbor : visited[i]->neighbors) {
+                adjList[i - 1].push_back(neighbor->val);
+            }
+        }
+    }
+    return adjList;
+}
+
+bool checkDeepCopy(Node* original, Node* clone) {
+    if (!original && !clone) return true;
+    if (!original || !clone) return false;
+    
+    unordered_map<int, Node*> visitedOrig, visitedClone;
+    queue<Node*> qOrig, qClone;
+    
+    qOrig.push(original);
+    qClone.push(clone);
+    visitedOrig[original->val] = original;
+    visitedClone[clone->val] = clone;
+    
+    while (!qOrig.empty() && !qClone.empty()) {
+        Node* currOrig = qOrig.front(); qOrig.pop();
+        Node* currClone = qClone.front(); qClone.pop();
+        
+        if (currOrig == currClone) return false; // Not a deep copy!
+        if (currOrig->val != currClone->val) return false;
+        if (currOrig->neighbors.size() != currClone->neighbors.size()) return false;
+        
+        for (int i = 0; i < currOrig->neighbors.size(); i++) {
+            Node* nOrig = currOrig->neighbors[i];
+            Node* nClone = currClone->neighbors[i];
+            
+            if (nOrig == nClone) return false; // Shared reference, not deep copy!
+            
+            if (visitedOrig.find(nOrig->val) == visitedOrig.end()) {
+                visitedOrig[nOrig->val] = nOrig;
+                qOrig.push(nOrig);
+            }
+            if (visitedClone.find(nClone->val) == visitedClone.end()) {
+                visitedClone[nClone->val] = nClone;
+                qClone.push(nClone);
+            }
+        }
+    }
+    return true;
+}
+
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
+  try {
+    json j = json::parse(R"raw({
+      "cases": [
+        {
+          "adjList": [[2,4],[1,3],[2,4],[1,3]],
+          "expected": [[2,4],[1,3],[2,4],[1,3]]
+        },
+        {
+          "adjList": [[]],
+          "expected": [[]]
+        },
+        {
+          "adjList": [],
+          "expected": []
+        }
+      ]
+    })raw");
+
+    for (auto &tc : j.at("cases")) {
+      vector<vector<int>> adjList = tc.at("adjList").get<vector<vector<int>>>();
+      vector<vector<int>> expected = tc.at("expected").get<vector<vector<int>>>();
+      
+      Node* original = buildGraph(adjList);
+      
+      Solution sol;
+      Node* cloned = sol.cloneGraph(original);
+      
+      vector<vector<int>> clonedAdjList = graphToAdjList(cloned);
+      bool isDeepCopy = checkDeepCopy(original, cloned);
+      
+      if (clonedAdjList != expected || !isDeepCopy) {
+        cerr << "FAIL for input" << endl;
+        cerr << "Is Deep Copy? " << (isDeepCopy ? "Yes" : "NO") << endl;
+        return 1;
+      }
+    }
+    cout << "PASS" << endl;
+  } catch (const exception &e) {
+    cerr << "Fatal Error: " << e.what() << endl;
     return 1;
+  }
+  return 0;
 }
