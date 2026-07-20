@@ -21,11 +21,11 @@ Track your interview preparation progress here.
 | [Math & Geometry](#math--geometry) | 8 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Sliding Window](#sliding-window) | 6 | 4 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 66% |
 | [Stack](#stack) | 6 | 2 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
-| [Trees](#trees) | 15 | 6 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% |
+| [Trees](#trees) | 15 | 7 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 46% |
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Two Pointers](#two-pointers) | 5 | 5 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
 | [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **51** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33%** |
+| **Total** | **154** | **52** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33%** |
 
 
 
@@ -1315,7 +1315,29 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [ ] **[LC 543](src/cpp/tree/543.diameter-of-binary-tree.cpp)**: [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)  
+- 🟢 [x] **[LC 543](src/cpp/tree/543.diameter-of-binary-tree.cpp)**: [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)  
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    int maxdepth(TreeNode *node, int &diameter) {
+      if (!node) return 0;
+      int left = maxdepth(node->left, diameter);
+      int right = maxdepth(node->right, diameter);
+  
+      diameter = max(diameter, left + right);
+      return max(left, right) + 1;
+    }
+  
+    int diameterOfBinaryTree(TreeNode *root) {
+      int diameter = 0;
+      maxdepth(root, diameter);
+      return diameter;
+    }
+  };
+  ```
+  </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=K81C31ytOZE)
 - 🟢 [x] **[LC 110](src/cpp/tree/110.balanced-binary-tree.cpp)**: [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=QfJsau0ItOY)
