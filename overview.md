@@ -5,33 +5,33 @@ Track your interview preparation progress here.
 ## 📊 Progress Summary
 
 | Category | Total | Solved | Progress |
-|----------|-------|--------|----------|
-| [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 41% |
-| [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9% |
-| [Advanced Graphs](#advanced-graphs) | 6 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Arrays & Hashing](#arrays--hashing) | 9 | 9 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| [Backtracking](#backtracking) | 10 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Binary Search](#binary-search) | 7 | 2 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 28% |
-| [Bit Manipulation](#bit-manipulation) | 7 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Graphs](#graphs) | 13 | 4 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 30% |
-| [Greedy](#greedy) | 8 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 42% |
-| [Intervals](#intervals) | 6 | 1 | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16% |
-| [Linked List](#linked-list) | 11 | 5 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 45% |
-| [Math & Geometry](#math--geometry) | 8 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Sliding Window](#sliding-window) | 6 | 4 | 🟩🟩🟩🟩🟩🟩⬜⬜⬜⬜ 66% |
-| [Stack](#stack) | 6 | 2 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
-| [Trees](#trees) | 15 | 7 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 46% |
-| [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
-| [Two Pointers](#two-pointers) | 5 | 5 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **53** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 34%** |
+| --- | --- | --- | --- |
+| [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | [🟩 70](#lc-70) [🟩 746](#lc-746) [🟩 198](#lc-198) [🟩 213](#lc-213) [⬜ 5](#lc-5) [⬜ 647](#lc-647) [⬜ 91](#lc-91) [⬜ 322](#lc-322) [⬜ 152](#lc-152) [🟩 139](#lc-139) [⬜ 300](#lc-300) [⬜ 416](#lc-416) |
+| [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | [⬜ 62](#lc-62) [⬜ 1143](#lc-1143) [⬜ 309](#lc-309) [⬜ 518](#lc-518) [⬜ 494](#lc-494) [⬜ 97](#lc-97) [⬜ 329](#lc-329) [⬜ 115](#lc-115) [🟩 72](#lc-72) [⬜ 312](#lc-312) [⬜ 10](#lc-10) |
+| [Advanced Graphs](#advanced-graphs) | 6 | 0 | [⬜ 743](#lc-743) [⬜ 332](#lc-332) [⬜ 1584](#lc-1584) [⬜ 778](#lc-778) [⬜ 269](#lc-269) [⬜ 787](#lc-787) |
+| [Arrays & Hashing](#arrays--hashing) | 9 | 9 | [🟩 217](#lc-217) [🟩 242](#lc-242) [🟩 1](#lc-1) [🟩 49](#lc-49) [🟩 347](#lc-347) [🟩 271](#lc-271) [🟩 238](#lc-238) [🟩 36](#lc-36) [🟩 128](#lc-128) |
+| [Backtracking](#backtracking) | 10 | 0 | [⬜ 78](#lc-78) [⬜ 39](#lc-39) [⬜ 40](#lc-40) [⬜ 46](#lc-46) [⬜ 90](#lc-90) [⬜ 22](#lc-22) [⬜ 79](#lc-79) [⬜ 131](#lc-131) [⬜ 17](#lc-17) [⬜ 51](#lc-51) |
+| [Binary Search](#binary-search) | 7 | 2 | [⬜ 704](#lc-704) [⬜ 74](#lc-74) [⬜ 875](#lc-875) [⬜ 153](#lc-153) [🟩 33](#lc-33) [🟩 981](#lc-981) [⬜ 4](#lc-4) |
+| [Bit Manipulation](#bit-manipulation) | 7 | 0 | [⬜ 136](#lc-136) [⬜ 191](#lc-191) [⬜ 338](#lc-338) [⬜ 190](#lc-190) [⬜ 268](#lc-268) [⬜ 371](#lc-371) [⬜ 7](#lc-7) |
+| [Graphs](#graphs) | 13 | 4 | [🟩 200](#lc-200) [🟩 695](#lc-695) [⬜ 133](#lc-133) [⬜ 286](#lc-286) [⬜ 994](#lc-994) [⬜ 417](#lc-417) [⬜ 130](#lc-130) [🟩 207](#lc-207) [🟩 210](#lc-210) [⬜ 261](#lc-261) [⬜ 323](#lc-323) [⬜ 684](#lc-684) [⬜ 127](#lc-127) |
+| [Greedy](#greedy) | 8 | 0 | [⬜ 53](#lc-53) [⬜ 55](#lc-55) [⬜ 45](#lc-45) [⬜ 134](#lc-134) [⬜ 846](#lc-846) [⬜ 1899](#lc-1899) [⬜ 763](#lc-763) [⬜ 678](#lc-678) |
+| [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | [⬜ 703](#lc-703) [⬜ 1046](#lc-1046) [🟩 973](#lc-973) [🟩 215](#lc-215) [⬜ 621](#lc-621) [⬜ 355](#lc-355) [🟩 295](#lc-295) |
+| [Intervals](#intervals) | 6 | 1 | [⬜ 57](#lc-57) [🟩 56](#lc-56) [⬜ 435](#lc-435) [⬜ 252](#lc-252) [⬜ 253](#lc-253) [⬜ 1851](#lc-1851) |
+| [Linked List](#linked-list) | 11 | 5 | [🟩 206](#lc-206) [🟩 21](#lc-21) [🟩 141](#lc-141) [⬜ 143](#lc-143) [⬜ 19](#lc-19) [⬜ 138](#lc-138) [🟩 2](#lc-2) [⬜ 287](#lc-287) [🟩 146](#lc-146) [⬜ 23](#lc-23) [⬜ 25](#lc-25) |
+| [Math & Geometry](#math--geometry) | 8 | 0 | [⬜ 48](#lc-48) [⬜ 54](#lc-54) [⬜ 73](#lc-73) [⬜ 202](#lc-202) [⬜ 66](#lc-66) [⬜ 50](#lc-50) [⬜ 43](#lc-43) [⬜ 2013](#lc-2013) |
+| [Sliding Window](#sliding-window) | 6 | 4 | [⬜ 121](#lc-121) [🟩 3](#lc-3) [🟩 424](#lc-424) [🟩 567](#lc-567) [🟩 76](#lc-76) [⬜ 239](#lc-239) |
+| [Stack](#stack) | 6 | 2 | [🟩 20](#lc-20) [⬜ 155](#lc-155) [⬜ 150](#lc-150) [🟩 739](#lc-739) [⬜ 853](#lc-853) [⬜ 84](#lc-84) |
+| [Trees](#trees) | 15 | 7 | [🟩 226](#lc-226) [🟩 104](#lc-104) [🟩 543](#lc-543) [🟩 110](#lc-110) [🟩 100](#lc-100) [⬜ 572](#lc-572) [⬜ 235](#lc-235) [🟩 102](#lc-102) [⬜ 199](#lc-199) [⬜ 1448](#lc-1448) [🟩 98](#lc-98) [⬜ 230](#lc-230) [⬜ 105](#lc-105) [⬜ 124](#lc-124) [⬜ 297](#lc-297) |
+| [Tries](#tries) | 3 | 1 | [⬜ 208](#lc-208) [🟩 211](#lc-211) [⬜ 212](#lc-212) |
+| [Two Pointers](#two-pointers) | 5 | 5 | [🟩 125](#lc-125) [🟩 167](#lc-167) [🟩 15](#lc-15) [🟩 11](#lc-11) [🟩 42](#lc-42) |
+| [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | [🟩 362](#lc-362) [🟩 1188](#lc-1188) [🟩 1117](#lc-1117) [🟩 1242](#lc-1242) |
+| **Total** | **154** | **53** | **34%** |
 
 
 
 ## 1-D Dynamic Programming
 
-- 🟢 [x] **[LC 70](src/cpp/dp/70.climbing-stairs.cpp)**: [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)  
+- <a id="lc-70"></a>🟢 [x] **[LC 70](src/cpp/dp/70.climbing-stairs.cpp)**: [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Y0lT9Fck7qI)
   <details><summary>View Solution</summary>
   
@@ -65,7 +65,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 746](src/cpp/dp/746.min-cost-climbing-stairs.cpp)**: [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)  
+- <a id="lc-746"></a>🟢 [x] **[LC 746](src/cpp/dp/746.min-cost-climbing-stairs.cpp)**: [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=ktmzAZWkEZ0)
   <details><summary>View Solution</summary>
   
@@ -85,7 +85,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 198](src/cpp/dp/198.house-robber.cpp)**: [House Robber](https://leetcode.com/problems/house-robber/)  
+- <a id="lc-198"></a>🟡 [x] **[LC 198](src/cpp/dp/198.house-robber.cpp)**: [House Robber](https://leetcode.com/problems/house-robber/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=73r3KWiEvyk)
   <details><summary>View Solution</summary>
   
@@ -115,7 +115,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 213](src/cpp/dp/213.house-robber-ii.cpp)**: [House Robber II](https://leetcode.com/problems/house-robber-ii/)  
+- <a id="lc-213"></a>🟡 [x] **[LC 213](src/cpp/dp/213.house-robber-ii.cpp)**: [House Robber II](https://leetcode.com/problems/house-robber-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=rWAJCfYYOvM)
   <details><summary>View Solution</summary>
   
@@ -128,17 +128,17 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 5](src/cpp/dp/5.longest-palindromic-substring.cpp)**: [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)  
+- <a id="lc-5"></a>🟡 [ ] **[LC 5](src/cpp/dp/5.longest-palindromic-substring.cpp)**: [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=XYQecbcd6_c)
-- 🟡 [ ] **[LC 647](src/cpp/dp/647.palindromic-substrings.cpp)**: [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)  
+- <a id="lc-647"></a>🟡 [ ] **[LC 647](src/cpp/dp/647.palindromic-substrings.cpp)**: [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=4RACzI5-du8)
-- 🟡 [ ] **[LC 91](src/cpp/dp/91.decode-ways.cpp)**: [Decode Ways](https://leetcode.com/problems/decode-ways/)  
+- <a id="lc-91"></a>🟡 [ ] **[LC 91](src/cpp/dp/91.decode-ways.cpp)**: [Decode Ways](https://leetcode.com/problems/decode-ways/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=6aEyTjOwlJU)
-- 🟡 [ ] **[LC 322](src/cpp/dp/322.coin-change.cpp)**: [Coin Change](https://leetcode.com/problems/coin-change/)  
+- <a id="lc-322"></a>🟡 [ ] **[LC 322](src/cpp/dp/322.coin-change.cpp)**: [Coin Change](https://leetcode.com/problems/coin-change/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=H9bfqozjoqs)
-- 🟡 [ ] **[LC 152](src/cpp/dp/152.maximum-product-subarray.cpp)**: [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)  
+- <a id="lc-152"></a>🟡 [ ] **[LC 152](src/cpp/dp/152.maximum-product-subarray.cpp)**: [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=lXVy6YWFcRM)
-- 🟡 [x] **[LC 139](src/cpp/dp/139.word-break.cpp)**: [Word Break](https://leetcode.com/problems/word-break/)  
+- <a id="lc-139"></a>🟡 [x] **[LC 139](src/cpp/dp/139.word-break.cpp)**: [Word Break](https://leetcode.com/problems/word-break/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Sx9NNgInc3A)
   <details><summary>View Solution</summary>
   
@@ -168,30 +168,30 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 300](src/cpp/dp/300.longest-increasing-subsequence.cpp)**: [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)  
+- <a id="lc-300"></a>🟡 [ ] **[LC 300](src/cpp/dp/300.longest-increasing-subsequence.cpp)**: [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
-- 🟡 [ ] **[LC 416](src/cpp/dp/416.partition-equal-subset-sum.cpp)**: [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)  
+- <a id="lc-416"></a>🟡 [ ] **[LC 416](src/cpp/dp/416.partition-equal-subset-sum.cpp)**: [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=IsvocB5BJhw)
 
 ## 2-D Dynamic Programming
 
-- 🟡 [ ] **[LC 62](src/cpp/dp/62.unique-paths.cpp)**: [Unique Paths](https://leetcode.com/problems/unique-paths/)  
+- <a id="lc-62"></a>🟡 [ ] **[LC 62](src/cpp/dp/62.unique-paths.cpp)**: [Unique Paths](https://leetcode.com/problems/unique-paths/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=IlEsdxuD4lY)
-- 🟡 [ ] **[LC 1143](src/cpp/dp/1143.longest-common-subsequence.cpp)**: [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)  
+- <a id="lc-1143"></a>🟡 [ ] **[LC 1143](src/cpp/dp/1143.longest-common-subsequence.cpp)**: [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Ua0GhsJSlWM)
-- 🟡 [ ] **[LC 309](src/cpp/dp/309.best-time-to-buy-and-sell-stock-with-cooldown.cpp)**: [Best Time to Buy And Sell Stock With Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
+- <a id="lc-309"></a>🟡 [ ] **[LC 309](src/cpp/dp/309.best-time-to-buy-and-sell-stock-with-cooldown.cpp)**: [Best Time to Buy And Sell Stock With Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=I7j0F7AHpb8)
-- 🟡 [ ] **[LC 518](src/cpp/dp/518.coin-change-ii.cpp)**: [Coin Change II](https://leetcode.com/problems/coin-change-ii/)  
+- <a id="lc-518"></a>🟡 [ ] **[LC 518](src/cpp/dp/518.coin-change-ii.cpp)**: [Coin Change II](https://leetcode.com/problems/coin-change-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
-- 🟡 [ ] **[LC 494](src/cpp/dp/494.target-sum.cpp)**: [Target Sum](https://leetcode.com/problems/target-sum/)  
+- <a id="lc-494"></a>🟡 [ ] **[LC 494](src/cpp/dp/494.target-sum.cpp)**: [Target Sum](https://leetcode.com/problems/target-sum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=dwMOrl85Xes)
-- 🟡 [ ] **[LC 97](src/cpp/dp/97.interleaving-string.cpp)**: [Interleaving String](https://leetcode.com/problems/interleaving-string/)  
+- <a id="lc-97"></a>🟡 [ ] **[LC 97](src/cpp/dp/97.interleaving-string.cpp)**: [Interleaving String](https://leetcode.com/problems/interleaving-string/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=3Rw3p9LrgvE)
-- 🔴 [ ] **[LC 329](src/cpp/dp/329.longest-increasing-path-in-a-matrix.cpp)**: [Longest Increasing Path In a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)  
+- <a id="lc-329"></a>🔴 [ ] **[LC 329](src/cpp/dp/329.longest-increasing-path-in-a-matrix.cpp)**: [Longest Increasing Path In a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=wCc_nd-GiEc)
-- 🔴 [ ] **[LC 115](src/cpp/dp/115.distinct-subsequences.cpp)**: [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)  
+- <a id="lc-115"></a>🔴 [ ] **[LC 115](src/cpp/dp/115.distinct-subsequences.cpp)**: [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=-RDzMJ33nx8)
-- 🟡 [x] **[LC 72](src/cpp/dp/72.edit-distance.cpp)**: [Edit Distance](https://leetcode.com/problems/edit-distance/)  
+- <a id="lc-72"></a>🟡 [x] **[LC 72](src/cpp/dp/72.edit-distance.cpp)**: [Edit Distance](https://leetcode.com/problems/edit-distance/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Sfm_b4HVEKE)
   <details><summary>View Solution</summary>
   
@@ -231,29 +231,29 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🔴 [ ] **[LC 312](src/cpp/dp/312.burst-balloons.cpp)**: [Burst Balloons](https://leetcode.com/problems/burst-balloons/)  
+- <a id="lc-312"></a>🔴 [ ] **[LC 312](src/cpp/dp/312.burst-balloons.cpp)**: [Burst Balloons](https://leetcode.com/problems/burst-balloons/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=VFskby7lUbw)
-- 🔴 [ ] **[LC 10](src/cpp/dp/10.regular-expression-matching.cpp)**: [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)  
+- <a id="lc-10"></a>🔴 [ ] **[LC 10](src/cpp/dp/10.regular-expression-matching.cpp)**: [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=HAA8mgxlov8)
 
 ## Advanced Graphs
 
-- 🟡 [ ] **[LC 743](src/cpp/graphs/743.network-delay-time.cpp)**: [Network Delay Time](https://leetcode.com/problems/network-delay-time/)  
+- <a id="lc-743"></a>🟡 [ ] **[LC 743](src/cpp/graphs/743.network-delay-time.cpp)**: [Network Delay Time](https://leetcode.com/problems/network-delay-time/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=EaphyqKU4PQ)
-- 🔴 [ ] **[LC 332](src/cpp/graphs/332.reconstruct-itinerary.cpp)**: [Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)  
+- <a id="lc-332"></a>🔴 [ ] **[LC 332](src/cpp/graphs/332.reconstruct-itinerary.cpp)**: [Reconstruct Itinerary](https://leetcode.com/problems/reconstruct-itinerary/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=ZyB_gQ8vqGA)
-- 🟡 [ ] **[LC 1584](src/cpp/graphs/1584.min-cost-to-connect-all-points.cpp)**: [Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/)  
+- <a id="lc-1584"></a>🟡 [ ] **[LC 1584](src/cpp/graphs/1584.min-cost-to-connect-all-points.cpp)**: [Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=f7JOBJIC-NA)
-- 🔴 [ ] **[LC 778](src/cpp/graphs/778.swim-in-rising-water.cpp)**: [Swim In Rising Water](https://leetcode.com/problems/swim-in-rising-water/)  
+- <a id="lc-778"></a>🔴 [ ] **[LC 778](src/cpp/graphs/778.swim-in-rising-water.cpp)**: [Swim In Rising Water](https://leetcode.com/problems/swim-in-rising-water/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=amvrKlMLuGY)
-- 🔴 [ ] **[LC 269](src/cpp/graphs/269.alien-dictionary.cpp)**: [Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)  
+- <a id="lc-269"></a>🔴 [ ] **[LC 269](src/cpp/graphs/269.alien-dictionary.cpp)**: [Alien Dictionary](https://leetcode.com/problems/alien-dictionary/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=6kTZYvNNyps)
-- 🟡 [ ] **[LC 787](src/cpp/graphs/787.cheapest-flights-within-k-stops.cpp)**: [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)  
+- <a id="lc-787"></a>🟡 [ ] **[LC 787](src/cpp/graphs/787.cheapest-flights-within-k-stops.cpp)**: [Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=5eIK3zUdYmE)
 
 ## Arrays & Hashing
 
-- 🟢 [x] **[LC 217](src/cpp/hash/217.contains-duplicate.cpp)**: [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)  
+- <a id="lc-217"></a>🟢 [x] **[LC 217](src/cpp/hash/217.contains-duplicate.cpp)**: [Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=3OamzN90kPg)
   <details><summary>View Solution</summary>
   
@@ -276,7 +276,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 242](src/cpp/hash/242.valid-anagram.cpp)**: [Valid Anagram](https://leetcode.com/problems/valid-anagram/)  
+- <a id="lc-242"></a>🟢 [x] **[LC 242](src/cpp/hash/242.valid-anagram.cpp)**: [Valid Anagram](https://leetcode.com/problems/valid-anagram/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=9UtInBqnCgA)
   <details><summary>View Solution</summary>
   
@@ -310,7 +310,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 1](src/cpp/hash/1.two-sum.cpp)**: [Two Sum](https://leetcode.com/problems/two-sum/)  
+- <a id="lc-1"></a>🟢 [x] **[LC 1](src/cpp/hash/1.two-sum.cpp)**: [Two Sum](https://leetcode.com/problems/two-sum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=KLlXCFG5TnA)
   <details><summary>View Solution</summary>
   
@@ -331,7 +331,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 49](src/cpp/hash/49.group-anagrams.cpp)**: [Group Anagrams](https://leetcode.com/problems/group-anagrams/)  
+- <a id="lc-49"></a>🟡 [x] **[LC 49](src/cpp/hash/49.group-anagrams.cpp)**: [Group Anagrams](https://leetcode.com/problems/group-anagrams/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=vzdNOK2oB2E)
   <details><summary>View Solution</summary>
   
@@ -366,9 +366,9 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 347](src/cpp/hash/347.top-k-frequent-elements.cpp)**: [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)  
+- <a id="lc-347"></a>🟡 [x] **[LC 347](src/cpp/hash/347.top-k-frequent-elements.cpp)**: [Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=YPTqKIgVk-k)
-- 🟡 [x] **[LC 271](src/cpp/hash/271.encode-and-decode-strings.cpp)**: [Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/)  
+- <a id="lc-271"></a>🟡 [x] **[LC 271](src/cpp/hash/271.encode-and-decode-strings.cpp)**: [Encode and Decode Strings](https://leetcode.com/problems/encode-and-decode-strings/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -403,7 +403,7 @@ Track your interview preparation progress here.
   ```
   </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=B1k_sxOSgv8)
-- 🟡 [x] **[LC 238](src/cpp/hash/238.product-of-array-except-self.cpp)**: [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)  
+- <a id="lc-238"></a>🟡 [x] **[LC 238](src/cpp/hash/238.product-of-array-except-self.cpp)**: [Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=bNvIQI2wAjk)
   <details><summary>View Solution</summary>
   
@@ -416,7 +416,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 36](src/cpp/hash/36.valid-sudoku.cpp)**: [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)  
+- <a id="lc-36"></a>🟡 [x] **[LC 36](src/cpp/hash/36.valid-sudoku.cpp)**: [Valid Sudoku](https://leetcode.com/problems/valid-sudoku/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=TjFXEUCMqI8)
   <details><summary>View Solution</summary>
   
@@ -453,7 +453,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 128](src/cpp/hash/128.longest-consecutive-sequence.cpp)**: [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)  
+- <a id="lc-128"></a>🟡 [x] **[LC 128](src/cpp/hash/128.longest-consecutive-sequence.cpp)**: [Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -480,40 +480,40 @@ Track your interview preparation progress here.
 
 ## Backtracking
 
-- 🟡 [ ] **[LC 78](src/cpp/backtracking/78.subsets.cpp)**: [Subsets](https://leetcode.com/problems/subsets/)  
+- <a id="lc-78"></a>🟡 [ ] **[LC 78](src/cpp/backtracking/78.subsets.cpp)**: [Subsets](https://leetcode.com/problems/subsets/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=REOH22Xwdkk)
-- 🟡 [ ] **[LC 39](src/cpp/backtracking/39.combination-sum.cpp)**: [Combination Sum](https://leetcode.com/problems/combination-sum/)  
+- <a id="lc-39"></a>🟡 [ ] **[LC 39](src/cpp/backtracking/39.combination-sum.cpp)**: [Combination Sum](https://leetcode.com/problems/combination-sum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=GBKI9VSKdGg)
-- 🟡 [ ] **[LC 40](src/cpp/backtracking/40.combination-sum-ii.cpp)**: [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)  
+- <a id="lc-40"></a>🟡 [ ] **[LC 40](src/cpp/backtracking/40.combination-sum-ii.cpp)**: [Combination Sum II](https://leetcode.com/problems/combination-sum-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=rSA3t6BDDwg)
-- 🟡 [ ] **[LC 46](src/cpp/backtracking/46.permutations.cpp)**: [Permutations](https://leetcode.com/problems/permutations/)  
+- <a id="lc-46"></a>🟡 [ ] **[LC 46](src/cpp/backtracking/46.permutations.cpp)**: [Permutations](https://leetcode.com/problems/permutations/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=KPgQQWSqss4)
-- 🟡 [ ] **[LC 90](src/cpp/backtracking/90.subsets-ii.cpp)**: [Subsets II](https://leetcode.com/problems/subsets-ii/)  
+- <a id="lc-90"></a>🟡 [ ] **[LC 90](src/cpp/backtracking/90.subsets-ii.cpp)**: [Subsets II](https://leetcode.com/problems/subsets-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Vn2v6ajA7U0)
-- 🟡 [ ] **[LC 22](src/cpp/backtracking/22.generate-parentheses.cpp)**: [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)  
+- <a id="lc-22"></a>🟡 [ ] **[LC 22](src/cpp/backtracking/22.generate-parentheses.cpp)**: [Generate Parentheses](https://leetcode.com/problems/generate-parentheses/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s9fokUqJ76A)
-- 🟡 [ ] **[LC 79](src/cpp/backtracking/79.word-search.cpp)**: [Word Search](https://leetcode.com/problems/word-search/)  
+- <a id="lc-79"></a>🟡 [ ] **[LC 79](src/cpp/backtracking/79.word-search.cpp)**: [Word Search](https://leetcode.com/problems/word-search/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=pfiQ_PS1g8E)
-- 🟡 [ ] **[LC 131](src/cpp/backtracking/131.palindrome-partitioning.cpp)**: [Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/)  
+- <a id="lc-131"></a>🟡 [ ] **[LC 131](src/cpp/backtracking/131.palindrome-partitioning.cpp)**: [Palindrome Partitioning](https://leetcode.com/problems/palindrome-partitioning/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=YKEU-dhqKmA)
-- 🟡 [ ] **[LC 17](src/cpp/backtracking/17.letter-combinations-of-a-phone-number.cpp)**: [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)  
+- <a id="lc-17"></a>🟡 [ ] **[LC 17](src/cpp/backtracking/17.letter-combinations-of-a-phone-number.cpp)**: [Letter Combinations of a Phone Number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=0snEunUacZY)
-- 🔴 [ ] **[LC 51](src/cpp/backtracking/51.n-queens.cpp)**: [N Queens](https://leetcode.com/problems/n-queens/)  
+- <a id="lc-51"></a>🔴 [ ] **[LC 51](src/cpp/backtracking/51.n-queens.cpp)**: [N Queens](https://leetcode.com/problems/n-queens/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Ph95IHmRp5M)
 
 ## Binary Search
 
-- 🟢 [ ] **[LC 704](src/cpp/binary_search/704.binary-search.cpp)**: [Binary Search](https://leetcode.com/problems/binary-search/)  
+- <a id="lc-704"></a>🟢 [ ] **[LC 704](src/cpp/binary_search/704.binary-search.cpp)**: [Binary Search](https://leetcode.com/problems/binary-search/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s4DPM8ct1pI)
-- 🟡 [ ] **[LC 74](src/cpp/binary_search/74.search-a-2d-matrix.cpp)**: [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)  
+- <a id="lc-74"></a>🟡 [ ] **[LC 74](src/cpp/binary_search/74.search-a-2d-matrix.cpp)**: [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Ber2pi2C0j0)
-- 🟡 [ ] **[LC 875](src/cpp/binary_search/875.koko-eating-bananas.cpp)**: [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)  
+- <a id="lc-875"></a>🟡 [ ] **[LC 875](src/cpp/binary_search/875.koko-eating-bananas.cpp)**: [Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=U2SozAs9RzA)
-- 🟡 [ ] **[LC 153](src/cpp/binary_search/153.find-minimum-in-rotated-sorted-array.cpp)**: [Find Minimum In Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)  
+- <a id="lc-153"></a>🟡 [ ] **[LC 153](src/cpp/binary_search/153.find-minimum-in-rotated-sorted-array.cpp)**: [Find Minimum In Rotated Sorted Array](https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=nIVW4P8b1VA)
-- 🟡 [x] **[LC 33](src/cpp/binary_search/33.search-in-rotated-sorted-array.cpp)**: [Search In Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)  
+- <a id="lc-33"></a>🟡 [x] **[LC 33](src/cpp/binary_search/33.search-in-rotated-sorted-array.cpp)**: [Search In Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=U8XENwh8Oy8)
-- 🟡 [x] **[LC 981](src/cpp/binary_search/981.time-based-key-value-store.cpp)**: [Time Based Key Value Store](https://leetcode.com/problems/time-based-key-value-store/)  
+- <a id="lc-981"></a>🟡 [x] **[LC 981](src/cpp/binary_search/981.time-based-key-value-store.cpp)**: [Time Based Key Value Store](https://leetcode.com/problems/time-based-key-value-store/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=fu2cD_6E8Hw)
   <details><summary>View Solution</summary>
   
@@ -564,29 +564,29 @@ Track your interview preparation progress here.
    */
   ```
   </details>
-- 🔴 [ ] **[LC 4](src/cpp/binary_search/4.median-of-two-sorted-arrays.cpp)**: [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)  
+- <a id="lc-4"></a>🔴 [ ] **[LC 4](src/cpp/binary_search/4.median-of-two-sorted-arrays.cpp)**: [Median of Two Sorted Arrays](https://leetcode.com/problems/median-of-two-sorted-arrays/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=q6IEA26hvXc)
 
 ## Bit Manipulation
 
-- 🟢 [ ] **[LC 136](src/cpp/bit_manipulation/136.single-number.cpp)**: [Single Number](https://leetcode.com/problems/single-number/)  
+- <a id="lc-136"></a>🟢 [ ] **[LC 136](src/cpp/bit_manipulation/136.single-number.cpp)**: [Single Number](https://leetcode.com/problems/single-number/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=qMPX1AOa83k)
-- 🟢 [ ] **[LC 191](src/cpp/bit_manipulation/191.number-of-1-bits.cpp)**: [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)  
+- <a id="lc-191"></a>🟢 [ ] **[LC 191](src/cpp/bit_manipulation/191.number-of-1-bits.cpp)**: [Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=5Km3utixwZs)
-- 🟢 [ ] **[LC 338](src/cpp/bit_manipulation/338.counting-bits.cpp)**: [Counting Bits](https://leetcode.com/problems/counting-bits/)  
+- <a id="lc-338"></a>🟢 [ ] **[LC 338](src/cpp/bit_manipulation/338.counting-bits.cpp)**: [Counting Bits](https://leetcode.com/problems/counting-bits/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=RyBM56RIWrM)
-- 🟢 [ ] **[LC 190](src/cpp/bit_manipulation/190.reverse-bits.cpp)**: [Reverse Bits](https://leetcode.com/problems/reverse-bits/)  
+- <a id="lc-190"></a>🟢 [ ] **[LC 190](src/cpp/bit_manipulation/190.reverse-bits.cpp)**: [Reverse Bits](https://leetcode.com/problems/reverse-bits/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=UcoN6UjAI64)
-- 🟢 [ ] **[LC 268](src/cpp/bit_manipulation/268.missing-number.cpp)**: [Missing Number](https://leetcode.com/problems/missing-number/)  
+- <a id="lc-268"></a>🟢 [ ] **[LC 268](src/cpp/bit_manipulation/268.missing-number.cpp)**: [Missing Number](https://leetcode.com/problems/missing-number/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=WnPLSRLSANE)
-- 🟡 [ ] **[LC 371](src/cpp/bit_manipulation/371.sum-of-two-integers.cpp)**: [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)  
+- <a id="lc-371"></a>🟡 [ ] **[LC 371](src/cpp/bit_manipulation/371.sum-of-two-integers.cpp)**: [Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=gVUrDV4tZfY)
-- 🟡 [ ] **[LC 7](src/cpp/bit_manipulation/7.reverse-integer.cpp)**: [Reverse Integer](https://leetcode.com/problems/reverse-integer/)  
+- <a id="lc-7"></a>🟡 [ ] **[LC 7](src/cpp/bit_manipulation/7.reverse-integer.cpp)**: [Reverse Integer](https://leetcode.com/problems/reverse-integer/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=HAgLH58IgJQ)
 
 ## Graphs
 
-- 🟡 [x] **[LC 200](src/cpp/graphs/200.number-of-islands.cpp)**: [Number of Islands](https://leetcode.com/problems/number-of-islands/)  
+- <a id="lc-200"></a>🟡 [x] **[LC 200](src/cpp/graphs/200.number-of-islands.cpp)**: [Number of Islands](https://leetcode.com/problems/number-of-islands/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=pV2kpPD66nE)
   <details><summary>View Solution</summary>
   
@@ -629,7 +629,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 695](src/cpp/graphs/695.max-area-of-island.cpp)**: [Max Area of Island](https://leetcode.com/problems/max-area-of-island/)  
+- <a id="lc-695"></a>🟡 [x] **[LC 695](src/cpp/graphs/695.max-area-of-island.cpp)**: [Max Area of Island](https://leetcode.com/problems/max-area-of-island/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -659,17 +659,17 @@ Track your interview preparation progress here.
   ```
   </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=iJGr1OtmH0c)
-- 🟡 [ ] **[LC 133](src/cpp/graphs/133.clone-graph.cpp)**: [Clone Graph](https://leetcode.com/problems/clone-graph/)  
+- <a id="lc-133"></a>🟡 [ ] **[LC 133](src/cpp/graphs/133.clone-graph.cpp)**: [Clone Graph](https://leetcode.com/problems/clone-graph/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=mQeF6bN8hMk)
-- 🟡 [ ] **[LC 286](src/cpp/graphs/286.walls-and-gates.cpp)**: [Walls And Gates](https://leetcode.com/problems/walls-and-gates/)  
+- <a id="lc-286"></a>🟡 [ ] **[LC 286](src/cpp/graphs/286.walls-and-gates.cpp)**: [Walls And Gates](https://leetcode.com/problems/walls-and-gates/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=e69C6xhiSQE)
-- 🟡 [ ] **[LC 994](src/cpp/graphs/994.rotting-oranges.cpp)**: [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)  
+- <a id="lc-994"></a>🟡 [ ] **[LC 994](src/cpp/graphs/994.rotting-oranges.cpp)**: [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=y704fEOx0s0)
-- 🟡 [ ] **[LC 417](src/cpp/graphs/417.pacific-atlantic-water-flow.cpp)**: [Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)  
+- <a id="lc-417"></a>🟡 [ ] **[LC 417](src/cpp/graphs/417.pacific-atlantic-water-flow.cpp)**: [Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s-VkcjHqkGI)
-- 🟡 [ ] **[LC 130](src/cpp/graphs/130.surrounded-regions.cpp)**: [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)  
+- <a id="lc-130"></a>🟡 [ ] **[LC 130](src/cpp/graphs/130.surrounded-regions.cpp)**: [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=9z2BunfoZ5Y)
-- 🟡 [x] **[LC 207](src/cpp/graphs/207.course-schedule.cpp)**: [Course Schedule](https://leetcode.com/problems/course-schedule/)  
+- <a id="lc-207"></a>🟡 [x] **[LC 207](src/cpp/graphs/207.course-schedule.cpp)**: [Course Schedule](https://leetcode.com/problems/course-schedule/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=EgI5nU9etnU)
   <details><summary>View Solution</summary>
   
@@ -682,7 +682,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 210](src/cpp/graphs/210.course-schedule-ii.cpp)**: [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)  
+- <a id="lc-210"></a>🟡 [x] **[LC 210](src/cpp/graphs/210.course-schedule-ii.cpp)**: [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Akt3glAwyfY)
   <details><summary>View Solution</summary>
   
@@ -695,41 +695,41 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 261](src/cpp/graphs/261.graph-valid-tree.cpp)**: [Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)  
+- <a id="lc-261"></a>🟡 [ ] **[LC 261](src/cpp/graphs/261.graph-valid-tree.cpp)**: [Graph Valid Tree](https://leetcode.com/problems/graph-valid-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=bXsUuownnoQ)
-- 🟡 [ ] **[LC 323](src/cpp/graphs/323.number-of-connected-components-in-an-undirected-graph.cpp)**: [Number of Connected Components In An Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)  
+- <a id="lc-323"></a>🟡 [ ] **[LC 323](src/cpp/graphs/323.number-of-connected-components-in-an-undirected-graph.cpp)**: [Number of Connected Components In An Undirected Graph](https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=8f1XPm4WOUc)
-- 🟡 [ ] **[LC 684](src/cpp/graphs/684.redundant-connection.cpp)**: [Redundant Connection](https://leetcode.com/problems/redundant-connection/)  
+- <a id="lc-684"></a>🟡 [ ] **[LC 684](src/cpp/graphs/684.redundant-connection.cpp)**: [Redundant Connection](https://leetcode.com/problems/redundant-connection/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=1lNK80tOTfc)
-- 🔴 [ ] **[LC 127](src/cpp/graphs/127.word-ladder.cpp)**: [Word Ladder](https://leetcode.com/problems/word-ladder/)  
+- <a id="lc-127"></a>🔴 [ ] **[LC 127](src/cpp/graphs/127.word-ladder.cpp)**: [Word Ladder](https://leetcode.com/problems/word-ladder/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=h9iTnkgv05E)
 
 ## Greedy
 
-- 🟡 [ ] **[LC 53](src/cpp/greedy/53.maximum-subarray.cpp)**: [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)  
+- <a id="lc-53"></a>🟡 [ ] **[LC 53](src/cpp/greedy/53.maximum-subarray.cpp)**: [Maximum Subarray](https://leetcode.com/problems/maximum-subarray/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=5WZl3MMT0Eg)
-- 🟡 [ ] **[LC 55](src/cpp/greedy/55.jump-game.cpp)**: [Jump Game](https://leetcode.com/problems/jump-game/)  
+- <a id="lc-55"></a>🟡 [ ] **[LC 55](src/cpp/greedy/55.jump-game.cpp)**: [Jump Game](https://leetcode.com/problems/jump-game/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Yan0cv2cLy8)
-- 🟡 [ ] **[LC 45](src/cpp/greedy/45.jump-game-ii.cpp)**: [Jump Game II](https://leetcode.com/problems/jump-game-ii/)  
+- <a id="lc-45"></a>🟡 [ ] **[LC 45](src/cpp/greedy/45.jump-game-ii.cpp)**: [Jump Game II](https://leetcode.com/problems/jump-game-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=dJ7sWiOoK7g)
-- 🟡 [ ] **[LC 134](src/cpp/greedy/134.gas-station.cpp)**: [Gas Station](https://leetcode.com/problems/gas-station/)  
+- <a id="lc-134"></a>🟡 [ ] **[LC 134](src/cpp/greedy/134.gas-station.cpp)**: [Gas Station](https://leetcode.com/problems/gas-station/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=lJwbPZGo05A)
-- 🟡 [ ] **[LC 846](src/cpp/greedy/846.hand-of-straights.cpp)**: [Hand of Straights](https://leetcode.com/problems/hand-of-straights/)  
+- <a id="lc-846"></a>🟡 [ ] **[LC 846](src/cpp/greedy/846.hand-of-straights.cpp)**: [Hand of Straights](https://leetcode.com/problems/hand-of-straights/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=amnrMCVd2YI)
-- 🟡 [ ] **[LC 1899](src/cpp/greedy/1899.merge-triplets-to-form-target-triplet.cpp)**: [Merge Triplets to Form Target Triplet](https://leetcode.com/problems/merge-triplets-to-form-target-triplet/)  
+- <a id="lc-1899"></a>🟡 [ ] **[LC 1899](src/cpp/greedy/1899.merge-triplets-to-form-target-triplet.cpp)**: [Merge Triplets to Form Target Triplet](https://leetcode.com/problems/merge-triplets-to-form-target-triplet/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=kShkQLQZ9K4)
-- 🟡 [ ] **[LC 763](src/cpp/greedy/763.partition-labels.cpp)**: [Partition Labels](https://leetcode.com/problems/partition-labels/)  
+- <a id="lc-763"></a>🟡 [ ] **[LC 763](src/cpp/greedy/763.partition-labels.cpp)**: [Partition Labels](https://leetcode.com/problems/partition-labels/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=B7m8UmZE-vw)
-- 🟡 [ ] **[LC 678](src/cpp/greedy/678.valid-parenthesis-string.cpp)**: [Valid Parenthesis String](https://leetcode.com/problems/valid-parenthesis-string/)  
+- <a id="lc-678"></a>🟡 [ ] **[LC 678](src/cpp/greedy/678.valid-parenthesis-string.cpp)**: [Valid Parenthesis String](https://leetcode.com/problems/valid-parenthesis-string/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=QhPdNS143Qg)
 
 ## Heap / Priority Queue
 
-- 🟢 [ ] **[LC 703](src/cpp/heap/703.kth-largest-element-in-a-stream.cpp)**: [Kth Largest Element In a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)  
+- <a id="lc-703"></a>🟢 [ ] **[LC 703](src/cpp/heap/703.kth-largest-element-in-a-stream.cpp)**: [Kth Largest Element In a Stream](https://leetcode.com/problems/kth-largest-element-in-a-stream/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=hOjcdrqMoQ8)
-- 🟢 [ ] **[LC 1046](src/cpp/heap/1046.last-stone-weight.cpp)**: [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)  
+- <a id="lc-1046"></a>🟢 [ ] **[LC 1046](src/cpp/heap/1046.last-stone-weight.cpp)**: [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=B-QCq79-Vfw)
-- 🟡 [x] **[LC 973](src/cpp/heap/973.k-closest-points-to-origin.cpp)**: [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)  
+- <a id="lc-973"></a>🟡 [x] **[LC 973](src/cpp/heap/973.k-closest-points-to-origin.cpp)**: [K Closest Points to Origin](https://leetcode.com/problems/k-closest-points-to-origin/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=rI2EBUEMfTk)
   <details><summary>View Solution</summary>
   
@@ -742,7 +742,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 215](src/cpp/heap/215.kth-largest-element-in-an-array.cpp)**: [Kth Largest Element In An Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)  
+- <a id="lc-215"></a>🟡 [x] **[LC 215](src/cpp/heap/215.kth-largest-element-in-an-array.cpp)**: [Kth Largest Element In An Array](https://leetcode.com/problems/kth-largest-element-in-an-array/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=XEmy13g1Qxc)
   <details><summary>View Solution</summary>
   
@@ -755,11 +755,11 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 621](src/cpp/heap/621.task-scheduler.cpp)**: [Task Scheduler](https://leetcode.com/problems/task-scheduler/)  
+- <a id="lc-621"></a>🟡 [ ] **[LC 621](src/cpp/heap/621.task-scheduler.cpp)**: [Task Scheduler](https://leetcode.com/problems/task-scheduler/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s8p8ukTyA2I)
-- 🟡 [ ] **[LC 355](src/cpp/heap/355.design-twitter.cpp)**: [Design Twitter](https://leetcode.com/problems/design-twitter/)  
+- <a id="lc-355"></a>🟡 [ ] **[LC 355](src/cpp/heap/355.design-twitter.cpp)**: [Design Twitter](https://leetcode.com/problems/design-twitter/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=pNichitDD2E)
-- 🔴 [x] **[LC 295](src/cpp/heap/295.find-median-from-data-stream.cpp)**: [Find Median From Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)  
+- <a id="lc-295"></a>🔴 [x] **[LC 295](src/cpp/heap/295.find-median-from-data-stream.cpp)**: [Find Median From Data Stream](https://leetcode.com/problems/find-median-from-data-stream/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=itmhHWaHupI)
   <details><summary>View Solution</summary>
   
@@ -790,9 +790,9 @@ Track your interview preparation progress here.
 
 ## Intervals
 
-- 🟡 [ ] **[LC 57](src/cpp/intervals/57.insert-interval.cpp)**: [Insert Interval](https://leetcode.com/problems/insert-interval/)  
+- <a id="lc-57"></a>🟡 [ ] **[LC 57](src/cpp/intervals/57.insert-interval.cpp)**: [Insert Interval](https://leetcode.com/problems/insert-interval/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=A8NUOmlwOlM)
-- 🟡 [x] **[LC 56](src/cpp/intervals/56.merge-intervals.cpp)**: [Merge Intervals](https://leetcode.com/problems/merge-intervals/)  
+- <a id="lc-56"></a>🟡 [x] **[LC 56](src/cpp/intervals/56.merge-intervals.cpp)**: [Merge Intervals](https://leetcode.com/problems/merge-intervals/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=44H3cEC2fFM)
   <details><summary>View Solution</summary>
   
@@ -805,18 +805,18 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 435](src/cpp/intervals/435.non-overlapping-intervals.cpp)**: [Non Overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/)  
+- <a id="lc-435"></a>🟡 [ ] **[LC 435](src/cpp/intervals/435.non-overlapping-intervals.cpp)**: [Non Overlapping Intervals](https://leetcode.com/problems/non-overlapping-intervals/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=nONCGxWoUfM)
-- 🟢 [ ] **[LC 252](src/cpp/intervals/252.meeting-rooms.cpp)**: [Meeting Rooms](https://leetcode.com/problems/meeting-rooms/)  
+- <a id="lc-252"></a>🟢 [ ] **[LC 252](src/cpp/intervals/252.meeting-rooms.cpp)**: [Meeting Rooms](https://leetcode.com/problems/meeting-rooms/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=PaJxqZVPhbg)
-- 🟡 [ ] **[LC 253](src/cpp/intervals/253.meeting-rooms-ii.cpp)**: [Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii/)  
+- <a id="lc-253"></a>🟡 [ ] **[LC 253](src/cpp/intervals/253.meeting-rooms-ii.cpp)**: [Meeting Rooms II](https://leetcode.com/problems/meeting-rooms-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=FdzJmTCVyJU)
-- 🔴 [ ] **[LC 1851](src/cpp/intervals/1851.minimum-interval-to-include-each-query.cpp)**: [Minimum Interval to Include Each Query](https://leetcode.com/problems/minimum-interval-to-include-each-query/)  
+- <a id="lc-1851"></a>🔴 [ ] **[LC 1851](src/cpp/intervals/1851.minimum-interval-to-include-each-query.cpp)**: [Minimum Interval to Include Each Query](https://leetcode.com/problems/minimum-interval-to-include-each-query/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=5hQ5WWW5awQ)
 
 ## Linked List
 
-- 🟢 [x] **[LC 206](src/cpp/list/206.reverse-linked-list.cpp)**: [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)  
+- <a id="lc-206"></a>🟢 [x] **[LC 206](src/cpp/list/206.reverse-linked-list.cpp)**: [Reverse Linked List](https://leetcode.com/problems/reverse-linked-list/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=uyTL80yvTrw)
   <details><summary>View Solution</summary>
   
@@ -839,7 +839,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 21](src/cpp/list/21.merge-two-sorted-lists.cpp)**: [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)  
+- <a id="lc-21"></a>🟢 [x] **[LC 21](src/cpp/list/21.merge-two-sorted-lists.cpp)**: [Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=XIdigk956u0)
   <details><summary>View Solution</summary>
   
@@ -872,7 +872,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 141](src/cpp/list/141.linked-list-cycle.cpp)**: [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)  
+- <a id="lc-141"></a>🟢 [x] **[LC 141](src/cpp/list/141.linked-list-cycle.cpp)**: [Linked List Cycle](https://leetcode.com/problems/linked-list-cycle/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=gBTe7lFR3vc)
   <details><summary>View Solution</summary>
   
@@ -902,13 +902,13 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 143](src/cpp/list/143.reorder-list.cpp)**: [Reorder List](https://leetcode.com/problems/reorder-list/)  
+- <a id="lc-143"></a>🟡 [ ] **[LC 143](src/cpp/list/143.reorder-list.cpp)**: [Reorder List](https://leetcode.com/problems/reorder-list/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=S5bfdUTrKLM)
-- 🟡 [ ] **[LC 19](src/cpp/list/19.remove-nth-node-from-end-of-list.cpp)**: [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)  
+- <a id="lc-19"></a>🟡 [ ] **[LC 19](src/cpp/list/19.remove-nth-node-from-end-of-list.cpp)**: [Remove Nth Node From End of List](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=XVuQxVej6y8)
-- 🟡 [ ] **[LC 138](src/cpp/list/138.copy-list-with-random-pointer.cpp)**: [Copy List With Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)  
+- <a id="lc-138"></a>🟡 [ ] **[LC 138](src/cpp/list/138.copy-list-with-random-pointer.cpp)**: [Copy List With Random Pointer](https://leetcode.com/problems/copy-list-with-random-pointer/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=5Y2EiZST97Y)
-- 🟡 [x] **[LC 2](src/cpp/list/2.add-two-numbers.cpp)**: [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)  
+- <a id="lc-2"></a>🟡 [x] **[LC 2](src/cpp/list/2.add-two-numbers.cpp)**: [Add Two Numbers](https://leetcode.com/problems/add-two-numbers/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=wgFPrzTjm7s)
   <details><summary>View Solution</summary>
   
@@ -932,9 +932,9 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 287](src/cpp/list/287.find-the-duplicate-number.cpp)**: [Find The Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)  
+- <a id="lc-287"></a>🟡 [ ] **[LC 287](src/cpp/list/287.find-the-duplicate-number.cpp)**: [Find The Duplicate Number](https://leetcode.com/problems/find-the-duplicate-number/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=wjYnzkAhcNk)
-- 🟡 [x] **[LC 146](src/cpp/list/146.lru-cache.cpp)**: [LRU Cache](https://leetcode.com/problems/lru-cache/)  
+- <a id="lc-146"></a>🟡 [x] **[LC 146](src/cpp/list/146.lru-cache.cpp)**: [LRU Cache](https://leetcode.com/problems/lru-cache/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=7ABFKPK2hD4)
   <details><summary>View Solution</summary>
   
@@ -962,35 +962,35 @@ Track your interview preparation progress here.
    */
   ```
   </details>
-- 🔴 [ ] **[LC 23](src/cpp/list/23.merge-k-sorted-lists.cpp)**: [Merge K Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)  
+- <a id="lc-23"></a>🔴 [ ] **[LC 23](src/cpp/list/23.merge-k-sorted-lists.cpp)**: [Merge K Sorted Lists](https://leetcode.com/problems/merge-k-sorted-lists/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=q5a5OiGbT6Q)
-- 🔴 [ ] **[LC 25](src/cpp/list/25.reverse-nodes-in-k-group.cpp)**: [Reverse Nodes In K Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)  
+- <a id="lc-25"></a>🔴 [ ] **[LC 25](src/cpp/list/25.reverse-nodes-in-k-group.cpp)**: [Reverse Nodes In K Group](https://leetcode.com/problems/reverse-nodes-in-k-group/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=1UOPsfP85V4)
 
 ## Math & Geometry
 
-- 🟡 [ ] **[LC 48](src/cpp/math/48.rotate-image.cpp)**: [Rotate Image](https://leetcode.com/problems/rotate-image/)  
+- <a id="lc-48"></a>🟡 [ ] **[LC 48](src/cpp/math/48.rotate-image.cpp)**: [Rotate Image](https://leetcode.com/problems/rotate-image/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=fMSJSS7eO1w)
-- 🟡 [ ] **[LC 54](src/cpp/math/54.spiral-matrix.cpp)**: [Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)  
+- <a id="lc-54"></a>🟡 [ ] **[LC 54](src/cpp/math/54.spiral-matrix.cpp)**: [Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=BJnMZNwUk1M)
-- 🟡 [ ] **[LC 73](src/cpp/math/73.set-matrix-zeroes.cpp)**: [Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)  
+- <a id="lc-73"></a>🟡 [ ] **[LC 73](src/cpp/math/73.set-matrix-zeroes.cpp)**: [Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=T41rL0L3Pnw)
-- 🟢 [ ] **[LC 202](src/cpp/math/202.happy-number.cpp)**: [Happy Number](https://leetcode.com/problems/happy-number/)  
+- <a id="lc-202"></a>🟢 [ ] **[LC 202](src/cpp/math/202.happy-number.cpp)**: [Happy Number](https://leetcode.com/problems/happy-number/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=HtO5NTmFHR0)
-- 🟢 [ ] **[LC 66](src/cpp/math/66.plus-one.cpp)**: [Plus One](https://leetcode.com/problems/plus-one/)  
+- <a id="lc-66"></a>🟢 [ ] **[LC 66](src/cpp/math/66.plus-one.cpp)**: [Plus One](https://leetcode.com/problems/plus-one/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=FSZx33537oU)
-- 🟡 [ ] **[LC 50](src/cpp/math/50.powx-n.cpp)**: [Pow(x, n)](https://leetcode.com/problems/powx-n/)  
+- <a id="lc-50"></a>🟡 [ ] **[LC 50](src/cpp/math/50.powx-n.cpp)**: [Pow(x, n)](https://leetcode.com/problems/powx-n/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=g9YQyYi4IQQ)
-- 🟡 [ ] **[LC 43](src/cpp/math/43.multiply-strings.cpp)**: [Multiply Strings](https://leetcode.com/problems/multiply-strings/)  
+- <a id="lc-43"></a>🟡 [ ] **[LC 43](src/cpp/math/43.multiply-strings.cpp)**: [Multiply Strings](https://leetcode.com/problems/multiply-strings/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=1IsHMY1r7dc)
-- 🟡 [ ] **[LC 2013](src/cpp/math/2013.detect-squares.cpp)**: [Detect Squares](https://leetcode.com/problems/detect-squares/)  
+- <a id="lc-2013"></a>🟡 [ ] **[LC 2013](src/cpp/math/2013.detect-squares.cpp)**: [Detect Squares](https://leetcode.com/problems/detect-squares/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=bahebearrDc)
 
 ## Sliding Window
 
-- 🟢 [ ] **[LC 121](src/cpp/sliding_window/121.best-time-to-buy-and-sell-stock.cpp)**: [Best Time to Buy And Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)  
+- <a id="lc-121"></a>🟢 [ ] **[LC 121](src/cpp/sliding_window/121.best-time-to-buy-and-sell-stock.cpp)**: [Best Time to Buy And Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=1pkOgXD63yU)
-- 🟡 [x] **[LC 3](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp)**: [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)  
+- <a id="lc-3"></a>🟡 [x] **[LC 3](src/cpp/sliding_window/3.longest-substring-without-repeating-characters.cpp)**: [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=wiGpQwVHdE0)
   <details><summary>View Solution</summary>
   
@@ -1017,7 +1017,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 424](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp)**: [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)  
+- <a id="lc-424"></a>🟡 [x] **[LC 424](src/cpp/sliding_window/424.longest-repeating-character-replacement.cpp)**: [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=gqXU1UyA8pk)
   <details><summary>View Solution</summary>
   
@@ -1078,7 +1078,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 567](src/cpp/sliding_window/567.permutation-in-string.cpp)**: [Permutation In String](https://leetcode.com/problems/permutation-in-string/)  
+- <a id="lc-567"></a>🟡 [x] **[LC 567](src/cpp/sliding_window/567.permutation-in-string.cpp)**: [Permutation In String](https://leetcode.com/problems/permutation-in-string/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=UbyhOgBN834)
   <details><summary>View Solution</summary>
   
@@ -1138,7 +1138,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🔴 [x] **[LC 76](src/cpp/sliding_window/76.minimum-window-substring.cpp)**: [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)  
+- <a id="lc-76"></a>🔴 [x] **[LC 76](src/cpp/sliding_window/76.minimum-window-substring.cpp)**: [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=jSto0O4AJbM)
   <details><summary>View Solution</summary>
   
@@ -1190,12 +1190,12 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🔴 [ ] **[LC 239](src/cpp/sliding_window/239.sliding-window-maximum.cpp)**: [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)  
+- <a id="lc-239"></a>🔴 [ ] **[LC 239](src/cpp/sliding_window/239.sliding-window-maximum.cpp)**: [Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=DfljaUwZsOk)
 
 ## Stack
 
-- 🟢 [x] **[LC 20](src/cpp/stack/20.valid-parentheses.cpp)**: [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)  
+- <a id="lc-20"></a>🟢 [x] **[LC 20](src/cpp/stack/20.valid-parentheses.cpp)**: [Valid Parentheses](https://leetcode.com/problems/valid-parentheses/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=WTzjTskDFMg)
   <details><summary>View Solution</summary>
   
@@ -1223,11 +1223,11 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 155](src/cpp/stack/155.min-stack.cpp)**: [Min Stack](https://leetcode.com/problems/min-stack/)  
+- <a id="lc-155"></a>🟡 [ ] **[LC 155](src/cpp/stack/155.min-stack.cpp)**: [Min Stack](https://leetcode.com/problems/min-stack/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=qkLl7nAwDPo)
-- 🟡 [ ] **[LC 150](src/cpp/stack/150.evaluate-reverse-polish-notation.cpp)**: [Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)  
+- <a id="lc-150"></a>🟡 [ ] **[LC 150](src/cpp/stack/150.evaluate-reverse-polish-notation.cpp)**: [Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=iu0082c4HDE)
-- 🟡 [x] **[LC 739](src/cpp/stack/739.daily-temperatures.cpp)**: [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)  
+- <a id="lc-739"></a>🟡 [x] **[LC 739](src/cpp/stack/739.daily-temperatures.cpp)**: [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=cTBiBSnjO3c)
   <details><summary>View Solution</summary>
   
@@ -1250,14 +1250,14 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 853](src/cpp/stack/853.car-fleet.cpp)**: [Car Fleet](https://leetcode.com/problems/car-fleet/)  
+- <a id="lc-853"></a>🟡 [ ] **[LC 853](src/cpp/stack/853.car-fleet.cpp)**: [Car Fleet](https://leetcode.com/problems/car-fleet/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Pr6T-3yB9RM)
-- 🔴 [ ] **[LC 84](src/cpp/stack/84.largest-rectangle-in-histogram.cpp)**: [Largest Rectangle In Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)  
+- <a id="lc-84"></a>🔴 [ ] **[LC 84](src/cpp/stack/84.largest-rectangle-in-histogram.cpp)**: [Largest Rectangle In Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=zx5Sw9130L0)
 
 ## Trees
 
-- 🟢 [x] **[LC 226](src/cpp/tree/226.invert-binary-tree.cpp)**: [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)  
+- <a id="lc-226"></a>🟢 [x] **[LC 226](src/cpp/tree/226.invert-binary-tree.cpp)**: [Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=OnSn2XEQ4MY)
   <details><summary>View Solution</summary>
   
@@ -1281,7 +1281,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 104](src/cpp/tree/104.maximum-depth-of-binary-tree.cpp)**: [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)  
+- <a id="lc-104"></a>🟢 [x] **[LC 104](src/cpp/tree/104.maximum-depth-of-binary-tree.cpp)**: [Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=hTM3phVI6YQ)
   <details><summary>View Solution</summary>
   
@@ -1343,7 +1343,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 543](src/cpp/tree/543.diameter-of-binary-tree.cpp)**: [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)  
+- <a id="lc-543"></a>🟢 [x] **[LC 543](src/cpp/tree/543.diameter-of-binary-tree.cpp)**: [Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -1367,7 +1367,7 @@ Track your interview preparation progress here.
   ```
   </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=K81C31ytOZE)
-- 🟢 [x] **[LC 110](src/cpp/tree/110.balanced-binary-tree.cpp)**: [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)  
+- <a id="lc-110"></a>🟢 [x] **[LC 110](src/cpp/tree/110.balanced-binary-tree.cpp)**: [Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=QfJsau0ItOY)
   <details><summary>View Solution</summary>
   
@@ -1388,7 +1388,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [x] **[LC 100](src/cpp/tree/100.same-tree.cpp)**: [Same Tree](https://leetcode.com/problems/same-tree/)  
+- <a id="lc-100"></a>🟢 [x] **[LC 100](src/cpp/tree/100.same-tree.cpp)**: [Same Tree](https://leetcode.com/problems/same-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=vRbbcKXCxOw)
   <details><summary>View Solution</summary>
   
@@ -1407,11 +1407,11 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟢 [ ] **[LC 572](src/cpp/tree/572.subtree-of-another-tree.cpp)**: [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)  
+- <a id="lc-572"></a>🟢 [ ] **[LC 572](src/cpp/tree/572.subtree-of-another-tree.cpp)**: [Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=E36O5SWp-LE)
-- 🟡 [ ] **[LC 235](src/cpp/tree/235.lowest-common-ancestor-of-a-binary-search-tree.cpp)**: [Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)  
+- <a id="lc-235"></a>🟡 [ ] **[LC 235](src/cpp/tree/235.lowest-common-ancestor-of-a-binary-search-tree.cpp)**: [Lowest Common Ancestor of a Binary Search Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=gs2LMfuOR9k)
-- 🟡 [x] **[LC 102](src/cpp/tree/102.binary-tree-level-order-traversal.cpp)**: [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)  
+- <a id="lc-102"></a>🟡 [x] **[LC 102](src/cpp/tree/102.binary-tree-level-order-traversal.cpp)**: [Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=6ZnyEApgFYg)
   <details><summary>View Solution</summary>
   
@@ -1440,11 +1440,11 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 199](src/cpp/tree/199.binary-tree-right-side-view.cpp)**: [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)  
+- <a id="lc-199"></a>🟡 [ ] **[LC 199](src/cpp/tree/199.binary-tree-right-side-view.cpp)**: [Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=d4zLyf32e3I)
-- 🟡 [ ] **[LC 1448](src/cpp/tree/1448.count-good-nodes-in-binary-tree.cpp)**: [Count Good Nodes In Binary Tree](https://leetcode.com/problems/count-good-nodes-in-binary-tree/)  
+- <a id="lc-1448"></a>🟡 [ ] **[LC 1448](src/cpp/tree/1448.count-good-nodes-in-binary-tree.cpp)**: [Count Good Nodes In Binary Tree](https://leetcode.com/problems/count-good-nodes-in-binary-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=7cp5imvDzl4)
-- 🟡 [x] **[LC 98](src/cpp/tree/98.validate-binary-search-tree.cpp)**: [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)  
+- <a id="lc-98"></a>🟡 [x] **[LC 98](src/cpp/tree/98.validate-binary-search-tree.cpp)**: [Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s6ATEkipzow)
   <details><summary>View Solution</summary>
   
@@ -1467,20 +1467,20 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [ ] **[LC 230](src/cpp/tree/230.kth-smallest-element-in-a-bst.cpp)**: [Kth Smallest Element In a Bst](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)  
+- <a id="lc-230"></a>🟡 [ ] **[LC 230](src/cpp/tree/230.kth-smallest-element-in-a-bst.cpp)**: [Kth Smallest Element In a Bst](https://leetcode.com/problems/kth-smallest-element-in-a-bst/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=5LUXSvjmGCw)
-- 🟡 [ ] **[LC 105](src/cpp/tree/105.construct-binary-tree-from-preorder-and-inorder-traversal.cpp)**: [Construct Binary Tree From Preorder And Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)  
+- <a id="lc-105"></a>🟡 [ ] **[LC 105](src/cpp/tree/105.construct-binary-tree-from-preorder-and-inorder-traversal.cpp)**: [Construct Binary Tree From Preorder And Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=ihj4IQGZ2zc)
-- 🔴 [ ] **[LC 124](src/cpp/tree/124.binary-tree-maximum-path-sum.cpp)**: [Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)  
+- <a id="lc-124"></a>🔴 [ ] **[LC 124](src/cpp/tree/124.binary-tree-maximum-path-sum.cpp)**: [Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Hr5cWUld4vU)
-- 🔴 [ ] **[LC 297](src/cpp/tree/297.serialize-and-deserialize-binary-tree.cpp)**: [Serialize And Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)  
+- <a id="lc-297"></a>🔴 [ ] **[LC 297](src/cpp/tree/297.serialize-and-deserialize-binary-tree.cpp)**: [Serialize And Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=u4JAi2JJhI8)
 
 ## Tries
 
-- 🟡 [ ] **[LC 208](src/cpp/trie/208.implement-trie-prefix-tree.cpp)**: [Implement Trie Prefix Tree](https://leetcode.com/problems/implement-trie-prefix-tree/)  
+- <a id="lc-208"></a>🟡 [ ] **[LC 208](src/cpp/trie/208.implement-trie-prefix-tree.cpp)**: [Implement Trie Prefix Tree](https://leetcode.com/problems/implement-trie-prefix-tree/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=oobqoCJlHA0)
-- 🟡 [x] **[LC 211](src/cpp/trie/211.design-add-and-search-words-data-structure.cpp)**: [Design Add And Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/)  
+- <a id="lc-211"></a>🟡 [x] **[LC 211](src/cpp/trie/211.design-add-and-search-words-data-structure.cpp)**: [Design Add And Search Words Data Structure](https://leetcode.com/problems/design-add-and-search-words-data-structure/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=BTf05gs_8iU)
   <details><summary>View Solution</summary>
   
@@ -1548,12 +1548,12 @@ Track your interview preparation progress here.
    */
   ```
   </details>
-- 🔴 [ ] **[LC 212](src/cpp/trie/212.word-search-ii.cpp)**: [Word Search II](https://leetcode.com/problems/word-search-ii/)  
+- <a id="lc-212"></a>🔴 [ ] **[LC 212](src/cpp/trie/212.word-search-ii.cpp)**: [Word Search II](https://leetcode.com/problems/word-search-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=asbcE9mZz_U)
 
 ## Two Pointers
 
-- 🟢 [x] **[LC 125](src/cpp/two_pointer/125.valid-palindrome.cpp)**: [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)  
+- <a id="lc-125"></a>🟢 [x] **[LC 125](src/cpp/two_pointer/125.valid-palindrome.cpp)**: [Valid Palindrome](https://leetcode.com/problems/valid-palindrome/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -1582,7 +1582,7 @@ Track your interview preparation progress here.
   ```
   </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=jJXJ16kPFWg)
-- 🟡 [x] **[LC 167](src/cpp/two_pointer/167.two-sum-ii-input-array-is-sorted.cpp)**: [Two Sum II Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)  
+- <a id="lc-167"></a>🟡 [x] **[LC 167](src/cpp/two_pointer/167.two-sum-ii-input-array-is-sorted.cpp)**: [Two Sum II Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -1605,7 +1605,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 15](src/cpp/two_pointer/15.3sum.cpp)**: [3Sum](https://leetcode.com/problems/3sum/)  
+- <a id="lc-15"></a>🟡 [x] **[LC 15](src/cpp/two_pointer/15.3sum.cpp)**: [3Sum](https://leetcode.com/problems/3sum/)  
   <details><summary>View Solution</summary>
   
   ```cpp
@@ -1647,7 +1647,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 11](src/cpp/two_pointer/11.container-with-most-water.cpp)**: [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)  
+- <a id="lc-11"></a>🟡 [x] **[LC 11](src/cpp/two_pointer/11.container-with-most-water.cpp)**: [Container With Most Water](https://leetcode.com/problems/container-with-most-water/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=UuiTKBwPgAo)
   <details><summary>View Solution</summary>
   
@@ -1666,7 +1666,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🔴 [x] **[LC 42](src/cpp/two_pointer/42.trapping-rain-water.cpp)**: [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)  
+- <a id="lc-42"></a>🔴 [x] **[LC 42](src/cpp/two_pointer/42.trapping-rain-water.cpp)**: [Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=ZI2z5pq0TqA)
   <details><summary>View Solution</summary>
   
@@ -1741,7 +1741,7 @@ Track your interview preparation progress here.
 
 ## Bonus: Concurrency (Not NeetCode 150)
 
-- 🟡 [x] **[LC 362](src/cpp/concurrency/362.design-hit-counter.cpp)**: [Design Hit Counter](https://leetcode.com/problems/design-hit-counter/)  
+- <a id="lc-362"></a>🟡 [x] **[LC 362](src/cpp/concurrency/362.design-hit-counter.cpp)**: [Design Hit Counter](https://leetcode.com/problems/design-hit-counter/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=MKihMUdG3O8)
   <details><summary>View Solution</summary>
   
@@ -1781,7 +1781,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 1188](src/cpp/concurrency/1188.bounded-blocking-queue.cpp)**: [Design Bounded Blocking Queue](https://leetcode.com/problems/bounded-blocking-queue/)  
+- <a id="lc-1188"></a>🟡 [x] **[LC 1188](src/cpp/concurrency/1188.bounded-blocking-queue.cpp)**: [Design Bounded Blocking Queue](https://leetcode.com/problems/bounded-blocking-queue/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=p4PnZjKqZpc)
   <details><summary>View Solution</summary>
   
@@ -1831,7 +1831,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 1117](src/cpp/concurrency/1117.building-h2o.cpp)**: [Building H2O](https://leetcode.com/problems/building-h2o/)  
+- <a id="lc-1117"></a>🟡 [x] **[LC 1117](src/cpp/concurrency/1117.building-h2o.cpp)**: [Building H2O](https://leetcode.com/problems/building-h2o/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=vMVA1HcTjno)
   <details><summary>View Solution</summary>
   
@@ -1863,7 +1863,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- 🟡 [x] **[LC 1242](src/cpp/concurrency/1242.web-crawler-multithreaded.cpp)**: [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded/)  
+- <a id="lc-1242"></a>🟡 [x] **[LC 1242](src/cpp/concurrency/1242.web-crawler-multithreaded.cpp)**: [Web Crawler Multithreaded](https://leetcode.com/problems/web-crawler-multithreaded/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=4jVu1E2SCE4)
   <details><summary>View Solution</summary>
   
