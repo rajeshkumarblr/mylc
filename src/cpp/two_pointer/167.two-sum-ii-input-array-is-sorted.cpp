@@ -1,7 +1,7 @@
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=167 lang=cpp
@@ -47,28 +47,85 @@
  */
 
 #include <vector>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
 using namespace std;
-
 
 // @lc code=start
 class Solution {
 public:
-    vector<int> twoSum(vector<int>& numbers, int target) {
-        return {};
+  vector<int> twoSum(vector<int> &numbers, int target) {
+    int l = 0;
+    int r = numbers.size() - 1;
+    while (l < r) {
+      if (numbers[l] + numbers[r] == target) {
+        return {l + 1, r + 1};
+      } else if (numbers[l] + numbers[r] > target) {
+        r = r - 1;
+      } else {
+        l = l + 1;
+      }
     }
+    return {};
+  }
 };
 // @lc code=end
 
+#include <iostream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
+  try {
+    json j = json::parse(R"raw({
+      "cases": [
+        {
+          "numbers": [2, 7, 11, 15],
+          "target": 9,
+          "expected": [1, 2]
+        },
+        {
+          "numbers": [2, 3, 4],
+          "target": 6,
+          "expected": [1, 3]
+        },
+        {
+          "numbers": [-1, 0],
+          "target": -1,
+          "expected": [1, 2]
+        }
+      ]
+    })raw");
+
+    for (auto &tc : j.at("cases")) {
+      vector<int> numbers = tc.at("numbers").get<vector<int>>();
+      int target = tc.at("target").get<int>();
+      vector<int> expected = tc.at("expected").get<vector<int>>();
+
+      Solution sol;
+      vector<int> result = sol.twoSum(numbers, target);
+
+      if (result != expected) {
+        cerr << "FAIL for target " << target << " and input: [";
+        for (int i = 0; i < numbers.size(); ++i) {
+          cerr << numbers[i] << (i < numbers.size() - 1 ? ", " : "");
+        }
+        cerr << "]" << endl;
+        cerr << "Expected: [";
+        for (int i = 0; i < expected.size(); ++i) {
+          cerr << expected[i] << (i < expected.size() - 1 ? ", " : "");
+        }
+        cerr << "], Got: [";
+        for (int i = 0; i < result.size(); ++i) {
+          cerr << result[i] << (i < result.size() - 1 ? ", " : "");
+        }
+        cerr << "]" << endl;
+        return 1;
+      }
+    }
+    cout << "PASS" << endl;
+    return 0;
+  } catch (const exception &e) {
+    cerr << "Exception: " << e.what() << endl;
     return 1;
+  }
 }

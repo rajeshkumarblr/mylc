@@ -1,7 +1,7 @@
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=125 lang=cpp
@@ -39,29 +39,81 @@
  *           s  consists only of printable ASCII characters.
  */
 
-#include <vector>
+#include <cctype>
 #include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
 using namespace std;
-
 
 // @lc code=start
 class Solution {
 public:
-    bool isPalindrome(string s) {
-        return {};
+  bool isPalindrome(string &s) {
+    int l = 0;
+    int r = s.size() - 1;
+    while (l < r) {
+      while (l < r && !isalnum(s[l])) {
+        l++;
+      }
+      while (l < r && !isalnum(s[r])) {
+        r--;
+      }
+      if (tolower(s[l]) == tolower(s[r])) {
+        l++;
+        r--;
+      } else {
+        break;
+      }
     }
+    return l >= r;
+  }
 };
 // @lc code=end
 
+#include <iostream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
+  try {
+    json j = json::parse(R"raw({
+      "cases": [
+        {
+          "s": "A man, a plan, a canal: Panama",
+          "expected": true
+        },
+        {
+          "s": "race a car",
+          "expected": false
+        },
+        {
+          "s": " ",
+          "expected": true
+        },
+        {
+          "s": "0P",
+          "expected": false
+        }
+      ]
+    })raw");
+
+    for (auto &tc : j.at("cases")) {
+      string s = tc.at("s").get<string>();
+      bool expected = tc.at("expected").get<bool>();
+
+      Solution sol;
+      bool result = sol.isPalindrome(s);
+
+      if (result != expected) {
+        cerr << "FAIL for input: \"" << s << "\"" << endl;
+        cerr << "Expected: " << (expected ? "true" : "false")
+             << ", Got: " << (result ? "true" : "false") << endl;
+        return 1;
+      }
+    }
+    cout << "PASS" << endl;
+    return 0;
+  } catch (const exception &e) {
+    cerr << "Exception: " << e.what() << endl;
     return 1;
+  }
 }

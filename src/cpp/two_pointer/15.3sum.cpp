@@ -1,7 +1,7 @@
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=15 lang=cpp
@@ -40,65 +40,127 @@
  *           -10 5  <= nums[i] <= 10 5
  */
 
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 using namespace std;
-
 
 // @lc code=start
 class Solution {
 public:
-    vector<vector<int>> threeSum(vector<int>& nums) {
-        return {};
+  vector<vector<int>> threeSum(vector<int> &nums) {
+    vector<vector<int>> res;
+    if (nums.size() < 3) {
+      return {};
     }
+    sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size() - 2; i++) {
+      if (nums[i] > 0) {
+        break;
+      }
+      if (i > 0 && nums[i] == nums[i - 1]) {
+        continue;
+      }
+      int l = i + 1;
+      int r = nums.size() - 1;
+      int target = -nums[i];
+      while (l < r) {
+        if (nums[l] + nums[r] == target) {
+          res.push_back({nums[i], nums[l], nums[r]});
+          l++;
+          while (l < r && nums[l] == nums[l - 1]) {
+            l++;
+          }
+        } else if (nums[l] + nums[r] > target) {
+          r = r - 1;
+        } else {
+          l = l + 1;
+        }
+      }
+    }
+    return res;
+  }
 };
 // @lc code=end
 
+#include <algorithm>
+#include <iostream>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
 
 int main() {
-    Solution sol;
-    // Case 1
-    {
-        vector<int> nums = {-1, 0, 1, 2, -1, -4};
-        auto got = sol.threeSum(nums);
-        if (got != vector<vector<int>>{{-1, -1, 2}, {-1, 0, 1}}) {
-            cerr << "FAIL case 1" << endl;
-            return 1;
+  try {
+    json j = json::parse(R"raw({
+      "cases": [
+        {
+          "nums": [-1,0,1,2,-1,-4],
+          "expected": [[-1,-1,2],[-1,0,1]]
+        },
+        {
+          "nums": [0,1,1],
+          "expected": []
+        },
+        {
+          "nums": [0,0,0],
+          "expected": [[0,0,0]]
         }
-    }
-    // Case 2
-    {
-        vector<int> nums = {0, 1, 1};
-        auto got = sol.threeSum(nums);
-        if (got != vector<vector<int>>{}) {
-            cerr << "FAIL case 2" << endl;
-            return 1;
+      ]
+    })raw");
+
+    for (auto &tc : j.at("cases")) {
+      vector<int> nums = tc.at("nums").get<vector<int>>();
+      vector<vector<int>> expected =
+          tc.at("expected").get<vector<vector<int>>>();
+
+      Solution sol;
+      vector<vector<int>> result = sol.threeSum(nums);
+
+      // Sort inner vectors and outer vectors to ensure order-independent
+      // comparison
+      for (auto &vec : expected)
+        sort(vec.begin(), vec.end());
+      sort(expected.begin(), expected.end());
+
+      for (auto &vec : result)
+        sort(vec.begin(), vec.end());
+      sort(result.begin(), result.end());
+
+      if (result != expected) {
+        cerr << "FAIL for input: [";
+        for (int i = 0; i < nums.size(); ++i) {
+          cerr << nums[i] << (i < nums.size() - 1 ? ", " : "");
         }
-    }
-    // Case 3
-    {
-        vector<int> nums = {0, 0, 0};
-        auto got = sol.threeSum(nums);
-        if (got != vector<vector<int>>{{0, 0, 0}}) {
-            cerr << "FAIL case 3" << endl;
-            return 1;
+        cerr << "]" << endl;
+        cerr << "Expected: [";
+        for (int i = 0; i < expected.size(); ++i) {
+          cerr << "[";
+          for (int k = 0; k < expected[i].size(); ++k) {
+            cerr << expected[i][k] << (k < expected[i].size() - 1 ? "," : "");
+          }
+          cerr << "]" << (i < expected.size() - 1 ? ", " : "");
         }
-    }
-    // Case 4
-    {
-        vector<int> nums = {-2, 0, 1, 1, 2};
-        auto got = sol.threeSum(nums);
-        if (got != vector<vector<int>>{{-2, 0, 2}, {-2, 1, 1}}) {
-            cerr << "FAIL case 4" << endl;
-            return 1;
+        cerr << "], Got: [";
+        for (int i = 0; i < result.size(); ++i) {
+          cerr << "[";
+          for (int k = 0; k < result[i].size(); ++k) {
+            cerr << result[i][k] << (k < result[i].size() - 1 ? "," : "");
+          }
+          cerr << "]" << (i < result.size() - 1 ? ", " : "");
         }
+        cerr << "]" << endl;
+        return 1;
+      }
     }
     cout << "PASS" << endl;
     return 0;
+  } catch (const exception &e) {
+    cerr << "Exception: " << e.what() << endl;
+    return 1;
+  }
 }

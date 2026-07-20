@@ -37,7 +37,6 @@
  */
 
 #include <algorithm>
-#include <format>
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -56,8 +55,7 @@ public:
       string key = "";
       for (int i = 0; i < 26; i++) {
         if (counts[i]) {
-          char ch = 'a' + i;
-          key += ch;
+          key += ('a' + i);
           key += counts[i];
         }
       }
