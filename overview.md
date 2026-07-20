@@ -23,9 +23,9 @@ Track your interview preparation progress here.
 | [Stack](#stack) | 6 | 2 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Trees](#trees) | 15 | 6 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% |
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
-| [Two Pointers](#two-pointers) | 5 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 80% |
+| [Two Pointers](#two-pointers) | 5 | 5 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
 | [Bonus: Concurrency (Not NeetCode 150)](#bonus-concurrency-not-neetcode-150) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **50** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 32%** |
+| **Total** | **154** | **51** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33%** |
 
 
 
@@ -1510,8 +1510,29 @@ Track your interview preparation progress here.
   ```
   </details>
   [🎬 Video explanation](https://www.youtube.com/watch?v=jJXJ16kPFWg)
-- 🟡 [ ] **[LC 167](src/cpp/two_pointer/167.two-sum-ii-input-array-is-sorted.cpp)**: [Two Sum II Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=cQ1Oz4ckceM)
+- 🟡 [x] **[LC 167](src/cpp/two_pointer/167.two-sum-ii-input-array-is-sorted.cpp)**: [Two Sum II Input Array Is Sorted](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)  
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    vector<int> twoSum(vector<int> &numbers, int target) {
+      int l = 0;
+      int r = numbers.size() - 1;
+      while (l < r) {
+        if (numbers[l] + numbers[r] == target) {
+          return {l + 1, r + 1};
+        } else if (numbers[l] + numbers[r] > target) {
+          r = r - 1;
+        } else {
+          l = l + 1;
+        }
+      }
+      return {};
+    }
+  };
+  ```
+  </details>
 - 🟡 [x] **[LC 15](src/cpp/two_pointer/15.3sum.cpp)**: [3Sum](https://leetcode.com/problems/3sum/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=jzZsG8n2R9A)
   <details><summary>View Solution</summary>
