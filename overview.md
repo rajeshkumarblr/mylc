@@ -9,13 +9,13 @@ Track your interview preparation progress here.
 | [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 41% |
 | [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 9% |
 | [Advanced Graphs](#advanced-graphs) | 6 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Arrays & Hashing](#arrays--hashing) | 9 | 9 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
+| [Arrays & Hashing](#arrays--hashing) | 9 | 8 | 🟩🟩🟩🟩🟩🟩🟩🟩⬜⬜ 88% |
 | [Backtracking](#backtracking) | 10 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Binary Search](#binary-search) | 7 | 2 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 28% |
 | [Bit Manipulation](#bit-manipulation) | 7 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
 | [Graphs](#graphs) | 13 | 3 | 🟩🟩⬜⬜⬜⬜⬜⬜⬜⬜ 23% |
 | [Greedy](#greedy) | 8 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
-| [Heap / Priority Queue](#heap--priority-queue) | 7 | 3 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 42% |
+| [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 42% |
 | [Intervals](#intervals) | 6 | 1 | 🟩⬜⬜⬜⬜⬜⬜⬜⬜⬜ 16% |
 | [Linked List](#linked-list) | 11 | 5 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 45% |
 | [Math & Geometry](#math--geometry) | 8 | 0 | ⬜⬜⬜⬜⬜⬜⬜⬜⬜⬜ 0% |
@@ -24,8 +24,8 @@ Track your interview preparation progress here.
 | [Trees](#trees) | 15 | 6 | 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜ 40% |
 | [Tries](#tries) | 3 | 1 | 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33% |
 | [Two Pointers](#two-pointers) | 5 | 5 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| [Bonus: Concurrency (Not NeetCode 150)](#bonus-concurrency-not-neetcode-150) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
-| **Total** | **154** | **51** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 33%** |
+| [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | 🟩🟩🟩🟩🟩🟩🟩🟩🟩🟩 100% |
+| **Total** | **154** | **50** | **🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜ 32%** |
 
 
 
@@ -1534,7 +1534,36 @@ Track your interview preparation progress here.
   ```
   </details>
 - 🟡 [x] **[LC 15](src/cpp/two_pointer/15.3sum.cpp)**: [3Sum](https://leetcode.com/problems/3sum/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=jzZsG8n2R9A)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    vector<vector<int>> threeSum(vector<int> &nums) {
+      vector<vector<int>> res;
+      sort(nums.begin(), nums.end());
+      for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] > 0) break;
+        if (i > 0 && nums[i] == nums[i - 1]) continue;
+        int l = i + 1, r = nums.size() - 1;
+        while (l < r) {
+          int sum = nums[i] + nums[l] + nums[r];
+          if (sum > 0) {
+            r--;
+          } else if (sum < 0) {
+            l++;
+          } else {
+            res.push_back({nums[i], nums[l], nums[r]});
+            l++;
+            while (l < r && nums[l] == nums[l - 1]) l++;
+          }
+        }
+      }
+      return res;
+    }
+  };
+  ```
+  </details>
   <details><summary>View Solution</summary>
   
   ```cpp
