@@ -49,8 +49,7 @@
 #include <vector>
 using namespace std;
 
-// @lc code=start
-class Solution {
+class Solution_dfs {
 public:
   int dfs(vector<vector<int>> &grid, int r, int c) {
     if (r < 0 || r >= grid.size()) {
@@ -82,13 +81,14 @@ public:
   }
 };
 
-class Solution_iteration {
+// @lc code=start
+class Solution {
 public:
   int maxAreaOfIsland(vector<vector<int>> &grid) {
     int maxArea = 0;
     int m = grid.size();
     int n = grid[0].size();
-    
+
     // 4 directions: up, down, left, right
     int dirs[4][2] = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
 
@@ -98,20 +98,20 @@ public:
           int area = 0;
           stack<pair<int, int>> st;
           st.push({r, c});
-          
+
           // Mark visited immediately when adding to stack
-          grid[r][c] = 0; 
-          
+          grid[r][c] = 0;
+
           while (!st.empty()) {
             auto [curr_r, curr_c] = st.top();
             st.pop();
             area++;
-            
+
             // Explore 4 neighbors
-            for (auto& d : dirs) {
+            for (auto &d : dirs) {
               int nr = curr_r + d[0];
               int nc = curr_c + d[1];
-              
+
               if (nr >= 0 && nr < m && nc >= 0 && nc < n && grid[nr][nc] == 1) {
                 st.push({nr, nc});
                 grid[nr][nc] = 0; // Mark visited so we don't push duplicates
@@ -165,15 +165,17 @@ int main() {
 
       Solution sol;
       int result = sol.maxAreaOfIsland(grid);
-      
-      // We pass a copy of the grid to the iterative solution because the first solution destroys it
+
+      // We pass a copy of the grid to the iterative solution because the first
+      // solution destroys it
       vector<vector<int>> grid_copy = tc.at("grid").get<vector<vector<int>>>();
       Solution_iteration sol_iter;
       int iter_result = sol_iter.maxAreaOfIsland(grid_copy);
-      
+
       if (result != expected || iter_result != expected) {
         cerr << "FAIL for input" << endl;
-        cerr << "Expected: " << expected << ", Recursive Got: " << result << ", Iterative Got: " << iter_result << endl;
+        cerr << "Expected: " << expected << ", Recursive Got: " << result
+             << ", Iterative Got: " << iter_result << endl;
         return 1;
       }
     }
