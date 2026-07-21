@@ -6,7 +6,7 @@ function App() {
   const [selectedProblem, setSelectedProblem] = useState(null);
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [activeTab, setActiveTab] = useState('description');
 
   useEffect(() => {
     fetch('./data.json')
@@ -25,8 +25,7 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <div className="header-left">
-          <button className="menu-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>☰</button>
-          <h1 onClick={() => { setSelectedProblem(null); setIsSidebarOpen(true); }} style={{ cursor: 'pointer' }}>
+          <h1 onClick={() => setSelectedProblem(null)} style={{ cursor: 'pointer' }}>
             Neetcode 150 solutions
           </h1>
         </div>
@@ -47,8 +46,8 @@ function App() {
                   <div key={p.id} className="search-result-item" onClick={() => {
                     setSelectedProblem(p);
                     setExpandedCategory(p.category);
+                    setExpandedCategory(p.category);
                     setSearchQuery('');
-                    setIsSidebarOpen(false);
                   }}>
                     <span className="status">{p.status_icon}</span>
                     <span>LC {p.id}: {p.title}</span>
@@ -63,45 +62,8 @@ function App() {
       </header>
 
       <div className="main-content">
-        {isSidebarOpen && (
-          <aside className="sidebar">
-            {data.categories.map(cat => (
-              <div key={cat.name} className="category-group">
-                <button 
-                  className={`category-header ${expandedCategory === cat.name ? 'active' : ''}`}
-                  onClick={() => setExpandedCategory(expandedCategory === cat.name ? null : cat.name)}
-                >
-                  <span className="arrow">{expandedCategory === cat.name ? '▼' : '▶'}</span>
-                  {cat.name} ({cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length})
-                </button>
-                
-                {expandedCategory === cat.name && (
-                  <div className="problem-list">
-                    {cat.problems.map(probId => {
-                      const prob = data.problems[probId];
-                      return (
-                        <div 
-                          key={prob.id} 
-                          className={`problem-item ${selectedProblem?.id === prob.id ? 'selected' : ''}`}
-                          onClick={() => {
-                            setSelectedProblem(prob);
-                            setIsSidebarOpen(false); // auto-collapse
-                          }}
-                        >
-                          <span className="status">{prob.status_icon}</span>
-                          <span className="title">LC {prob.id}: {prob.title}</span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
-            ))}
-          </aside>
-        )}
-
-        <main className={`content-panel ${selectedProblem ? 'split-view-container' : ''}`}>
-          <div className={`home-table-container ${selectedProblem ? 'split-left' : 'full-width'}`}>
+        <main className={`content-panel split-view-container`}>
+          <div className={`home-table-container split-left`}>
             <table className="home-table">
                 <thead>
                   <tr>
@@ -127,7 +89,7 @@ function App() {
                               onClick={() => {
                                 setSelectedProblem(prob);
                                 setExpandedCategory(prob.category);
-                                setIsSidebarOpen(false);
+                                setActiveTab('description');
                               }}
                             >
                               <span className="prob-id">{prob.id}</span>
@@ -158,60 +120,79 @@ function App() {
                 <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode">Solve on LeetCode</a>
               </div>
 
-              {selectedProblem.description && (
-                <div className="description-section">
-                  <h3>Problem Description</h3>
-                  <div className="description-content">
-                    {selectedProblem.description.split('\n').map((line, i) => {
-                      const trimmedLine = line.trim();
-                      if (!trimmedLine) return null;
-                      
-                      if (trimmedLine.startsWith('Example') || trimmedLine.startsWith('Constraints:')) {
-                        return <h4 key={i} className="desc-heading">{trimmedLine}</h4>;
-                      }
-                      if (trimmedLine.startsWith('Input:') || trimmedLine.startsWith('Output:') || trimmedLine.startsWith('Explanation:')) {
-                        const parts = trimmedLine.split(':');
-                        return (
-                          <div key={i} className="desc-io">
-                            <strong>{parts[0]}:</strong>{parts.slice(1).join(':')}
-                          </div>
-                        );
-                      }
-                      if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('1 <= ') || trimmedLine.startsWith('0 <=')) {
-                         return <li key={i} className="desc-list-item">{trimmedLine}</li>;
-                      }
-                      return <p key={i}>{trimmedLine}</p>;
-                    })}
-                  </div>
-                </div>
-              )}
-              
-              {selectedProblem.video_url && (
-                <details className="collapsible-section" open>
-                  <summary>View Video Solution</summary>
-                  <div className="video-container">
-                    <iframe 
-                      src={selectedProblem.video_url} 
-                      title="YouTube video player" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </details>
-              )}
+              <div className="tab-nav">
+                <button 
+                  className={`tab-btn ${activeTab === 'description' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('description')}
+                >Description</button>
+                <button 
+                  className={`tab-btn ${activeTab === 'solution' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('solution')}
+                >Solution</button>
+                <button 
+                  className={`tab-btn ${activeTab === 'video' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('video')}
+                >Video</button>
+              </div>
 
-              <details className="collapsible-section" open>
-                <summary>View C++ Source Code</summary>
-                <div className="code-section">
-                  {selectedProblem.code ? (
-                    <pre className="code-block">
-                      <code>{selectedProblem.code}</code>
-                    </pre>
-                  ) : (
-                    <div className="no-code">Code not yet written.</div>
-                  )}
-                </div>
-              </details>
+              <div className="tab-content">
+                {activeTab === 'description' && (
+                  <div className="description-section">
+                    <h3>Problem Description</h3>
+                    <div className="description-content">
+                      {selectedProblem.description ? selectedProblem.description.split('\n').map((line, i) => {
+                        const trimmedLine = line.trim();
+                        if (!trimmedLine) return null;
+                        
+                        if (trimmedLine.startsWith('Example') || trimmedLine.startsWith('Constraints:')) {
+                          return <h4 key={i} className="desc-heading">{trimmedLine}</h4>;
+                        }
+                        if (trimmedLine.startsWith('Input:') || trimmedLine.startsWith('Output:') || trimmedLine.startsWith('Explanation:')) {
+                          const parts = trimmedLine.split(':');
+                          return (
+                            <div key={i} className="desc-io">
+                              <strong>{parts[0]}:</strong>{parts.slice(1).join(':')}
+                            </div>
+                          );
+                        }
+                        if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('1 <= ') || trimmedLine.startsWith('0 <=')) {
+                           return <li key={i} className="desc-list-item">{trimmedLine}</li>;
+                        }
+                        return <p key={i}>{trimmedLine}</p>;
+                      }) : <p>No description available.</p>}
+                    </div>
+                  </div>
+                )}
+                
+                {activeTab === 'video' && (
+                  <div className="video-section">
+                    {selectedProblem.video_url ? (
+                      <div className="video-container">
+                        <iframe 
+                          src={selectedProblem.video_url} 
+                          title="YouTube video player" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                          allowFullScreen
+                        ></iframe>
+                      </div>
+                    ) : (
+                      <div className="no-video">Video not available.</div>
+                    )}
+                  </div>
+                )}
+
+                {activeTab === 'solution' && (
+                  <div className="code-section">
+                    {selectedProblem.code ? (
+                      <pre className="code-block">
+                        <code>{selectedProblem.code}</code>
+                      </pre>
+                    ) : (
+                      <div className="no-code">Code not yet written.</div>
+                    )}
+                  </div>
+                )}
+              </div>
             </div>
           )}
         </main>
