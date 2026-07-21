@@ -6,25 +6,25 @@ Track your interview preparation progress here.
 
 | Category | Total | Solved | Progress |
 | --- | --- | --- | --- |
-| [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | [🟩 70](#lc-70) [🟩 746](#lc-746) [🟩 198](#lc-198) [🟩 213](#lc-213) [⬜ 5](#lc-5) [⬜ 647](#lc-647) [⬜ 91](#lc-91) [⬜ 322](#lc-322) [⬜ 152](#lc-152) [🟩 139](#lc-139) [⬜ 300](#lc-300) [⬜ 416](#lc-416) |
-| [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | [⬜ 62](#lc-62) [⬜ 1143](#lc-1143) [⬜ 309](#lc-309) [⬜ 518](#lc-518) [⬜ 494](#lc-494) [⬜ 97](#lc-97) [⬜ 329](#lc-329) [⬜ 115](#lc-115) [🟩 72](#lc-72) [⬜ 312](#lc-312) [⬜ 10](#lc-10) |
-| [Advanced Graphs](#advanced-graphs) | 6 | 0 | [⬜ 743](#lc-743) [⬜ 332](#lc-332) [⬜ 1584](#lc-1584) [⬜ 778](#lc-778) [⬜ 269](#lc-269) [⬜ 787](#lc-787) |
-| [Arrays & Hashing](#arrays--hashing) | 9 | 9 | [🟩 217](#lc-217) [🟩 242](#lc-242) [🟩 1](#lc-1) [🟩 49](#lc-49) [🟩 347](#lc-347) [🟩 271](#lc-271) [🟩 238](#lc-238) [🟩 36](#lc-36) [🟩 128](#lc-128) |
-| [Backtracking](#backtracking) | 10 | 0 | [⬜ 78](#lc-78) [⬜ 39](#lc-39) [⬜ 40](#lc-40) [⬜ 46](#lc-46) [⬜ 90](#lc-90) [⬜ 22](#lc-22) [⬜ 79](#lc-79) [⬜ 131](#lc-131) [⬜ 17](#lc-17) [⬜ 51](#lc-51) |
-| [Binary Search](#binary-search) | 7 | 2 | [⬜ 704](#lc-704) [⬜ 74](#lc-74) [⬜ 875](#lc-875) [⬜ 153](#lc-153) [🟩 33](#lc-33) [🟩 981](#lc-981) [⬜ 4](#lc-4) |
-| [Bit Manipulation](#bit-manipulation) | 7 | 0 | [⬜ 136](#lc-136) [⬜ 191](#lc-191) [⬜ 338](#lc-338) [⬜ 190](#lc-190) [⬜ 268](#lc-268) [⬜ 371](#lc-371) [⬜ 7](#lc-7) |
-| [Graphs](#graphs) | 13 | 5 | [🟩 200](#lc-200) [🟩 695](#lc-695) [🟩 133](#lc-133) [⬜ 286](#lc-286) [⬜ 994](#lc-994) [⬜ 417](#lc-417) [⬜ 130](#lc-130) [🟩 207](#lc-207) [🟩 210](#lc-210) [⬜ 261](#lc-261) [⬜ 323](#lc-323) [⬜ 684](#lc-684) [⬜ 127](#lc-127) |
-| [Greedy](#greedy) | 8 | 0 | [⬜ 53](#lc-53) [⬜ 55](#lc-55) [⬜ 45](#lc-45) [⬜ 134](#lc-134) [⬜ 846](#lc-846) [⬜ 1899](#lc-1899) [⬜ 763](#lc-763) [⬜ 678](#lc-678) |
-| [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | [⬜ 703](#lc-703) [⬜ 1046](#lc-1046) [🟩 973](#lc-973) [🟩 215](#lc-215) [⬜ 621](#lc-621) [⬜ 355](#lc-355) [🟩 295](#lc-295) |
-| [Intervals](#intervals) | 6 | 1 | [⬜ 57](#lc-57) [🟩 56](#lc-56) [⬜ 435](#lc-435) [⬜ 252](#lc-252) [⬜ 253](#lc-253) [⬜ 1851](#lc-1851) |
-| [Linked List](#linked-list) | 11 | 5 | [🟩 206](#lc-206) [🟩 21](#lc-21) [🟩 141](#lc-141) [⬜ 143](#lc-143) [⬜ 19](#lc-19) [⬜ 138](#lc-138) [🟩 2](#lc-2) [⬜ 287](#lc-287) [🟩 146](#lc-146) [⬜ 23](#lc-23) [⬜ 25](#lc-25) |
-| [Math & Geometry](#math--geometry) | 8 | 0 | [⬜ 48](#lc-48) [⬜ 54](#lc-54) [⬜ 73](#lc-73) [⬜ 202](#lc-202) [⬜ 66](#lc-66) [⬜ 50](#lc-50) [⬜ 43](#lc-43) [⬜ 2013](#lc-2013) |
-| [Sliding Window](#sliding-window) | 6 | 4 | [⬜ 121](#lc-121) [🟩 3](#lc-3) [🟩 424](#lc-424) [🟩 567](#lc-567) [🟩 76](#lc-76) [⬜ 239](#lc-239) |
-| [Stack](#stack) | 6 | 2 | [🟩 20](#lc-20) [⬜ 155](#lc-155) [⬜ 150](#lc-150) [🟩 739](#lc-739) [⬜ 853](#lc-853) [⬜ 84](#lc-84) |
-| [Trees](#trees) | 15 | 7 | [🟩 226](#lc-226) [🟩 104](#lc-104) [🟩 543](#lc-543) [🟩 110](#lc-110) [🟩 100](#lc-100) [⬜ 572](#lc-572) [⬜ 235](#lc-235) [🟩 102](#lc-102) [⬜ 199](#lc-199) [⬜ 1448](#lc-1448) [🟩 98](#lc-98) [⬜ 230](#lc-230) [⬜ 105](#lc-105) [⬜ 124](#lc-124) [⬜ 297](#lc-297) |
-| [Tries](#tries) | 3 | 1 | [⬜ 208](#lc-208) [🟩 211](#lc-211) [⬜ 212](#lc-212) |
-| [Two Pointers](#two-pointers) | 5 | 5 | [🟩 125](#lc-125) [🟩 167](#lc-167) [🟩 15](#lc-15) [🟩 11](#lc-11) [🟩 42](#lc-42) |
-| [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | [🟩 362](#lc-362) [🟩 1188](#lc-1188) [🟩 1117](#lc-1117) [🟩 1242](#lc-1242) |
+| [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | [🟩 70](#lc-70) [🟩 746](#lc-746) [🟩 198](#lc-198) [🟩 213](#lc-213) [⬜ 5](#lc-5) [⬜ 647](#lc-647) [⬜ 91](#lc-91) [⬜ 322](#lc-322) [⬜ 152](#lc-152) [🟩 139](#lc-139) [⬜ 300](#lc-300) [⬜ 416](#lc-416) 41% |
+| [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | [⬜ 62](#lc-62) [⬜ 1143](#lc-1143) [⬜ 309](#lc-309) [⬜ 518](#lc-518) [⬜ 494](#lc-494) [⬜ 97](#lc-97) [⬜ 329](#lc-329) [⬜ 115](#lc-115) [🟩 72](#lc-72) [⬜ 312](#lc-312) [⬜ 10](#lc-10) 9% |
+| [Advanced Graphs](#advanced-graphs) | 6 | 0 | [⬜ 743](#lc-743) [⬜ 332](#lc-332) [⬜ 1584](#lc-1584) [⬜ 778](#lc-778) [⬜ 269](#lc-269) [⬜ 787](#lc-787) 0% |
+| [Arrays & Hashing](#arrays--hashing) | 9 | 9 | [🟩 217](#lc-217) [🟩 242](#lc-242) [🟩 1](#lc-1) [🟩 49](#lc-49) [🟩 347](#lc-347) [🟩 271](#lc-271) [🟩 238](#lc-238) [🟩 36](#lc-36) [🟩 128](#lc-128) 100% |
+| [Backtracking](#backtracking) | 10 | 0 | [⬜ 78](#lc-78) [⬜ 39](#lc-39) [⬜ 40](#lc-40) [⬜ 46](#lc-46) [⬜ 90](#lc-90) [⬜ 22](#lc-22) [⬜ 79](#lc-79) [⬜ 131](#lc-131) [⬜ 17](#lc-17) [⬜ 51](#lc-51) 0% |
+| [Binary Search](#binary-search) | 7 | 2 | [⬜ 704](#lc-704) [⬜ 74](#lc-74) [⬜ 875](#lc-875) [⬜ 153](#lc-153) [🟩 33](#lc-33) [🟩 981](#lc-981) [⬜ 4](#lc-4) 28% |
+| [Bit Manipulation](#bit-manipulation) | 7 | 0 | [⬜ 136](#lc-136) [⬜ 191](#lc-191) [⬜ 338](#lc-338) [⬜ 190](#lc-190) [⬜ 268](#lc-268) [⬜ 371](#lc-371) [⬜ 7](#lc-7) 0% |
+| [Graphs](#graphs) | 13 | 5 | [🟩 200](#lc-200) [🟩 695](#lc-695) [🟩 133](#lc-133) [⬜ 286](#lc-286) [⬜ 994](#lc-994) [⬜ 417](#lc-417) [⬜ 130](#lc-130) [🟩 207](#lc-207) [🟩 210](#lc-210) [⬜ 261](#lc-261) [⬜ 323](#lc-323) [⬜ 684](#lc-684) [⬜ 127](#lc-127) 38% |
+| [Greedy](#greedy) | 8 | 0 | [⬜ 53](#lc-53) [⬜ 55](#lc-55) [⬜ 45](#lc-45) [⬜ 134](#lc-134) [⬜ 846](#lc-846) [⬜ 1899](#lc-1899) [⬜ 763](#lc-763) [⬜ 678](#lc-678) 0% |
+| [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | [⬜ 703](#lc-703) [⬜ 1046](#lc-1046) [🟩 973](#lc-973) [🟩 215](#lc-215) [⬜ 621](#lc-621) [⬜ 355](#lc-355) [🟩 295](#lc-295) 42% |
+| [Intervals](#intervals) | 6 | 1 | [⬜ 57](#lc-57) [🟩 56](#lc-56) [⬜ 435](#lc-435) [⬜ 252](#lc-252) [⬜ 253](#lc-253) [⬜ 1851](#lc-1851) 16% |
+| [Linked List](#linked-list) | 11 | 5 | [🟩 206](#lc-206) [🟩 21](#lc-21) [🟩 141](#lc-141) [⬜ 143](#lc-143) [⬜ 19](#lc-19) [⬜ 138](#lc-138) [🟩 2](#lc-2) [⬜ 287](#lc-287) [🟩 146](#lc-146) [⬜ 23](#lc-23) [⬜ 25](#lc-25) 45% |
+| [Math & Geometry](#math--geometry) | 8 | 0 | [⬜ 48](#lc-48) [⬜ 54](#lc-54) [⬜ 73](#lc-73) [⬜ 202](#lc-202) [⬜ 66](#lc-66) [⬜ 50](#lc-50) [⬜ 43](#lc-43) [⬜ 2013](#lc-2013) 0% |
+| [Sliding Window](#sliding-window) | 6 | 4 | [⬜ 121](#lc-121) [🟩 3](#lc-3) [🟩 424](#lc-424) [🟩 567](#lc-567) [🟩 76](#lc-76) [⬜ 239](#lc-239) 66% |
+| [Stack](#stack) | 6 | 2 | [🟩 20](#lc-20) [⬜ 155](#lc-155) [⬜ 150](#lc-150) [🟩 739](#lc-739) [⬜ 853](#lc-853) [⬜ 84](#lc-84) 33% |
+| [Trees](#trees) | 15 | 7 | [🟩 226](#lc-226) [🟩 104](#lc-104) [🟩 543](#lc-543) [🟩 110](#lc-110) [🟩 100](#lc-100) [⬜ 572](#lc-572) [⬜ 235](#lc-235) [🟩 102](#lc-102) [⬜ 199](#lc-199) [⬜ 1448](#lc-1448) [🟩 98](#lc-98) [⬜ 230](#lc-230) [⬜ 105](#lc-105) [⬜ 124](#lc-124) [⬜ 297](#lc-297) 46% |
+| [Tries](#tries) | 3 | 1 | [⬜ 208](#lc-208) [🟩 211](#lc-211) [⬜ 212](#lc-212) 33% |
+| [Two Pointers](#two-pointers) | 5 | 5 | [🟩 125](#lc-125) [🟩 167](#lc-167) [🟩 15](#lc-15) [🟩 11](#lc-11) [🟩 42](#lc-42) 100% |
+| [Bonus: Concurrency (Not NeetCode 150)](#bonus:-concurrency-(not-neetcode-150)) | 4 | 4 | [🟩 362](#lc-362) [🟩 1188](#lc-1188) [🟩 1117](#lc-1117) [🟩 1242](#lc-1242) 100% |
 | **Total** | **154** | **54** | **35%** |
 
 
@@ -669,7 +669,7 @@ Track your interview preparation progress here.
   [🎬 Video explanation](https://www.youtube.com/watch?v=s-VkcjHqkGI)
 - <a id="lc-130"></a>🟡 [ ] **[LC 130](src/cpp/graphs/130.surrounded-regions.cpp)**: [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=9z2BunfoZ5Y)
-- <a id="lc-207"></a>🟡 [x] **[LC 207](src/cpp/graphs/207.course-schedule.cpp)**: [Course Schedule](https://leetcode.com/problems/course-schedule/)  
+- <a id="lc-207"></a>🟢 [x] **[LC 207](src/cpp/graphs/207.course-schedule.cpp)**: [Course Schedule](https://leetcode.com/problems/course-schedule/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=EgI5nU9etnU)
   <details><summary>View Solution</summary>
   
