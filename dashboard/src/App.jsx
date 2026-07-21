@@ -36,6 +36,7 @@ function App() {
                 className={`category-header ${expandedCategory === cat.name ? 'active' : ''}`}
                 onClick={() => setExpandedCategory(expandedCategory === cat.name ? null : cat.name)}
               >
+                <span className="arrow">{expandedCategory === cat.name ? '▼' : '▶'}</span>
                 {cat.name} ({cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length})
               </button>
               
@@ -67,30 +68,44 @@ function App() {
                 <h2>LC {selectedProblem.id}: {selectedProblem.title}</h2>
                 <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode">Solve on LeetCode</a>
               </div>
-              
-              {selectedProblem.video_url ? (
-                <div className="video-container">
-                  <iframe 
-                    src={selectedProblem.video_url} 
-                    title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowFullScreen
-                  ></iframe>
+
+              {selectedProblem.description && (
+                <div className="description-section">
+                  <h3>Problem Description</h3>
+                  <div className="description-content">
+                    {selectedProblem.description.split('\n').map((line, i) => (
+                      <p key={i}>{line}</p>
+                    ))}
+                  </div>
                 </div>
-              ) : (
-                <div className="no-video">No video available</div>
+              )}
+              
+              {selectedProblem.video_url && (
+                <details className="collapsible-section">
+                  <summary>View Video Solution</summary>
+                  <div className="video-container">
+                    <iframe 
+                      src={selectedProblem.video_url} 
+                      title="YouTube video player" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </details>
               )}
 
-              <div className="code-section">
-                <h3>Your C++ Solution</h3>
-                {selectedProblem.code ? (
-                  <pre className="code-block">
-                    <code>{selectedProblem.code}</code>
-                  </pre>
-                ) : (
-                  <div className="no-code">Code not yet written.</div>
-                )}
-              </div>
+              <details className="collapsible-section">
+                <summary>View C++ Source Code</summary>
+                <div className="code-section">
+                  {selectedProblem.code ? (
+                    <pre className="code-block">
+                      <code>{selectedProblem.code}</code>
+                    </pre>
+                  ) : (
+                    <div className="no-code">Code not yet written.</div>
+                  )}
+                </div>
+              </details>
             </div>
           ) : (
             <div className="empty-state">
@@ -104,3 +119,4 @@ function App() {
 }
 
 export default App;
+
