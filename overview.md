@@ -682,7 +682,7 @@ Track your interview preparation progress here.
   };
   ```
   </details>
-- <a id="lc-210"></a>🟡 [x] **[LC 210](src/cpp/graphs/210.course-schedule-ii.cpp)**: [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)  
+- <a id="lc-210"></a>🟢 [x] **[LC 210](src/cpp/graphs/210.course-schedule-ii.cpp)**: [Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=Akt3glAwyfY)
   <details><summary>View Solution</summary>
   

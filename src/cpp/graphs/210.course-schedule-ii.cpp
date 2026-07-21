@@ -1,7 +1,7 @@
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=210 lang=cpp
@@ -47,69 +47,140 @@
  *          All the pairs  [a i , b i ]  are  distinct .
  */
 
-#include <vector>
+#include <algorithm>
+#include <list>
+#include <queue>
+#include <stack>
 #include <string>
 #include <unordered_map>
 #include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
-#include <algorithm>
+#include <vector>
 using namespace std;
 
+class Solution_BFS {
+public:
+  vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites) {
+    vector<vector<int>> adjlist(numCourses);
+    vector<int> indegree(numCourses, 0);
+    queue<int> q;
+    vector<int> courseOrder;
+    courseOrder.reserve(numCourses);
+
+    for (const auto &pre : prerequisites) {
+      adjlist[pre[1]].push_back(pre[0]);
+      indegree[pre[0]]++;
+    }
+
+    for (int i = 0; i < numCourses; i++) {
+      if (!indegree[i]) {
+        q.push(i);
+        courseOrder.push_back(i);
+      }
+    }
+
+    while (!q.empty()) {
+      int course = q.front();
+      q.pop();
+
+      for (auto nextcourse : adjlist[course]) {
+        indegree[nextcourse]--;
+        if (indegree[nextcourse] == 0) {
+          q.push(nextcourse);
+          courseOrder.push_back(nextcourse);
+        }
+      }
+    }
+
+    if (courseOrder.size() == numCourses) {
+      return courseOrder;
+    }
+    return {};
+  }
+};
 
 // @lc code=start
 class Solution {
 public:
-    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
-        return {};
+  vector<int> findOrder(int numCourses, vector<vector<int>> &prerequisites) {
+    vector<vector<int>> adjlist(numCourses);
+    vector<int> indegree(numCourses, 0);
+    vector<int> courseOrder;
+    courseOrder.reserve(numCourses);
+
+    for (const auto &pre : prerequisites) {
+      adjlist[pre[1]].push_back(pre[0]);
+      indegree[pre[0]]++;
     }
+
+    for (int i = 0; i < numCourses; i++) {
+      if (!indegree[i]) {
+        courseOrder.push_back(i);
+      }
+    }
+
+    int courseIndex = 0;
+    while (courseIndex < courseOrder.size()) {
+      int course = courseOrder[courseIndex];
+      courseIndex++;
+
+      for (auto nextcourse : adjlist[course]) {
+        indegree[nextcourse]--;
+        if (indegree[nextcourse] == 0) {
+          courseOrder.push_back(nextcourse);
+        }
+      }
+    }
+
+    if (courseOrder.size() == numCourses) {
+      return courseOrder;
+    }
+    return {};
+  }
 };
 // @lc code=end
 
-
 int main() {
-    Solution sol;
-    // Case 1
-    {
-        int numCourses = 2;
-        vector<vector<int>> prerequisites = {{1, 0}};
-        auto got = sol.findOrder(numCourses, prerequisites);
-        if (got != vector<int>{0, 1}) {
-            cerr << "FAIL case 1" << endl;
-            return 1;
-        }
+  Solution sol;
+  // Case 1
+  {
+    int numCourses = 2;
+    vector<vector<int>> prerequisites = {{1, 0}};
+    auto got = sol.findOrder(numCourses, prerequisites);
+    if (got != vector<int>{0, 1}) {
+      cerr << "FAIL case 1" << endl;
+      return 1;
     }
-    // Case 2
-    {
-        int numCourses = 4;
-        vector<vector<int>> prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
-        auto got = sol.findOrder(numCourses, prerequisites);
-        if (got != vector<int>{0, 1, 2, 3}) {
-            cerr << "FAIL case 2" << endl;
-            return 1;
-        }
+  }
+  // Case 2
+  {
+    int numCourses = 4;
+    vector<vector<int>> prerequisites = {{1, 0}, {2, 0}, {3, 1}, {3, 2}};
+    auto got = sol.findOrder(numCourses, prerequisites);
+    if (got != vector<int>{0, 1, 2, 3}) {
+      cerr << "FAIL case 2" << endl;
+      return 1;
     }
-    // Case 3
-    {
-        int numCourses = 1;
-        vector<vector<int>> prerequisites = {};
-        auto got = sol.findOrder(numCourses, prerequisites);
-        if (got != vector<int>{0}) {
-            cerr << "FAIL case 3" << endl;
-            return 1;
-        }
+  }
+  // Case 3
+  {
+    int numCourses = 1;
+    vector<vector<int>> prerequisites = {};
+    auto got = sol.findOrder(numCourses, prerequisites);
+    if (got != vector<int>{0}) {
+      cerr << "FAIL case 3" << endl;
+      return 1;
     }
-    // Case 4
-    {
-        int numCourses = 2;
-        vector<vector<int>> prerequisites = {{1, 0}, {0, 1}};
-        auto got = sol.findOrder(numCourses, prerequisites);
-        if (got != vector<int>{}) {
-            cerr << "FAIL case 4" << endl;
-            return 1;
-        }
+  }
+  // Case 4
+  {
+    int numCourses = 2;
+    vector<vector<int>> prerequisites = {{1, 0}, {0, 1}};
+    auto got = sol.findOrder(numCourses, prerequisites);
+    if (got != vector<int>{}) {
+      cerr << "FAIL case 4" << endl;
+      return 1;
     }
-    cout << "PASS" << endl;
-    return 0;
+  }
+  cout << "PASS" << endl;
+  return 0;
 }
