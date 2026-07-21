@@ -100,72 +100,9 @@ function App() {
           </aside>
         )}
 
-        <main className="content-panel">
-          {selectedProblem ? (
-            <div className="problem-details">
-              <div className="problem-header">
-                <h2>LC {selectedProblem.id}: {selectedProblem.title}</h2>
-                <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode">Solve on LeetCode</a>
-              </div>
-
-              {selectedProblem.description && (
-                <div className="description-section">
-                  <h3>Problem Description</h3>
-                  <div className="description-content">
-                    {selectedProblem.description.split('\n').map((line, i) => {
-                      const trimmedLine = line.trim();
-                      if (!trimmedLine) return null;
-                      
-                      if (trimmedLine.startsWith('Example') || trimmedLine.startsWith('Constraints:')) {
-                        return <h4 key={i} className="desc-heading">{trimmedLine}</h4>;
-                      }
-                      if (trimmedLine.startsWith('Input:') || trimmedLine.startsWith('Output:') || trimmedLine.startsWith('Explanation:')) {
-                        const parts = trimmedLine.split(':');
-                        return (
-                          <div key={i} className="desc-io">
-                            <strong>{parts[0]}:</strong>{parts.slice(1).join(':')}
-                          </div>
-                        );
-                      }
-                      if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('1 <= ') || trimmedLine.startsWith('0 <=')) {
-                         return <li key={i} className="desc-list-item">{trimmedLine}</li>;
-                      }
-                      return <p key={i}>{trimmedLine}</p>;
-                    })}
-                  </div>
-                </div>
-              )}
-              
-              {selectedProblem.video_url && (
-                <details className="collapsible-section">
-                  <summary>View Video Solution</summary>
-                  <div className="video-container">
-                    <iframe 
-                      src={selectedProblem.video_url} 
-                      title="YouTube video player" 
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </details>
-              )}
-
-              <details className="collapsible-section">
-                <summary>View C++ Source Code</summary>
-                <div className="code-section">
-                  {selectedProblem.code ? (
-                    <pre className="code-block">
-                      <code>{selectedProblem.code}</code>
-                    </pre>
-                  ) : (
-                    <div className="no-code">Code not yet written.</div>
-                  )}
-                </div>
-              </details>
-            </div>
-          ) : (
-            <div className="home-table-container">
-              <table className="home-table">
+        <main className={`content-panel ${selectedProblem ? 'split-view-container' : ''}`}>
+          <div className={`home-table-container ${selectedProblem ? 'split-left' : 'full-width'}`}>
+            <table className="home-table">
                 <thead>
                   <tr>
                     <th style={{ width: '25%' }}>Category</th>
@@ -212,6 +149,69 @@ function App() {
                   ))}
                 </tbody>
               </table>
+          </div>
+
+          {selectedProblem && (
+            <div className="problem-details split-right">
+              <div className="problem-header">
+                <h2>LC {selectedProblem.id}: {selectedProblem.title}</h2>
+                <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode">Solve on LeetCode</a>
+              </div>
+
+              {selectedProblem.description && (
+                <div className="description-section">
+                  <h3>Problem Description</h3>
+                  <div className="description-content">
+                    {selectedProblem.description.split('\n').map((line, i) => {
+                      const trimmedLine = line.trim();
+                      if (!trimmedLine) return null;
+                      
+                      if (trimmedLine.startsWith('Example') || trimmedLine.startsWith('Constraints:')) {
+                        return <h4 key={i} className="desc-heading">{trimmedLine}</h4>;
+                      }
+                      if (trimmedLine.startsWith('Input:') || trimmedLine.startsWith('Output:') || trimmedLine.startsWith('Explanation:')) {
+                        const parts = trimmedLine.split(':');
+                        return (
+                          <div key={i} className="desc-io">
+                            <strong>{parts[0]}:</strong>{parts.slice(1).join(':')}
+                          </div>
+                        );
+                      }
+                      if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('1 <= ') || trimmedLine.startsWith('0 <=')) {
+                         return <li key={i} className="desc-list-item">{trimmedLine}</li>;
+                      }
+                      return <p key={i}>{trimmedLine}</p>;
+                    })}
+                  </div>
+                </div>
+              )}
+              
+              {selectedProblem.video_url && (
+                <details className="collapsible-section" open>
+                  <summary>View Video Solution</summary>
+                  <div className="video-container">
+                    <iframe 
+                      src={selectedProblem.video_url} 
+                      title="YouTube video player" 
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                      allowFullScreen
+                    ></iframe>
+                  </div>
+                </details>
+              )}
+
+              <details className="collapsible-section" open>
+                <summary>View C++ Source Code</summary>
+                <div className="code-section">
+                  {selectedProblem.code ? (
+                    <pre className="code-block">
+                      <code>{selectedProblem.code}</code>
+                    </pre>
+                  ) : (
+                    <div className="no-code">Code not yet written.</div>
+                  )}
+                </div>
+              </details>
             </div>
           )}
         </main>

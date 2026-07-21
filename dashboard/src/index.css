@@ -583,4 +583,38 @@ body {
   line-height: 1.4;
 }
 
+/* Split View Layout */
+.split-view-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0;
+  padding: 0;
+  height: calc(100vh - 77px); /* header height approx */
+  overflow: hidden;
+}
+
+.home-table-container.full-width {
+  width: 100%;
+  padding: 2rem;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.home-table-container.split-left {
+  width: 40%;
+  padding: 1.5rem;
+  overflow-y: auto;
+  border-right: 1px solid var(--border-color);
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+}
+
+.problem-details.split-right {
+  width: 60%;
+  padding: 2rem;
+  overflow-y: auto;
+  margin: 0;
+  max-width: none;
+}
+
 
