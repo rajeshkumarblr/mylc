@@ -112,9 +112,26 @@ function App() {
                 <div className="description-section">
                   <h3>Problem Description</h3>
                   <div className="description-content">
-                    {selectedProblem.description.split('\n').map((line, i) => (
-                      <p key={i}>{line}</p>
-                    ))}
+                    {selectedProblem.description.split('\n').map((line, i) => {
+                      const trimmedLine = line.trim();
+                      if (!trimmedLine) return null;
+                      
+                      if (trimmedLine.startsWith('Example') || trimmedLine.startsWith('Constraints:')) {
+                        return <h4 key={i} className="desc-heading">{trimmedLine}</h4>;
+                      }
+                      if (trimmedLine.startsWith('Input:') || trimmedLine.startsWith('Output:') || trimmedLine.startsWith('Explanation:')) {
+                        const parts = trimmedLine.split(':');
+                        return (
+                          <div key={i} className="desc-io">
+                            <strong>{parts[0]}:</strong>{parts.slice(1).join(':')}
+                          </div>
+                        );
+                      }
+                      if (trimmedLine.startsWith('- ') || trimmedLine.startsWith('1 <= ') || trimmedLine.startsWith('0 <=')) {
+                         return <li key={i} className="desc-list-item">{trimmedLine}</li>;
+                      }
+                      return <p key={i}>{trimmedLine}</p>;
+                    })}
                   </div>
                 </div>
               )}

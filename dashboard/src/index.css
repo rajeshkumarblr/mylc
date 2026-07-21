@@ -289,6 +289,41 @@ body {
   color: #e2e8f0;
 }
 
+.desc-heading {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.25rem;
+}
+
+.desc-io {
+  font-family: 'Fira Code', 'Consolas', monospace;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.4rem 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 0.25rem;
+  color: #e2e8f0;
+  border-left: 2px solid var(--accent);
+}
+
+.desc-io strong {
+  color: #38bdf8;
+  margin-right: 0.5rem;
+}
+
+.desc-list-item {
+  margin-bottom: 0.25rem;
+  margin-left: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+  list-style-type: disc;
+}
+
 .collapsible-section {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
