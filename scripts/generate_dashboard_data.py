@@ -54,7 +54,6 @@ def generate_data():
             lc_url = prob_match.group(6)
 
             current_problem_id = prob_id
-            
             code_content = ""
             desc = ""
             if os.path.exists(local_path):
@@ -67,6 +66,17 @@ def generate_data():
                     desc_raw = desc_match.group(1)
                     # Remove the ' * ' prefix on each line
                     desc = "\n".join([l.strip().lstrip('*').strip() for l in desc_raw.split('\n') if l.strip()])
+
+                # Extract Code only
+                code_match = re.search(r'// @lc code=start(.*?)// @lc code=end', code_content, re.DOTALL)
+                if code_match:
+                    code_content = code_match.group(1).strip()
+                else:
+                    # Fallback
+                    code_content = re.sub(r'#include.*?\n', '', code_content)
+                    code_content = re.sub(r'using namespace std;\n', '', code_content)
+                    code_content = re.sub(r'int main\(\)\s*\{.*?$', '', code_content, flags=re.DOTALL)
+                    code_content = code_content.strip()
 
             prob_data = {
                 "id": prob_id,

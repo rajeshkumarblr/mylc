@@ -5,6 +5,7 @@ function App() {
   const [data, setData] = useState(null);
   const [selectedProblem, setSelectedProblem] = useState(null);
   const [expandedCategory, setExpandedCategory] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetch('./data.json')
@@ -23,6 +24,32 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <h1>LeetCode Master Dashboard</h1>
+        <div className="search-container">
+          <input 
+            type="text" 
+            className="search-input" 
+            placeholder="Search LC ID or Title..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          {searchQuery && (
+            <div className="search-results">
+              {Object.values(data.problems)
+                .filter(p => p.id.includes(searchQuery) || p.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                .slice(0, 10)
+                .map(p => (
+                  <div key={p.id} className="search-result-item" onClick={() => {
+                    setSelectedProblem(p);
+                    setExpandedCategory(p.category);
+                    setSearchQuery('');
+                  }}>
+                    <span className="status">{p.status_icon}</span>
+                    <span>LC {p.id}: {p.title}</span>
+                  </div>
+                ))}
+            </div>
+          )}
+        </div>
         <div className="stats">
           <span>{Object.values(data.problems).filter(p => p.is_solved).length} / {Object.keys(data.problems).length} Solved</span>
         </div>
