@@ -135,8 +135,54 @@ function App() {
               </details>
             </div>
           ) : (
-            <div className="empty-state">
-              <p>Select a problem from the sidebar to view its details.</p>
+            <div className="home-table-container">
+              <h2>All Problems</h2>
+              <table className="home-table">
+                <thead>
+                  <tr>
+                    <th style={{ width: '25%' }}>Category</th>
+                    <th style={{ width: '75%' }}>Problems</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {data.categories.map(cat => (
+                    <tr key={cat.name}>
+                      <td className="category-cell">
+                        <span className="cat-name">{cat.name}</span>
+                        <div className="cat-stats">({cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length} Solved)</div>
+                      </td>
+                      <td className="problems-cell">
+                        {cat.problems.map(probId => {
+                          const prob = data.problems[probId];
+                          const diffClass = prob.difficulty ? prob.difficulty.toLowerCase() : 'medium';
+                          return (
+                            <div 
+                              key={prob.id} 
+                              className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'}`}
+                              onClick={() => {
+                                setSelectedProblem(prob);
+                                setExpandedCategory(prob.category);
+                              }}
+                            >
+                              <span className="prob-id">{prob.id}</span>
+                              <div className="tooltip-card">
+                                <div className="tooltip-header">
+                                  <strong>LC {prob.id}: {prob.title}</strong>
+                                  <span className={`diff-tag ${diffClass}`}>{prob.difficulty || 'Medium'}</span>
+                                </div>
+                                <div className="tooltip-status">
+                                  Status: {prob.is_solved ? <span style={{color: '#4ade80'}}>Solved 🟢</span> : <span style={{color: '#94a3b8'}}>Unsolved ⚪</span>}
+                                </div>
+                                <p className="tooltip-desc">{prob.description ? prob.description.substring(0, 120) + '...' : 'No description available.'}</p>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </main>

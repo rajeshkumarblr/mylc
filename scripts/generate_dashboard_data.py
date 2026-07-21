@@ -56,10 +56,16 @@ def generate_data():
             current_problem_id = prob_id
             code_content = ""
             desc = ""
+            difficulty = "Medium"
             if os.path.exists(local_path):
                 with open(local_path, "r") as cf:
                     code_content = cf.read()
                     
+                # Extract Difficulty
+                diff_match = re.search(r'\*\s+Difficulty:\s*(.*)', code_content)
+                if diff_match:
+                    difficulty = diff_match.group(1).strip()
+
                 # Extract Description from C++ block comment
                 desc_match = re.search(r'\*\s+Description:\s*(.*?)\*/', code_content, re.DOTALL)
                 if desc_match:
@@ -84,6 +90,7 @@ def generate_data():
                 "category": current_category,
                 "status_icon": status_icon,
                 "is_solved": is_solved,
+                "difficulty": difficulty,
                 "local_path": local_path,
                 "lc_url": lc_url,
                 "video_url": None,
