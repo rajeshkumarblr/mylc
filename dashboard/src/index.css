@@ -34,22 +34,56 @@ body {
 }
 
 .app-header {
-  padding: 1rem 2rem;
-  background: var(--bg-panel);
+  padding: 1.25rem 2rem;
+  background: rgba(15, 23, 42, 0.7);
   backdrop-filter: var(--glass-blur);
   border-bottom: 1px solid var(--border-color);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.menu-btn {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.2s;
+}
+
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .app-header h1 {
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(to right, #60a5fa, #34d399);
+  background: linear-gradient(135deg, var(--accent), #38bdf8);
   -webkit-background-clip: text;
+  background-clip: text; /* Fix lint */
   -webkit-text-fill-color: transparent;
+  margin: 0;
+  transition: opacity 0.2s;
+}
+
+.app-header h1:hover {
+  opacity: 0.8;
 }
 
 .stats {

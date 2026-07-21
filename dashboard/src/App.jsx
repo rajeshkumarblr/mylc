@@ -6,6 +6,7 @@ function App() {
   const [selectedProblem, setSelectedProblem] = useState(null);
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     fetch('./data.json')
@@ -23,7 +24,12 @@ function App() {
   return (
     <div className="app-container">
       <header className="app-header">
-        <h1>LeetCode Master Dashboard</h1>
+        <div className="header-left">
+          <button className="menu-btn" onClick={() => setIsSidebarOpen(!isSidebarOpen)}>☰</button>
+          <h1 onClick={() => { setSelectedProblem(null); setIsSidebarOpen(true); }} style={{ cursor: 'pointer' }}>
+            Neetcode 150 solutions
+          </h1>
+        </div>
         <div className="search-container">
           <input 
             type="text" 
@@ -42,6 +48,7 @@ function App() {
                     setSelectedProblem(p);
                     setExpandedCategory(p.category);
                     setSearchQuery('');
+                    setIsSidebarOpen(false);
                   }}>
                     <span className="status">{p.status_icon}</span>
                     <span>LC {p.id}: {p.title}</span>
@@ -56,37 +63,42 @@ function App() {
       </header>
 
       <div className="main-content">
-        <aside className="sidebar">
-          {data.categories.map(cat => (
-            <div key={cat.name} className="category-group">
-              <button 
-                className={`category-header ${expandedCategory === cat.name ? 'active' : ''}`}
-                onClick={() => setExpandedCategory(expandedCategory === cat.name ? null : cat.name)}
-              >
-                <span className="arrow">{expandedCategory === cat.name ? '▼' : '▶'}</span>
-                {cat.name} ({cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length})
-              </button>
-              
-              {expandedCategory === cat.name && (
-                <div className="problem-list">
-                  {cat.problems.map(probId => {
-                    const prob = data.problems[probId];
-                    return (
-                      <div 
-                        key={prob.id} 
-                        className={`problem-item ${selectedProblem?.id === prob.id ? 'selected' : ''}`}
-                        onClick={() => setSelectedProblem(prob)}
-                      >
-                        <span className="status">{prob.status_icon}</span>
-                        <span className="title">LC {prob.id}: {prob.title}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          ))}
-        </aside>
+        {isSidebarOpen && (
+          <aside className="sidebar">
+            {data.categories.map(cat => (
+              <div key={cat.name} className="category-group">
+                <button 
+                  className={`category-header ${expandedCategory === cat.name ? 'active' : ''}`}
+                  onClick={() => setExpandedCategory(expandedCategory === cat.name ? null : cat.name)}
+                >
+                  <span className="arrow">{expandedCategory === cat.name ? '▼' : '▶'}</span>
+                  {cat.name} ({cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length})
+                </button>
+                
+                {expandedCategory === cat.name && (
+                  <div className="problem-list">
+                    {cat.problems.map(probId => {
+                      const prob = data.problems[probId];
+                      return (
+                        <div 
+                          key={prob.id} 
+                          className={`problem-item ${selectedProblem?.id === prob.id ? 'selected' : ''}`}
+                          onClick={() => {
+                            setSelectedProblem(prob);
+                            setIsSidebarOpen(false); // auto-collapse
+                          }}
+                        >
+                          <span className="status">{prob.status_icon}</span>
+                          <span className="title">LC {prob.id}: {prob.title}</span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            ))}
+          </aside>
+        )}
 
         <main className="content-panel">
           {selectedProblem ? (
@@ -136,7 +148,6 @@ function App() {
             </div>
           ) : (
             <div className="home-table-container">
-              <h2>All Problems</h2>
               <table className="home-table">
                 <thead>
                   <tr>
@@ -162,6 +173,7 @@ function App() {
                               onClick={() => {
                                 setSelectedProblem(prob);
                                 setExpandedCategory(prob.category);
+                                setIsSidebarOpen(false);
                               }}
                             >
                               <span className="prob-id">{prob.id}</span>
