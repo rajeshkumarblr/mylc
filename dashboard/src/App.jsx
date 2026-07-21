@@ -19,6 +19,10 @@ function App() {
         if (d.categories.length > 0) {
           setExpandedCategory(d.categories[0].name);
         }
+        if (d.problems['217']) {
+          setSelectedProblem(d.problems['217']);
+          setActiveTab(d.problems['217'].approach ? 'approach' : 'description');
+        }
       });
   }, []);
 
@@ -79,16 +83,24 @@ function App() {
                     <tr key={cat.name}>
                       <td className="category-cell">
                         <span className="cat-name">{cat.name}</span>
-                        <div className="cat-stats">({cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length} Solved)</div>
+                        <div className="cat-progress-container">
+                          <div className="cat-progress-text">{cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length} Solved</div>
+                          <div className="cat-progress-bar">
+                            <div 
+                              className="cat-progress-fill" 
+                              style={{ width: `${(cat.problems.filter(id => data.problems[id].is_solved).length / cat.problems.length) * 100}%` }}
+                            ></div>
+                          </div>
+                        </div>
                       </td>
                       <td className="problems-cell">
-                        {cat.problems.map(probId => {
+                        {cat.problems.slice().sort((a, b) => parseInt(a) - parseInt(b)).map(probId => {
                           const prob = data.problems[probId];
                           const diffClass = prob.difficulty ? prob.difficulty.toLowerCase() : 'medium';
                           return (
                             <div 
                               key={prob.id} 
-                              className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'}`}
+                              className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'} ${diffClass}`}
                               onClick={() => {
                                 setSelectedProblem(prob);
                                 setExpandedCategory(prob.category);
@@ -124,16 +136,16 @@ function App() {
               </div>
 
               <div className="tab-nav">
-                {selectedProblem.approach && (
-                  <button 
-                    className={`tab-btn ${activeTab === 'approach' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('approach')}
-                  >Approach</button>
-                )}
                 <button 
                   className={`tab-btn ${activeTab === 'description' ? 'active' : ''}`}
                   onClick={() => setActiveTab('description')}
                 >Description</button>
+                {selectedProblem.approach && (
+                  <button 
+                    className={`tab-btn ${activeTab === 'approach' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('approach')}
+                  >Solution Approach</button>
+                )}
                 <button 
                   className={`tab-btn ${activeTab === 'solution' ? 'active' : ''}`}
                   onClick={() => setActiveTab('solution')}
@@ -141,7 +153,7 @@ function App() {
                 <button 
                   className={`tab-btn ${activeTab === 'video' ? 'active' : ''}`}
                   onClick={() => setActiveTab('video')}
-                >Video</button>
+                >Explanation Video</button>
               </div>
 
               <div className="tab-content">
