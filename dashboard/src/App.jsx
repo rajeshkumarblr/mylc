@@ -145,9 +145,17 @@ function App() {
 
           {selectedProblem && (
             <div className="problem-details split-right">
-              <div className="problem-header" style={{ position: 'relative', justifyContent: 'center' }}>
-                <h2 style={{ textAlign: 'center' }}>{selectedProblem.category}: {selectedProblem.id}. {selectedProblem.title}</h2>
-                <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode" style={{ position: 'absolute', right: 0 }}>Solve on LeetCode</a>
+              <div className="problem-header" style={{ position: 'relative', display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '0.25rem' }}>{selectedProblem.category}</div>
+                <a 
+                  href={`https://github.com/rajeshkumarblr/mylc/blob/main/${selectedProblem.local_path}`}
+                  target="_blank" 
+                  rel="noreferrer"
+                  style={{ color: '#7dd3fc', fontSize: '1.25rem', fontWeight: 'bold', textDecoration: 'none' }}
+                >
+                  {selectedProblem.id}. {selectedProblem.title}
+                </a>
+                <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode" style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)' }}>Solve on LeetCode</a>
               </div>
 
               <div className="tab-nav">
