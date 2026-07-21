@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import './index.css';
 
 function App() {
@@ -184,9 +186,21 @@ function App() {
                 {activeTab === 'solution' && (
                   <div className="code-section">
                     {selectedProblem.code ? (
-                      <pre className="code-block">
-                        <code>{selectedProblem.code}</code>
-                      </pre>
+                      <SyntaxHighlighter 
+                        language="cpp" 
+                        style={vscDarkPlus} 
+                        customStyle={{
+                          background: 'rgba(0, 0, 0, 0.4)',
+                          padding: '1.5rem',
+                          borderRadius: '12px',
+                          border: '1px solid var(--border-color)',
+                          fontSize: '0.9rem',
+                          fontFamily: "'Fira Code', monospace",
+                          margin: 0
+                        }}
+                      >
+                        {selectedProblem.code}
+                      </SyntaxHighlighter>
                     ) : (
                       <div className="no-code">Code not yet written.</div>
                     )}
