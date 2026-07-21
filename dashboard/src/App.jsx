@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ReactMarkdown from 'react-markdown';
 import './index.css';
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
                   <div key={p.id} className="search-result-item" onClick={() => {
                     setSelectedProblem(p);
                     setExpandedCategory(p.category);
-                    setExpandedCategory(p.category);
+                    setActiveTab(p.approach ? 'approach' : 'description');
                     setSearchQuery('');
                   }}>
                     <span className="status">{p.status_icon}</span>
@@ -91,7 +92,7 @@ function App() {
                               onClick={() => {
                                 setSelectedProblem(prob);
                                 setExpandedCategory(prob.category);
-                                setActiveTab('description');
+                                setActiveTab(prob.approach ? 'approach' : 'description');
                               }}
                             >
                               <span className="prob-id">{prob.id}</span>
@@ -123,6 +124,12 @@ function App() {
               </div>
 
               <div className="tab-nav">
+                {selectedProblem.approach && (
+                  <button 
+                    className={`tab-btn ${activeTab === 'approach' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('approach')}
+                  >Approach</button>
+                )}
                 <button 
                   className={`tab-btn ${activeTab === 'description' ? 'active' : ''}`}
                   onClick={() => setActiveTab('description')}
@@ -138,6 +145,12 @@ function App() {
               </div>
 
               <div className="tab-content">
+                {activeTab === 'approach' && selectedProblem.approach && (
+                  <div className="approach-section" style={{ lineHeight: '1.6', color: 'var(--text-main)', fontSize: '0.95rem' }}>
+                    <ReactMarkdown>{selectedProblem.approach}</ReactMarkdown>
+                  </div>
+                )}
+                
                 {activeTab === 'description' && (
                   <div className="description-section">
                     <h3>Problem Description</h3>

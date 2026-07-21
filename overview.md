@@ -6,13 +6,13 @@ Track your interview preparation progress here.
 
 | Category | Total | Solved | Progress |
 | --- | --- | --- | --- |
-| [1-D Dynamic Programming](#1-d-dynamic-programming) | 12 | 5 | [🟩 70](#lc-70) [🟩 746](#lc-746) [🟩 198](#lc-198) [🟩 213](#lc-213) [⬜ 5](#lc-5) [⬜ 647](#lc-647) [⬜ 91](#lc-91) [⬜ 322](#lc-322) [⬜ 152](#lc-152) [🟩 139](#lc-139) [⬜ 300](#lc-300) [⬜ 416](#lc-416) 41% |
-| [2-D Dynamic Programming](#2-d-dynamic-programming) | 11 | 1 | [⬜ 62](#lc-62) [⬜ 1143](#lc-1143) [⬜ 309](#lc-309) [⬜ 518](#lc-518) [⬜ 494](#lc-494) [⬜ 97](#lc-97) [⬜ 329](#lc-329) [⬜ 115](#lc-115) [🟩 72](#lc-72) [⬜ 312](#lc-312) [⬜ 10](#lc-10) 9% |
 | [Advanced Graphs](#advanced-graphs) | 6 | 0 | [⬜ 743](#lc-743) [⬜ 332](#lc-332) [⬜ 1584](#lc-1584) [⬜ 778](#lc-778) [⬜ 269](#lc-269) [⬜ 787](#lc-787) 0% |
 | [Arrays & Hashing](#arrays--hashing) | 9 | 9 | [🟩 217](#lc-217) [🟩 242](#lc-242) [🟩 1](#lc-1) [🟩 49](#lc-49) [🟩 347](#lc-347) [🟩 271](#lc-271) [🟩 238](#lc-238) [🟩 36](#lc-36) [🟩 128](#lc-128) 100% |
 | [Backtracking](#backtracking) | 10 | 0 | [⬜ 78](#lc-78) [⬜ 39](#lc-39) [⬜ 40](#lc-40) [⬜ 46](#lc-46) [⬜ 90](#lc-90) [⬜ 22](#lc-22) [⬜ 79](#lc-79) [⬜ 131](#lc-131) [⬜ 17](#lc-17) [⬜ 51](#lc-51) 0% |
 | [Binary Search](#binary-search) | 7 | 2 | [⬜ 704](#lc-704) [⬜ 74](#lc-74) [⬜ 875](#lc-875) [⬜ 153](#lc-153) [🟩 33](#lc-33) [🟩 981](#lc-981) [⬜ 4](#lc-4) 28% |
 | [Bit Manipulation](#bit-manipulation) | 7 | 0 | [⬜ 136](#lc-136) [⬜ 191](#lc-191) [⬜ 338](#lc-338) [⬜ 190](#lc-190) [⬜ 268](#lc-268) [⬜ 371](#lc-371) [⬜ 7](#lc-7) 0% |
+| [Dynamic Programming (1D)](#dynamic-programming-1d) | 12 | 5 | [🟩 70](#lc-70) [🟩 746](#lc-746) [🟩 198](#lc-198) [🟩 213](#lc-213) [⬜ 5](#lc-5) [⬜ 647](#lc-647) [⬜ 91](#lc-91) [⬜ 322](#lc-322) [⬜ 152](#lc-152) [🟩 139](#lc-139) [⬜ 300](#lc-300) [⬜ 416](#lc-416) 41% |
+| [Dynamic Programming (2D)](#dynamic-programming-2d) | 11 | 1 | [⬜ 62](#lc-62) [⬜ 1143](#lc-1143) [⬜ 309](#lc-309) [⬜ 518](#lc-518) [⬜ 494](#lc-494) [⬜ 97](#lc-97) [⬜ 329](#lc-329) [⬜ 115](#lc-115) [🟩 72](#lc-72) [⬜ 312](#lc-312) [⬜ 10](#lc-10) 9% |
 | [Graphs](#graphs) | 13 | 6 | [🟩 200](#lc-200) [🟩 695](#lc-695) [🟩 133](#lc-133) [⬜ 286](#lc-286) [🟩 994](#lc-994) [⬜ 417](#lc-417) [⬜ 130](#lc-130) [🟩 207](#lc-207) [🟩 210](#lc-210) [⬜ 261](#lc-261) [⬜ 323](#lc-323) [⬜ 684](#lc-684) [⬜ 127](#lc-127) 46% |
 | [Greedy](#greedy) | 8 | 0 | [⬜ 53](#lc-53) [⬜ 55](#lc-55) [⬜ 45](#lc-45) [⬜ 134](#lc-134) [⬜ 846](#lc-846) [⬜ 1899](#lc-1899) [⬜ 763](#lc-763) [⬜ 678](#lc-678) 0% |
 | [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | [⬜ 703](#lc-703) [⬜ 1046](#lc-1046) [🟩 973](#lc-973) [🟩 215](#lc-215) [⬜ 621](#lc-621) [⬜ 355](#lc-355) [🟩 295](#lc-295) 42% |
@@ -28,213 +28,6 @@ Track your interview preparation progress here.
 | **Total** | **154** | **54** | **35%** |
 
 
-
-## 1-D Dynamic Programming
-
-- <a id="lc-70"></a>🟢 [x] **[LC 70](src/cpp/dp/70.climbing-stairs.cpp)**: [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=Y0lT9Fck7qI)
-  <details><summary>View Solution</summary>
-  
-  ```cpp
-  class Solution {
-  public:
-      int climbStairs(int n) {
-          // Base cases: 
-          // 1 step -> 1 way (just climb 1)
-          // 2 steps -> 2 ways (1+1 or 2)
-          if (n <= 2) return n;
-          
-          // Dynamic Programming approach:
-          // To reach step i, we can come from step (i-1) or step (i-2)
-          // So: ways[i] = ways[i-1] + ways[i-2] (Fibonacci sequence!)
-          
-          int waysToReachPrevPrev = 1;  // ways to reach step (i-2)
-          int waysToReachPrev = 2;      // ways to reach step (i-1)
-          
-          // Calculate ways to reach each step from 3 to n
-          for (int currentStep = 3; currentStep <= n; currentStep++) {
-              int waysToReachCurrent = waysToReachPrevPrev + waysToReachPrev;
-              
-              // Slide the window forward
-              waysToReachPrevPrev = waysToReachPrev;
-              waysToReachPrev = waysToReachCurrent;
-          }
-          
-          return waysToReachPrev;  // This holds ways to reach step n
-      }
-  };
-  ```
-  </details>
-- <a id="lc-746"></a>🟢 [x] **[LC 746](src/cpp/dp/746.min-cost-climbing-stairs.cpp)**: [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=ktmzAZWkEZ0)
-  <details><summary>View Solution</summary>
-  
-  ```cpp
-  class Solution {
-  public:
-    int minCostClimbingStairs(vector<int> &cost) {
-      int n = cost.size();
-      vector<int> dp(n + 1);
-      dp[0] = 0;
-      dp[1] = 0;
-      for (int i = 2; i <= n; i++) {
-        dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
-      }
-      return dp[n];
-    }
-  };
-  ```
-  </details>
-- <a id="lc-198"></a>🟡 [x] **[LC 198](src/cpp/dp/198.house-robber.cpp)**: [House Robber](https://leetcode.com/problems/house-robber/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=73r3KWiEvyk)
-  <details><summary>View Solution</summary>
-  
-  ```cpp
-  class Solution {
-  public:
-      int rob(vector<int>& nums) {
-          const int n = nums.size();
-          
-          // Edge cases
-          if (n == 0) return 0;           // No houses
-          if (n == 1) return nums[0];     // Only 1 house
-          
-          // Option 2: Constant Space O(1) - BEST for memory!
-          // We only need the last 2 values: dp[i-2] and dp[i-1]
-          int prev2 = nums[0];                    // dp[i-2] 
-          int prev1 = max(nums[0], nums[1]);      // dp[i-1]
-          
-          for (int i = 2; i < n; i++) {
-              int current = max(prev1, prev2 + nums[i]);
-              prev2 = prev1;    // Slide the window
-              prev1 = current;  // Slide the window
-          }
-          
-          return prev1;  // This holds the maximum money
-      }
-  };
-  ```
-  </details>
-- <a id="lc-213"></a>🟡 [x] **[LC 213](src/cpp/dp/213.house-robber-ii.cpp)**: [House Robber II](https://leetcode.com/problems/house-robber-ii/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=rWAJCfYYOvM)
-  <details><summary>View Solution</summary>
-  
-  ```cpp
-  class Solution {
-  public:
-      int rob(vector<int>& nums) {
-          return {};
-      }
-  };
-  ```
-  </details>
-- <a id="lc-5"></a>🟡 [ ] **[LC 5](src/cpp/dp/5.longest-palindromic-substring.cpp)**: [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=XYQecbcd6_c)
-- <a id="lc-647"></a>🟡 [ ] **[LC 647](src/cpp/dp/647.palindromic-substrings.cpp)**: [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=4RACzI5-du8)
-- <a id="lc-91"></a>🟡 [ ] **[LC 91](src/cpp/dp/91.decode-ways.cpp)**: [Decode Ways](https://leetcode.com/problems/decode-ways/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=6aEyTjOwlJU)
-- <a id="lc-322"></a>🟡 [ ] **[LC 322](src/cpp/dp/322.coin-change.cpp)**: [Coin Change](https://leetcode.com/problems/coin-change/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=H9bfqozjoqs)
-- <a id="lc-152"></a>🟡 [ ] **[LC 152](src/cpp/dp/152.maximum-product-subarray.cpp)**: [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=lXVy6YWFcRM)
-- <a id="lc-139"></a>🟡 [x] **[LC 139](src/cpp/dp/139.word-break.cpp)**: [Word Break](https://leetcode.com/problems/word-break/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=Sx9NNgInc3A)
-  <details><summary>View Solution</summary>
-  
-  ```cpp
-  class Solution {
-  public:
-      bool wordBreak(string s, vector<string>& wordDict) {
-          int n = s.size();
-          vector<bool> dp(n + 1, false);
-          dp[0] = true; // Empty string can always be broken
-          
-          // Convert wordDict to unordered_set for O(1) lookup
-          unordered_set<string> wordSet(wordDict.begin(), wordDict.end());
-          
-          for (int i = 1; i <= n; i++) {
-              for (int j = 0; j < i; j++) {
-                  string word = s.substr(j, i - j);
-                  if (dp[j] && wordSet.find(word) != wordSet.end()) {
-                      dp[i] = true;
-                      break;
-                  }
-              }
-          }
-          
-          return dp[n];
-      }
-  };
-  ```
-  </details>
-- <a id="lc-300"></a>🟡 [ ] **[LC 300](src/cpp/dp/300.longest-increasing-subsequence.cpp)**: [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
-- <a id="lc-416"></a>🟡 [ ] **[LC 416](src/cpp/dp/416.partition-equal-subset-sum.cpp)**: [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=IsvocB5BJhw)
-
-## 2-D Dynamic Programming
-
-- <a id="lc-62"></a>🟡 [ ] **[LC 62](src/cpp/dp/62.unique-paths.cpp)**: [Unique Paths](https://leetcode.com/problems/unique-paths/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=IlEsdxuD4lY)
-- <a id="lc-1143"></a>🟡 [ ] **[LC 1143](src/cpp/dp/1143.longest-common-subsequence.cpp)**: [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=Ua0GhsJSlWM)
-- <a id="lc-309"></a>🟡 [ ] **[LC 309](src/cpp/dp/309.best-time-to-buy-and-sell-stock-with-cooldown.cpp)**: [Best Time to Buy And Sell Stock With Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=I7j0F7AHpb8)
-- <a id="lc-518"></a>🟡 [ ] **[LC 518](src/cpp/dp/518.coin-change-ii.cpp)**: [Coin Change II](https://leetcode.com/problems/coin-change-ii/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
-- <a id="lc-494"></a>🟡 [ ] **[LC 494](src/cpp/dp/494.target-sum.cpp)**: [Target Sum](https://leetcode.com/problems/target-sum/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=dwMOrl85Xes)
-- <a id="lc-97"></a>🟡 [ ] **[LC 97](src/cpp/dp/97.interleaving-string.cpp)**: [Interleaving String](https://leetcode.com/problems/interleaving-string/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=3Rw3p9LrgvE)
-- <a id="lc-329"></a>🔴 [ ] **[LC 329](src/cpp/dp/329.longest-increasing-path-in-a-matrix.cpp)**: [Longest Increasing Path In a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=wCc_nd-GiEc)
-- <a id="lc-115"></a>🔴 [ ] **[LC 115](src/cpp/dp/115.distinct-subsequences.cpp)**: [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=-RDzMJ33nx8)
-- <a id="lc-72"></a>🟡 [x] **[LC 72](src/cpp/dp/72.edit-distance.cpp)**: [Edit Distance](https://leetcode.com/problems/edit-distance/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=Sfm_b4HVEKE)
-  <details><summary>View Solution</summary>
-  
-  ```cpp
-  class Solution {
-  public:
-    int minDistance(string word1, string word2) {
-      int m = word1.size();
-      int n = word2.size();
-      
-      // Create a 2D vector for DP
-      vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-      
-      // Base cases
-      for (int i = 0; i <= m; i++) dp[i][0] = i; // Deleting characters to match empty string
-      for (int j = 0; j <= n; j++) dp[0][j] = j; // Inserting characters to match word2
-      
-      // Fill the grid
-      for (int i = 1; i <= m; i++) {
-        for (int j = 1; j <= n; j++) {
-          if (word1[i - 1] == word2[j - 1]) {
-            // Characters match, no operation needed. Copy diagonal.
-            dp[i][j] = dp[i - 1][j - 1];
-          } else {
-            // Characters don't match, take minimum of 3 operations + 1
-            dp[i][j] = min({
-              dp[i - 1][j - 1], // Replace (diagonal)
-              dp[i - 1][j],     // Delete (up)
-              dp[i][j - 1]      // Insert (left)
-            }) + 1;
-          }
-        }
-      }
-      
-      return dp[m][n];
-    }
-  };
-  ```
-  </details>
-- <a id="lc-312"></a>🔴 [ ] **[LC 312](src/cpp/dp/312.burst-balloons.cpp)**: [Burst Balloons](https://leetcode.com/problems/burst-balloons/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=VFskby7lUbw)
-- <a id="lc-10"></a>🔴 [ ] **[LC 10](src/cpp/dp/10.regular-expression-matching.cpp)**: [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)  
-  [🎬 Video explanation](https://www.youtube.com/watch?v=HAA8mgxlov8)
 
 ## Advanced Graphs
 
@@ -583,6 +376,213 @@ Track your interview preparation progress here.
   [🎬 Video explanation](https://www.youtube.com/watch?v=gVUrDV4tZfY)
 - <a id="lc-7"></a>🟡 [ ] **[LC 7](src/cpp/bit_manipulation/7.reverse-integer.cpp)**: [Reverse Integer](https://leetcode.com/problems/reverse-integer/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=HAgLH58IgJQ)
+
+## Dynamic Programming (1D)
+
+- <a id="lc-70"></a>🟢 [x] **[LC 70](src/cpp/dp/70.climbing-stairs.cpp)**: [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=Y0lT9Fck7qI)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+      int climbStairs(int n) {
+          // Base cases: 
+          // 1 step -> 1 way (just climb 1)
+          // 2 steps -> 2 ways (1+1 or 2)
+          if (n <= 2) return n;
+          
+          // Dynamic Programming approach:
+          // To reach step i, we can come from step (i-1) or step (i-2)
+          // So: ways[i] = ways[i-1] + ways[i-2] (Fibonacci sequence!)
+          
+          int waysToReachPrevPrev = 1;  // ways to reach step (i-2)
+          int waysToReachPrev = 2;      // ways to reach step (i-1)
+          
+          // Calculate ways to reach each step from 3 to n
+          for (int currentStep = 3; currentStep <= n; currentStep++) {
+              int waysToReachCurrent = waysToReachPrevPrev + waysToReachPrev;
+              
+              // Slide the window forward
+              waysToReachPrevPrev = waysToReachPrev;
+              waysToReachPrev = waysToReachCurrent;
+          }
+          
+          return waysToReachPrev;  // This holds ways to reach step n
+      }
+  };
+  ```
+  </details>
+- <a id="lc-746"></a>🟢 [x] **[LC 746](src/cpp/dp/746.min-cost-climbing-stairs.cpp)**: [Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=ktmzAZWkEZ0)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    int minCostClimbingStairs(vector<int> &cost) {
+      int n = cost.size();
+      vector<int> dp(n + 1);
+      dp[0] = 0;
+      dp[1] = 0;
+      for (int i = 2; i <= n; i++) {
+        dp[i] = min(dp[i - 1] + cost[i - 1], dp[i - 2] + cost[i - 2]);
+      }
+      return dp[n];
+    }
+  };
+  ```
+  </details>
+- <a id="lc-198"></a>🟡 [x] **[LC 198](src/cpp/dp/198.house-robber.cpp)**: [House Robber](https://leetcode.com/problems/house-robber/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=73r3KWiEvyk)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+      int rob(vector<int>& nums) {
+          const int n = nums.size();
+          
+          // Edge cases
+          if (n == 0) return 0;           // No houses
+          if (n == 1) return nums[0];     // Only 1 house
+          
+          // Option 2: Constant Space O(1) - BEST for memory!
+          // We only need the last 2 values: dp[i-2] and dp[i-1]
+          int prev2 = nums[0];                    // dp[i-2] 
+          int prev1 = max(nums[0], nums[1]);      // dp[i-1]
+          
+          for (int i = 2; i < n; i++) {
+              int current = max(prev1, prev2 + nums[i]);
+              prev2 = prev1;    // Slide the window
+              prev1 = current;  // Slide the window
+          }
+          
+          return prev1;  // This holds the maximum money
+      }
+  };
+  ```
+  </details>
+- <a id="lc-213"></a>🟡 [x] **[LC 213](src/cpp/dp/213.house-robber-ii.cpp)**: [House Robber II](https://leetcode.com/problems/house-robber-ii/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=rWAJCfYYOvM)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+      int rob(vector<int>& nums) {
+          return {};
+      }
+  };
+  ```
+  </details>
+- <a id="lc-5"></a>🟡 [ ] **[LC 5](src/cpp/dp/5.longest-palindromic-substring.cpp)**: [Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=XYQecbcd6_c)
+- <a id="lc-647"></a>🟡 [ ] **[LC 647](src/cpp/dp/647.palindromic-substrings.cpp)**: [Palindromic Substrings](https://leetcode.com/problems/palindromic-substrings/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=4RACzI5-du8)
+- <a id="lc-91"></a>🟡 [ ] **[LC 91](src/cpp/dp/91.decode-ways.cpp)**: [Decode Ways](https://leetcode.com/problems/decode-ways/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=6aEyTjOwlJU)
+- <a id="lc-322"></a>🟡 [ ] **[LC 322](src/cpp/dp/322.coin-change.cpp)**: [Coin Change](https://leetcode.com/problems/coin-change/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=H9bfqozjoqs)
+- <a id="lc-152"></a>🟡 [ ] **[LC 152](src/cpp/dp/152.maximum-product-subarray.cpp)**: [Maximum Product Subarray](https://leetcode.com/problems/maximum-product-subarray/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=lXVy6YWFcRM)
+- <a id="lc-139"></a>🟡 [x] **[LC 139](src/cpp/dp/139.word-break.cpp)**: [Word Break](https://leetcode.com/problems/word-break/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=Sx9NNgInc3A)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+      bool wordBreak(string s, vector<string>& wordDict) {
+          int n = s.size();
+          vector<bool> dp(n + 1, false);
+          dp[0] = true; // Empty string can always be broken
+          
+          // Convert wordDict to unordered_set for O(1) lookup
+          unordered_set<string> wordSet(wordDict.begin(), wordDict.end());
+          
+          for (int i = 1; i <= n; i++) {
+              for (int j = 0; j < i; j++) {
+                  string word = s.substr(j, i - j);
+                  if (dp[j] && wordSet.find(word) != wordSet.end()) {
+                      dp[i] = true;
+                      break;
+                  }
+              }
+          }
+          
+          return dp[n];
+      }
+  };
+  ```
+  </details>
+- <a id="lc-300"></a>🟡 [ ] **[LC 300](src/cpp/dp/300.longest-increasing-subsequence.cpp)**: [Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=cjWnW0hdF1Y)
+- <a id="lc-416"></a>🟡 [ ] **[LC 416](src/cpp/dp/416.partition-equal-subset-sum.cpp)**: [Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=IsvocB5BJhw)
+
+## Dynamic Programming (2D)
+
+- <a id="lc-62"></a>🟡 [ ] **[LC 62](src/cpp/dp/62.unique-paths.cpp)**: [Unique Paths](https://leetcode.com/problems/unique-paths/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=IlEsdxuD4lY)
+- <a id="lc-1143"></a>🟡 [ ] **[LC 1143](src/cpp/dp/1143.longest-common-subsequence.cpp)**: [Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=Ua0GhsJSlWM)
+- <a id="lc-309"></a>🟡 [ ] **[LC 309](src/cpp/dp/309.best-time-to-buy-and-sell-stock-with-cooldown.cpp)**: [Best Time to Buy And Sell Stock With Cooldown](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=I7j0F7AHpb8)
+- <a id="lc-518"></a>🟡 [ ] **[LC 518](src/cpp/dp/518.coin-change-ii.cpp)**: [Coin Change II](https://leetcode.com/problems/coin-change-ii/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=Mjy4hd2xgrs)
+- <a id="lc-494"></a>🟡 [ ] **[LC 494](src/cpp/dp/494.target-sum.cpp)**: [Target Sum](https://leetcode.com/problems/target-sum/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=dwMOrl85Xes)
+- <a id="lc-97"></a>🟡 [ ] **[LC 97](src/cpp/dp/97.interleaving-string.cpp)**: [Interleaving String](https://leetcode.com/problems/interleaving-string/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=3Rw3p9LrgvE)
+- <a id="lc-329"></a>🔴 [ ] **[LC 329](src/cpp/dp/329.longest-increasing-path-in-a-matrix.cpp)**: [Longest Increasing Path In a Matrix](https://leetcode.com/problems/longest-increasing-path-in-a-matrix/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=wCc_nd-GiEc)
+- <a id="lc-115"></a>🔴 [ ] **[LC 115](src/cpp/dp/115.distinct-subsequences.cpp)**: [Distinct Subsequences](https://leetcode.com/problems/distinct-subsequences/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=-RDzMJ33nx8)
+- <a id="lc-72"></a>🟡 [x] **[LC 72](src/cpp/dp/72.edit-distance.cpp)**: [Edit Distance](https://leetcode.com/problems/edit-distance/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=Sfm_b4HVEKE)
+  <details><summary>View Solution</summary>
+  
+  ```cpp
+  class Solution {
+  public:
+    int minDistance(string word1, string word2) {
+      int m = word1.size();
+      int n = word2.size();
+      
+      // Create a 2D vector for DP
+      vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+      
+      // Base cases
+      for (int i = 0; i <= m; i++) dp[i][0] = i; // Deleting characters to match empty string
+      for (int j = 0; j <= n; j++) dp[0][j] = j; // Inserting characters to match word2
+      
+      // Fill the grid
+      for (int i = 1; i <= m; i++) {
+        for (int j = 1; j <= n; j++) {
+          if (word1[i - 1] == word2[j - 1]) {
+            // Characters match, no operation needed. Copy diagonal.
+            dp[i][j] = dp[i - 1][j - 1];
+          } else {
+            // Characters don't match, take minimum of 3 operations + 1
+            dp[i][j] = min({
+              dp[i - 1][j - 1], // Replace (diagonal)
+              dp[i - 1][j],     // Delete (up)
+              dp[i][j - 1]      // Insert (left)
+            }) + 1;
+          }
+        }
+      }
+      
+      return dp[m][n];
+    }
+  };
+  ```
+  </details>
+- <a id="lc-312"></a>🔴 [ ] **[LC 312](src/cpp/dp/312.burst-balloons.cpp)**: [Burst Balloons](https://leetcode.com/problems/burst-balloons/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=VFskby7lUbw)
+- <a id="lc-10"></a>🔴 [ ] **[LC 10](src/cpp/dp/10.regular-expression-matching.cpp)**: [Regular Expression Matching](https://leetcode.com/problems/regular-expression-matching/)  
+  [🎬 Video explanation](https://www.youtube.com/watch?v=HAA8mgxlov8)
 
 ## Graphs
 

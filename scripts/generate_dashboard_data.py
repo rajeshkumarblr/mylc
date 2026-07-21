@@ -84,6 +84,12 @@ def generate_data():
                     code_content = re.sub(r'int main\(\)\s*\{.*?$', '', code_content, flags=re.DOTALL)
                     code_content = code_content.strip()
 
+            approach_content = None
+            approach_file = f"docs/approaches/{prob_id}.md"
+            if os.path.exists(approach_file):
+                with open(approach_file, "r") as af:
+                    approach_content = af.read()
+
             prob_data = {
                 "id": prob_id,
                 "title": title,
@@ -95,7 +101,8 @@ def generate_data():
                 "lc_url": lc_url,
                 "video_url": None,
                 "code": code_content,
-                "description": desc
+                "description": desc,
+                "approach": approach_content
             }
             
             data["problems"][prob_id] = prob_data
