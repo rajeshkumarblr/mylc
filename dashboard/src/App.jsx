@@ -30,47 +30,62 @@ function App() {
 
   return (
     <div className="app-container">
-      <header className="app-header">
+      <header className="app-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center' }}>
         <div className="header-left">
-          <h1 onClick={() => setSelectedProblem(null)} style={{ cursor: 'pointer' }}>
-            Neetcode 150 solutions
+        </div>
+        <div className="header-center" style={{ textAlign: 'center' }}>
+          <h1 onClick={() => setSelectedProblem(null)} style={{ cursor: 'pointer', margin: 0 }}>
+            My Neetcode solutions
           </h1>
         </div>
-        <div className="search-container">
-          <input 
-            type="text" 
-            className="search-input" 
-            placeholder="Search LC ID or Title..." 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          {searchQuery && (
-            <div className="search-results">
-              {Object.values(data.problems)
-                .filter(p => p.id.includes(searchQuery) || p.title.toLowerCase().includes(searchQuery.toLowerCase()))
-                .slice(0, 10)
-                .map(p => (
-                  <div key={p.id} className="search-result-item" onClick={() => {
-                    setSelectedProblem(p);
-                    setExpandedCategory(p.category);
-                    setActiveTab(p.approach ? 'approach' : 'description');
-                    setSearchQuery('');
-                  }}>
-                    <span className="status">{p.status_icon}</span>
-                    <span>LC {p.id}: {p.title}</span>
-                  </div>
-                ))}
-            </div>
-          )}
-        </div>
-        <div className="stats">
-          <span>{Object.values(data.problems).filter(p => p.is_solved).length} / {Object.keys(data.problems).length} Solved</span>
+        <div className="header-right" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="search-container">
+            <input 
+              type="text" 
+              className="search-input" 
+              placeholder="Search LC ID or Title..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            {searchQuery && (
+              <div className="search-results">
+                {Object.values(data.problems)
+                  .filter(p => p.id.includes(searchQuery) || p.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                  .slice(0, 10)
+                  .map(p => (
+                    <div key={p.id} className="search-result-item" onClick={() => {
+                      setSelectedProblem(p);
+                      setExpandedCategory(p.category);
+                      setActiveTab(p.approach ? 'approach' : 'description');
+                      setSearchQuery('');
+                    }}>
+                      <span className="status">{p.status_icon}</span>
+                      <span>LC {p.id}: {p.title}</span>
+                    </div>
+                  ))}
+              </div>
+            )}
+          </div>
         </div>
       </header>
 
       <div className="main-content">
         <main className={`content-panel split-view-container`}>
           <div className={`home-table-container split-left`}>
+            
+            <div className="overall-progress" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                <span style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Overall Progress</span>
+                <span style={{ color: 'var(--text-muted)' }}>{Object.values(data.problems).filter(p => p.is_solved).length} / {Object.keys(data.problems).length} Solved</span>
+              </div>
+              <div className="cat-progress-bar" style={{ height: '8px' }}>
+                <div 
+                  className="cat-progress-fill" 
+                  style={{ width: `${(Object.values(data.problems).filter(p => p.is_solved).length / Object.keys(data.problems).length) * 100}%` }}
+                ></div>
+              </div>
+            </div>
+
             <table className="home-table">
                 <thead>
                   <tr>
