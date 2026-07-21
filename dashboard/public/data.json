@@ -1051,12 +1051,12 @@
       "id": "994",
       "title": "Rotting Oranges",
       "category": "Graphs",
-      "status_icon": "\ud83d\udfe1",
-      "is_solved": false,
+      "status_icon": "\ud83d\udfe2",
+      "is_solved": true,
       "local_path": "src/cpp/graphs/994.rotting-oranges.cpp",
       "lc_url": "https://leetcode.com/problems/rotting-oranges/",
       "video_url": "https://www.youtube.com/embed/y704fEOx0s0",
-      "code": "class Solution {\npublic:\n    int orangesRotting(vector<vector<int>>& grid) {\n        return {};\n    }\n};",
+      "code": "class Solution {\n  enum State { EMPTY, FRESH, ROTTEN };\n\npublic:\n  int orangesRotting(vector<vector<int>> &grid) {\n    queue<pair<int, int>> q;\n    int fresh = 0;\n    for (int r = 0; r < grid.size(); r++) {\n      for (int c = 0; c < grid[0].size(); c++) {\n        if (grid[r][c] == 1) {\n          fresh++;\n        } else if (grid[r][c] == 2) {\n          q.push({r, c});\n        }\n      }\n    }\n\n    if (q.size() == 0) {\n      return (fresh == 0) ? 0 : -1;\n    }\n\n    int mins = 0;\n\n    while (!q.empty()) {\n\n      int size = q.size();\n      for (int i = 0; i < size; i++) {\n        auto &rc = q.front();\n        int r = rc.first;\n        int c = rc.second;\n        q.pop();\n\n        if (r > 0 && grid[r - 1][c] == 1) {\n          grid[r - 1][c] = 2;\n          fresh--;\n          q.push({r - 1, c});\n        }\n        if (r < grid.size() - 1 && grid[r + 1][c] == 1) {\n          grid[r + 1][c] = 2;\n          fresh--;\n          q.push({r + 1, c});\n        }\n        if (c > 0 && grid[r][c - 1] == 1) {\n          grid[r][c - 1] = 2;\n          fresh--;\n          q.push({r, c - 1});\n        }\n        if (c < grid[r].size() - 1 && grid[r][c + 1] == 1) {\n          grid[r][c + 1] = 2;\n          fresh--;\n          q.push({r, c + 1});\n        }\n      }\n      if (q.size() > 0) {\n        mins++;\n      }\n    }\n    return (fresh == 0) ? mins : -1;\n  }\n};",
       "description": "You are given an  m x n   grid  where each cell can have one of three\nvalues:\n0  representing an empty cell,\n1  representing a fresh orange, or\n2  representing a rotten orange.\nEvery minute, any fresh orange that is  4-directionally adjacent  to a\nrotten orange becomes rotten.\nReturn  the minimum number of minutes that must elapse until no cell has a\nfresh orange . If  this is impossible, return   -1 .\nExample 1:\nInput:  grid = [[2,1,1],[1,1,0],[0,1,1]]\nOutput:  4\nExample 2:\nInput:  grid = [[2,1,1],[0,1,1],[1,0,1]]\nOutput:  -1\nExplanation:  The orange in the bottom left corner (row 2, column 0) is\nnever rotten, because rotting only happens 4-directionally.\nExample 3:\nInput:  grid = [[0,2]]\nOutput:  0\nExplanation:  Since there are already no fresh oranges at minute 0, the\nanswer is just 0.\nConstraints:\nm == grid.length\nn == grid[i].length\n1 <= m, n <= 10\ngrid[i][j]  is  0 ,  1 , or  2 ."
     },
     "417": {

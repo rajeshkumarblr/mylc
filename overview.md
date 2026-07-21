@@ -13,7 +13,7 @@ Track your interview preparation progress here.
 | [Backtracking](#backtracking) | 10 | 0 | [⬜ 78](#lc-78) [⬜ 39](#lc-39) [⬜ 40](#lc-40) [⬜ 46](#lc-46) [⬜ 90](#lc-90) [⬜ 22](#lc-22) [⬜ 79](#lc-79) [⬜ 131](#lc-131) [⬜ 17](#lc-17) [⬜ 51](#lc-51) 0% |
 | [Binary Search](#binary-search) | 7 | 2 | [⬜ 704](#lc-704) [⬜ 74](#lc-74) [⬜ 875](#lc-875) [⬜ 153](#lc-153) [🟩 33](#lc-33) [🟩 981](#lc-981) [⬜ 4](#lc-4) 28% |
 | [Bit Manipulation](#bit-manipulation) | 7 | 0 | [⬜ 136](#lc-136) [⬜ 191](#lc-191) [⬜ 338](#lc-338) [⬜ 190](#lc-190) [⬜ 268](#lc-268) [⬜ 371](#lc-371) [⬜ 7](#lc-7) 0% |
-| [Graphs](#graphs) | 13 | 5 | [🟩 200](#lc-200) [🟩 695](#lc-695) [🟩 133](#lc-133) [⬜ 286](#lc-286) [⬜ 994](#lc-994) [⬜ 417](#lc-417) [⬜ 130](#lc-130) [🟩 207](#lc-207) [🟩 210](#lc-210) [⬜ 261](#lc-261) [⬜ 323](#lc-323) [⬜ 684](#lc-684) [⬜ 127](#lc-127) 38% |
+| [Graphs](#graphs) | 13 | 6 | [🟩 200](#lc-200) [🟩 695](#lc-695) [🟩 133](#lc-133) [⬜ 286](#lc-286) [🟩 994](#lc-994) [⬜ 417](#lc-417) [⬜ 130](#lc-130) [🟩 207](#lc-207) [🟩 210](#lc-210) [⬜ 261](#lc-261) [⬜ 323](#lc-323) [⬜ 684](#lc-684) [⬜ 127](#lc-127) 46% |
 | [Greedy](#greedy) | 8 | 0 | [⬜ 53](#lc-53) [⬜ 55](#lc-55) [⬜ 45](#lc-45) [⬜ 134](#lc-134) [⬜ 846](#lc-846) [⬜ 1899](#lc-1899) [⬜ 763](#lc-763) [⬜ 678](#lc-678) 0% |
 | [Heap / Priority Queue](#heap-/-priority-queue) | 7 | 3 | [⬜ 703](#lc-703) [⬜ 1046](#lc-1046) [🟩 973](#lc-973) [🟩 215](#lc-215) [⬜ 621](#lc-621) [⬜ 355](#lc-355) [🟩 295](#lc-295) 42% |
 | [Intervals](#intervals) | 6 | 1 | [⬜ 57](#lc-57) [🟩 56](#lc-56) [⬜ 435](#lc-435) [⬜ 252](#lc-252) [⬜ 253](#lc-253) [⬜ 1851](#lc-1851) 16% |
@@ -663,7 +663,7 @@ Track your interview preparation progress here.
   [🎬 Video explanation](https://www.youtube.com/watch?v=mQeF6bN8hMk)
 - <a id="lc-286"></a>🟡 [ ] **[LC 286](src/cpp/graphs/286.walls-and-gates.cpp)**: [Walls And Gates](https://leetcode.com/problems/walls-and-gates/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=e69C6xhiSQE)
-- <a id="lc-994"></a>🟡 [ ] **[LC 994](src/cpp/graphs/994.rotting-oranges.cpp)**: [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)  
+- <a id="lc-994"></a>🟢 [x] **[LC 994](src/cpp/graphs/994.rotting-oranges.cpp)**: [Rotting Oranges](https://leetcode.com/problems/rotting-oranges/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=y704fEOx0s0)
 - <a id="lc-417"></a>🟡 [ ] **[LC 417](src/cpp/graphs/417.pacific-atlantic-water-flow.cpp)**: [Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s-VkcjHqkGI)
