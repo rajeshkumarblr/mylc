@@ -655,3 +655,37 @@ body {
   background: #4ade80;
   transition: width 0.3s ease;
 }
+
+/* Active Badge State */
+.prob-badge.active {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 2px var(--accent);
+  transform: scale(1.05);
+}
+
+/* Markdown Styling for Approach Section */
+.approach-section {
+  padding: 1.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+}
+.approach-section h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+  font-size: 1.25rem;
+}
+.approach-section p {
+  margin-bottom: 1rem;
+}
+.approach-section ul, .approach-section ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.approach-section li {
+  margin-bottom: 0.5rem;
+}
+.approach-section strong {
+  color: #e2e8f0;
+}

@@ -100,7 +100,7 @@ function App() {
                           return (
                             <div 
                               key={prob.id} 
-                              className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'} ${diffClass}`}
+                              className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'} ${diffClass} ${selectedProblem && selectedProblem.id === prob.id ? 'active' : ''}`}
                               onClick={() => {
                                 setSelectedProblem(prob);
                                 setExpandedCategory(prob.category);
@@ -130,9 +130,9 @@ function App() {
 
           {selectedProblem && (
             <div className="problem-details split-right">
-              <div className="problem-header">
-                <h2>LC {selectedProblem.id}: {selectedProblem.title}</h2>
-                <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode">Solve on LeetCode</a>
+              <div className="problem-header" style={{ position: 'relative', justifyContent: 'center' }}>
+                <h2 style={{ textAlign: 'center' }}>{selectedProblem.category}: {selectedProblem.id}. {selectedProblem.title}</h2>
+                <a href={selectedProblem.lc_url} target="_blank" rel="noreferrer" className="btn-leetcode" style={{ position: 'absolute', right: 0 }}>Solve on LeetCode</a>
               </div>
 
               <div className="tab-nav">
