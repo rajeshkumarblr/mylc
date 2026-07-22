@@ -19,7 +19,8 @@ def generate_data():
     current_category = None
     
     # Regex to capture problem line
-    prob_pattern = re.compile(r'- <a id="lc-\d+"></a>(.) \[([x ])\] \*\*\[LC (\d+)\]\((.*?)\)\*\*: \[(.*?)\]\((.*?)\)')
+    # Format: - [x] **[LC 70](src/cpp/dp/70.climbing-stairs.cpp)**: [Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) 🟢
+    prob_pattern = re.compile(r'- \[([x ])\] \*\*\[LC (\d+)\]\((.*?)\)\*\*: \[(.*?)\]\((.*?)\) (.*)')
     video_pattern = re.compile(r'\[🎬 Video explanation\]\((.*?)\)')
 
     current_problem_id = None
@@ -27,7 +28,7 @@ def generate_data():
     for line in lines:
         line = line.strip()
         
-        if line.startswith("## ") and not line.startswith("## User Review Required"):
+        if line.startswith("## ") and not line.startswith("## User Review Required") and not line.startswith("## 📚 STL Quick References"):
             cat_name = line[3:].strip()
             if cat_name in ["Proposed Changes", "Verification Plan", "Open Questions", "User Review Required", "📊 Progress Summary"]:
                 continue
@@ -47,12 +48,12 @@ def generate_data():
 
         prob_match = prob_pattern.search(line)
         if prob_match and current_category:
-            status_icon = prob_match.group(1) # e.g. 🟢, 🟡, ⬜
-            is_solved = prob_match.group(2) == 'x'
-            prob_id = prob_match.group(3)
-            local_path = prob_match.group(4)
-            title = prob_match.group(5)
-            lc_url = prob_match.group(6)
+            is_solved = prob_match.group(1) == 'x'
+            prob_id = prob_match.group(2)
+            local_path = prob_match.group(3)
+            title = prob_match.group(4)
+            lc_url = prob_match.group(5)
+            status_icon = prob_match.group(6) # e.g. 🟢, 🟡, 🔴
 
             current_problem_id = prob_id
             code_content = ""
