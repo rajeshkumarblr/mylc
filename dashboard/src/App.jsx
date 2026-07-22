@@ -249,7 +249,7 @@ function App() {
                 </div>
               )}
             </div>
-          </div>>
+          </div>
 
           {selectedProblem && (
             <div className="problem-details split-right">
