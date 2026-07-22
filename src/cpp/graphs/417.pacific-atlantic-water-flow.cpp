@@ -1,7 +1,7 @@
-#include <set>
 #include <cmath>
-#include <map>
 #include <iostream>
+#include <map>
+#include <set>
 #include <utility>
 /*
  * @lc app=leetcode id=417 lang=cpp
@@ -61,29 +61,136 @@
  *           0 <= heights[r][c] <= 10 5
  */
 
-#include <vector>
-#include <string>
-#include <unordered_map>
-#include <unordered_set>
-#include <queue>
-#include <stack>
-#include <list>
 #include <algorithm>
+#include <vector>
 using namespace std;
 
-
 // @lc code=start
+auto init = []() {
+  ios_base::sync_with_stdio(false);
+  cin.tie(NULL);
+  return 0;
+}();
 class Solution {
 public:
-    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {
-        return {};
+  void dfs_pacific(vector<vector<int>> &heights, vector<vector<char>> &flow,
+                   int r, int c, int prevHeight) {
+    if (r < 0 || r == heights.size()) {
+      return;
     }
+    if (c < 0 || c == heights[r].size()) {
+      return;
+    }
+    if (flow[r][c] != 0) {
+      return;
+    }
+    int currHeight = heights[r][c];
+    if (currHeight >= prevHeight) {
+      flow[r][c] = 1;
+      dfs_pacific(heights, flow, r, c + 1, currHeight);
+      dfs_pacific(heights, flow, r, c - 1, currHeight);
+      dfs_pacific(heights, flow, r + 1, c, currHeight);
+      dfs_pacific(heights, flow, r - 1, c, currHeight);
+    }
+  }
+
+  void dfs_atlantic(vector<vector<int>> &heights, vector<vector<char>> &flow,
+                    vector<vector<int>> &res, int r, int c, int prevHeight) {
+    if (r < 0 || r == heights.size()) {
+      return;
+    }
+    if (c < 0 || c == heights[r].size()) {
+      return;
+    }
+
+    // check if visited this node aleady.
+    if (flow[r][c] == 2 || flow[r][c] == 3) {
+      return;
+    }
+
+    int currHeight = heights[r][c];
+    if (currHeight >= prevHeight) {
+      if (flow[r][c] == 0) {
+        flow[r][c] = 2;
+      } else if (flow[r][c] == 1) {
+        flow[r][c] = 3;
+        res.push_back({r, c});
+      }
+      dfs_atlantic(heights, flow, res, r, c + 1, currHeight);
+      dfs_atlantic(heights, flow, res, r, c - 1, currHeight);
+      dfs_atlantic(heights, flow, res, r + 1, c, currHeight);
+      dfs_atlantic(heights, flow, res, r - 1, c, currHeight);
+    }
+  }
+
+  vector<vector<int>> pacificAtlantic(vector<vector<int>> &heights) {
+    int rows = heights.size();
+    int cols = heights[0].size();
+    vector<vector<char>> flow(rows, vector<char>(cols, 0));
+
+    // process the pacific ocen edges first top, left.
+    // top edge:
+    for (int c = 0; c < cols; c++) {
+      dfs_pacific(heights, flow, 0, c, 0);
+    }
+
+    // left edge
+    for (int r = 0; r < rows; r++) {
+      dfs_pacific(heights, flow, r, 0, 0);
+    }
+
+    vector<vector<int>> res;
+    // process the atlantic ocen edges right, bottom.
+    // bottom edge:
+    for (int c = 0; c < cols; c++) {
+      dfs_atlantic(heights, flow, res, rows - 1, c, 0);
+    }
+    // right edge
+    for (int r = 0; r < rows; r++) {
+      dfs_atlantic(heights, flow, res, r, cols - 1, 0);
+    }
+
+    return res;
+  }
 };
 // @lc code=end
 
-
 int main() {
-    Solution sol;
-    cerr << "FAIL (No test cases)" << endl;
-    return 1;
+  Solution sol;
+  // Case 1
+  {
+    vector<vector<int>> heights = {{1, 2, 2, 3, 5},
+                                   {3, 2, 3, 4, 4},
+                                   {2, 4, 5, 3, 1},
+                                   {6, 7, 1, 4, 5},
+                                   {5, 1, 1, 2, 4}};
+    vector<vector<int>> expected = {{0, 4}, {1, 3}, {1, 4}, {2, 2},
+                                    {3, 0}, {3, 1}, {4, 0}};
+    vector<vector<int>> result = sol.pacificAtlantic(heights);
+    sort(expected.begin(), expected.end());
+    sort(result.begin(), result.end());
+    if (result == expected) {
+      cout << "Case 1 Passed" << endl;
+    } else {
+      cerr << "Case 1 Failed" << endl;
+      return 1;
+    }
+  }
+  // Case 2
+  {
+    vector<vector<int>> heights = {{1}};
+    vector<vector<int>> expected = {{0, 0}};
+    vector<vector<int>> result = sol.pacificAtlantic(heights);
+    sort(expected.begin(), expected.end());
+    sort(result.begin(), result.end());
+    if (result == expected) {
+      cout << "Case 2 Passed" << endl;
+    } else {
+      cerr << "Case 2 Failed" << endl;
+      return 1;
+    }
+  }
+
+  cout << "All cases passed!" << endl;
+  return 0;
 }
