@@ -689,3 +689,35 @@ body {
 .approach-section strong {
   color: #e2e8f0;
 }
+
+/* LeetCode HTML Content Styling */
+.lc-html-content {
+  line-height: 1.6;
+  font-size: 1rem;
+  color: #e2e8f0;
+}
+.lc-html-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+  display: block;
+}
+.lc-html-content pre {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 1rem 0;
+  border: 1px solid var(--border-color);
+}
+.lc-html-content code {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+.lc-html-content ul, .lc-html-content ol {
+  padding-left: 1.5rem;
+  margin: 1rem 0;
+}

@@ -1,6 +1,7 @@
 import re
 import json
 import os
+import urllib.request
 
 def generate_data():
     if not os.path.exists("overview.md"):
@@ -90,6 +91,34 @@ def generate_data():
                 with open(approach_file, "r") as af:
                     approach_content = af.read()
 
+            title_slug = lc_url.rstrip('/').split('/')[-1]
+            desc_html = None
+            url_gql = "https://leetcode.com/graphql"
+            query_gql = """
+            query questionData($titleSlug: String!) {
+              question(titleSlug: $titleSlug) {
+                content
+              }
+            }
+            """
+            try:
+                req_data = json.dumps({"query": query_gql, "variables": {"titleSlug": title_slug}}).encode('utf-8')
+                req = urllib.request.Request(
+                    url_gql, 
+                    data=req_data, 
+                    headers={
+                        'Content-Type': 'application/json',
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                    }
+                )
+                with urllib.request.urlopen(req, timeout=5) as response:
+                    if response.status == 200:
+                        resp_data = json.loads(response.read().decode('utf-8'))
+                        if "data" in resp_data and resp_data["data"]["question"]:
+                            desc_html = resp_data["data"]["question"]["content"]
+            except Exception as e:
+                print(f"Warning: Failed to fetch HTML for {title_slug}: {e}")
+
             prob_data = {
                 "id": prob_id,
                 "title": title,
@@ -102,6 +131,7 @@ def generate_data():
                 "video_url": None,
                 "code": code_content,
                 "description": desc,
+                "description_html": desc_html,
                 "approach": approach_content
             }
             
