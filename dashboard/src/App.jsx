@@ -19,9 +19,9 @@ function App() {
         if (d.categories.length > 0) {
           setExpandedCategory(d.categories[0].name);
         }
-        if (d.problems['217']) {
-          setSelectedProblem(d.problems['217']);
-          setActiveTab(d.problems['217'].approach ? 'approach' : 'description');
+        if (d.problems['130']) {
+          setSelectedProblem(d.problems['130']);
+          setActiveTab('description');
         }
       });
   }, []);
@@ -56,7 +56,7 @@ function App() {
                     <div key={p.id} className="search-result-item" onClick={() => {
                       setSelectedProblem(p);
                       setExpandedCategory(p.category);
-                      setActiveTab(p.approach ? 'approach' : 'description');
+                      setActiveTab('description');
                       setSearchQuery('');
                     }}>
                       <span className="status">{p.status_icon}</span>
@@ -119,7 +119,7 @@ function App() {
                               onClick={() => {
                                 setSelectedProblem(prob);
                                 setExpandedCategory(prob.category);
-                                setActiveTab(prob.approach ? 'approach' : 'description');
+                                setActiveTab('description');
                               }}
                             >
                               <span className="prob-id">{prob.id}</span>
@@ -189,8 +189,10 @@ function App() {
                 {activeTab === 'description' && (
                   <div className="description-section">
                     <h3>Problem Description</h3>
-                    <div className="description-content">
-                      {selectedProblem.description ? selectedProblem.description.split('\n').map((line, i) => {
+                    <div className="description-content lc-html-content">
+                      {selectedProblem.description_html ? (
+                        <div dangerouslySetInnerHTML={{ __html: selectedProblem.description_html }} />
+                      ) : selectedProblem.description ? selectedProblem.description.split('\n').map((line, i) => {
                         const trimmedLine = line.trim();
                         if (!trimmedLine) return null;
                         
