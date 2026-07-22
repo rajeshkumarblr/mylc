@@ -721,3 +721,24 @@ body {
   padding-left: 1.5rem;
   margin: 1rem 0;
 }
+
+/* Markdown Tables Styling */
+.approach-section table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.approach-section th, .approach-section td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.approach-section th {
+  background-color: rgba(255, 255, 255, 0.05);
+  font-weight: 600;
+  color: var(--text-main);
+}
+.approach-section tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.2);
+}

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import './index.css';
 
 function App() {
@@ -182,7 +183,7 @@ function App() {
               <div className="tab-content">
                 {activeTab === 'approach' && selectedProblem.approach && (
                   <div className="approach-section" style={{ lineHeight: '1.6', color: 'var(--text-main)', fontSize: '0.95rem' }}>
-                    <ReactMarkdown>{selectedProblem.approach}</ReactMarkdown>
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{selectedProblem.approach}</ReactMarkdown>
                   </div>
                 )}
                 
