@@ -608,9 +608,9 @@ body {
 }
 
 .home-table-container.split-left {
-  width: 40%;
-  min-width: 25%;
-  max-width: 70%;
+  width: 20%;
+  min-width: 15%;
+  max-width: 40%;
   padding: 1.5rem;
   overflow-y: auto;
   border-right: 1px solid var(--border-color);
@@ -634,16 +634,22 @@ body {
 }
 
 .sidebar-toggle-btn {
-  background: transparent;
-  border: none;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
   color: var(--text-muted);
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   padding: 0.5rem;
   width: 100%;
   text-align: center;
-  transition: color 0.2s ease;
+  transition: all 0.2s ease;
   margin-bottom: 1rem;
+}
+
+.sidebar-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
 }
 
 .home-table-container.split-left.collapsed .sidebar-toggle-btn {

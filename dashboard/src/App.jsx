@@ -103,7 +103,7 @@ function App() {
                 onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
                 title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
               >
-                {isSidebarCollapsed ? '》' : '《'}
+                {isSidebarCollapsed ? '》' : '《 Collapse Sidebar'}
               </button>
             )}
 
