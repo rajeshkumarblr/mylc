@@ -667,7 +667,7 @@ Track your interview preparation progress here.
   [🎬 Video explanation](https://www.youtube.com/watch?v=y704fEOx0s0)
 - <a id="lc-417"></a>🟡 [ ] **[LC 417](src/cpp/graphs/417.pacific-atlantic-water-flow.cpp)**: [Pacific Atlantic Water Flow](https://leetcode.com/problems/pacific-atlantic-water-flow/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=s-VkcjHqkGI)
-- <a id="lc-130"></a>🟡 [ ] **[LC 130](src/cpp/graphs/130.surrounded-regions.cpp)**: [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)  
+- <a id="lc-130"></a>🟡 [x] **[LC 130](src/cpp/graphs/130.surrounded-regions.cpp)**: [Surrounded Regions](https://leetcode.com/problems/surrounded-regions/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=9z2BunfoZ5Y)
 - <a id="lc-207"></a>🟢 [x] **[LC 207](src/cpp/graphs/207.course-schedule.cpp)**: [Course Schedule](https://leetcode.com/problems/course-schedule/)  
   [🎬 Video explanation](https://www.youtube.com/watch?v=EgI5nU9etnU)
