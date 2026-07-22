@@ -617,6 +617,41 @@ body {
   background: rgba(0, 0, 0, 0.1);
   border-radius: 0;
   resize: horizontal;
+  transition: width 0.3s ease, min-width 0.3s ease, padding 0.3s ease;
+}
+
+.home-table-container.split-left.collapsed {
+  width: 40px !important;
+  min-width: 40px !important;
+  padding: 1rem 0;
+  overflow: hidden;
+  resize: none;
+}
+
+.home-table-container.split-left.collapsed .sidebar-content {
+  display: none;
+  opacity: 0;
+}
+
+.sidebar-toggle-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+  transition: color 0.2s ease;
+  margin-bottom: 1rem;
+}
+
+.home-table-container.split-left.collapsed .sidebar-toggle-btn {
+  margin-bottom: 0;
+}
+
+.sidebar-toggle-btn:hover {
+  color: var(--text-main);
 }
 
 .problem-details.split-right {
@@ -741,4 +776,16 @@ body {
 }
 .approach-section tr:nth-child(even) {
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+.tree-prob-item {
+  transition: background 0.2s;
+}
+
+.tree-prob-item:not(.active):hover {
+  background: rgba(255,255,255,0.1) !important;
+}
+
+.category-accordion-header:hover {
+  background: rgba(255,255,255,0.08) !important;
 }

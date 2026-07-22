@@ -11,6 +11,8 @@ function App() {
   const [expandedCategory, setExpandedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('description');
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  const [viewMode, setViewMode] = useState('split');
 
   useEffect(() => {
     fetch('./data.json')
@@ -39,7 +41,26 @@ function App() {
             My Neetcode solutions
           </h1>
         </div>
-        <div className="header-right" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div className="header-right" style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', alignItems: 'center' }}>
+          <button 
+            className="view-toggle-btn"
+            onClick={() => {
+              const newMode = viewMode === 'split' ? 'overview' : 'split';
+              setViewMode(newMode);
+              if (newMode === 'overview') setIsSidebarCollapsed(false);
+            }}
+            style={{
+              background: 'rgba(255,255,255,0.1)',
+              border: '1px solid rgba(255,255,255,0.2)',
+              color: 'var(--text-main)',
+              padding: '0.4rem 0.8rem',
+              borderRadius: '6px',
+              cursor: 'pointer',
+              fontSize: '0.85rem'
+            }}
+          >
+            {viewMode === 'split' ? 'Show Overview Table' : 'Show Tree View'}
+          </button>
           <div className="search-container">
             <input 
               type="text" 
@@ -59,6 +80,8 @@ function App() {
                       setExpandedCategory(p.category);
                       setActiveTab('description');
                       setSearchQuery('');
+                      setViewMode('split');
+                      setIsSidebarCollapsed(true);
                     }}>
                       <span className="status">{p.status_icon}</span>
                       <span>LC {p.id}: {p.title}</span>
@@ -71,78 +94,162 @@ function App() {
       </header>
 
       <div className="main-content">
-        <main className={`content-panel split-view-container`}>
-          <div className={`home-table-container split-left`}>
+        <main className={`content-panel ${viewMode === 'split' ? 'split-view-container' : ''} ${isSidebarCollapsed && viewMode === 'split' ? 'sidebar-collapsed' : ''}`}>
+          <div className={`home-table-container ${viewMode === 'split' ? 'split-left' : 'full-width'} ${isSidebarCollapsed && viewMode === 'split' ? 'collapsed' : ''}`}>
             
-            <div className="overall-progress" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                <span style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Overall Progress</span>
-                <span style={{ color: 'var(--text-muted)' }}>{Object.values(data.problems).filter(p => p.is_solved).length} / {Object.keys(data.problems).length} Solved</span>
-              </div>
-              <div className="cat-progress-bar" style={{ height: '8px' }}>
-                <div 
-                  className="cat-progress-fill" 
-                  style={{ width: `${(Object.values(data.problems).filter(p => p.is_solved).length / Object.keys(data.problems).length) * 100}%` }}
-                ></div>
-              </div>
-            </div>
+            {viewMode === 'split' && (
+              <button 
+                className="sidebar-toggle-btn"
+                onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+                title={isSidebarCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+              >
+                {isSidebarCollapsed ? '》' : '《'}
+              </button>
+            )}
 
-            <table className="home-table">
-                <thead>
-                  <tr>
-                    <th style={{ width: '25%' }}>Category</th>
-                    <th style={{ width: '75%' }}>Problems</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.categories.map(cat => (
-                    <tr key={cat.name}>
-                      <td className="category-cell">
-                        <span className="cat-name">{cat.name}</span>
-                        <div className="cat-progress-container">
-                          <div className="cat-progress-text">{cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length} Solved</div>
-                          <div className="cat-progress-bar">
-                            <div 
-                              className="cat-progress-fill" 
-                              style={{ width: `${(cat.problems.filter(id => data.problems[id].is_solved).length / cat.problems.length) * 100}%` }}
-                            ></div>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="problems-cell">
-                        {cat.problems.slice().sort((a, b) => parseInt(a) - parseInt(b)).map(probId => {
-                          const prob = data.problems[probId];
-                          const diffClass = prob.difficulty ? prob.difficulty.toLowerCase() : 'medium';
-                          return (
-                            <div 
-                              key={prob.id} 
-                              className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'} ${diffClass} ${selectedProblem && selectedProblem.id === prob.id ? 'active' : ''}`}
-                              onClick={() => {
-                                setSelectedProblem(prob);
-                                setExpandedCategory(prob.category);
-                                setActiveTab('description');
-                              }}
-                            >
-                              <span className="prob-id">{prob.id}</span>
-                              <div className="tooltip-card">
-                                <div className="tooltip-header">
-                                  <strong>LC {prob.id}: {prob.title}</strong>
-                                  <span className={`diff-tag ${diffClass}`}>{prob.difficulty || 'Medium'}</span>
-                                </div>
-                                <div className="tooltip-status">
-                                  Status: {prob.is_solved ? <span style={{color: '#4ade80'}}>Solved 🟢</span> : <span style={{color: '#94a3b8'}}>Unsolved ⚪</span>}
-                                </div>
-                                <p className="tooltip-desc">{prob.description ? prob.description.substring(0, 120) + '...' : 'No description available.'}</p>
-                              </div>
-                            </div>
-                          );
-                        })}
-                      </td>
+            <div className="sidebar-content">
+              {viewMode === 'overview' && (
+                <div className="overall-progress" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                    <span style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Overall Progress</span>
+                    <span style={{ color: 'var(--text-muted)' }}>{Object.values(data.problems).filter(p => p.is_solved).length} / {Object.keys(data.problems).length} Solved</span>
+                  </div>
+                  <div className="cat-progress-bar" style={{ height: '8px' }}>
+                    <div 
+                      className="cat-progress-fill" 
+                      style={{ width: `${(Object.values(data.problems).filter(p => p.is_solved).length / Object.keys(data.problems).length) * 100}%` }}
+                    ></div>
+                  </div>
+                </div>
+              )}
+
+              {viewMode === 'overview' ? (
+                <table className="home-table">
+                  <thead>
+                    <tr>
+                      <th style={{ width: '25%' }}>Category</th>
+                      <th style={{ width: '75%' }}>Problems</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
-          </div>
+                  </thead>
+                  <tbody>
+                    {data.categories.map(cat => (
+                      <tr key={cat.name}>
+                        <td className="category-cell">
+                          <span className="cat-name">{cat.name}</span>
+                          <div className="cat-progress-container">
+                            <div className="cat-progress-text">{cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length} Solved</div>
+                            <div className="cat-progress-bar">
+                              <div 
+                                className="cat-progress-fill" 
+                                style={{ width: `${(cat.problems.filter(id => data.problems[id].is_solved).length / cat.problems.length) * 100}%` }}
+                              ></div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="problems-cell">
+                          {cat.problems.slice().sort((a, b) => parseInt(a) - parseInt(b)).map(probId => {
+                            const prob = data.problems[probId];
+                            const diffClass = prob.difficulty ? prob.difficulty.toLowerCase() : 'medium';
+                            return (
+                              <div 
+                                key={prob.id} 
+                                className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'} ${diffClass} ${selectedProblem && selectedProblem.id === prob.id ? 'active' : ''}`}
+                                onClick={() => {
+                                  setSelectedProblem(prob);
+                                  setExpandedCategory(prob.category);
+                                  setActiveTab('description');
+                                  setViewMode('split');
+                                  setIsSidebarCollapsed(true);
+                                }}
+                              >
+                                <span className="prob-id">{prob.id}</span>
+                                <div className="tooltip-card">
+                                  <div className="tooltip-header">
+                                    <strong>LC {prob.id}: {prob.title}</strong>
+                                    <span className={`diff-tag ${diffClass}`}>{prob.difficulty || 'Medium'}</span>
+                                  </div>
+                                  <div className="tooltip-status">
+                                    Status: {prob.is_solved ? <span style={{color: '#4ade80'}}>Solved 🟢</span> : <span style={{color: '#94a3b8'}}>Unsolved ⚪</span>}
+                                  </div>
+                                  <p className="tooltip-desc">{prob.description ? prob.description.substring(0, 120) + '...' : 'No description available.'}</p>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              ) : (
+                <div className="category-accordion-list">
+                  {data.categories.map(cat => {
+                    const isExpanded = expandedCategory === cat.name;
+                    return (
+                      <div key={cat.name} className={`category-accordion-item ${isExpanded ? 'expanded' : ''}`}>
+                        <div 
+                          className="category-accordion-header"
+                          onClick={() => setExpandedCategory(isExpanded ? null : cat.name)}
+                          style={{
+                            padding: '0.8rem 1rem',
+                            cursor: 'pointer',
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            alignItems: 'center',
+                            background: isExpanded ? 'rgba(255,255,255,0.05)' : 'transparent',
+                            borderBottom: '1px solid var(--border-color)',
+                            transition: 'background 0.2s'
+                          }}
+                        >
+                          <span style={{ fontWeight: '500', fontSize: '0.9rem' }}>{cat.name}</span>
+                          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                            {cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length}
+                          </span>
+                        </div>
+                        {isExpanded && (
+                          <div className="category-accordion-body" style={{ padding: '0.5rem' }}>
+                            {cat.problems.slice().sort((a, b) => parseInt(a) - parseInt(b)).map(probId => {
+                              const prob = data.problems[probId];
+                              const diffClass = prob.difficulty ? prob.difficulty.toLowerCase() : 'medium';
+                              const isActive = selectedProblem && selectedProblem.id === prob.id;
+                              return (
+                                <div 
+                                  key={prob.id}
+                                  className={`tree-prob-item ${prob.is_solved ? 'solved' : 'unsolved'} ${isActive ? 'active' : ''}`}
+                                  onClick={() => {
+                                    setSelectedProblem(prob);
+                                    setActiveTab('description');
+                                    setIsSidebarCollapsed(true);
+                                  }}
+                                  style={{
+                                    padding: '0.5rem 0.8rem',
+                                    margin: '0.2rem 0',
+                                    borderRadius: '6px',
+                                    cursor: 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '0.5rem',
+                                    background: isActive ? 'var(--accent-color)' : 'transparent',
+                                    color: isActive ? '#fff' : 'var(--text-main)',
+                                    fontSize: '0.85rem'
+                                  }}
+                                >
+                                  <span style={{ fontSize: '1.2rem' }}>{prob.status_icon}</span>
+                                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                                    {prob.id}. {prob.title}
+                                  </span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>>
 
           {selectedProblem && (
             <div className="problem-details split-right">
@@ -171,13 +278,13 @@ function App() {
                   >Solution Approach</button>
                 )}
                 <button 
-                  className={`tab-btn ${activeTab === 'solution' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('solution')}
-                >Solution</button>
-                <button 
                   className={`tab-btn ${activeTab === 'video' ? 'active' : ''}`}
                   onClick={() => setActiveTab('video')}
                 >Explanation Video</button>
+                <button 
+                  className={`tab-btn ${activeTab === 'solution' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('solution')}
+                >Solution</button>
               </div>
 
               <div className="tab-content">
