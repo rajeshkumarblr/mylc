@@ -212,7 +212,15 @@ function App() {
                             transition: 'background 0.2s'
                           }}
                         >
-                          <span style={{ fontWeight: '500', fontSize: '0.9rem' }}>{cat.name}</span>
+                          <span style={{ fontWeight: '500', fontSize: '0.9rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <span style={{ 
+                              transform: isExpanded ? 'rotate(90deg)' : 'rotate(0deg)', 
+                              transition: 'transform 0.2s',
+                              fontSize: '0.75rem',
+                              color: 'var(--text-muted)'
+                            }}>▶</span>
+                            {cat.name}
+                          </span>
                         </div>
                         {isExpanded && (
                           <div className="category-accordion-body" style={{ padding: '0.5rem' }}>

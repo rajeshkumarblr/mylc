@@ -608,9 +608,9 @@ body {
 }
 
 .home-table-container.split-left {
-  width: 20%;
-  min-width: 15%;
-  max-width: 40%;
+  width: max-content;
+  min-width: 250px;
+  max-width: 320px;
   padding: 1.5rem;
   overflow-y: auto;
   border-right: 1px solid var(--border-color);
