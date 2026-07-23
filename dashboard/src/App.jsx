@@ -18,16 +18,27 @@ function App() {
     fetch('./data.json')
       .then(res => res.json())
       .then(d => {
+        d.categories.sort((a, b) => a.name.localeCompare(b.name));
         setData(d);
-        if (d.categories.length > 0) {
-          setExpandedCategory(d.categories[0].name);
-        }
-        if (d.problems['130']) {
-          setSelectedProblem(d.problems['130']);
+        
+        const lastId = localStorage.getItem('lastVisitedProblemId');
+        if (lastId && d.problems[lastId]) {
+          const prob = d.problems[lastId];
+          setSelectedProblem(prob);
+          setExpandedCategory(prob.category);
           setActiveTab('description');
+          setViewMode('split');
+        } else {
+          setViewMode('overview');
         }
       });
   }, []);
+
+  useEffect(() => {
+    if (selectedProblem) {
+      localStorage.setItem('lastVisitedProblemId', selectedProblem.id);
+    }
+  }, [selectedProblem]);
 
   if (!data) return <div className="loading">Loading Dashboard...</div>;
 
@@ -202,9 +213,6 @@ function App() {
                           }}
                         >
                           <span style={{ fontWeight: '500', fontSize: '0.9rem' }}>{cat.name}</span>
-                          <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                            {cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length}
-                          </span>
                         </div>
                         {isExpanded && (
                           <div className="category-accordion-body" style={{ padding: '0.5rem' }}>
