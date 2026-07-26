@@ -70,20 +70,25 @@ public:
 
   void solve(vector<vector<char>> &board) {
 
-    if (board.empty() || board[0].empty()) return;
+    if (board.empty() || board[0].empty())
+      return;
     int rows = board.size();
     int cols = board[0].size();
 
     // 1. First and last row
     for (int j = 0; j < cols; j++) {
-      if (board[0][j] == 'O') dfs(board, 0, j);
-      if (rows > 1 && board[rows - 1][j] == 'O') dfs(board, rows - 1, j);
+      if (board[0][j] == 'O')
+        dfs(board, 0, j);
+      if (rows > 1 && board[rows - 1][j] == 'O')
+        dfs(board, rows - 1, j);
     }
 
     // 2. First and last column
     for (int i = 0; i < rows; i++) {
-      if (board[i][0] == 'O') dfs(board, i, 0);
-      if (cols > 1 && board[i][cols - 1] == 'O') dfs(board, i, cols - 1);
+      if (board[i][0] == 'O')
+        dfs(board, i, 0);
+      if (cols > 1 && board[i][cols - 1] == 'O')
+        dfs(board, i, cols - 1);
     }
 
     for (int i = 0; i < board.size(); i++) {
@@ -92,6 +97,7 @@ public:
           board[i][j] = 'X';
       }
     }
+
     for (int i = 0; i < board.size(); i++) {
       for (int j = 0; j < board[i].size(); j++) {
         if (board[i][j] == 'T')

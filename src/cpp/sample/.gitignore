@@ -1,0 +1,9 @@
+# Ignore all files by default (including compiled binaries with no extensions)
+*
+
+# Exclude source files, Makefiles, and configuration files from being ignored
+!*.c
+!*.cpp
+!Makefile
+!.gitignore
+!*.md
