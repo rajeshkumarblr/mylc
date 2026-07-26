@@ -11,6 +11,25 @@ def generate_data():
     with open("overview.md", "r") as f:
         lines = f.readlines()
 
+    # Load neetcode_descriptions.json if it exists
+    desc_cache = {}
+    if os.path.exists("scripts/neetcode_descriptions.json"):
+        try:
+            with open("scripts/neetcode_descriptions.json", "r") as f:
+                desc_cache = json.load(f)
+        except Exception:
+            pass
+
+    # Load local gql cache
+    gql_cache = {}
+    cache_file = "scripts/leetcode_cache.json"
+    if os.path.exists(cache_file):
+        try:
+            with open(cache_file, "r") as f:
+                gql_cache = json.load(f)
+        except Exception:
+            pass
+
     data = {
         "categories": [],
         "problems": {}
@@ -93,32 +112,41 @@ def generate_data():
                     approach_content = af.read()
 
             title_slug = lc_url.rstrip('/').split('/')[-1]
-            desc_html = None
-            url_gql = "https://leetcode.com/graphql"
-            query_gql = """
-            query questionData($titleSlug: String!) {
-              question(titleSlug: $titleSlug) {
-                content
-              }
-            }
-            """
-            try:
-                req_data = json.dumps({"query": query_gql, "variables": {"titleSlug": title_slug}}).encode('utf-8')
-                req = urllib.request.Request(
-                    url_gql, 
-                    data=req_data, 
-                    headers={
-                        'Content-Type': 'application/json',
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-                    }
-                )
-                with urllib.request.urlopen(req, timeout=5) as response:
-                    if response.status == 200:
-                        resp_data = json.loads(response.read().decode('utf-8'))
-                        if "data" in resp_data and resp_data["data"]["question"]:
-                            desc_html = resp_data["data"]["question"]["content"]
-            except Exception as e:
-                print(f"Warning: Failed to fetch HTML for {title_slug}: {e}")
+            desc_html = gql_cache.get(title_slug)
+
+            # Fallback to local neetcode_descriptions if not in gql cache
+            if not desc_html and prob_id in desc_cache:
+                desc_html = desc_cache[prob_id]
+
+            # Fetch via GraphQL only if solved, not cached, and has internet access
+            if not desc_html and is_solved:
+                url_gql = "https://leetcode.com/graphql"
+                query_gql = """
+                query questionData($titleSlug: String!) {
+                  question(titleSlug: $titleSlug) {
+                    content
+                  }
+                }
+                """
+                try:
+                    req_data = json.dumps({"query": query_gql, "variables": {"titleSlug": title_slug}}).encode('utf-8')
+                    req = urllib.request.Request(
+                        url_gql, 
+                        data=req_data, 
+                        headers={
+                            'Content-Type': 'application/json',
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+                        }
+                    )
+                    with urllib.request.urlopen(req, timeout=5) as response:
+                        if response.status == 200:
+                            resp_data = json.loads(response.read().decode('utf-8'))
+                            if "data" in resp_data and resp_data["data"]["question"]:
+                                desc_html = resp_data["data"]["question"]["content"]
+                                if desc_html:
+                                    gql_cache[title_slug] = desc_html
+                except Exception as e:
+                    print(f"Warning: Failed to fetch HTML for {title_slug}: {e}")
 
             prob_data = {
                 "id": prob_id,
@@ -148,6 +176,13 @@ def generate_data():
                 vid_url = vid_url.replace("watch?v=", "embed/")
             data["problems"][current_problem_id]["video_url"] = vid_url
             current_problem_id = None
+
+    # Save the updated gql cache
+    try:
+        with open(cache_file, "w") as out:
+            json.dump(gql_cache, out, indent=2)
+    except Exception as e:
+        print(f"Warning: Failed to save leetcode_cache.json: {e}")
 
     os.makedirs("dashboard/public", exist_ok=True)
     with open("dashboard/public/data.json", "w") as out:
