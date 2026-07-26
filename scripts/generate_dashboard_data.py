@@ -114,12 +114,8 @@ def generate_data():
             title_slug = lc_url.rstrip('/').split('/')[-1]
             desc_html = gql_cache.get(title_slug)
 
-            # Fallback to local neetcode_descriptions if not in gql cache
-            if not desc_html and prob_id in desc_cache:
-                desc_html = desc_cache[prob_id]
-
-            # Fetch via GraphQL only if solved, not cached, and has internet access
-            if not desc_html and is_solved:
+            # Fetch via GraphQL if not cached and has internet access
+            if not desc_html:
                 url_gql = "https://leetcode.com/graphql"
                 query_gql = """
                 query questionData($titleSlug: String!) {
@@ -147,6 +143,10 @@ def generate_data():
                                     gql_cache[title_slug] = desc_html
                 except Exception as e:
                     print(f"Warning: Failed to fetch HTML for {title_slug}: {e}")
+
+            # Fallback to local neetcode_descriptions if not in gql cache/fetched
+            if not desc_html and prob_id in desc_cache:
+                desc_html = desc_cache[prob_id]
 
             prob_data = {
                 "id": prob_id,
