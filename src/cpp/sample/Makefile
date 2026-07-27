@@ -2,10 +2,10 @@
 # Each .cpp or .c file in this directory will be compiled into its own executable in the same directory.
 
 CC ?= gcc
-CFLAGS ?= -O2 -Wall -Wextra -I.. -I../third_party -DLC_LOCAL_TEST
+CFLAGS ?= -O0 -g -fno-omit-frame-pointer -Wall -Wextra -I.. -I../third_party -DLC_LOCAL_TEST
 
 CXX ?= g++
-CXXFLAGS ?= -std=gnu++20 -O2 -Wall -Wextra -Wno-unused-parameter -I.. -I../third_party -DLC_LOCAL_TEST
+CXXFLAGS ?= -std=gnu++20 -O0 -g -fno-omit-frame-pointer -Wall -Wextra -Wno-unused-parameter -I.. -I../third_party -DLC_LOCAL_TEST
 
 # Find all C and C++ source files in the current directory
 C_SRCS   := $(wildcard *.c)
