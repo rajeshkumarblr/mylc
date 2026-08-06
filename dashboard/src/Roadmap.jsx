@@ -1,8 +1,10 @@
-import React, { useMemo } from 'react';
-import { ReactFlow, Controls, Background, Handle, Position } from '@xyflow/react';
+import React, { useMemo, useState } from 'react';
+import { ReactFlow, Controls, Background, Handle, Position, useReactFlow, ReactFlowProvider } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 
 const CategoryNode = ({ data }) => {
+  const isTB = data.layout === 'TB';
+  
   return (
     <div style={{
       background: 'rgba(30, 41, 59, 0.95)',
@@ -16,7 +18,11 @@ const CategoryNode = ({ data }) => {
       fontWeight: '500',
       overflow: 'hidden'
     }}>
-      <Handle type="target" position={Position.Top} style={{ background: '#94a3b8', border: 'none' }} />
+      <Handle 
+        type="target" 
+        position={isTB ? Position.Top : Position.Left} 
+        style={{ background: '#94a3b8', border: 'none' }} 
+      />
       
       <div style={{ padding: '0.5rem 1rem', textAlign: 'center' }}>
         {data.label}
@@ -38,7 +44,11 @@ const CategoryNode = ({ data }) => {
         </div>
       )}
 
-      <Handle type="source" position={Position.Bottom} style={{ background: '#94a3b8', border: 'none' }} />
+      <Handle 
+        type="source" 
+        position={isTB ? Position.Bottom : Position.Right} 
+        style={{ background: '#94a3b8', border: 'none' }} 
+      />
     </div>
   );
 };
@@ -47,7 +57,7 @@ const nodeTypes = {
   category: CategoryNode,
 };
 
-const rawNodes = [
+const rawNodesTB = [
   { id: 'Arrays & Hashing', position: { x: 400, y: 50 } },
   { id: 'Two Pointers', position: { x: 300, y: 150 } },
   { id: 'Stack', position: { x: 500, y: 150 } },
@@ -66,6 +76,27 @@ const rawNodes = [
   { id: '2-D Dynamic Programming', position: { x: 600, y: 750 } },
   { id: 'Bit Manipulation', position: { x: 800, y: 750 } },
   { id: 'Math & Geometry', position: { x: 700, y: 850 } },
+];
+
+const rawNodesLR = [
+  { id: 'Arrays & Hashing', position: { x: 50, y: 400 } },
+  { id: 'Two Pointers', position: { x: 350, y: 300 } },
+  { id: 'Stack', position: { x: 350, y: 500 } },
+  { id: 'Binary Search', position: { x: 650, y: 150 } },
+  { id: 'Sliding Window', position: { x: 650, y: 300 } },
+  { id: 'Linked List', position: { x: 650, y: 450 } },
+  { id: 'Trees', position: { x: 950, y: 300 } },
+  { id: 'Tries', position: { x: 1250, y: 100 } },
+  { id: 'Heap / Priority Queue', position: { x: 1250, y: 250 } },
+  { id: 'Backtracking', position: { x: 1250, y: 450 } },
+  { id: 'Intervals', position: { x: 1550, y: 150 } },
+  { id: 'Greedy', position: { x: 1550, y: 250 } },
+  { id: 'Graphs', position: { x: 1550, y: 450 } },
+  { id: 'Advanced Graphs', position: { x: 1850, y: 350 } },
+  { id: '1-D Dynamic Programming', position: { x: 1550, y: 600 } },
+  { id: '2-D Dynamic Programming', position: { x: 1850, y: 500 } },
+  { id: 'Bit Manipulation', position: { x: 1850, y: 700 } },
+  { id: 'Math & Geometry', position: { x: 2150, y: 600 } },
 ];
 
 const initialEdges = [
@@ -93,10 +124,13 @@ const initialEdges = [
   { id: 'e-bit-math', source: 'Bit Manipulation', target: 'Math & Geometry' },
 ];
 
-export default function Roadmap({ data }) {
+function RoadmapCanvas({ data, layout }) {
+  const { fitView } = useReactFlow();
+
+  const rawNodes = layout === 'TB' ? rawNodesTB : rawNodesLR;
+
   const nodes = useMemo(() => {
     return rawNodes.map(node => {
-      // Find category in data
       const cat = data?.categories?.find(c => c.name === node.id);
       let solved = 0;
       let total = 0;
@@ -112,31 +146,79 @@ export default function Roadmap({ data }) {
         data: {
           label: node.id,
           solved,
-          total
+          total,
+          layout
         }
       };
     });
-  }, [data]);
+  }, [data, layout]);
+
+  // Optionally re-fit view when layout changes
+  React.useEffect(() => {
+    setTimeout(() => {
+      fitView({ padding: 0.2, duration: 800 });
+    }, 50);
+  }, [layout, fitView]);
 
   return (
-    <div style={{ width: '100%', height: 'calc(100vh - 70px)', background: 'var(--bg-dark)' }}>
-      <ReactFlow 
-        nodes={nodes} 
-        edges={initialEdges}
-        nodeTypes={nodeTypes}
-        fitView
-        minZoom={0.5}
-        maxZoom={1.5}
-        defaultEdgeOptions={{ 
-          type: 'smoothstep',
-          style: { stroke: '#475569', strokeWidth: 2 },
-          animated: false
-        }}
-        proOptions={{ hideAttribution: true }}
-      >
-        <Background color="#334155" gap={24} size={1} />
-        <Controls style={{ background: '#1e293b', fill: '#e2e8f0' }} />
-      </ReactFlow>
+    <ReactFlow 
+      nodes={nodes} 
+      edges={initialEdges}
+      nodeTypes={nodeTypes}
+      fitView
+      minZoom={0.2}
+      maxZoom={1.5}
+      defaultEdgeOptions={{ 
+        type: 'smoothstep',
+        style: { stroke: '#475569', strokeWidth: 2 },
+        animated: false
+      }}
+      proOptions={{ hideAttribution: true }}
+    >
+      <Background color="#334155" gap={24} size={1} />
+      <Controls style={{ background: '#1e293b', fill: '#e2e8f0' }} />
+    </ReactFlow>
+  );
+}
+
+export default function Roadmap({ data }) {
+  const [layout, setLayout] = useState('TB');
+
+  return (
+    <div style={{ width: '100%', height: '100%', position: 'relative' }}>
+      <div style={{ position: 'absolute', top: 20, right: 20, zIndex: 10, display: 'flex', gap: '0.5rem', background: 'rgba(0,0,0,0.5)', padding: '0.5rem', borderRadius: '8px' }}>
+        <button 
+          onClick={() => setLayout('TB')}
+          style={{
+            background: layout === 'TB' ? 'var(--accent-color)' : 'rgba(255,255,255,0.1)',
+            border: 'none',
+            color: '#fff',
+            padding: '0.4rem 0.8rem',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '0.85rem'
+          }}
+        >
+          Top to Bottom
+        </button>
+        <button 
+          onClick={() => setLayout('LR')}
+          style={{
+            background: layout === 'LR' ? 'var(--accent-color)' : 'rgba(255,255,255,0.1)',
+            border: 'none',
+            color: '#fff',
+            padding: '0.4rem 0.8rem',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '0.85rem'
+          }}
+        >
+          Left to Right
+        </button>
+      </div>
+      <ReactFlowProvider>
+        <RoadmapCanvas data={data} layout={layout} />
+      </ReactFlowProvider>
     </div>
   );
 }
