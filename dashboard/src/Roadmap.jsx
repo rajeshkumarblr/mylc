@@ -5,9 +5,22 @@ import '@xyflow/react/dist/style.css';
 const CategoryNode = ({ data }) => {
   const isTB = data.layout === 'TB';
   
+  let message = "";
+  if (data.total === 0) {
+    message = "No problems here yet, check back!";
+  } else if (data.solved === 0) {
+    message = "Time to start a new adventure!";
+  } else if (data.solved < data.total / 2) {
+    message = "Good start, keep up the momentum!";
+  } else if (data.solved < data.total) {
+    message = "Halfway there, keep pushing forward now!";
+  } else {
+    message = "Perfect score, you mastered this category!";
+  }
+  
   return (
     <div 
-      title={`${data.solved}/${data.total} problems solved. Great job, keep up the momentum!`}
+      title={`${data.solved}/${data.total} problems solved. ${message}`}
       onClick={() => data.onCategoryClick && data.onCategoryClick(data.label)}
       style={{
       background: 'rgba(30, 41, 59, 0.95)',
