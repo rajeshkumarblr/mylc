@@ -13,6 +13,27 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('description');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
+  const handleCategoryClick = (categoryName) => {
+    if (!data) return;
+    const cat = data.categories.find(c => c.name === categoryName);
+    if (!cat) return;
+    
+    // Find first unsolved problem, or first problem if all solved
+    let probId = cat.problems.find(id => !data.problems[id].is_solved);
+    if (!probId && cat.problems.length > 0) {
+      probId = cat.problems[0];
+    }
+    
+    if (probId) {
+      setSelectedProblem(data.problems[probId]);
+      setExpandedCategory(categoryName);
+      setActiveTab('description');
+      setViewMode('split');
+      setIsSidebarCollapsed(false);
+    }
+  };
+
   const [viewMode, setViewMode] = useState('split');
 
   useEffect(() => {
@@ -22,16 +43,7 @@ function App() {
         d.categories.sort((a, b) => a.name.localeCompare(b.name));
         setData(d);
         
-        const lastId = localStorage.getItem('lastVisitedProblemId');
-        if (lastId && d.problems[lastId]) {
-          const prob = d.problems[lastId];
-          setSelectedProblem(prob);
-          setExpandedCategory(prob.category);
-          setActiveTab('description');
-          setViewMode('split');
-        } else {
-          setViewMode('overview');
-        }
+        setViewMode('overview');
       });
   }, []);
 
@@ -122,7 +134,7 @@ function App() {
             <div className="sidebar-content">
               {viewMode === 'overview' ? (
                 <div style={{ width: '100%', height: 'calc(100vh - 70px)', overflow: 'hidden' }}>
-                  <Roadmap data={data} />
+                  <Roadmap data={data} onCategoryClick={handleCategoryClick} />
                 </div>
               ) : (
                 <div className="category-accordion-list">

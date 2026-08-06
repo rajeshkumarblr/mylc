@@ -6,7 +6,10 @@ const CategoryNode = ({ data }) => {
   const isTB = data.layout === 'TB';
   
   return (
-    <div style={{
+    <div 
+      title={`${data.solved}/${data.total} problems solved. Great job, keep up the momentum!`}
+      onClick={() => data.onCategoryClick && data.onCategoryClick(data.label)}
+      style={{
       background: 'rgba(30, 41, 59, 0.95)',
       border: '1px solid var(--border-color)',
       borderRadius: '6px',
@@ -16,7 +19,8 @@ const CategoryNode = ({ data }) => {
       color: 'var(--text-main)',
       fontSize: '0.85rem',
       fontWeight: '500',
-      overflow: 'hidden'
+      overflow: 'hidden',
+      cursor: 'pointer'
     }}>
       <Handle 
         type="target" 
@@ -124,7 +128,7 @@ const initialEdges = [
   { id: 'e-bit-math', source: 'Bit Manipulation', target: 'Math & Geometry' },
 ];
 
-function RoadmapCanvas({ data, layout }) {
+function RoadmapCanvas({ data, layout, onCategoryClick }) {
   const { fitView } = useReactFlow();
 
   const rawNodes = layout === 'TB' ? rawNodesTB : rawNodesLR;
@@ -147,7 +151,8 @@ function RoadmapCanvas({ data, layout }) {
           label: node.id,
           solved,
           total,
-          layout
+          layout,
+          onCategoryClick
         }
       };
     });
@@ -181,7 +186,7 @@ function RoadmapCanvas({ data, layout }) {
   );
 }
 
-export default function Roadmap({ data }) {
+export default function Roadmap({ data, onCategoryClick }) {
   const [layout, setLayout] = useState('TB');
 
   return (
@@ -217,7 +222,7 @@ export default function Roadmap({ data }) {
         </button>
       </div>
       <ReactFlowProvider>
-        <RoadmapCanvas data={data} layout={layout} />
+        <RoadmapCanvas data={data} layout={layout} onCategoryClick={onCategoryClick} />
       </ReactFlowProvider>
     </div>
   );
