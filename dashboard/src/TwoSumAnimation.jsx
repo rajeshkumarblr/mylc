@@ -9,45 +9,66 @@ const steps = [
     action: "",
   },
   {
-    title: "Step 1",
-    text: "Look at the first element (2). To reach our target of 9, we need to find the complement: 9 - 2 = 7.",
+    title: "Step 1: Check 11",
+    text: "Look at the first element (11). To reach our target of 9, the complement is: 9 - 11 = -2.",
     arrayIdx: 0,
     mapData: {},
     action: "calculate_complement",
   },
   {
-    title: "Step 2",
-    text: "Check if 7 is in our Hash Map. It's empty, so we haven't seen 7 yet.",
+    title: "Step 2: Add 11 to Map",
+    text: "-2 is not in our Hash Map. We haven't seen it. So we add 11 and its index (0) to the map.",
     arrayIdx: 0,
-    mapData: {},
-    action: "check_map",
-  },
-  {
-    title: "Step 3",
-    text: "Since we didn't find the complement, we add the current number (2) and its index (0) to the Hash Map.",
-    arrayIdx: 0,
-    mapData: { 2: 0 },
+    mapData: { 11: 0 },
     action: "add_map",
   },
   {
-    title: "Step 4",
-    text: "Move to the next element (7). To reach our target of 9, the complement is: 9 - 7 = 2.",
+    title: "Step 3: Check 15",
+    text: "Move to the next element (15). To reach our target of 9, the complement is: 9 - 15 = -6.",
     arrayIdx: 1,
-    mapData: { 2: 0 },
+    mapData: { 11: 0 },
     action: "calculate_complement",
   },
   {
-    title: "Step 5",
-    text: "Check if 2 is in our Hash Map. Yes, it is! We found our pair.",
+    title: "Step 4: Add 15 to Map",
+    text: "-6 is not in our Hash Map. So we add 15 and its index (1) to the map.",
     arrayIdx: 1,
-    mapData: { 2: 0 },
+    mapData: { 11: 0, 15: 1 },
+    action: "add_map",
+  },
+  {
+    title: "Step 5: Check 2",
+    text: "Move to the next element (2). To reach our target of 9, the complement is: 9 - 2 = 7.",
+    arrayIdx: 2,
+    mapData: { 11: 0, 15: 1 },
+    action: "calculate_complement",
+  },
+  {
+    title: "Step 6: Add 2 to Map",
+    text: "7 is not in our Hash Map. So we add 2 and its index (2) to the map.",
+    arrayIdx: 2,
+    mapData: { 11: 0, 15: 1, 2: 2 },
+    action: "add_map",
+  },
+  {
+    title: "Step 7: Check 7",
+    text: "Move to the next element (7). To reach our target of 9, the complement is: 9 - 7 = 2.",
+    arrayIdx: 3,
+    mapData: { 11: 0, 15: 1, 2: 2 },
+    action: "calculate_complement",
+  },
+  {
+    title: "Step 8: Found Complement!",
+    text: "Check if 2 is in our Hash Map. Yes, it is! We found our pair.",
+    arrayIdx: 3,
+    mapData: { 11: 0, 15: 1, 2: 2 },
     action: "check_map_success",
   },
   {
     title: "Finished!",
-    text: "We return the index of the current element (1) and the index of the complement from the Hash Map (0). Result: [0, 1].",
-    arrayIdx: 1,
-    mapData: { 2: 0 },
+    text: "We return the index of the complement from the Hash Map (2) and the current index (3). Result: [2, 3].",
+    arrayIdx: 3,
+    mapData: { 11: 0, 15: 1, 2: 2 },
     action: "done",
   }
 ];
@@ -56,7 +77,7 @@ export default function TwoSumAnimation() {
   const [currentStep, setCurrentStep] = useState(0);
   const step = steps[currentStep];
   
-  const array = [2, 7, 11, 15];
+  const array = [11, 15, 2, 7];
   const target = 9;
 
   return (
@@ -95,7 +116,8 @@ export default function TwoSumAnimation() {
           <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'center' }}>
             {array.map((num, idx) => {
               const isCurrent = step.arrayIdx === idx;
-              const isComplementFound = step.action === 'done' && idx === 0; // Special highlight for the found pair
+              // If done, highlight both the current index (3) and the complement index (2)
+              const isComplementFound = step.action === 'done' && (idx === 3 || idx === 2); 
               return (
                 <div key={idx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem' }}>
                   <div style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>Index {idx}</div>
@@ -105,17 +127,17 @@ export default function TwoSumAnimation() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    background: isCurrent ? '#60a5fa' : isComplementFound ? '#4ade80' : 'rgba(255,255,255,0.1)',
+                    background: isCurrent && step.action !== 'done' ? '#60a5fa' : isComplementFound ? '#4ade80' : 'rgba(255,255,255,0.1)',
                     color: isCurrent || isComplementFound ? '#000' : '#fff',
                     fontWeight: 'bold',
                     fontSize: '1.2rem',
                     borderRadius: '8px',
                     transition: 'all 0.3s ease',
-                    transform: isCurrent ? 'scale(1.1)' : 'scale(1)'
+                    transform: isCurrent && step.action !== 'done' ? 'scale(1.1)' : isComplementFound ? 'scale(1.1)' : 'scale(1)'
                   }}>
                     {num}
                   </div>
-                  {isCurrent && <div style={{ fontSize: '1.5rem', color: '#60a5fa' }}>↑</div>}
+                  {(isCurrent && step.action !== 'done') && <div style={{ fontSize: '1.5rem', color: '#60a5fa' }}>↑</div>}
                 </div>
               );
             })}
@@ -138,7 +160,7 @@ export default function TwoSumAnimation() {
                 </thead>
                 <tbody>
                   {Object.entries(step.mapData).map(([key, val]) => {
-                    const isSuccess = step.action === 'check_map_success' || step.action === 'done';
+                    const isSuccess = (step.action === 'check_map_success' || step.action === 'done') && key === '2';
                     return (
                       <tr key={key} style={{ 
                         background: isSuccess ? 'rgba(74, 222, 128, 0.2)' : 'rgba(255,255,255,0.05)',
