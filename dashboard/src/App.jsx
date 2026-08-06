@@ -332,6 +332,10 @@ function App() {
                     )}
                   </div>
                 )}
+                
+                {activeTab === 'animation' && selectedProblem.id === '1' && (
+                  <TwoSumAnimation />
+                )}
               </div>
             </div>
           )}
