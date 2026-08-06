@@ -795,3 +795,10 @@ body {
 .category-accordion-header:hover {
   background: rgba(255,255,255,0.08) !important;
 }
+
+.home-table-container.overview-full {
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  background: var(--bg-dark);
+}

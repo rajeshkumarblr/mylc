@@ -3,6 +3,7 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import Roadmap from './Roadmap';
 import './index.css';
 
 function App() {
@@ -106,7 +107,7 @@ function App() {
 
       <div className="main-content">
         <main className={`content-panel ${viewMode === 'split' ? 'split-view-container' : ''} ${isSidebarCollapsed && viewMode === 'split' ? 'sidebar-collapsed' : ''}`}>
-          <div className={`home-table-container ${viewMode === 'split' ? 'split-left' : 'full-width'} ${isSidebarCollapsed && viewMode === 'split' ? 'collapsed' : ''}`}>
+          <div className={`home-table-container ${viewMode === 'split' ? 'split-left' : 'overview-full'} ${isSidebarCollapsed && viewMode === 'split' ? 'collapsed' : ''}`}>
             
             {viewMode === 'split' && (
               <button 
@@ -119,79 +120,10 @@ function App() {
             )}
 
             <div className="sidebar-content">
-              {viewMode === 'overview' && (
-                <div className="overall-progress" style={{ marginBottom: '1.5rem', background: 'rgba(0,0,0,0.2)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)' }}>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                    <span style={{ fontWeight: 'bold', color: 'var(--text-main)' }}>Overall Progress</span>
-                    <span style={{ color: 'var(--text-muted)' }}>{Object.values(data.problems).filter(p => p.is_solved).length} / {Object.keys(data.problems).length} Solved</span>
-                  </div>
-                  <div className="cat-progress-bar" style={{ height: '8px' }}>
-                    <div 
-                      className="cat-progress-fill" 
-                      style={{ width: `${(Object.values(data.problems).filter(p => p.is_solved).length / Object.keys(data.problems).length) * 100}%` }}
-                    ></div>
-                  </div>
-                </div>
-              )}
-
               {viewMode === 'overview' ? (
-                <table className="home-table">
-                  <thead>
-                    <tr>
-                      <th style={{ width: '25%' }}>Category</th>
-                      <th style={{ width: '75%' }}>Problems</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.categories.map(cat => (
-                      <tr key={cat.name}>
-                        <td className="category-cell">
-                          <span className="cat-name">{cat.name}</span>
-                          <div className="cat-progress-container">
-                            <div className="cat-progress-text">{cat.problems.filter(id => data.problems[id].is_solved).length}/{cat.problems.length} Solved</div>
-                            <div className="cat-progress-bar">
-                              <div 
-                                className="cat-progress-fill" 
-                                style={{ width: `${(cat.problems.filter(id => data.problems[id].is_solved).length / cat.problems.length) * 100}%` }}
-                              ></div>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="problems-cell">
-                          {cat.problems.slice().sort((a, b) => parseInt(a) - parseInt(b)).map(probId => {
-                            const prob = data.problems[probId];
-                            const diffClass = prob.difficulty ? prob.difficulty.toLowerCase() : 'medium';
-                            return (
-                              <div 
-                                key={prob.id} 
-                                className={`prob-badge ${prob.is_solved ? 'solved' : 'unsolved'} ${diffClass} ${selectedProblem && selectedProblem.id === prob.id ? 'active' : ''}`}
-                                onClick={() => {
-                                  setSelectedProblem(prob);
-                                  setExpandedCategory(prob.category);
-                                  setActiveTab('description');
-                                  setViewMode('split');
-                                  setIsSidebarCollapsed(true);
-                                }}
-                              >
-                                <span className="prob-id">{prob.id}</span>
-                                <div className="tooltip-card">
-                                  <div className="tooltip-header">
-                                    <strong>LC {prob.id}: {prob.title}</strong>
-                                    <span className={`diff-tag ${diffClass}`}>{prob.difficulty || 'Medium'}</span>
-                                  </div>
-                                  <div className="tooltip-status">
-                                    Status: {prob.is_solved ? <span style={{color: '#4ade80'}}>Solved 🟢</span> : <span style={{color: '#94a3b8'}}>Unsolved ⚪</span>}
-                                  </div>
-                                  <p className="tooltip-desc">{prob.description ? prob.description.substring(0, 120) + '...' : 'No description available.'}</p>
-                                </div>
-                              </div>
-                            );
-                          })}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <div style={{ width: '100%', height: 'calc(100vh - 70px)', overflow: 'hidden' }}>
+                  <Roadmap data={data} />
+                </div>
               ) : (
                 <div className="category-accordion-list">
                   {data.categories.map(cat => {
