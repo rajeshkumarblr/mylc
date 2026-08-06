@@ -8,6 +8,18 @@ Central runner + shared test harness. Problems and test data live in **`testcase
 
 For complete usage, build, and troubleshooting details, see [USAGE.md](./USAGE.md).
 
+## Interactive Dashboard
+🚀 **[View the Live Interactive Dashboard](https://rajeshkumarblr.github.io/mylc/)** 🚀
+
+We've built a sleek, React-based dashboard to visualize progress through the NeetCode 150 problems:
+- **Interactive Roadmap**: A fully interactive, pan-and-zoom roadmap mirroring the official NeetCode structure (with left-to-right & top-to-bottom layouts).
+- **Progress Tracking**: Dynamic progress bars embedded in each category node.
+- **Tree View Focus Mode**: Clicking a category expands its problem list and automatically loads the first unsolved problem.
+- **Algorithm Animations**: Step-by-step visual animations for complex problems (check out the Animation tab in *1. Two Sum*!).
+- **Local Storage**: Automatically remembers the last problem you were working on.
+
+---
+
 ## Quick start
 ```bash
 # (optional) set a default language for the run helper
