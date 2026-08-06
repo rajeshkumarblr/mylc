@@ -4,6 +4,7 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import Roadmap from './Roadmap';
+import TwoSumAnimation from './TwoSumAnimation';
 import './index.css';
 
 function App() {
@@ -245,6 +246,13 @@ function App() {
                   className={`tab-btn ${activeTab === 'solution' ? 'active' : ''}`}
                   onClick={() => setActiveTab('solution')}
                 >Solution</button>
+                {selectedProblem.id === '1' && (
+                  <button 
+                    className={`tab-btn ${activeTab === 'animation' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('animation')}
+                    style={{ background: activeTab === 'animation' ? 'var(--accent-color)' : 'rgba(74, 222, 128, 0.1)', color: activeTab === 'animation' ? '#fff' : '#4ade80', borderColor: '#4ade80' }}
+                  >Animation ✨</button>
+                )}
               </div>
 
               <div className="tab-content">
